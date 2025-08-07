@@ -1,44 +1,255 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Founders' Circle - Round Table Animation</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <style>
-    /* [Keep all your existing CSS as-is] */
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Founders' Circle - Round Table Animation</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        
+        * {
+            font-family: 'Inter', sans-serif;
+        }
+
+        .founders-container {
+            position: relative;
+            width: 500px;
+            height: 500px;
+            margin: 0 auto;
+        }
+
+        .center-circle {
+            position: absolute;
+            top: 250px;
+            left: 250px;
+            transform: translate(-50%, -50%);
+            width: 140px;
+            height: 140px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 700;
+            font-size: 16px;
+            text-align: center;
+            box-shadow: 0 0 30px rgba(102, 126, 234, 0.4);
+            animation: centerGlow 4s ease-in-out infinite alternate;
+            z-index: 10;
+        }
+
+        @keyframes centerGlow {
+            from {
+                box-shadow: 0 0 30px rgba(102, 126, 234, 0.4);
+                transform: translate(-50%, -50%) scale(1);
+            }
+            to {
+                box-shadow: 0 0 50px rgba(102, 126, 234, 0.8);
+                transform: translate(-50%, -50%) scale(1.02);
+            }
+        }
+
+        .founder-name {
+            position: absolute;
+            width: 160px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            border-radius: 25px;
+            color: white;
+            font-weight: 600;
+            font-size: 14px;
+            cursor: pointer;
+            transition: transform 1.5s ease-in-out, box-shadow 0.3s ease;
+            box-shadow: 0 8px 25px rgba(240, 147, 251, 0.3);
+            z-index: 5;
+            top: 250px;
+            left: 250px;
+        }
+
+        .founder-name:hover {
+            animation-play-state: paused;
+            transform: scale(1.1) !important;
+            box-shadow: 0 12px 35px rgba(240, 147, 251, 0.5);
+            z-index: 20;
+        }
+
+        .founder-tooltip {
+            position: absolute;
+            bottom: -60px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(0, 0, 0, 0.9);
+            color: white;
+            padding: 8px 12px;
+            border-radius: 8px;
+            font-size: 12px;
+            white-space: nowrap;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+            z-index: 30;
+        }
+
+        .founder-name:hover .founder-tooltip {
+            opacity: 1;
+        }
+
+        .founder-tooltip::before {
+            content: '';
+            position: absolute;
+            top: -5px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-left: 5px solid transparent;
+            border-right: 5px solid transparent;
+            border-bottom: 5px solid rgba(0, 0, 0, 0.9);
+        }
+
+        /* Position classes for the four seats - all relative to center (250px, 250px) */
+        .position-0 { /* Top-Right: 45° */
+            transform: translate(calc(-50% + 180px * 0.707), calc(-50% - 180px * 0.707));
+        }
+        
+        .position-1 { /* Bottom-Right: 135° */
+            transform: translate(calc(-50% + 180px * 0.707), calc(-50% + 180px * 0.707));
+        }
+        
+        .position-2 { /* Bottom-Left: 225° */
+            transform: translate(calc(-50% - 180px * 0.707), calc(-50% + 180px * 0.707));
+        }
+        
+        .position-3 { /* Top-Left: 315° */
+            transform: translate(calc(-50% - 180px * 0.707), calc(-50% - 180px * 0.707));
+        }
+
+        .team-card {
+            background: linear-gradient(135deg, #1f2937 0%, #374151 100%);
+            border-radius: 20px;
+            padding: 1.5rem;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+            opacity: 0;
+            transform: translateY(30px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .team-card.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .team-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 60px rgba(240, 147, 251, 0.3);
+            border: 1px solid rgba(240, 147, 251, 0.3);
+        }
+
+        .profile-img {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 24px;
+            font-weight: 600;
+            margin: 0 auto 1rem;
+        }
+
+        @media (max-width: 768px) {
+            .founders-container {
+                width: 350px;
+                height: 350px;
+                margin: 0 auto;
+            }
+            
+            .center-circle {
+                width: 100px;
+                height: 100px;
+                font-size: 12px;
+            }
+            
+            .founder-name {
+                width: 120px;
+                height: 40px;
+                font-size: 12px;
+                top: 175px;
+                left: 175px;
+            }
+            
+            /* Mobile position classes - scaled down radius */
+            .position-0 { /* Top-Right: 45° */
+                transform: translate(calc(-50% + 130px * 0.707), calc(-50% - 130px * 0.707)) !important;
+            }
+            
+            .position-1 { /* Bottom-Right: 135° */
+                transform: translate(calc(-50% + 130px * 0.707), calc(-50% + 130px * 0.707)) !important;
+            }
+            
+            .position-2 { /* Bottom-Left: 225° */
+                transform: translate(calc(-50% - 130px * 0.707), calc(-50% + 130px * 0.707)) !important;
+            }
+            
+            .position-3 { /* Top-Left: 315° */
+                transform: translate(calc(-50% - 130px * 0.707), calc(-50% - 130px * 0.707)) !important;
+            }
+            
+            .founder-tooltip {
+                font-size: 10px;
+                padding: 6px 8px;
+                bottom: -50px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .founders-container {
+                width: 280px;
+                height: 280px;
+            }
+            
+            .center-circle {
+                width: 80px;
+                height: 80px;
+                font-size: 10px;
+                top: 140px;
+                left: 140px;
+            }
+            
+            .founder-name {
+                width: 100px;
+                height: 35px;
+                font-size: 11px;
+                top: 140px;
+                left: 140px;
+            }
+            
+            /* Extra small mobile - even smaller radius */
+            .position-0 { /* Top-Right: 45° */
+                transform: translate(calc(-50% + 100px * 0.707), calc(-50% - 100px * 0.707)) !important;
+            }
+            
+            .position-1 { /* Bottom-Right: 135° */
+                transform: translate(calc(-50% + 100px * 0.707), calc(-50% + 100px * 0.707)) !important;
+            }
+            
+            .position-2 { /* Bottom-Left: 225° */
+                transform: translate(calc(-50% - 100px * 0.707), calc(-50% + 100px * 0.707)) !important;
+            }
+            
+            .position-3 { /* Top-Left: 315° */
+                transform: translate(calc(-50% - 100px * 0.707), calc(-50% - 100px * 0.707)) !important;
+            }
+        }
+    </style>
 </head>
 <body class="bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 min-h-screen">
-
-  <!-- 🔐 LOGIN SCREEN -->
-  <div id="login-container" class="text-center py-20 text-white" style="display: none;">
-    <h2 class="text-2xl mb-4">Please Login to Continue</h2>
-    <button onclick="loginWithGoogle()" class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded">
-      Login with Google
-    </button>
-    <br><br>
-    <button onclick="showEmailLogin()" class="bg-gray-700 hover:bg-gray-800 text-white font-bold py-2 px-4 rounded">
-      Login with Email
-    </button>
-    <div id="email-login" class="mt-6 hidden">
-      <input type="email" id="email" placeholder="Email" class="px-4 py-2 rounded bg-white text-black">
-      <input type="password" id="password" placeholder="Password" class="px-4 py-2 rounded bg-white text-black mt-2">
-      <button onclick="loginWithEmail()" class="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded mt-2">
-        Login
-      </button>
-    </div>
-  </div>
-
-  
- 
-    <!-- Paste all your current page content here (header, sections, etc.) -->
-
-<body class="bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 min-h-screen">
-
-<!-- 🔐 PROTECTED CONTENT -->
-<div id="content" style="display: none;">
-
 
   <!-- 🔐 LOGIN SCREEN (initially hidden) -->
   <div id="login-container" class="text-center py-20 text-white" style="display: none;">
@@ -255,71 +466,32 @@
     </script>
 <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'966e5b01914d5cb8',t:'MTc1MzgxMDM0NS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script>
 
+<!-- Firebase JS SDKs -->
+<script src="https://www.gstatic.com/firebasejs/12.0.0/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/12.0.0/firebase-analytics.js"></script>
+<script src="https://www.gstatic.com/firebasejs/12.0.0/firebase-auth.js"></script>
 
-    <!-- [Header, Founders Circle, and Team Sections come here — you can paste them from your current code] -->
 
+<script>
+  // Your Firebase config
+  const firebaseConfig = {
+    apiKey: "AIzaSyBlwocP...RvgblCqA", // shortened for security
+    authDomain: "iastunecourses.firebaseapp.com",
+    projectId: "iastunecourses",
+    storageBucket: "iastunecourses.appspot.com",
+    messagingSenderId: "108513085479",
+    appId: "1:108513085479:web:a806720d7ae186f4420e6",
+    measurementId: "G-HGZEFV4R4R"
+  };
 
-  <!-- Firebase JS SDKs -->
-  <script src="https://www.gstatic.com/firebasejs/12.0.0/firebase-app.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/12.0.0/firebase-analytics.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/12.0.0/firebase-auth.js"></script>
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+  firebase.analytics();
+</script>
 
-  <!-- Firebase Initialization -->
-  <script>
-    const firebaseConfig = {
-      apiKey: "AIzaSyBlwocP...RvgblCqA", // masked for safety
-      authDomain: "iastunecourses.firebaseapp.com",
-      projectId: "iastunecourses",
-      storageBucket: "iastunecourses.appspot.com",
-      messagingSenderId: "108513085479",
-      appId: "1:108513085479:web:a806720d7ae186f4420e6",
-      measurementId: "G-HGZEFV4R4R"
-    };
-    firebase.initializeApp(firebaseConfig);
-    firebase.analytics();
-  </script>
-
-  <!-- Authentication Logic -->
-  <script>
-    function showEmailLogin() {
-      document.getElementById("email-login").classList.remove("hidden");
-    }
-
-    function loginWithGoogle() {
-      const provider = new firebase.auth.GoogleAuthProvider();
-      firebase.auth().signInWithPopup(provider).then(result => {
-        showContent();
-      }).catch(error => {
-        alert("Google Login Failed: " + error.message);
-      });
-    }
-
-    function loginWithEmail() {
-      const email = document.getElementById("email").value;
-      const password = document.getElementById("password").value;
-      firebase.auth().signInWithEmailAndPassword(email, password).then(userCredential => {
-        showContent();
-      }).catch(error => {
-        alert("Email Login Failed: " + error.message);
-      });
-    }
-
-    function showContent() {
-      document.getElementById("login-container").style.display = "none";
-      document.getElementById("content").style.display = "block";
-    }
-
-    firebase.auth().onAuthStateChanged(user => {
-      if (user) {
-        showContent();
-      } else {
-        document.getElementById("login-container").style.display = "block";
-      }
-    });
-  </script>
-
-</div>
 
 </body>
 </html>
+
+
 
