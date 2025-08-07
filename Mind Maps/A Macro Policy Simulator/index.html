@@ -127,6 +127,29 @@
             transition: all 0.5s ease;
         }
     </style>
+
+
+<script>
+// Block right-click context menu
+document.addEventListener('contextmenu', e => e.preventDefault());
+
+// Block F12, Ctrl+Shift+I, Ctrl+Shift+J, Ctrl+U
+document.addEventListener('keydown', function(e) {
+  // F12
+  if (e.keyCode === 123) {
+    e.preventDefault();
+  }
+  // Ctrl+Shift+I (DevTools), Ctrl+Shift+J (Console), Ctrl+U (View Source)
+  if (e.ctrlKey && e.shiftKey && (e.keyCode === 73 || e.keyCode === 74)) {
+    e.preventDefault();
+  }
+  if (e.ctrlKey && e.keyCode === 85) {
+    e.preventDefault();
+  }
+});
+</script>
+
+
 </head>
 <body class="min-h-screen p-4 md:p-8">
     <div class="max-w-5xl mx-auto bg-white rounded-2xl shadow-lg overflow-hidden">
@@ -511,3 +534,4 @@
     </script>
 <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'94f93d5375daa908',t:'MTc0OTg5Nzk0MS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
+
