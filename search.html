@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Agricultural Search Hub</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    animation: {
+                        'fade-in': 'fadeIn 0.3s ease-out',
+                        'slide-up': 'slideUp 0.3s ease-out',
+                        'pulse-glow': 'pulseGlow 2s ease-in-out infinite',
+                        'float': 'float 6s ease-in-out infinite',
+                    },
+                    keyframes: {
+                        fadeIn: {
+                            '0%': { opacity: '0' },
+                            '100%': { opacity: '1' }
+                        },
+                        slideUp: {
+                            '0%': { opacity: '0', transform: 'translateY(10px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' }
+                        },
+                        pulseGlow: {
+                            '0%, 100%': { boxShadow: '0 0 20px rgba(59, 130, 246, 0.3)' },
+                            '50%': { boxShadow: '0 0 40px rgba(59, 130, 246, 0.6)' }
+                        },
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0px)' },
+                            '50%': { transform: 'translateY(-10px)' }
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .glass-effect {
+            backdrop-filter: blur(20px);
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .dark .glass-effect {
+            background: rgba(0, 0, 0, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .gradient-bg {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        
+        .dark .gradient-bg {
+            background: linear-gradient(135deg, #1e3a8a 0%, #312e81 100%);
+        }
+        
+        mark {
+            background: linear-gradient(120deg, #fbbf24, #f59e0b);
+            color: #1f2937;
+            padding: 2px 4px;
+            border-radius: 4px;
+            font-weight: 600;
+        }
+        
+        .chip-hover {
+            transition: all 0.2s ease;
+        }
+        
+        .chip-hover:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+        }
+        
+        .search-focus {
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.3);
+        }
+    </style>
+</head>
+<body class="min-h-screen transition-colors duration-300 gradient-bg">
+    <!-- Theme Toggle -->
+    <button 
+        id="themeToggle" 
+        class="fixed top-6 right-6 z-50 p-3 rounded-full glass-effect hover:scale-110 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-blue-400"
+        aria-label="Toggle dark mode"
+    >
+        <svg id="sunIcon" class="w-6 h-6 text-yellow-400 hidden" fill="currentColor" viewBox="0 0 20 20">
+            <path fill-rule="evenodd" d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" clip-rule="evenodd"></path>
+        </svg>
+        <svg id="moonIcon" class="w-6 h-6 text-blue-300" fill="currentColor" viewBox="0 0 20 20">
+            <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path>
+        </svg>
+    </button>
+
+    <!-- Main Container -->
+    <div class="min-h-screen flex flex-col items-center justify-center px-4 py-8">
+        <!-- Header -->
+        <div class="text-center mb-12 animate-fade-in">
+            <h1 class="text-4xl md:text-6xl font-bold text-white mb-4 animate-float">
+                🌾 AgriSearch Hub
+            </h1>
+            <p class="text-lg md:text-xl text-white/80 max-w-2xl mx-auto">
+                Discover comprehensive agricultural insights, policies, and innovations with intelligent search
+            </p>
+        </div>
+
+        <!-- Search Container -->
+        <div class="w-full max-w-4xl mx-auto relative">
+            <!-- Search Bar -->
+            <div class="relative mb-4">
+                <div 
+                    id="searchContainer"
+                    class="relative glass-effect rounded-full h-14 flex items-center px-6 transition-all duration-300 hover:shadow-lg"
+                >
+                    <!-- Search Icon -->
+                    <svg class="w-6 h-6 text-white/70 mr-4 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m21 21-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                    </svg>
+                    
+                    <!-- Input Field -->
+                    <input
+                        type="text"
+                        id="searchInput"
+                        placeholder="Search agricultural topics, policies, reforms..."
+                        class="flex-1 bg-transparent text-white placeholder-white/50 outline-none text-lg"
+                        role="combobox"
+                        aria-expanded="false"
+                        aria-haspopup="listbox"
+                        aria-label="Search agricultural topics"
+                        autocomplete="off"
+                    >
+                    
+                    <!-- Clear Button -->
+                    <button
+                        id="clearButton"
+                        class="w-8 h-8 rounded-full bg-white/20 hover:bg-white/30 flex items-center justify-center transition-all duration-200 opacity-0 invisible ml-4"
+                        aria-label="Clear search"
+                    >
+                        <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Suggestions Dropdown -->
+            <div
+                id="suggestionsDropdown"
+                class="absolute top-full left-0 right-0 mt-2 glass-effect rounded-2xl shadow-2xl opacity-0 invisible transition-all duration-300 transform translate-y-2 z-40"
+                role="listbox"
+                aria-label="Search suggestions"
+            >
+                <div id="suggestionsContent" class="p-4 max-h-96 overflow-y-auto">
+                    <!-- Suggestions will be populated here -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Quick Access Cards -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-16 w-full max-w-6xl mx-auto">
+            <div class="glass-effect rounded-2xl p-6 hover:scale-105 transition-all duration-300 cursor-pointer group" onclick="navigateToUrl('https://www.iastune.in/6.%20Preamble.html')">
+                <div class="text-4xl mb-4 group-hover:animate-bounce">🚜</div>
+                <h3 class="text-xl font-bold text-white mb-2">E-Technology in Agriculture</h3>
+                <p class="text-white/70">Explore ICT innovations and digital solutions transforming modern farming</p>
+            </div>
+            
+            <div class="glass-effect rounded-2xl p-6 hover:scale-105 transition-all duration-300 cursor-pointer group" onclick="navigateToUrl('https://www.iastune.in/Mind%20Maps/A%20Macro%20Policy%20Simulator')">
+                <div class="text-4xl mb-4 group-hover:animate-bounce">📊</div>
+                <h3 class="text-xl font-bold text-white mb-2">Farm Subsidies & MSP</h3>
+                <p class="text-white/70">Understand direct and indirect subsidies, minimum support pricing policies</p>
+            </div>
+            
+            <div class="glass-effect rounded-2xl p-6 hover:scale-105 transition-all duration-300 cursor-pointer group" onclick="navigateToUrl('https://www.iastune.in')">
+                <div class="text-4xl mb-4 group-hover:animate-bounce">🏞️</div>
+                <h3 class="text-xl font-bold text-white mb-2">Land Reforms</h3>
+                <p class="text-white/70">Comprehensive insights into land ownership, tenure, and agricultural reforms</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Keywords and URL mappings
+        const keywordGroups = [
+            {
+                name: "E-Technology in Agriculture",
+                url: "https://www.iastune.in/6.%20Preamble.html",
+                keywords: [
+                    "E-Technology in the aid of farmers", "what is it", "conceptualization", "design", 
+                    "development", "implement", "ICT innovations", "in agriculture", "Role of ICT in agriculture",
+                    "Implement", "regulatory policies", "monitor", "Information dissemination", "critical inputs",
+                    "Agri variables", "like", "climate", "pricing", "Decision support", "through", "Information",
+                    "Improves", "reach", "of", "local communities", "to newer", "opportunities", "of livelihood",
+                    "Smart linkages", "Forward", "backward", "Access to financial services", "banking", "credit",
+                    "Insurance", "savings"
+                ]
+            },
+            {
+                name: "Farm Subsidies & MSP",
+                url: "https://www.iastune.in/Mind%20Maps/A%20Macro%20Policy%20Simulator",
+                keywords: [
+                    "Issues related to Direct, Indirect farm subsidies and MSP", "Farm subsidies", "sum of money",
+                    "granted by the state or a public body", "to help", "farmers", "socio-economically",
+                    "integral part of", "the government's budget", "Around 40% of GDP", "developed countries",
+                    "Around 8% GDP", "India", "major parts", "Food", "Fertilizer", "Irrigation", "Power",
+                    "credit", "Policy instrument for farm subsidies", "MSP", "Minimum support price", "MEP",
+                    "Minimum Export Price"
+                ]
+            },
+            {
+                name: "Land Reforms",
+                url: "https://www.iastune.in",
+                keywords: [
+                    "Land Reforms", "What", "Reforms in", "Land ownership", "Land Holdings", "Land tenure",
+                    "Land rent", "Land revenue+credit", "Why", "Institutional factors that affects A.productivity",
+                    "Land Tenure system", "Land Holdings size", "Land distribution", "Farmers w.o land (Tenants)",
+                    "No loan", "No motivation", "to improve Agri produce", "Pay heavy rent", "Less income",
+                    "= cant improve", "production", "Objectives", "Increase in production", "by solving",
+                    "Social Justice", "Zamindari abolition", "= No forced labor", "Land ceiling",
+                    "= Reduces inequality", "Income", "Land ownership", "Tenancy reforms", "= Reduces rents",
+                    "= Tenure security", "Economic development", "Increase in production", "Intermediary abolition",
+                    "= Direct contact State&Farmers", "= Develop Rural regions& Agriculture", "as per 5 year plans",
+                    "High Standard of Living", "Increase in production", "social justice given", "Economic development",
+                    "How", "Initial years after Independence", "For Refugee farmers"
+                ]
+            }
+        ];
+
+        // DOM elements
+        const searchInput = document.getElementById('searchInput');
+        const clearButton = document.getElementById('clearButton');
+        const suggestionsDropdown = document.getElementById('suggestionsDropdown');
+        const suggestionsContent = document.getElementById('suggestionsContent');
+        const searchContainer = document.getElementById('searchContainer');
+        const themeToggle = document.getElementById('themeToggle');
+        const sunIcon = document.getElementById('sunIcon');
+        const moonIcon = document.getElementById('moonIcon');
+
+        // State
+        let debounceTimer;
+        let currentFocusIndex = -1;
+        let currentMatches = [];
+
+        // Theme management
+        function initTheme() {
+            const isDark = localStorage.getItem('theme') === 'dark' || 
+                          (!localStorage.getItem('theme') && window.matchMedia('(prefers-color-scheme: dark)').matches);
+            
+            if (isDark) {
+                document.documentElement.classList.add('dark');
+                sunIcon.classList.remove('hidden');
+                moonIcon.classList.add('hidden');
+            } else {
+                document.documentElement.classList.remove('dark');
+                sunIcon.classList.add('hidden');
+                moonIcon.classList.remove('hidden');
+            }
+        }
+
+        function toggleTheme() {
+            const isDark = document.documentElement.classList.contains('dark');
+            
+            if (isDark) {
+                document.documentElement.classList.remove('dark');
+                localStorage.setItem('theme', 'light');
+                sunIcon.classList.add('hidden');
+                moonIcon.classList.remove('hidden');
+            } else {
+                document.documentElement.classList.add('dark');
+                localStorage.setItem('theme', 'dark');
+                sunIcon.classList.remove('hidden');
+                moonIcon.classList.add('hidden');
+            }
+        }
+
+        // Search functionality
+        function searchKeywords(query) {
+            if (!query.trim()) return [];
+
+            const matches = [];
+            const seenKeywords = new Set();
+
+            keywordGroups.forEach(group => {
+                const groupMatches = [];
+                
+                group.keywords.forEach(keyword => {
+                    if (keyword.toLowerCase().includes(query.toLowerCase()) && !seenKeywords.has(keyword.toLowerCase())) {
+                        seenKeywords.add(keyword.toLowerCase());
+                        groupMatches.push({
+                            keyword,
+                            url: group.url,
+                            group: group.name,
+                            highlighted: highlightMatch(keyword, query)
+                        });
+                    }
+                });
+
+                if (groupMatches.length > 0) {
+                    matches.push({
+                        groupName: group.name,
+                        matches: groupMatches.slice(0, 10) // Limit matches per group
+                    });
+                }
+            });
+
+            return matches;
+        }
+
+        function highlightMatch(text, query) {
+            const regex = new RegExp(`(${query})`, 'gi');
+            return text.replace(regex, '<mark>$1</mark>');
+        }
+
+        function renderSuggestions(matches) {
+            if (matches.length === 0) {
+                hideSuggestions();
+                return;
+            }
+
+            let html = '';
+            matches.forEach((group, groupIndex) => {
+                html += `
+                    <div class="mb-4 ${groupIndex > 0 ? 'border-t border-white/10 pt-4' : ''}">
+                        <h3 class="text-sm font-semibold text-white/60 mb-2 px-2">${group.groupName}</h3>
+                        <div class="space-y-1">
+                `;
+
+                group.matches.forEach((match, matchIndex) => {
+                    const globalIndex = matches.slice(0, groupIndex).reduce((acc, g) => acc + g.matches.length, 0) + matchIndex;
+                    html += `
+                        <button
+                            class="w-full text-left p-3 rounded-xl hover:bg-white/10 transition-all duration-200 chip-hover focus:outline-none focus:bg-white/20 group"
+                            data-url="${match.url}"
+                            data-index="${globalIndex}"
+                            role="option"
+                            aria-selected="false"
+                        >
+                            <div class="flex items-center justify-between">
+                                <span class="text-white text-sm">${match.highlighted}</span>
+                                <svg class="w-4 h-4 text-white/40 group-hover:text-white/70 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
+                                </svg>
+                            </div>
+                        </button>
+                    `;
+                });
+
+                html += '</div></div>';
+            });
+
+            suggestionsContent.innerHTML = html;
+            showSuggestions();
+
+            // Add click listeners
+            const chips = suggestionsContent.querySelectorAll('button[data-url]');
+            chips.forEach(chip => {
+                chip.addEventListener('click', () => {
+                    navigateToUrl(chip.dataset.url);
+                });
+            });
+
+            currentMatches = Array.from(chips);
+        }
+
+        function showSuggestions() {
+            suggestionsDropdown.classList.remove('opacity-0', 'invisible', 'translate-y-2');
+            suggestionsDropdown.classList.add('opacity-100', 'visible', 'translate-y-0');
+            searchInput.setAttribute('aria-expanded', 'true');
+        }
+
+        function hideSuggestions() {
+            suggestionsDropdown.classList.add('opacity-0', 'invisible', 'translate-y-2');
+            suggestionsDropdown.classList.remove('opacity-100', 'visible', 'translate-y-0');
+            searchInput.setAttribute('aria-expanded', 'false');
+            currentFocusIndex = -1;
+            updateFocus();
+        }
+
+        function updateFocus() {
+            currentMatches.forEach((chip, index) => {
+                if (index === currentFocusIndex) {
+                    chip.classList.add('bg-white/20');
+                    chip.setAttribute('aria-selected', 'true');
+                    chip.scrollIntoView({ block: 'nearest' });
+                } else {
+                    chip.classList.remove('bg-white/20');
+                    chip.setAttribute('aria-selected', 'false');
+                }
+            });
+        }
+
+        function navigateToUrl(url) {
+            window.open(url, '_blank');
+        }
+
+        // Event listeners
+        searchInput.addEventListener('input', (e) => {
+            const query = e.target.value;
+            
+            // Show/hide clear button
+            if (query) {
+                clearButton.classList.remove('opacity-0', 'invisible');
+                clearButton.classList.add('opacity-100', 'visible');
+            } else {
+                clearButton.classList.add('opacity-0', 'invisible');
+                clearButton.classList.remove('opacity-100', 'visible');
+            }
+
+            // Debounced search
+            clearTimeout(debounceTimer);
+            debounceTimer = setTimeout(() => {
+                const matches = searchKeywords(query);
+                renderSuggestions(matches);
+            }, 150);
+        });
+
+        searchInput.addEventListener('focus', () => {
+            searchContainer.classList.add('search-focus');
+            if (searchInput.value) {
+                const matches = searchKeywords(searchInput.value);
+                renderSuggestions(matches);
+            }
+        });
+
+        searchInput.addEventListener('blur', (e) => {
+            searchContainer.classList.remove('search-focus');
+            // Delay hiding to allow clicks on suggestions
+            setTimeout(() => {
+                if (!suggestionsDropdown.contains(document.activeElement)) {
+                    hideSuggestions();
+                }
+            }, 150);
+        });
+
+        searchInput.addEventListener('keydown', (e) => {
+            if (!currentMatches.length) return;
+
+            switch (e.key) {
+                case 'ArrowDown':
+                    e.preventDefault();
+                    currentFocusIndex = Math.min(currentFocusIndex + 1, currentMatches.length - 1);
+                    updateFocus();
+                    break;
+                case 'ArrowUp':
+                    e.preventDefault();
+                    currentFocusIndex = Math.max(currentFocusIndex - 1, -1);
+                    updateFocus();
+                    break;
+                case 'Enter':
+                    e.preventDefault();
+                    if (currentFocusIndex >= 0 && currentMatches[currentFocusIndex]) {
+                        navigateToUrl(currentMatches[currentFocusIndex].dataset.url);
+                    }
+                    break;
+                case 'Escape':
+                    hideSuggestions();
+                    searchInput.blur();
+                    break;
+            }
+        });
+
+        clearButton.addEventListener('click', () => {
+            searchInput.value = '';
+            searchInput.focus();
+            clearButton.classList.add('opacity-0', 'invisible');
+            clearButton.classList.remove('opacity-100', 'visible');
+            hideSuggestions();
+        });
+
+        themeToggle.addEventListener('click', toggleTheme);
+
+        // Click outside to close
+        document.addEventListener('click', (e) => {
+            if (!searchContainer.contains(e.target) && !suggestionsDropdown.contains(e.target)) {
+                hideSuggestions();
+            }
+        });
+
+        // Initialize
+        initTheme();
+
+        // Add some example searches on load
+        setTimeout(() => {
+            const examples = ['Try searching: "implement", "MSP", "Land reforms"'];
+            console.log(examples[0]);
+        }, 2000);
+    </script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'96c0f71465d6162e',t:'MTc1NDY3NjU3MC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
