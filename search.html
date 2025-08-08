@@ -43,11 +43,39 @@
             backdrop-filter: blur(20px);
             background: rgba(255, 255, 255, 0.1);
             border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 
+                0 8px 32px rgba(0, 0, 0, 0.1),
+                inset 0 1px 0 rgba(255, 255, 255, 0.2),
+                inset 0 -1px 0 rgba(0, 0, 0, 0.1);
         }
         
         .dark .glass-effect {
             background: rgba(0, 0, 0, 0.2);
             border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 
+                0 8px 32px rgba(0, 0, 0, 0.3),
+                inset 0 1px 0 rgba(255, 255, 255, 0.1),
+                inset 0 -1px 0 rgba(0, 0, 0, 0.2);
+        }
+        
+        .search-3d {
+            transform: perspective(1000px) rotateX(5deg);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .search-3d:hover {
+            transform: perspective(1000px) rotateX(0deg) translateY(-2px);
+            box-shadow: 
+                0 20px 60px rgba(0, 0, 0, 0.2),
+                0 0 40px rgba(59, 130, 246, 0.3),
+                inset 0 1px 0 rgba(255, 255, 255, 0.3);
+        }
+        
+        .dark .search-3d:hover {
+            box-shadow: 
+                0 20px 60px rgba(0, 0, 0, 0.4),
+                0 0 40px rgba(59, 130, 246, 0.4),
+                inset 0 1px 0 rgba(255, 255, 255, 0.2);
         }
         
         .gradient-bg {
@@ -76,7 +104,20 @@
         }
         
         .search-focus {
-            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.3);
+            transform: perspective(1000px) rotateX(0deg) translateY(-4px) !important;
+            box-shadow: 
+                0 0 0 3px rgba(59, 130, 246, 0.5),
+                0 25px 80px rgba(0, 0, 0, 0.25),
+                0 0 60px rgba(59, 130, 246, 0.4),
+                inset 0 1px 0 rgba(255, 255, 255, 0.4) !important;
+        }
+        
+        .dark .search-focus {
+            box-shadow: 
+                0 0 0 3px rgba(59, 130, 246, 0.6),
+                0 25px 80px rgba(0, 0, 0, 0.5),
+                0 0 60px rgba(59, 130, 246, 0.5),
+                inset 0 1px 0 rgba(255, 255, 255, 0.3) !important;
         }
     </style>
 </head>
@@ -113,7 +154,7 @@
             <div class="relative mb-4">
                 <div 
                     id="searchContainer"
-                    class="relative glass-effect rounded-full h-14 flex items-center px-6 transition-all duration-300 hover:shadow-lg"
+                    class="relative glass-effect search-3d rounded-full h-14 flex items-center px-6"
                 >
                     <!-- Search Icon -->
                     <svg class="w-6 h-6 text-white/70 mr-4 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -159,26 +200,7 @@
             </div>
         </div>
 
-        <!-- Quick Access Cards -->
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-16 w-full max-w-6xl mx-auto">
-            <div class="glass-effect rounded-2xl p-6 hover:scale-105 transition-all duration-300 cursor-pointer group" onclick="navigateToUrl('https://www.iastune.in/6.%20Preamble.html')">
-                <div class="text-4xl mb-4 group-hover:animate-bounce">🚜</div>
-                <h3 class="text-xl font-bold text-white mb-2">E-Technology in Agriculture</h3>
-                <p class="text-white/70">Explore ICT innovations and digital solutions transforming modern farming</p>
-            </div>
-            
-            <div class="glass-effect rounded-2xl p-6 hover:scale-105 transition-all duration-300 cursor-pointer group" onclick="navigateToUrl('https://www.iastune.in/Mind%20Maps/A%20Macro%20Policy%20Simulator')">
-                <div class="text-4xl mb-4 group-hover:animate-bounce">📊</div>
-                <h3 class="text-xl font-bold text-white mb-2">Farm Subsidies & MSP</h3>
-                <p class="text-white/70">Understand direct and indirect subsidies, minimum support pricing policies</p>
-            </div>
-            
-            <div class="glass-effect rounded-2xl p-6 hover:scale-105 transition-all duration-300 cursor-pointer group" onclick="navigateToUrl('https://www.iastune.in')">
-                <div class="text-4xl mb-4 group-hover:animate-bounce">🏞️</div>
-                <h3 class="text-xl font-bold text-white mb-2">Land Reforms</h3>
-                <p class="text-white/70">Comprehensive insights into land ownership, tenure, and agricultural reforms</p>
-            </div>
-        </div>
+
     </div>
 
     <script>
@@ -487,5 +509,5 @@
             console.log(examples[0]);
         }, 2000);
     </script>
-<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'96c0f71465d6162e',t:'MTc1NDY3NjU3MC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'96c10308c747df6e',t:'MTc1NDY3NzA2MC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
