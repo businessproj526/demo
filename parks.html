@@ -1,0 +1,504 @@
+
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>India National Parks Explorer — Interactive Map</title>
+<link rel="preconnect" href="https://cdn.amcharts.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --primary: #6366f1;
+    --secondary: #8b5cf6;
+    --accent: #06b6d4;
+    --success: #10b981;
+    --warning: #f59e0b;
+    --danger: #ef4444;
+    --bg-dark: #0f172a;
+    --bg-card: #1e293b;
+    --text-primary: #f8fafc;
+    --text-secondary: #cbd5e1;
+    --border: #334155;
+    --glow: rgba(99, 102, 241, 0.3);
+  }
+  
+  *{box-sizing:border-box}
+  
+  html,body{
+    height:100%;
+    margin:0;
+    font-family:'Inter',ui-sans-serif,system-ui,sans-serif;
+    background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #334155 100%);
+    overflow-x: hidden;
+  }
+  
+  body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: 
+      radial-gradient(circle at 20% 20%, rgba(99, 102, 241, 0.1) 0%, transparent 50%),
+      radial-gradient(circle at 80% 80%, rgba(139, 92, 246, 0.1) 0%, transparent 50%),
+      radial-gradient(circle at 40% 60%, rgba(6, 182, 212, 0.05) 0%, transparent 50%);
+    pointer-events: none;
+    z-index: -1;
+  }
+  
+  .container {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    padding: 2rem;
+    gap: 2rem;
+  }
+  
+  .header {
+    text-align: center;
+    margin-bottom: 1rem;
+  }
+  
+  .title {
+    font-size: 3rem;
+    font-weight: 700;
+    background: linear-gradient(135deg, var(--primary), var(--secondary), var(--accent));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin: 0;
+    text-shadow: 0 0 30px var(--glow);
+  }
+  
+  .subtitle {
+    color: var(--text-secondary);
+    font-size: 1.2rem;
+    margin: 0.5rem 0 0 0;
+    font-weight: 500;
+  }
+  
+  .main-content {
+    display: grid;
+    grid-template-columns: 1fr 350px;
+    gap: 2rem;
+    flex: 1;
+    max-width: 1400px;
+    margin: 0 auto;
+    width: 100%;
+  }
+  
+  .map-container {
+    background: linear-gradient(145deg, var(--bg-card), #2d3748);
+    border-radius: 24px;
+    padding: 1.5rem;
+    border: 1px solid var(--border);
+    box-shadow: 
+      0 25px 50px -12px rgba(0, 0, 0, 0.5),
+      0 0 0 1px rgba(255, 255, 255, 0.05),
+      inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .map-container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--primary), transparent);
+  }
+  
+  #map {
+    width: 100%;
+    height: 600px;
+    border-radius: 16px;
+    overflow: hidden;
+  }
+  
+  .info-panel {
+    background: linear-gradient(145deg, var(--bg-card), #2d3748);
+    border-radius: 24px;
+    padding: 2rem;
+    border: 1px solid var(--border);
+    box-shadow: 
+      0 25px 50px -12px rgba(0, 0, 0, 0.5),
+      0 0 0 1px rgba(255, 255, 255, 0.05),
+      inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    height: fit-content;
+    position: sticky;
+    top: 2rem;
+  }
+  
+  .info-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  .info-icon {
+    width: 48px;
+    height: 48px;
+    background: linear-gradient(135deg, var(--success), var(--accent));
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+  }
+  
+  .info-title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin: 0;
+  }
+  
+  .state-info {
+    text-align: center;
+    padding: 2rem 0;
+  }
+  
+  .state-name {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 1rem;
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  
+  .park-count {
+    font-size: 4rem;
+    font-weight: 800;
+    background: linear-gradient(135deg, var(--success), var(--accent));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin: 1rem 0;
+    text-shadow: 0 0 20px rgba(16, 185, 129, 0.3);
+  }
+  
+  .park-label {
+    color: var(--text-secondary);
+    font-size: 1.1rem;
+    font-weight: 500;
+  }
+  
+  .instructions {
+    background: linear-gradient(135deg, rgba(99, 102, 241, 0.1), rgba(139, 92, 246, 0.1));
+    border: 1px solid rgba(99, 102, 241, 0.2);
+    border-radius: 16px;
+    padding: 1.5rem;
+    margin-top: 2rem;
+  }
+  
+  .instructions h3 {
+    color: var(--text-primary);
+    margin: 0 0 1rem 0;
+    font-size: 1.2rem;
+    font-weight: 600;
+  }
+  
+  .instructions p {
+    color: var(--text-secondary);
+    margin: 0;
+    line-height: 1.6;
+  }
+  
+  .legend {
+    margin-top: 2rem;
+    padding: 1.5rem;
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 16px;
+    border: 1px solid var(--border);
+  }
+  
+  .legend h4 {
+    color: var(--text-primary);
+    margin: 0 0 1rem 0;
+    font-size: 1.1rem;
+    font-weight: 600;
+  }
+  
+  .legend-item {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  .legend-color {
+    width: 20px;
+    height: 20px;
+    border-radius: 4px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+  
+  .legend-text {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+  }
+  
+  @media (max-width: 1024px) {
+    .main-content {
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+    }
+    
+    .title {
+      font-size: 2.5rem;
+    }
+    
+    .container {
+      padding: 1rem;
+    }
+    
+    #map {
+      height: 500px;
+    }
+  }
+  
+  @media (max-width: 640px) {
+    .title {
+      font-size: 2rem;
+    }
+    
+    .subtitle {
+      font-size: 1rem;
+    }
+    
+    #map {
+      height: 400px;
+    }
+    
+    .info-panel {
+      padding: 1.5rem;
+    }
+  }
+</style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <h1 class="title">🏞️ India National Parks Explorer</h1>
+      <p class="subtitle">Discover the natural treasures across Indian states and territories</p>
+    </div>
+    
+    <div class="main-content">
+      <div class="map-container">
+        <div id="map" aria-label="Interactive India map showing national parks by state"></div>
+      </div>
+      
+      <div class="info-panel">
+        <div class="info-header">
+          <div class="info-icon">🌲</div>
+          <h2 class="info-title">Park Information</h2>
+        </div>
+        
+        <div class="state-info">
+          <div class="state-name" id="stateName">Click on any state</div>
+          <div class="park-count" id="parkCount">?</div>
+          <div class="park-label">National Parks</div>
+        </div>
+        
+        <div class="instructions">
+          <h3>🎯 How to Explore</h3>
+          <p>Click on any state or union territory to discover how many national parks it contains. Hover to see state names and enjoy the colorful visualization!</p>
+        </div>
+        
+        <div class="legend">
+          <h4>🎨 Color Guide</h4>
+          <div class="legend-item">
+            <div class="legend-color" style="background: linear-gradient(135deg, #ef4444, #dc2626);"></div>
+            <span class="legend-text">High (8+ parks)</span>
+          </div>
+          <div class="legend-item">
+            <div class="legend-color" style="background: linear-gradient(135deg, #f59e0b, #d97706);"></div>
+            <span class="legend-text">Medium (4-7 parks)</span>
+          </div>
+          <div class="legend-item">
+            <div class="legend-color" style="background: linear-gradient(135deg, #10b981, #059669);"></div>
+            <span class="legend-text">Low (1-3 parks)</span>
+          </div>
+          <div class="legend-item">
+            <div class="legend-color" style="background: linear-gradient(135deg, #6b7280, #4b5563);"></div>
+            <span class="legend-text">None (0 parks)</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- amCharts 5 -->
+  <script src="https://cdn.amcharts.com/lib/5/index.js"></script>
+  <script src="https://cdn.amcharts.com/lib/5/map.js"></script>
+  <script src="https://cdn.amcharts.com/lib/5/geodata/indiaLow.js"></script>
+  <script src="https://cdn.amcharts.com/lib/5/themes/Animated.js"></script>
+
+  <script>
+  // National Parks data
+  const nationalParksData = {
+    "Andaman & Nicobar Islands": 9,
+    "Andhra Pradesh": 3,
+    "Arunachal Pradesh": 2,
+    "Assam": 8,
+    "Bihar": 1,
+    "Chhattisgarh": 3,
+    "Goa": 1,
+    "Gujarat": 4,
+    "Haryana": 2,
+    "Himachal Pradesh": 5,
+    "Jammu & Kashmir": 4,
+    "Jharkhand": 1,
+    "Karnataka": 5,
+    "Kerala": 6,
+    "Ladakh": 1,
+    "Madhya Pradesh": 11,
+    "Maharashtra": 6,
+    "Manipur": 2,
+    "Meghalaya": 2,
+    "Mizoram": 2,
+    "Nagaland": 1,
+    "Odisha": 2,
+    "Rajasthan": 5,
+    "Sikkim": 1,
+    "Tamil Nadu": 5,
+    "Telangana": 3,
+    "Tripura": 2,
+    "Uttar Pradesh": 1,
+    "Uttarakhand": 6,
+    "West Bengal": 6,
+    "Punjab": 0,
+    "Delhi": 0,
+    "Chandigarh": 0,
+    "Puducherry": 0,
+    "Lakshadweep": 0,
+    "Dadra & Nagar Haveli and Daman & Diu": 0
+  };
+
+  // Color scheme based on park count
+  function getColorByParkCount(count) {
+    if (count >= 8) return 0xef4444; // Red for high
+    if (count >= 4) return 0xf59e0b; // Orange for medium
+    if (count >= 1) return 0x10b981; // Green for low
+    return 0x6b7280; // Gray for none
+  }
+
+  function getGradientByParkCount(count) {
+    if (count >= 8) return "linear-gradient(135deg, #ef4444, #dc2626)";
+    if (count >= 4) return "linear-gradient(135deg, #f59e0b, #d97706)";
+    if (count >= 1) return "linear-gradient(135deg, #10b981, #059669)";
+    return "linear-gradient(135deg, #6b7280, #4b5563)";
+  }
+
+  am5.ready(function() {
+    const root = am5.Root.new("map");
+    root.setThemes([am5themes_Animated.new(root)]);
+
+    const chart = root.container.children.push(am5map.MapChart.new(root, {
+      projection: am5map.geoMercator(),
+      panX: false,
+      panY: false,
+      wheelX: "none",
+      wheelY: "none",
+      homeZoomLevel: 1.1,
+      homeGeoPoint: { longitude: 78, latitude: 22 }
+    }));
+
+    const polygonSeries = chart.series.push(am5map.MapPolygonSeries.new(root, {
+      geoJSON: am5geodata_indiaLow
+    }));
+
+    // Style each polygon based on park count
+    polygonSeries.mapPolygons.template.setAll({
+      tooltipText: "{name}\n{parkCount} National Parks",
+      interactive: true,
+      stroke: am5.color(0x1e293b),
+      strokeWidth: 1.5,
+      strokeOpacity: 0.8
+    });
+
+    // Set up data and colors for each state
+    polygonSeries.mapPolygons.template.adapters.add("fill", function(fill, target) {
+      const dataItem = target.dataItem;
+      if (dataItem) {
+        const stateName = dataItem.get("name");
+        const parkCount = nationalParksData[stateName] || 0;
+        return am5.color(getColorByParkCount(parkCount));
+      }
+      return am5.color(0x6b7280);
+    });
+
+    // Add park count data to each polygon
+    polygonSeries.mapPolygons.template.adapters.add("tooltipText", function(text, target) {
+      const dataItem = target.dataItem;
+      if (dataItem) {
+        const stateName = dataItem.get("name");
+        const parkCount = nationalParksData[stateName] || 0;
+        return `{name}\n${parkCount} National Park${parkCount !== 1 ? 's' : ''}`;
+      }
+      return text;
+    });
+
+    // Hover effects
+    polygonSeries.mapPolygons.template.states.create("hover", {
+      strokeWidth: 2,
+      strokeOpacity: 1,
+      stroke: am5.color(0x6366f1)
+    });
+
+    // Click handler
+    polygonSeries.mapPolygons.template.on("click", function(ev) {
+      const dataItem = ev.target.dataItem;
+      if (dataItem) {
+        const stateName = dataItem.get("name");
+        const parkCount = nationalParksData[stateName] || 0;
+        
+        // Update info panel
+        document.getElementById('stateName').textContent = stateName;
+        document.getElementById('parkCount').textContent = parkCount;
+        
+        // Add visual feedback
+        const stateNameEl = document.getElementById('stateName');
+        const parkCountEl = document.getElementById('parkCount');
+        
+        stateNameEl.style.background = getGradientByParkCount(parkCount);
+        stateNameEl.style.webkitBackgroundClip = 'text';
+        stateNameEl.style.webkitTextFillColor = 'transparent';
+        stateNameEl.style.backgroundClip = 'text';
+        
+        parkCountEl.style.background = getGradientByParkCount(parkCount);
+        parkCountEl.style.webkitBackgroundClip = 'text';
+        parkCountEl.style.webkitTextFillColor = 'transparent';
+        parkCountEl.style.backgroundClip = 'text';
+        
+        // Add animation
+        parkCountEl.style.transform = 'scale(1.1)';
+        setTimeout(() => {
+          parkCountEl.style.transform = 'scale(1)';
+        }, 200);
+      }
+    });
+
+    // Cursor styling
+    polygonSeries.mapPolygons.template.on("pointerover", function() {
+      document.body.style.cursor = "pointer";
+    });
+
+    polygonSeries.mapPolygons.template.on("pointerout", function() {
+      document.body.style.cursor = "default";
+    });
+
+    // Responsive resize
+    new ResizeObserver(() => root.resize()).observe(document.getElementById('map'));
+  });
+  </script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'96c94005a061c230',t:'MTc1NDc2MzQ0NC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
