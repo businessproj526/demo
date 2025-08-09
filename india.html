@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>India — Simple Hover Map</title>
+<link rel="preconnect" href="https://cdn.amcharts.com" crossorigin>
+<style>
+  :root{
+    --bg1:#0b1020; --bg2:#121a2f; --ink:#e8eefc; --muted:#9bb0d1;
+    --water:#0f1b33; --land:#112042; --hover:#1f3a68; --stroke:#23314d;
+  }
+  *{box-sizing:border-box}
+  html,body{height:100%;margin:0;font-family:ui-sans-serif,system-ui,Segoe UI,Roboto,Arial}
+  body{background:radial-gradient(1200px 800px at 25% 15%, #0d1530 0%, #080b18 45%, #050811 100%); color:var(--ink)}
+  .wrap{min-height:100%;display:grid;place-items:center;padding:16px}
+  .card{width:min(96vw,1200px); aspect-ratio:16/9; border-radius:24px; overflow:hidden;
+        background:linear-gradient(180deg,#0d1427,#0a1122); border:1px solid #1b2742;
+        box-shadow:0 20px 60px rgba(0,0,0,.55), inset 0 1px 0 rgba(255,255,255,.08);}
+  #map{width:100%; height:100%}
+  .badge{position:fixed;left:16px;bottom:16px;font-size:12px;color:var(--muted);opacity:.85}
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="card"><div id="map" aria-label="India map — hover to highlight state and see its name"></div></div>
+    <div class="badge">Hover to highlight • Tooltip shows state/UT name</div>
+  </div>
+
+  <!-- amCharts 5 -->
+  <script src="https://cdn.amcharts.com/lib/5/index.js"></script>
+  <script src="https://cdn.amcharts.com/lib/5/map.js"></script>
+  <script src="https://cdn.amcharts.com/lib/5/geodata/indiaLow.js"></script>
+  <script src="https://cdn.amcharts.com/lib/5/themes/Animated.js"></script>
+
+  <script>
+  am5.ready(function() {
+    const root = am5.Root.new("map");
+    root.setThemes([ am5themes_Animated.new(root) ]);
+
+    const chart = root.container.children.push(am5map.MapChart.new(root, {
+      projection: am5map.geoMercator(),
+      panX: false, panY: false, wheelX: "none", wheelY: "none",
+      homeZoomLevel: 1.2, homeGeoPoint: { longitude: 79, latitude: 22 }
+    }));
+
+    // Optional: a neutral water background
+    const bgSeries = chart.series.push(am5map.MapPolygonSeries.new(root, {
+      geoJSON: { type: "FeatureCollection", features: [] }
+    }));
+
+    const polygonSeries = chart.series.push(am5map.MapPolygonSeries.new(root, {
+      geoJSON: am5geodata_indiaLow
+    }));
+
+    // Base style
+    polygonSeries.mapPolygons.template.setAll({
+      tooltipText: "{name}",
+      interactive: true,
+      stroke: am5.color(0x23314d),
+      strokeWidth: 1,
+      fill: am5.color(0x112042)
+    });
+
+    // Hover style (v5 uses states.create and automatic tooltip)
+    polygonSeries.mapPolygons.template.states.create("hover", {
+      fill: am5.color(0x1f3a68),
+      strokeWidth: 1.2
+    });
+
+    // Accessibility: ensure cursor is a pointer only when over a region
+    polygonSeries.mapPolygons.template.on("hovered", (target) => {
+      root._rootContainer.set("cursorOverStyle", target ? "pointer" : "default");
+    });
+
+    // Resize handler to keep it crisp inside the aspect-ratio card
+    new ResizeObserver(()=> root.resize()).observe(document.getElementById('map'));
+  });
+  </script>
+</body>
+</html>
