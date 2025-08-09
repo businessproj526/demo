@@ -3,495 +3,1341 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Founders' Circle - Round Table Animation</title>
+    <title>UPSC Master - Interactive Simulations & Mind Maps</title>
+    <meta name="description" content="Learn by doing. Master every UPSC concept with interactive simulations and crystal-clear mind maps. Short, visual, and unforgettable.">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Source+Serif+Pro:wght@400;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'sans': ['Inter', 'system-ui', 'sans-serif'],
+                        'serif': ['Source Serif Pro', 'serif'],
+                    },
+                    colors: {
+                        'electric-blue': '#0066FF',
+                        'electric-blue-dark': '#0052CC',
+                    },
+                    animation: {
+                        'fade-in': 'fadeIn 0.6s ease-out',
+                        'slide-up': 'slideUp 0.8s ease-out',
+                        'float': 'float 3s ease-in-out infinite',
+                    }
+                }
+            }
+        }
+    </script>
+    
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
         
-        * {
-            font-family: 'Inter', sans-serif;
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
         }
-
-        .founders-container {
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+        
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+        
+        @keyframes glow {
+            0%, 100% { box-shadow: 0 0 20px rgba(0, 102, 255, 0.3); }
+            50% { box-shadow: 0 0 40px rgba(0, 102, 255, 0.6); }
+        }
+        
+        @keyframes shimmer {
+            0% { background-position: -200% 0; }
+            100% { background-position: 200% 0; }
+        }
+        
+        .glassmorphism {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        }
+        
+        .gradient-bg {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
             position: relative;
-            width: 500px;
-            height: 500px;
-            margin: 0 auto;
+            overflow: hidden;
         }
-
-        .center-circle {
-            position: absolute;
-            top: 250px;
-            left: 250px;
-            transform: translate(-50%, -50%);
-            width: 140px;
-            height: 140px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-weight: 700;
-            font-size: 16px;
-            text-align: center;
-            box-shadow: 0 0 30px rgba(102, 126, 234, 0.4);
-            animation: centerGlow 4s ease-in-out infinite alternate;
-            z-index: 10;
-        }
-
-        @keyframes centerGlow {
-            from {
-                box-shadow: 0 0 30px rgba(102, 126, 234, 0.4);
-                transform: translate(-50%, -50%) scale(1);
-            }
-            to {
-                box-shadow: 0 0 50px rgba(102, 126, 234, 0.8);
-                transform: translate(-50%, -50%) scale(1.02);
-            }
-        }
-
-        .founder-name {
-            position: absolute;
-            width: 160px;
-            height: 50px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
-            border-radius: 25px;
-            color: white;
-            font-weight: 600;
-            font-size: 14px;
-            cursor: pointer;
-            transition: transform 1.5s ease-in-out, box-shadow 0.3s ease;
-            box-shadow: 0 8px 25px rgba(240, 147, 251, 0.3);
-            z-index: 5;
-            top: 250px;
-            left: 250px;
-        }
-
-        .founder-name:hover {
-            animation-play-state: paused;
-            transform: scale(1.1) !important;
-            box-shadow: 0 12px 35px rgba(240, 147, 251, 0.5);
-            z-index: 20;
-        }
-
-        .founder-tooltip {
-            position: absolute;
-            bottom: -60px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: rgba(0, 0, 0, 0.9);
-            color: white;
-            padding: 8px 12px;
-            border-radius: 8px;
-            font-size: 12px;
-            white-space: nowrap;
-            opacity: 0;
-            pointer-events: none;
-            transition: opacity 0.3s ease;
-            z-index: 30;
-        }
-
-        .founder-name:hover .founder-tooltip {
-            opacity: 1;
-        }
-
-        .founder-tooltip::before {
+        
+        .gradient-bg::before {
             content: '';
             position: absolute;
-            top: -5px;
-            left: 50%;
-            transform: translateX(-50%);
-            border-left: 5px solid transparent;
-            border-right: 5px solid transparent;
-            border-bottom: 5px solid rgba(0, 0, 0, 0.9);
-        }
-
-        /* Position classes for the four seats - all relative to center (250px, 250px) */
-        .position-0 { /* Top-Right: 45° */
-            transform: translate(calc(-50% + 180px * 0.707), calc(-50% - 180px * 0.707));
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, transparent 30%, rgba(255, 255, 255, 0.1) 50%, transparent 70%);
+            animation: shimmer 3s infinite;
         }
         
-        .position-1 { /* Bottom-Right: 135° */
-            transform: translate(calc(-50% + 180px * 0.707), calc(-50% + 180px * 0.707));
+        .text-gradient {
+            background: linear-gradient(135deg, #0066FF, #00CCFF, #FF6B6B);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            background-size: 200% 200%;
+            animation: shimmer 3s ease-in-out infinite;
         }
         
-        .position-2 { /* Bottom-Left: 225° */
-            transform: translate(calc(-50% - 180px * 0.707), calc(-50% + 180px * 0.707));
+        .simulation-preview {
+            background: linear-gradient(45deg, #f0f9ff, #e0f2fe, #fef3c7);
+            border: 3px solid transparent;
+            background-clip: padding-box;
+            position: relative;
         }
         
-        .position-3 { /* Top-Left: 315° */
-            transform: translate(calc(-50% - 180px * 0.707), calc(-50% - 180px * 0.707));
+        .simulation-preview::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            padding: 3px;
+            background: linear-gradient(45deg, #0066FF, #00CCFF, #FF6B6B);
+            border-radius: inherit;
+            mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            mask-composite: exclude;
+            animation: glow 2s ease-in-out infinite;
         }
-
-        .team-card {
-            background: linear-gradient(135deg, #1f2937 0%, #374151 100%);
-            border-radius: 20px;
-            padding: 1.5rem;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+        
+        .feature-card {
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s;
+        }
+        
+        .feature-card:hover::before {
+            left: 100%;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, #0066FF, #0052CC);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .btn-primary::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transition: left 0.5s;
+        }
+        
+        .btn-primary:hover::before {
+            left: 100%;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 15px 35px rgba(0, 102, 255, 0.4);
+        }
+        
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            transition: all 0.4s ease;
+        }
+        
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(255, 255, 255, 0.2);
+        }
+        
+        .trust-badge {
             transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50px;
+            padding: 8px 16px;
+        }
+        
+        .trust-badge:hover {
+            transform: scale(1.1);
+            background: rgba(255, 255, 255, 0.2);
+        }
+        
+        .course-card {
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .course-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, transparent, rgba(0, 102, 255, 0.1), transparent);
             opacity: 0;
-            transform: translateY(30px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: opacity 0.3s ease;
         }
-
-        .team-card.visible {
+        
+        .course-card:hover::before {
             opacity: 1;
-            transform: translateY(0);
         }
-
-        .team-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 60px rgba(240, 147, 251, 0.3);
-            border: 1px solid rgba(240, 147, 251, 0.3);
+        
+        .course-card:hover {
+            transform: translateY(-8px) rotateX(5deg);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.2);
         }
-
-        .profile-img {
-            width: 80px;
-            height: 80px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+        
+        .pricing-card {
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .pricing-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.15);
+        }
+        
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .logo {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, #0066FF, #00CCFF);
+            border-radius: 12px;
             display: flex;
             align-items: center;
             justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .logo::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            animation: shimmer 2s infinite;
+        }
+        
+        .free-trial-badge {
+            background: linear-gradient(135deg, #10B981, #059669);
             color: white;
-            font-size: 24px;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 12px;
             font-weight: 600;
-            margin: 0 auto 1rem;
+            animation: pulse 2s infinite;
         }
-
-        @media (max-width: 768px) {
-            .founders-container {
-                width: 350px;
-                height: 350px;
-                margin: 0 auto;
-            }
-            
-            .center-circle {
-                width: 100px;
-                height: 100px;
-                font-size: 12px;
-            }
-            
-            .founder-name {
-                width: 120px;
-                height: 40px;
-                font-size: 12px;
-                top: 175px;
-                left: 175px;
-            }
-            
-            /* Mobile position classes - scaled down radius */
-            .position-0 { /* Top-Right: 45° */
-                transform: translate(calc(-50% + 130px * 0.707), calc(-50% - 130px * 0.707)) !important;
-            }
-            
-            .position-1 { /* Bottom-Right: 135° */
-                transform: translate(calc(-50% + 130px * 0.707), calc(-50% + 130px * 0.707)) !important;
-            }
-            
-            .position-2 { /* Bottom-Left: 225° */
-                transform: translate(calc(-50% - 130px * 0.707), calc(-50% + 130px * 0.707)) !important;
-            }
-            
-            .position-3 { /* Top-Left: 315° */
-                transform: translate(calc(-50% - 130px * 0.707), calc(-50% - 130px * 0.707)) !important;
-            }
-            
-            .founder-tooltip {
-                font-size: 10px;
-                padding: 6px 8px;
-                bottom: -50px;
-            }
+        
+        .no-card-badge {
+            background: linear-gradient(135deg, #F59E0B, #D97706);
+            color: white;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
         }
-
-        @media (max-width: 480px) {
-            .founders-container {
-                width: 280px;
-                height: 280px;
-            }
-            
-            .center-circle {
-                width: 80px;
-                height: 80px;
-                font-size: 10px;
-                top: 140px;
-                left: 140px;
-            }
-            
-            .founder-name {
-                width: 100px;
-                height: 35px;
-                font-size: 11px;
-                top: 140px;
-                left: 140px;
-            }
-            
-            /* Extra small mobile - even smaller radius */
-            .position-0 { /* Top-Right: 45° */
-                transform: translate(calc(-50% + 100px * 0.707), calc(-50% - 100px * 0.707)) !important;
-            }
-            
-            .position-1 { /* Bottom-Right: 135° */
-                transform: translate(calc(-50% + 100px * 0.707), calc(-50% + 100px * 0.707)) !important;
-            }
-            
-            .position-2 { /* Bottom-Left: 225° */
-                transform: translate(calc(-50% - 100px * 0.707), calc(-50% + 100px * 0.707)) !important;
-            }
-            
-            .position-3 { /* Top-Left: 315° */
-                transform: translate(calc(-50% - 100px * 0.707), calc(-50% - 100px * 0.707)) !important;
-            }
+        
+        .hero-decoration {
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            background: linear-gradient(45deg, rgba(0, 102, 255, 0.1), rgba(0, 204, 255, 0.1));
+            filter: blur(40px);
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        .hero-decoration:nth-child(1) {
+            top: 10%;
+            left: 10%;
+            animation-delay: 0s;
+        }
+        
+        .hero-decoration:nth-child(2) {
+            top: 60%;
+            right: 10%;
+            animation-delay: 2s;
+        }
+        
+        .hero-decoration:nth-child(3) {
+            bottom: 20%;
+            left: 20%;
+            animation-delay: 4s;
         }
     </style>
 </head>
-<body class="bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 min-h-screen">
-
-  <!-- 🔐 LOGIN SCREEN (initially hidden) -->
-  <div id="login-container" class="text-center py-20 text-white" style="display: none;">
-    <h2 class="text-2xl mb-4">Please Login to Continue</h2>
-    <button onclick="loginWithGoogle()" class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded">
-        Login with Google
-    </button>
-    <br><br>
-    <button onclick="showEmailLogin()" class="bg-gray-700 hover:bg-gray-800 text-white font-bold py-2 px-4 rounded">
-        Login with Email
-    </button>
-    <div id="email-login" class="mt-6 hidden">
-      <input type="email" id="email" placeholder="Email" class="px-4 py-2 rounded bg-white text-black">
-      <input type="password" id="password" placeholder="Password" class="px-4 py-2 rounded bg-white text-black mt-2">
-      <button onclick="loginWithEmail()" class="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded mt-2">
-          Login
-      </button>
-    </div>
-  </div>
-
-    <!-- Header -->
-    <header class="text-center py-8 md:py-16 px-4">
-        <h1 class="text-3xl md:text-5xl font-bold text-white mb-4">Leadership Round Table</h1>
-        <p class="text-lg md:text-xl text-gray-300 max-w-3xl mx-auto px-4">Experience our founders' collaborative leadership style through this dynamic round table visualization where every voice carries equal weight.</p>
-    </header>
-
-    <!-- Founders Circle Section -->
-    <section class="py-10 md:py-20">
-        <div class="container mx-auto px-4">
-            <div class="founders-container">
-                <!-- Central Circle -->
-                <div class="center-circle">
-                    Founders'<br>Circle
+<body class="font-sans bg-gray-50 text-gray-900">
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full z-50 glassmorphism">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="logo-container">
+                    <div class="text-3xl font-bold text-white nav-brand">IAStune</div>
                 </div>
                 
-                <!-- Founder Names -->
-                <div class="founder-name position-0" data-founder="0">
-                    Alex Chen
-                    <div class="founder-tooltip">Co-founder & CEO - Visionary Leader</div>
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#home" class="nav-link text-white hover:text-yellow-300 transition-all duration-300 font-medium relative group">
+                        Home
+                        <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-yellow-300 transition-all duration-300 group-hover:w-full"></span>
+                    </a>
+                    <a href="#courses" class="nav-link text-white hover:text-yellow-300 transition-all duration-300 font-medium relative group">
+                        Courses
+                        <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-yellow-300 transition-all duration-300 group-hover:w-full"></span>
+                    </a>
+                    <a href="#simulations" class="nav-link text-white hover:text-yellow-300 transition-all duration-300 font-medium relative group">
+                        Simulations
+                        <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-yellow-300 transition-all duration-300 group-hover:w-full"></span>
+                    </a>
+                    <a href="#mind-maps" class="nav-link text-white hover:text-yellow-300 transition-all duration-300 font-medium relative group">
+                        Mind Maps
+                        <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-yellow-300 transition-all duration-300 group-hover:w-full"></span>
+                    </a>
+                    <a href="#pricing" class="nav-link text-white hover:text-yellow-300 transition-all duration-300 font-medium relative group">
+                        Pricing
+                        <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-yellow-300 transition-all duration-300 group-hover:w-full"></span>
+                    </a>
                 </div>
                 
-                <div class="founder-name position-1" data-founder="1">
-                    Sarah Kim
-                    <div class="founder-tooltip">Co-founder & CTO - Tech Innovator</div>
+                <div class="flex items-center space-x-4">
+                    <!-- Navigation actions can be added here if needed -->
                 </div>
                 
-                <div class="founder-name position-2" data-founder="2">
-                    Mike Rodriguez
-                    <div class="founder-tooltip">Co-founder & COO - Operations Expert</div>
-                </div>
-                
-                <div class="founder-name position-3" data-founder="3">
-                    Emma Johnson
-                    <div class="founder-tooltip">Co-founder & CMO - Brand Storyteller</div>
+                <!-- Mobile menu button -->
+                <div class="md:hidden">
+                    <button onclick="toggleMobileMenu()" class="nav-mobile-btn text-white">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                        </svg>
+                    </button>
                 </div>
             </div>
-            
-            <div class="text-center mt-8 md:mt-12 px-4">
-                <p class="text-gray-300 text-base md:text-lg mb-4">Watch as our founders rotate leadership positions</p>
-                <p class="text-gray-400 text-xs md:text-sm">Hover over any name to pause the rotation and learn more</p>
+        </div>
+        
+        <!-- Mobile menu -->
+        <div id="mobile-menu" class="hidden md:hidden glassmorphism">
+            <div class="px-2 pt-2 pb-3 space-y-1">
+                <a href="#home" class="nav-mobile-link block px-3 py-2 text-white hover:text-yellow-300">Home</a>
+                <a href="#courses" class="nav-mobile-link block px-3 py-2 text-white hover:text-yellow-300">Courses</a>
+                <a href="#simulations" class="nav-mobile-link block px-3 py-2 text-white hover:text-yellow-300">Simulations</a>
+                <a href="#mind-maps" class="nav-mobile-link block px-3 py-2 text-white hover:text-yellow-300">Mind Maps</a>
+                <a href="#pricing" class="nav-mobile-link block px-3 py-2 text-white hover:text-yellow-300">Pricing</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="pt-20 pb-16 gradient-bg min-h-screen flex items-center relative overflow-hidden">
+        <!-- Floating Decorations -->
+        <div class="hero-decoration"></div>
+        <div class="hero-decoration"></div>
+        <div class="hero-decoration"></div>
+        
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                <!-- Left Side - Content -->
+                <div class="text-white animate-slide-up">
+                    <div class="flex items-center gap-4 mb-6">
+                        <span class="free-trial-badge">🚀 FREE TRIAL AVAILABLE</span>
+                        <span class="no-card-badge">💳 NO CARD REQUIRED</span>
+                    </div>
+                    
+                    <h1 class="font-serif text-5xl lg:text-7xl font-bold mb-6 leading-tight">
+                        Crack UPSC with 
+                        <span class="text-gradient bg-gradient-to-r from-yellow-300 via-pink-300 to-blue-300 bg-clip-text text-transparent">
+                            Interactive Learning
+                        </span>
+                    </h1>
+                    
+                    <p class="text-xl mb-8 text-gray-100 leading-relaxed font-medium">
+                        Learn by doing. Master every UPSC concept with interactive simulations and crystal-clear mind maps.
+                    </p>
+                    
+                    <p class="text-lg mb-10 text-gray-200 font-light">
+                        Short, visual, and unforgettable. Try a free demo in 30 seconds.
+                    </p>
+                    
+                    <div class="flex flex-col sm:flex-row gap-4 mb-12">
+                        <button onclick="startFreeTrial()" class="btn-primary text-white px-10 py-4 rounded-full font-bold text-lg shadow-2xl">
+                            🎯 Start Free Trial
+                        </button>
+                        <button onclick="startDemo()" class="btn-secondary text-white px-10 py-4 rounded-full font-bold text-lg shadow-xl">
+                            ▶️ Watch Demo
+                        </button>
+                    </div>
+                    
+                    <!-- Trust Badges -->
+                    <div class="flex flex-wrap items-center gap-6">
+                        <div class="trust-badge flex items-center gap-3">
+                            <div class="w-10 h-10 bg-gradient-to-br from-green-400 to-emerald-500 rounded-full flex items-center justify-center shadow-lg">
+                                <span class="text-white font-bold text-lg">✓</span>
+                            </div>
+                            <div>
+                                <div class="text-sm font-bold">25,000+</div>
+                                <div class="text-xs opacity-80">Happy Students</div>
+                            </div>
+                        </div>
+                        <div class="trust-badge flex items-center gap-3">
+                            <div class="w-10 h-10 bg-gradient-to-br from-yellow-400 to-orange-500 rounded-full flex items-center justify-center shadow-lg">
+                                <span class="text-white font-bold text-lg">★</span>
+                            </div>
+                            <div>
+                                <div class="text-sm font-bold">4.9/5</div>
+                                <div class="text-xs opacity-80">User Rating</div>
+                            </div>
+                        </div>
+                        <div class="trust-badge flex items-center gap-3">
+                            <div class="w-10 h-10 bg-gradient-to-br from-blue-400 to-purple-500 rounded-full flex items-center justify-center shadow-lg">
+                                <span class="text-white font-bold text-lg">🏆</span>
+                            </div>
+                            <div>
+                                <div class="text-sm font-bold">500+</div>
+                                <div class="text-xs opacity-80">Success Stories</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Right Side - Simulation Preview -->
+                <div class="animate-fade-in">
+                    <div class="simulation-preview rounded-3xl p-8 shadow-2xl animate-float relative">
+                        <div class="bg-white rounded-2xl p-6 shadow-xl relative overflow-hidden">
+                            <!-- Header -->
+                            <div class="flex items-center justify-between mb-6">
+                                <div class="flex items-center gap-3">
+                                    <div class="w-8 h-8 bg-gradient-to-br from-electric-blue to-purple-500 rounded-lg flex items-center justify-center">
+                                        <span class="text-white text-sm font-bold">🎯</span>
+                                    </div>
+                                    <h3 class="font-bold text-gray-800">Live Simulation</h3>
+                                </div>
+                                <div class="flex gap-2">
+                                    <div class="w-3 h-3 bg-red-400 rounded-full animate-pulse"></div>
+                                    <div class="w-3 h-3 bg-yellow-400 rounded-full animate-pulse" style="animation-delay: 0.2s;"></div>
+                                    <div class="w-3 h-3 bg-green-400 rounded-full animate-pulse" style="animation-delay: 0.4s;"></div>
+                                </div>
+                            </div>
+                            
+                            <!-- Main Content -->
+                            <div class="bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50 rounded-xl p-8 mb-6 relative overflow-hidden">
+                                <div class="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-electric-blue/10 to-purple-500/10 rounded-full -translate-y-16 translate-x-16"></div>
+                                <div class="absolute bottom-0 left-0 w-24 h-24 bg-gradient-to-br from-pink-500/10 to-orange-500/10 rounded-full translate-y-12 -translate-x-12"></div>
+                                
+                                <div class="text-center relative z-10">
+                                    <div class="w-20 h-20 bg-gradient-to-br from-electric-blue to-purple-500 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg animate-pulse">
+                                        <svg class="w-10 h-10 text-white" fill="currentColor" viewBox="0 0 20 20">
+                                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clip-rule="evenodd"></path>
+                                        </svg>
+                                    </div>
+                                    <h4 class="font-bold text-xl text-gray-800 mb-3">Parliament Session</h4>
+                                    <p class="text-gray-600 mb-6 font-medium">Experience real-time bill passing process</p>
+                                    
+                                    <div class="flex items-center justify-center gap-4 mb-6">
+                                        <div class="flex items-center gap-2 bg-white/50 rounded-full px-3 py-1">
+                                            <div class="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
+                                            <span class="text-xs font-medium text-gray-700">Live</span>
+                                        </div>
+                                        <div class="flex items-center gap-2 bg-white/50 rounded-full px-3 py-1">
+                                            <span class="text-xs font-medium text-gray-700">👥 1,247 online</span>
+                                        </div>
+                                    </div>
+                                    
+                                    <button onclick="startDemo()" class="btn-primary text-white px-8 py-3 rounded-full font-bold text-sm shadow-lg">
+                                        🚀 Try Free Demo
+                                    </button>
+                                </div>
+                            </div>
+                            
+                            <!-- Stats -->
+                            <div class="grid grid-cols-3 gap-4 text-center">
+                                <div class="bg-gray-50 rounded-lg p-3">
+                                    <div class="text-lg font-bold text-electric-blue">15min</div>
+                                    <div class="text-xs text-gray-600">Duration</div>
+                                </div>
+                                <div class="bg-gray-50 rounded-lg p-3">
+                                    <div class="text-lg font-bold text-green-500">Easy</div>
+                                    <div class="text-xs text-gray-600">Level</div>
+                                </div>
+                                <div class="bg-gray-50 rounded-lg p-3">
+                                    <div class="text-lg font-bold text-purple-500">Free</div>
+                                    <div class="text-xs text-gray-600">Access</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- Team Section -->
-    <section class="py-12 md:py-16 bg-gray-800">
-        <div class="container mx-auto px-4">
-            <h2 class="text-2xl md:text-3xl font-bold text-center text-white mb-4">Core Team Members</h2>
-            <p class="text-center text-gray-300 mb-8 md:mb-12 px-4">The talented individuals who make our vision a reality</p>
+    <!-- Features Section -->
+    <section class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="font-serif text-4xl font-bold text-gray-900 mb-4">Why Choose UPSC Master?</h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">Experience learning like never before with our innovative approach to UPSC preparation</p>
+            </div>
             
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 max-w-6xl mx-auto">
-                <div class="team-card">
-                    <div class="profile-img">JD</div>
-                    <h3 class="text-lg md:text-xl font-semibold text-white mb-2">John Davis</h3>
-                    <p class="text-pink-400 font-medium mb-3">Lead Developer</p>
-                    <p class="text-gray-300 text-sm">"Code is poetry in motion. Every line tells a story."</p>
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Feature 1 -->
+                <div class="feature-card glassmorphism rounded-2xl p-8 text-center shadow-lg">
+                    <div class="w-16 h-16 bg-gradient-to-br from-blue-500 to-purple-600 rounded-2xl flex items-center justify-center mx-auto mb-6">
+                        <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="font-serif text-2xl font-semibold mb-4">Real Exam Scenarios</h3>
+                    <p class="text-gray-600 leading-relaxed">Practice with authentic UPSC exam simulations that mirror the actual test environment and question patterns.</p>
                 </div>
                 
-                <div class="team-card">
-                    <div class="profile-img">LW</div>
-                    <h3 class="text-lg md:text-xl font-semibold text-white mb-2">Lisa Wang</h3>
-                    <p class="text-pink-400 font-medium mb-3">UX Designer</p>
-                    <p class="text-gray-300 text-sm">"Great design is invisible until it's missing."</p>
+                <!-- Feature 2 -->
+                <div class="feature-card glassmorphism rounded-2xl p-8 text-center shadow-lg">
+                    <div class="w-16 h-16 bg-gradient-to-br from-green-500 to-teal-600 rounded-2xl flex items-center justify-center mx-auto mb-6">
+                        <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M3 4a1 1 0 011-1h4a1 1 0 010 2H6.414l2.293 2.293a1 1 0 01-1.414 1.414L5 6.414V8a1 1 0 01-2 0V4zm9 1a1 1 0 010-2h4a1 1 0 011 1v4a1 1 0 01-2 0V6.414l-2.293 2.293a1 1 0 11-1.414-1.414L13.586 5H12zm-9 7a1 1 0 012 0v1.586l2.293-2.293a1 1 0 111.414 1.414L6.414 15H8a1 1 0 010 2H4a1 1 0 01-1-1v-4zm13-1a1 1 0 011 1v4a1 1 0 01-1 1h-4a1 1 0 010-2h1.586l-2.293-2.293a1 1 0 111.414-1.414L15.586 13H14a1 1 0 01-1-1z" clip-rule="evenodd"></path>
+                        </svg>
+                    </div>
+                    <h3 class="font-serif text-2xl font-semibold mb-4">Visual Mind Maps</h3>
+                    <p class="text-gray-600 leading-relaxed">Crystal-clear mind maps that make complex topics simple and memorable with interactive visual learning.</p>
                 </div>
                 
-                <div class="team-card">
-                    <div class="profile-img">RT</div>
-                    <h3 class="text-lg md:text-xl font-semibold text-white mb-2">Ryan Thompson</h3>
-                    <p class="text-pink-400 font-medium mb-3">Marketing Lead</p>
-                    <p class="text-gray-300 text-sm">"Every brand has a story waiting to be told."</p>
+                <!-- Feature 3 -->
+                <div class="feature-card glassmorphism rounded-2xl p-8 text-center shadow-lg">
+                    <div class="w-16 h-16 bg-gradient-to-br from-orange-500 to-red-600 rounded-2xl flex items-center justify-center mx-auto mb-6">
+                        <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M13 6a3 3 0 11-6 0 3 3 0 016 0zM18 8a2 2 0 11-4 0 2 2 0 014 0zM14 15a4 4 0 00-8 0v3h8v-3z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="font-serif text-2xl font-semibold mb-4">Community Support</h3>
+                    <p class="text-gray-600 leading-relaxed">Join thousands of UPSC aspirants in our supportive community with expert guidance and peer learning.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Courses Preview Section -->
+    <section id="courses" class="py-20 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="font-serif text-4xl font-bold text-gray-900 mb-4">Featured Courses</h2>
+                <p class="text-xl text-gray-600">Comprehensive courses designed by UPSC experts</p>
+            </div>
+            
+            <!-- Course Filters -->
+            <div class="flex flex-wrap justify-center gap-4 mb-12">
+                <button onclick="filterCourses('all')" class="filter-btn active bg-electric-blue text-white px-6 py-2 rounded-full font-medium">All Courses</button>
+                <button onclick="filterCourses('prelims')" class="filter-btn bg-white text-gray-700 px-6 py-2 rounded-full font-medium border hover:bg-gray-50">Prelims</button>
+                <button onclick="filterCourses('mains')" class="filter-btn bg-white text-gray-700 px-6 py-2 rounded-full font-medium border hover:bg-gray-50">Mains</button>
+                <button onclick="filterCourses('optional')" class="filter-btn bg-white text-gray-700 px-6 py-2 rounded-full font-medium border hover:bg-gray-50">Optional</button>
+            </div>
+            
+            <!-- Course Grid -->
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Course 1 -->
+                <div class="course-card bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow" data-category="prelims">
+                    <div class="h-48 bg-gradient-to-br from-blue-400 to-purple-500 flex items-center justify-center">
+                        <div class="text-white text-center">
+                            <div class="w-16 h-16 bg-white bg-opacity-20 rounded-full flex items-center justify-center mx-auto mb-4">
+                                <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 20 20">
+                                    <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                </svg>
+                            </div>
+                            <h3 class="font-semibold text-lg">Polity Mastery</h3>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm font-medium">Prelims</span>
+                            <div class="flex items-center text-yellow-500">
+                                <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20">
+                                    <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                                </svg>
+                                <span class="ml-1 text-sm">4.8</span>
+                            </div>
+                        </div>
+                        <h4 class="font-semibold text-lg mb-2">Complete Indian Polity</h4>
+                        <p class="text-gray-600 text-sm mb-4">Master constitutional concepts with interactive simulations and comprehensive mind maps.</p>
+                        <div class="flex items-center justify-between">
+                            <div class="text-2xl font-bold text-electric-blue">₹2,999</div>
+                            <button onclick="viewCourse('polity')" class="bg-electric-blue text-white px-4 py-2 rounded-lg font-medium hover:bg-electric-blue-dark transition-colors">
+                                View Course
+                            </button>
+                        </div>
+                    </div>
                 </div>
                 
-                <div class="team-card">
-                    <div class="profile-img">AP</div>
-                    <h3 class="text-lg md:text-xl font-semibold text-white mb-2">Anna Patel</h3>
-                    <p class="text-pink-400 font-medium mb-3">Data Scientist</p>
-                    <p class="text-gray-300 text-sm">"In data we trust, in insights we grow."</p>
+                <!-- Course 2 -->
+                <div class="course-card bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow" data-category="mains">
+                    <div class="h-48 bg-gradient-to-br from-green-400 to-teal-500 flex items-center justify-center">
+                        <div class="text-white text-center">
+                            <div class="w-16 h-16 bg-white bg-opacity-20 rounded-full flex items-center justify-center mx-auto mb-4">
+                                <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M3 4a1 1 0 011-1h4a1 1 0 010 2H6.414l2.293 2.293a1 1 0 01-1.414 1.414L5 6.414V8a1 1 0 01-2 0V4zm9 1a1 1 0 010-2h4a1 1 0 011 1v4a1 1 0 01-2 0V6.414l-2.293 2.293a1 1 0 11-1.414-1.414L13.586 5H12z" clip-rule="evenodd"></path>
+                                </svg>
+                            </div>
+                            <h3 class="font-semibold text-lg">Geography Pro</h3>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm font-medium">Mains</span>
+                            <div class="flex items-center text-yellow-500">
+                                <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20">
+                                    <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                                </svg>
+                                <span class="ml-1 text-sm">4.9</span>
+                            </div>
+                        </div>
+                        <h4 class="font-semibold text-lg mb-2">World & Indian Geography</h4>
+                        <p class="text-gray-600 text-sm mb-4">Visual learning with interactive maps and climate simulations for better understanding.</p>
+                        <div class="flex items-center justify-between">
+                            <div class="text-2xl font-bold text-electric-blue">₹3,499</div>
+                            <button onclick="viewCourse('geography')" class="bg-electric-blue text-white px-4 py-2 rounded-lg font-medium hover:bg-electric-blue-dark transition-colors">
+                                View Course
+                            </button>
+                        </div>
+                    </div>
                 </div>
                 
-                <div class="team-card">
-                    <div class="profile-img">DM</div>
-                    <h3 class="text-lg md:text-xl font-semibold text-white mb-2">David Miller</h3>
-                    <p class="text-pink-400 font-medium mb-3">Product Manager</p>
-                    <p class="text-gray-300 text-sm">"Building products that users love is our mission."</p>
-                </div>
-                
-                <div class="team-card">
-                    <div class="profile-img">SL</div>
-                    <h3 class="text-lg md:text-xl font-semibold text-white mb-2">Sophie Lee</h3>
-                    <p class="text-pink-400 font-medium mb-3">Operations Manager</p>
-                    <p class="text-gray-300 text-sm">"Efficiency is doing things right, effectiveness is doing the right things."</p>
+                <!-- Course 3 -->
+                <div class="course-card bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow" data-category="optional">
+                    <div class="h-48 bg-gradient-to-br from-purple-400 to-pink-500 flex items-center justify-center">
+                        <div class="text-white text-center">
+                            <div class="w-16 h-16 bg-white bg-opacity-20 rounded-full flex items-center justify-center mx-auto mb-4">
+                                <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 20 20">
+                                    <path d="M13 6a3 3 0 11-6 0 3 3 0 016 0zM18 8a2 2 0 11-4 0 2 2 0 014 0zM14 15a4 4 0 00-8 0v3h8v-3z"></path>
+                                </svg>
+                            </div>
+                            <h3 class="font-semibold text-lg">Psychology</h3>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="bg-purple-100 text-purple-800 px-3 py-1 rounded-full text-sm font-medium">Optional</span>
+                            <div class="flex items-center text-yellow-500">
+                                <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20">
+                                    <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                                </svg>
+                                <span class="ml-1 text-sm">4.7</span>
+                            </div>
+                        </div>
+                        <h4 class="font-semibold text-lg mb-2">Psychology Optional</h4>
+                        <p class="text-gray-600 text-sm mb-4">Complete psychology optional with case studies and practical applications.</p>
+                        <div class="flex items-center justify-between">
+                            <div class="text-2xl font-bold text-electric-blue">₹4,999</div>
+                            <button onclick="viewCourse('psychology')" class="bg-electric-blue text-white px-4 py-2 rounded-lg font-medium hover:bg-electric-blue-dark transition-colors">
+                                View Course
+                            </button>
+                        </div>
+                    </div>
                 </div>
             </div>
             
-            <div class="text-center mt-8 md:mt-12">
-                <button class="bg-gradient-to-r from-pink-500 to-violet-600 text-white px-6 md:px-8 py-3 rounded-full font-semibold hover:from-pink-600 hover:to-violet-700 transition-all duration-300 transform hover:scale-105 text-sm md:text-base">
-                    Join Our Mission
+            <div class="text-center mt-12">
+                <button onclick="viewAllCourses()" class="btn-primary text-white px-8 py-4 rounded-full font-semibold text-lg">
+                    View All Courses
                 </button>
             </div>
         </div>
     </section>
 
+    <!-- Pricing Section -->
+    <section id="pricing" class="py-20 bg-gradient-to-br from-gray-50 via-blue-50 to-purple-50 relative overflow-hidden">
+        <!-- Background Decorations -->
+        <div class="absolute top-0 left-0 w-96 h-96 bg-gradient-to-br from-blue-400/10 to-purple-400/10 rounded-full -translate-x-48 -translate-y-48 animate-pulse"></div>
+        <div class="absolute bottom-0 right-0 w-96 h-96 bg-gradient-to-br from-pink-400/10 to-orange-400/10 rounded-full translate-x-48 translate-y-48 animate-pulse" style="animation-delay: 1s;"></div>
+        <div class="absolute top-1/2 left-1/2 w-64 h-64 bg-gradient-to-br from-green-400/5 to-teal-400/5 rounded-full -translate-x-32 -translate-y-32 animate-pulse" style="animation-delay: 2s;"></div>
+        
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="text-center mb-20">
+                <div class="inline-block bg-gradient-to-r from-electric-blue to-purple-500 text-white px-6 py-2 rounded-full text-sm font-bold mb-6 animate-bounce">
+                    💰 Special Launch Pricing
+                </div>
+                <h2 class="font-serif text-5xl font-bold text-gray-900 mb-6 bg-gradient-to-r from-gray-900 via-electric-blue to-purple-600 bg-clip-text text-transparent">
+                    Choose Your Success Plan
+                </h2>
+                <p class="text-xl text-gray-600 max-w-2xl mx-auto">Transform your UPSC preparation with our revolutionary learning platform</p>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+                <!-- Free Trial Plan -->
+                <div class="pricing-card bg-white/80 backdrop-blur-xl rounded-3xl shadow-2xl border border-white/20 p-8 relative overflow-hidden group hover:bg-white/90 transition-all duration-500">
+                    <!-- Animated Background -->
+                    <div class="absolute inset-0 bg-gradient-to-br from-green-400/5 to-emerald-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                    <div class="absolute -top-20 -right-20 w-40 h-40 bg-gradient-to-br from-green-400/20 to-emerald-500/20 rounded-full blur-3xl group-hover:scale-150 transition-transform duration-700"></div>
+                    
+                    <div class="absolute top-6 right-6">
+                        <div class="bg-gradient-to-r from-green-500 to-emerald-600 text-white px-4 py-2 rounded-full text-sm font-bold shadow-lg animate-pulse">
+                            🆓 FREE
+                        </div>
+                    </div>
+                    
+                    <div class="text-center mb-8 relative z-10">
+                        <div class="w-20 h-20 bg-gradient-to-br from-green-400 to-emerald-500 rounded-3xl flex items-center justify-center mx-auto mb-6 shadow-2xl group-hover:scale-110 group-hover:rotate-6 transition-all duration-500">
+                            <span class="text-white text-3xl">🚀</span>
+                        </div>
+                        <h3 class="font-serif text-3xl font-bold mb-4 text-gray-800">Free Trial</h3>
+                        <div class="relative">
+                            <div class="text-5xl font-bold text-gray-900 mb-2">₹0</div>
+                            <div class="absolute -top-2 -right-8 text-lg font-semibold text-green-500 rotate-12">FREE!</div>
+                        </div>
+                        <p class="text-gray-600 font-medium">7 days unlimited access</p>
+                    </div>
+                    
+                    <ul class="space-y-4 mb-8 relative z-10">
+                        <li class="flex items-center group/item">
+                            <div class="w-8 h-8 bg-gradient-to-br from-green-500 to-emerald-600 rounded-full flex items-center justify-center mr-4 shadow-lg group-hover/item:scale-110 transition-transform duration-300">
+                                <span class="text-white text-sm font-bold">✓</span>
+                            </div>
+                            <span class="font-medium text-gray-700 group-hover/item:text-green-600 transition-colors duration-300">3 premium courses access</span>
+                        </li>
+                        <li class="flex items-center group/item">
+                            <div class="w-8 h-8 bg-gradient-to-br from-green-500 to-emerald-600 rounded-full flex items-center justify-center mr-4 shadow-lg group-hover/item:scale-110 transition-transform duration-300">
+                                <span class="text-white text-sm font-bold">✓</span>
+                            </div>
+                            <span class="font-medium text-gray-700 group-hover/item:text-green-600 transition-colors duration-300">Interactive simulations</span>
+                        </li>
+                        <li class="flex items-center group/item">
+                            <div class="w-8 h-8 bg-gradient-to-br from-green-500 to-emerald-600 rounded-full flex items-center justify-center mr-4 shadow-lg group-hover/item:scale-110 transition-transform duration-300">
+                                <span class="text-white text-sm font-bold">✓</span>
+                            </div>
+                            <span class="font-medium text-gray-700 group-hover/item:text-green-600 transition-colors duration-300">Visual mind maps</span>
+                        </li>
+                        <li class="flex items-center group/item">
+                            <div class="w-8 h-8 bg-gradient-to-br from-green-500 to-emerald-600 rounded-full flex items-center justify-center mr-4 shadow-lg group-hover/item:scale-110 transition-transform duration-300">
+                                <span class="text-white text-sm font-bold">✓</span>
+                            </div>
+                            <span class="font-medium text-gray-700 group-hover/item:text-green-600 transition-colors duration-300">No credit card required</span>
+                        </li>
+                    </ul>
+                    
+                    <button onclick="startFreeTrial()" class="w-full bg-gradient-to-r from-green-500 to-emerald-600 text-white py-4 rounded-2xl font-bold text-lg hover:from-green-600 hover:to-emerald-700 transition-all transform hover:scale-105 hover:-translate-y-1 shadow-2xl hover:shadow-green-500/25 relative z-10 group-hover:shadow-3xl">
+                        <span class="flex items-center justify-center gap-2">
+                            🎯 Start Free Trial
+                            <svg class="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"></path>
+                            </svg>
+                        </span>
+                    </button>
+                </div>
+                
+                <!-- Pro Plan -->
+                <div class="pricing-card bg-white/90 backdrop-blur-xl rounded-3xl shadow-2xl border-2 border-electric-blue/30 p-8 relative overflow-hidden group hover:bg-white transition-all duration-500 transform hover:scale-105 hover:-translate-y-2">
+                    <!-- Most Popular Badge - Fixed positioning -->
+                    <div class="absolute -top-5 left-1/2 transform -translate-x-1/2 z-20">
+                        <div class="bg-gradient-to-r from-electric-blue via-purple-500 to-pink-500 text-white px-8 py-3 rounded-full text-sm font-bold shadow-2xl animate-pulse border-4 border-white">
+                            <span class="flex items-center gap-2">
+                                ⭐ Most Popular
+                                <div class="w-2 h-2 bg-yellow-300 rounded-full animate-ping"></div>
+                            </span>
+                        </div>
+                    </div>
+                    
+                    <!-- Animated Background Effects -->
+                    <div class="absolute inset-0 bg-gradient-to-br from-electric-blue/5 to-purple-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                    <div class="absolute -top-20 -right-20 w-40 h-40 bg-gradient-to-br from-electric-blue/20 to-purple-500/20 rounded-full blur-3xl group-hover:scale-150 transition-transform duration-700"></div>
+                    <div class="absolute -bottom-20 -left-20 w-40 h-40 bg-gradient-to-br from-purple-500/20 to-pink-500/20 rounded-full blur-3xl group-hover:scale-150 transition-transform duration-700"></div>
+                    
+                    <!-- Floating particles -->
+                    <div class="absolute top-20 left-10 w-2 h-2 bg-electric-blue rounded-full animate-bounce opacity-60" style="animation-delay: 0.5s;"></div>
+                    <div class="absolute top-32 right-16 w-1 h-1 bg-purple-500 rounded-full animate-bounce opacity-60" style="animation-delay: 1s;"></div>
+                    <div class="absolute bottom-24 left-20 w-1.5 h-1.5 bg-pink-500 rounded-full animate-bounce opacity-60" style="animation-delay: 1.5s;"></div>
+                    
+                    <div class="text-center mb-8 relative z-10 pt-4">
+                        <div class="w-24 h-24 bg-gradient-to-br from-electric-blue to-purple-500 rounded-3xl flex items-center justify-center mx-auto mb-6 shadow-2xl group-hover:scale-110 group-hover:rotate-6 transition-all duration-500 relative">
+                            <span class="text-white text-4xl">💎</span>
+                            <div class="absolute inset-0 bg-gradient-to-br from-white/20 to-transparent rounded-3xl"></div>
+                        </div>
+                        <h3 class="font-serif text-3xl font-bold mb-4 text-gray-800">Pro</h3>
+                        <div class="relative mb-4">
+                            <div class="text-6xl font-bold bg-gradient-to-r from-electric-blue to-purple-500 bg-clip-text text-transparent mb-2">₹1,999</div>
+                            <div class="absolute -top-3 -right-12 bg-red-500 text-white px-3 py-1 rounded-full text-xs font-bold rotate-12 animate-pulse">
+                                50% OFF
+                            </div>
+                            <div class="text-lg text-gray-400 line-through">₹3,999</div>
+                        </div>
+                        <p class="text-gray-600 font-medium mb-4">per month</p>
+                        <div class="bg-gradient-to-r from-electric-blue/10 to-purple-500/10 text-electric-blue px-4 py-2 rounded-full text-sm font-bold border border-electric-blue/20">
+                            💳 No card needed for trial
+                        </div>
+                    </div>
+                    
+                    <ul class="space-y-4 mb-8 relative z-10">
+                        <li class="flex items-center group/item">
+                            <div class="w-8 h-8 bg-gradient-to-br from-electric-blue to-purple-500 rounded-full flex items-center justify-center mr-4 shadow-lg group-hover/item:scale-110 transition-transform duration-300">
+                                <span class="text-white text-sm font-bold">✓</span>
+                            </div>
+                            <span class="font-medium text-gray-700 group-hover/item:text-electric-blue transition-colors duration-300">Access to ALL courses</span>
+                        </li>
+                        <li class="flex items-center group/item">
+                            <div class="w-8 h-8 bg-gradient-to-br from-electric-blue to-purple-500 rounded-full flex items-center justify-center mr-4 shadow-lg group-hover/item:scale-110 transition-transform duration-300">
+                                <span class="text-white text-sm font-bold">✓</span>
+                            </div>
+                            <span class="font-medium text-gray-700 group-hover/item:text-electric-blue transition-colors duration-300">Advanced AI simulations</span>
+                        </li>
+                        <li class="flex items-center group/item">
+                            <div class="w-8 h-8 bg-gradient-to-br from-electric-blue to-purple-500 rounded-full flex items-center justify-center mr-4 shadow-lg group-hover/item:scale-110 transition-transform duration-300">
+                                <span class="text-white text-sm font-bold">✓</span>
+                            </div>
+                            <span class="font-medium text-gray-700 group-hover/item:text-electric-blue transition-colors duration-300">Interactive mind maps</span>
+                        </li>
+                        <li class="flex items-center group/item">
+                            <div class="w-8 h-8 bg-gradient-to-br from-electric-blue to-purple-500 rounded-full flex items-center justify-center mr-4 shadow-lg group-hover/item:scale-110 transition-transform duration-300">
+                                <span class="text-white text-sm font-bold">✓</span>
+                            </div>
+                            <span class="font-medium text-gray-700 group-hover/item:text-electric-blue transition-colors duration-300">Priority support</span>
+                        </li>
+                        <li class="flex items-center group/item">
+                            <div class="w-8 h-8 bg-gradient-to-br from-electric-blue to-purple-500 rounded-full flex items-center justify-center mr-4 shadow-lg group-hover/item:scale-110 transition-transform duration-300">
+                                <span class="text-white text-sm font-bold">✓</span>
+                            </div>
+                            <span class="font-medium text-gray-700 group-hover/item:text-electric-blue transition-colors duration-300">Progress analytics</span>
+                        </li>
+                    </ul>
+                    
+                    <button onclick="startFreeTrial()" class="w-full bg-gradient-to-r from-electric-blue via-purple-500 to-pink-500 text-white py-4 rounded-2xl font-bold text-lg hover:shadow-2xl hover:shadow-electric-blue/25 transition-all transform hover:scale-105 hover:-translate-y-1 relative z-10 group-hover:shadow-3xl">
+                        <span class="flex items-center justify-center gap-2">
+                            🚀 Start Free Trial
+                            <svg class="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"></path>
+                            </svg>
+                        </span>
+                    </button>
+                </div>
+                
+                <!-- Premium Plan -->
+                <div class="pricing-card bg-white/80 backdrop-blur-xl rounded-3xl shadow-2xl border border-white/20 p-8 relative overflow-hidden group hover:bg-white/90 transition-all duration-500">
+                    <!-- Animated Background -->
+                    <div class="absolute inset-0 bg-gradient-to-br from-purple-500/5 to-pink-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                    <div class="absolute -top-20 -right-20 w-40 h-40 bg-gradient-to-br from-purple-500/20 to-pink-500/20 rounded-full blur-3xl group-hover:scale-150 transition-transform duration-700"></div>
+                    
+                    <div class="absolute top-6 right-6">
+                        <div class="bg-gradient-to-r from-purple-500 to-pink-500 text-white px-4 py-2 rounded-full text-sm font-bold shadow-lg">
+                            👑 VIP
+                        </div>
+                    </div>
+                    
+                    <div class="text-center mb-8 relative z-10">
+                        <div class="w-20 h-20 bg-gradient-to-br from-purple-500 to-pink-500 rounded-3xl flex items-center justify-center mx-auto mb-6 shadow-2xl group-hover:scale-110 group-hover:rotate-6 transition-all duration-500">
+                            <span class="text-white text-3xl">👑</span>
+                        </div>
+                        <h3 class="font-serif text-3xl font-bold mb-4 text-gray-800">Premium</h3>
+                        <div class="text-5xl font-bold text-gray-900 mb-2">₹3,999</div>
+                        <p class="text-gray-600 font-medium mb-4">per month</p>
+                        <div class="bg-gradient-to-r from-purple-100 to-pink-100 text-purple-600 px-4 py-2 rounded-full text-sm font-bold border border-purple-200">
+                            🎯 Best for serious aspirants
+                        </div>
+                    </div>
+                    
+                    <ul class="space-y-4 mb-8 relative z-10">
+                        <li class="flex items-center group/item">
+                            <div class="w-8 h-8 bg-gradient-to-br from-purple-500 to-pink-500 rounded-full flex items-center justify-center mr-4 shadow-lg group-hover/item:scale-110 transition-transform duration-300">
+                                <span class="text-white text-sm font-bold">✓</span>
+                            </div>
+                            <span class="font-medium text-gray-700 group-hover/item:text-purple-600 transition-colors duration-300">Everything in Pro</span>
+                        </li>
+                        <li class="flex items-center group/item">
+                            <div class="w-8 h-8 bg-gradient-to-br from-purple-500 to-pink-500 rounded-full flex items-center justify-center mr-4 shadow-lg group-hover/item:scale-110 transition-transform duration-300">
+                                <span class="text-white text-sm font-bold">✓</span>
+                            </div>
+                            <span class="font-medium text-gray-700 group-hover/item:text-purple-600 transition-colors duration-300">1-on-1 expert mentoring</span>
+                        </li>
+                        <li class="flex items-center group/item">
+                            <div class="w-8 h-8 bg-gradient-to-br from-purple-500 to-pink-500 rounded-full flex items-center justify-center mr-4 shadow-lg group-hover/item:scale-110 transition-transform duration-300">
+                                <span class="text-white text-sm font-bold">✓</span>
+                            </div>
+                            <span class="font-medium text-gray-700 group-hover/item:text-purple-600 transition-colors duration-300">Personalized study plans</span>
+                        </li>
+                        <li class="flex items-center group/item">
+                            <div class="w-8 h-8 bg-gradient-to-br from-purple-500 to-pink-500 rounded-full flex items-center justify-center mr-4 shadow-lg group-hover/item:scale-110 transition-transform duration-300">
+                                <span class="text-white text-sm font-bold">✓</span>
+                            </div>
+                            <span class="font-medium text-gray-700 group-hover/item:text-purple-600 transition-colors duration-300">Mock interviews</span>
+                        </li>
+                        <li class="flex items-center group/item">
+                            <div class="w-8 h-8 bg-gradient-to-br from-purple-500 to-pink-500 rounded-full flex items-center justify-center mr-4 shadow-lg group-hover/item:scale-110 transition-transform duration-300">
+                                <span class="text-white text-sm font-bold">✓</span>
+                            </div>
+                            <span class="font-medium text-gray-700 group-hover/item:text-purple-600 transition-colors duration-300">24/7 priority support</span>
+                        </li>
+                    </ul>
+                    
+                    <button onclick="startFreeTrial()" class="w-full bg-gradient-to-r from-purple-500 to-pink-500 text-white py-4 rounded-2xl font-bold text-lg hover:from-purple-600 hover:to-pink-600 transition-all transform hover:scale-105 hover:-translate-y-1 shadow-2xl hover:shadow-purple-500/25 relative z-10 group-hover:shadow-3xl">
+                        <span class="flex items-center justify-center gap-2">
+                            👑 Start Free Trial
+                            <svg class="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"></path>
+                            </svg>
+                        </span>
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Bottom Section -->
+            <div class="text-center mt-16">
+                <div class="bg-white/60 backdrop-blur-xl rounded-2xl p-8 shadow-xl border border-white/20 max-w-2xl mx-auto">
+                    <div class="flex items-center justify-center gap-2 mb-4">
+                        <div class="w-6 h-6 bg-green-500 rounded-full flex items-center justify-center">
+                            <span class="text-white text-xs font-bold">✓</span>
+                        </div>
+                        <p class="text-gray-700 font-semibold">Secure Payment • Instant Access • 30-Day Money Back Guarantee</p>
+                    </div>
+                    <div class="flex justify-center items-center gap-8 opacity-70">
+                        <div class="flex items-center gap-2">
+                            <div class="w-8 h-8 bg-gradient-to-br from-blue-500 to-purple-500 rounded-lg flex items-center justify-center">
+                                <span class="text-white text-xs font-bold">₹</span>
+                            </div>
+                            <span class="text-sm font-medium">Razorpay Secured</span>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <div class="w-8 h-8 bg-gradient-to-br from-green-500 to-teal-500 rounded-lg flex items-center justify-center">
+                                <span class="text-white text-xs font-bold">🔒</span>
+                            </div>
+                            <span class="text-sm font-medium">SSL Encrypted</span>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <div class="w-8 h-8 bg-gradient-to-br from-orange-500 to-red-500 rounded-lg flex items-center justify-center">
+                                <span class="text-white text-xs font-bold">📄</span>
+                            </div>
+                            <span class="text-sm font-medium">GST Invoice</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-4 gap-8">
+                <div>
+                    <div class="text-2xl font-bold text-white mb-4">IAStune</div>
+                    <p class="text-gray-400 mb-6">Learn by doing. Master every UPSC concept with interactive simulations and crystal-clear mind maps.</p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-white transition-colors">
+                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"/>
+                            </svg>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white transition-colors">
+                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M22.46 6c-.77.35-1.6.58-2.46.69.88-.53 1.56-1.37 1.88-2.38-.83.5-1.75.85-2.72 1.05C18.37 4.5 17.26 4 16 4c-2.35 0-4.27 1.92-4.27 4.29 0 .34.04.67.11.98C8.28 9.09 5.11 7.38 3 4.79c-.37.63-.58 1.37-.58 2.15 0 1.49.75 2.81 1.91 3.56-.71 0-1.37-.2-1.95-.5v.03c0 2.08 1.48 3.82 3.44 4.21a4.22 4.22 0 0 1-1.93.07 4.28 4.28 0 0 0 4 2.98 8.521 8.521 0 0 1-5.33 1.84c-.34 0-.68-.02-1.02-.06C3.44 20.29 5.7 21 8.12 21 16 21 20.33 14.46 20.33 8.79c0-.19 0-.37-.01-.56.84-.6 1.56-1.36 2.14-2.23z"/>
+                            </svg>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white transition-colors">
+                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h4 class="font-semibold mb-4">Courses</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="#" class="hover:text-white transition-colors">Prelims</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Mains</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Optional Subjects</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Current Affairs</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="font-semibold mb-4">Resources</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="#" class="hover:text-white transition-colors">Simulations</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Mind Maps</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Blog</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">FAQ</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="font-semibold mb-4">Support</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="#" class="hover:text-white transition-colors">Contact Us</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Terms of Service</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Privacy Policy</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Refund Policy</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800 mt-12 pt-8 text-center text-gray-400">
+                <p>&copy; 2024 IAStune. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Auth Modal -->
+    <div id="auth-modal" class="fixed inset-0 bg-black bg-opacity-50 z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-white rounded-2xl max-w-md w-full p-8 relative">
+            <button onclick="closeAuthModal()" class="absolute top-4 right-4 text-gray-400 hover:text-gray-600">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                </svg>
+            </button>
+            
+            <div id="login-form" class="auth-form">
+                <h2 class="font-serif text-2xl font-bold mb-6 text-center">Welcome Back</h2>
+                
+                <button onclick="loginWithGoogle()" class="w-full bg-white border-2 border-gray-300 text-gray-700 py-3 rounded-lg font-medium mb-4 hover:bg-gray-50 transition-colors flex items-center justify-center">
+                    <svg class="w-5 h-5 mr-2" viewBox="0 0 24 24">
+                        <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
+                        <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
+                        <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/>
+                        <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/>
+                    </svg>
+                    Continue with Google
+                </button>
+                
+                <div class="text-center text-gray-500 mb-4">or</div>
+                
+                <form onsubmit="handleLogin(event)">
+                    <div class="mb-4">
+                        <input type="email" placeholder="Email" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-electric-blue">
+                    </div>
+                    <div class="mb-6">
+                        <input type="password" placeholder="Password" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-electric-blue">
+                    </div>
+                    <button type="submit" class="w-full btn-primary text-white py-3 rounded-lg font-semibold mb-4">
+                        Sign In
+                    </button>
+                </form>
+                
+                <p class="text-center text-gray-600">
+                    Don't have an account? 
+                    <button onclick="switchToSignup()" class="text-electric-blue font-medium hover:underline">Sign up</button>
+                </p>
+            </div>
+            
+            <div id="signup-form" class="auth-form hidden">
+                <h2 class="font-serif text-2xl font-bold mb-6 text-center">Create Account</h2>
+                
+                <button onclick="signupWithGoogle()" class="w-full bg-white border-2 border-gray-300 text-gray-700 py-3 rounded-lg font-medium mb-4 hover:bg-gray-50 transition-colors flex items-center justify-center">
+                    <svg class="w-5 h-5 mr-2" viewBox="0 0 24 24">
+                        <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
+                        <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
+                        <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/>
+                        <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/>
+                    </svg>
+                    Continue with Google
+                </button>
+                
+                <div class="text-center text-gray-500 mb-4">or</div>
+                
+                <form onsubmit="handleSignup(event)">
+                    <div class="mb-4">
+                        <input type="text" placeholder="Full Name" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-electric-blue">
+                    </div>
+                    <div class="mb-4">
+                        <input type="email" placeholder="Email" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-electric-blue">
+                    </div>
+                    <div class="mb-6">
+                        <input type="password" placeholder="Password" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-electric-blue">
+                    </div>
+                    <button type="submit" class="w-full btn-primary text-white py-3 rounded-lg font-semibold mb-4">
+                        Create Account
+                    </button>
+                </form>
+                
+                <p class="text-center text-gray-600">
+                    Already have an account? 
+                    <button onclick="switchToLogin()" class="text-electric-blue font-medium hover:underline">Sign in</button>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Demo Modal -->
+    <div id="demo-modal" class="fixed inset-0 bg-black bg-opacity-50 z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-white rounded-2xl max-w-4xl w-full max-h-[90vh] overflow-hidden relative">
+            <div class="flex items-center justify-between p-6 border-b">
+                <h2 class="font-serif text-2xl font-bold">Interactive Demo - Polity Simulation</h2>
+                <button onclick="closeDemoModal()" class="text-gray-400 hover:text-gray-600">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                    </svg>
+                </button>
+            </div>
+            
+            <div class="p-6">
+                <div class="bg-gradient-to-br from-blue-50 to-indigo-100 rounded-xl p-8 text-center">
+                    <div class="w-24 h-24 bg-electric-blue rounded-full flex items-center justify-center mx-auto mb-6">
+                        <svg class="w-12 h-12 text-white" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clip-rule="evenodd"></path>
+                        </svg>
+                    </div>
+                    
+                    <h3 class="font-serif text-2xl font-bold mb-4">Parliament Session Simulation</h3>
+                    <p class="text-gray-600 mb-6">Experience how bills are passed in the Indian Parliament through our interactive simulation.</p>
+                    
+                    <div class="grid md:grid-cols-3 gap-4 mb-8">
+                        <div class="bg-white rounded-lg p-4">
+                            <div class="w-12 h-12 bg-green-500 rounded-full flex items-center justify-center mx-auto mb-3">
+                                <span class="text-white font-bold">1</span>
+                            </div>
+                            <h4 class="font-semibold mb-2">Introduction</h4>
+                            <p class="text-sm text-gray-600">Learn about the bill introduction process</p>
+                        </div>
+                        
+                        <div class="bg-white rounded-lg p-4">
+                            <div class="w-12 h-12 bg-yellow-500 rounded-full flex items-center justify-center mx-auto mb-3">
+                                <span class="text-white font-bold">2</span>
+                            </div>
+                            <h4 class="font-semibold mb-2">Committee Stage</h4>
+                            <p class="text-sm text-gray-600">Participate in committee discussions</p>
+                        </div>
+                        
+                        <div class="bg-white rounded-lg p-4">
+                            <div class="w-12 h-12 bg-blue-500 rounded-full flex items-center justify-center mx-auto mb-3">
+                                <span class="text-white font-bold">3</span>
+                            </div>
+                            <h4 class="font-semibold mb-2">Final Vote</h4>
+                            <p class="text-sm text-gray-600">Cast your vote and see the outcome</p>
+                        </div>
+                    </div>
+                    
+                    <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                        <button onclick="startFullDemo()" class="btn-primary text-white px-8 py-3 rounded-full font-semibold">
+                            Start Full Demo
+                        </button>
+                        <button onclick="openAuthModal('signup')" class="bg-white text-electric-blue border-2 border-electric-blue px-8 py-3 rounded-full font-semibold hover:bg-electric-blue hover:text-white transition-colors">
+                            Sign Up for Full Access
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script>
-        // Founder data for enhanced tooltips
-        const foundersData = [
-            { name: "Alex Chen", role: "Co-founder & CEO", bio: "Visionary Leader" },
-            { name: "Sarah Kim", role: "Co-founder & CTO", bio: "Tech Innovator" },
-            { name: "Mike Rodriguez", role: "Co-founder & COO", bio: "Operations Expert" },
-            { name: "Emma Johnson", role: "Co-founder & CMO", bio: "Brand Storyteller" }
-        ];
+        // Navigation
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        }
 
-        // Position rotation logic
-        let currentPositions = [0, 1, 2, 3]; // Current position indices for each founder
-        let isAnimating = false;
-        let rotationInterval;
+        function scrollToSection(sectionId) {
+            document.getElementById(sectionId).scrollIntoView({ behavior: 'smooth' });
+        }
 
-        function rotatePositions() {
-            if (isAnimating) return;
+        // Free Trial Functions
+        function startFreeTrial() {
+            // Show success message with modern styling
+            showNotification('🎉 Welcome to your FREE trial! No credit card required. Start learning now!', 'success');
             
-            isAnimating = true;
-            
-            // Rotate positions clockwise: each founder moves to next position
-            currentPositions = currentPositions.map(pos => (pos + 1) % 4);
-            
-            // Update DOM elements with new positions
-            const founderElements = document.querySelectorAll('.founder-name');
-            founderElements.forEach((element, index) => {
-                // Remove old position class
-                element.className = element.className.replace(/position-\d/, '');
-                // Add new position class
-                element.classList.add(`position-${currentPositions[index]}`);
-            });
-            
-            // Reset animation flag after transition completes
+            // Simulate trial activation
             setTimeout(() => {
-                isAnimating = false;
+                showNotification('✅ Trial activated! Redirecting to dashboard...', 'success');
             }, 1500);
         }
 
-        // Start the rotation
-        function startRotation() {
-            rotationInterval = setInterval(rotatePositions, 3000);
-        }
-
-        // Stop the rotation
-        function stopRotation() {
-            clearInterval(rotationInterval);
-        }
-
-        // Initialize rotation on page load
-        document.addEventListener('DOMContentLoaded', function() {
-            startRotation();
+        function showNotification(message, type = 'info') {
+            const notification = document.createElement('div');
+            notification.className = `fixed top-4 right-4 z-50 p-4 rounded-lg shadow-lg max-w-sm transform transition-all duration-300 translate-x-full`;
             
-            // Add hover event listeners to pause/resume rotation
-            const founderElements = document.querySelectorAll('.founder-name');
-            founderElements.forEach(element => {
-                element.addEventListener('mouseenter', stopRotation);
-                element.addEventListener('mouseleave', startRotation);
+            if (type === 'success') {
+                notification.className += ' bg-green-500 text-white';
+            } else if (type === 'error') {
+                notification.className += ' bg-red-500 text-white';
+            } else {
+                notification.className += ' bg-blue-500 text-white';
+            }
+            
+            notification.innerHTML = `
+                <div class="flex items-center gap-3">
+                    <div class="font-medium">${message}</div>
+                    <button onclick="this.parentElement.parentElement.remove()" class="text-white/80 hover:text-white">
+                        <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path>
+                        </svg>
+                    </button>
+                </div>
+            `;
+            
+            document.body.appendChild(notification);
+            
+            // Animate in
+            setTimeout(() => {
+                notification.classList.remove('translate-x-full');
+            }, 100);
+            
+            // Auto remove after 5 seconds
+            setTimeout(() => {
+                notification.classList.add('translate-x-full');
+                setTimeout(() => notification.remove(), 300);
+            }, 5000);
+        }
+
+        // Demo Modal
+        function startDemo() {
+            document.getElementById('demo-modal').classList.remove('hidden');
+        }
+
+        function closeDemoModal() {
+            document.getElementById('demo-modal').classList.add('hidden');
+        }
+
+        function startFullDemo() {
+            alert('Full interactive demo would launch here with step-by-step simulation');
+            closeDemoModal();
+        }
+
+        // Course Filtering
+        function filterCourses(category) {
+            const cards = document.querySelectorAll('.course-card');
+            const buttons = document.querySelectorAll('.filter-btn');
+            
+            // Update button states
+            buttons.forEach(btn => {
+                btn.classList.remove('active', 'bg-electric-blue', 'text-white');
+                btn.classList.add('bg-white', 'text-gray-700', 'border');
             });
-        });
-
-        // Animate team cards on scroll
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
-
-        const observer = new IntersectionObserver(function(entries) {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
+            
+            event.target.classList.remove('bg-white', 'text-gray-700', 'border');
+            event.target.classList.add('active', 'bg-electric-blue', 'text-white');
+            
+            // Filter cards
+            cards.forEach(card => {
+                if (category === 'all' || card.dataset.category === category) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
                 }
             });
-        }, observerOptions);
+        }
 
-        document.querySelectorAll('.team-card').forEach((card, index) => {
-            card.style.transitionDelay = `${index * 0.1}s`;
-            observer.observe(card);
-        });
+        // Course Actions
+        function viewCourse(courseId) {
+            alert(`Viewing ${courseId} course details. This would navigate to the course detail page.`);
+        }
 
-        // Smooth scrolling for anchor links
+        function viewAllCourses() {
+            alert('This would navigate to the complete courses page with all available courses.');
+        }
+
+        // Pricing
+        function selectPlan(plan) {
+            alert(`Selected ${plan} plan. This would redirect to the checkout page with Razorpay integration.`);
+        }
+
+        // Smooth scrolling for navigation links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
                 const target = document.querySelector(this.getAttribute('href'));
                 if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
+                    target.scrollIntoView({ behavior: 'smooth' });
                 }
             });
         });
+
+        // Close modals when clicking outside
+        document.addEventListener('click', function(event) {
+            const authModal = document.getElementById('auth-modal');
+            const demoModal = document.getElementById('demo-modal');
+            
+            if (event.target === authModal) {
+                closeAuthModal();
+            }
+            
+            if (event.target === demoModal) {
+                closeDemoModal();
+            }
+        });
+
+        // Add scroll effect to navigation with dynamic text colors
+        window.addEventListener('scroll', function() {
+            const nav = document.querySelector('nav');
+            const navBrand = document.querySelector('.nav-brand');
+            const navLinks = document.querySelectorAll('.nav-link');
+            const navMobileBtn = document.querySelector('.nav-mobile-btn');
+            const navMobileLinks = document.querySelectorAll('.nav-mobile-link');
+            
+            if (window.scrollY > 100) {
+                // Scrolled state - white background, dark text
+                nav.style.backgroundColor = 'rgba(255, 255, 255, 0.95)';
+                nav.style.boxShadow = '0 4px 20px rgba(0, 0, 0, 0.1)';
+                
+                // Change text colors to dark
+                if (navBrand) navBrand.style.color = '#1f2937';
+                navLinks.forEach(link => {
+                    link.style.color = '#374151';
+                    link.addEventListener('mouseenter', () => link.style.color = '#0066FF');
+                    link.addEventListener('mouseleave', () => link.style.color = '#374151');
+                });
+                if (navMobileBtn) navMobileBtn.style.color = '#374151';
+                navMobileLinks.forEach(link => {
+                    link.style.color = '#374151';
+                    link.addEventListener('mouseenter', () => link.style.color = '#0066FF');
+                    link.addEventListener('mouseleave', () => link.style.color = '#374151');
+                });
+            } else {
+                // Top state - transparent background, white text
+                nav.style.backgroundColor = 'rgba(255, 255, 255, 0.1)';
+                nav.style.boxShadow = 'none';
+                
+                // Change text colors to white
+                if (navBrand) navBrand.style.color = '#ffffff';
+                navLinks.forEach(link => {
+                    link.style.color = '#ffffff';
+                    link.addEventListener('mouseenter', () => link.style.color = '#fde047');
+                    link.addEventListener('mouseleave', () => link.style.color = '#ffffff');
+                });
+                if (navMobileBtn) navMobileBtn.style.color = '#ffffff';
+                navMobileLinks.forEach(link => {
+                    link.style.color = '#ffffff';
+                    link.addEventListener('mouseenter', () => link.style.color = '#fde047');
+                    link.addEventListener('mouseleave', () => link.style.color = '#ffffff');
+                });
+            }
+        });
     </script>
-<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'966e5b01914d5cb8',t:'MTc1MzgxMDM0NS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script>
-
-<!-- Firebase JS SDKs -->
-<script src="https://www.gstatic.com/firebasejs/12.0.0/firebase-app.js"></script>
-<script src="https://www.gstatic.com/firebasejs/12.0.0/firebase-analytics.js"></script>
-<script src="https://www.gstatic.com/firebasejs/12.0.0/firebase-auth.js"></script>
-
-
-<script>
-  // Your Firebase config
-  const firebaseConfig = {
-    apiKey: "AIzaSyBlwocP...RvgblCqA", // shortened for security
-    authDomain: "iastunecourses.firebaseapp.com",
-    projectId: "iastunecourses",
-    storageBucket: "iastunecourses.appspot.com",
-    messagingSenderId: "108513085479",
-    appId: "1:108513085479:web:a806720d7ae186f4420e6",
-    measurementId: "G-HGZEFV4R4R"
-  };
-
-  // Initialize Firebase
-  firebase.initializeApp(firebaseConfig);
-  firebase.analytics();
-</script>
-
-
-</body>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'96c55950e2b2ac91',t:'MTc1NDcyMjUzNy4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
-
-
-
