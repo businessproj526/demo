@@ -1,0 +1,251 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>TV Frame Player — Ultra Clean</title>
+<style>
+  :root{
+    --bezel1:#202634; --bezel2:#0f121a; --lip1:#0c0f14; --lip2:#1b2230;
+    --glass:#0b0f1e; --accent:#7dd3fc; --accent2:#60a5fa;
+  }
+  html,body{height:100%;margin:0;background:#000;font-family:system-ui,Segoe UI,Arial}
+  .wrap{min-height:100%;display:grid;place-items:center;padding:24px}
+
+  /* TV frame */
+  .tv{
+    width:min(94vw,1200px); aspect-ratio:16/9; position:relative;
+    border-radius:28px;
+    background:linear-gradient(145deg,var(--bezel1),var(--bezel2));
+    box-shadow:0 18px 45px rgba(0,0,0,.55), inset 0 2px 0 rgba(255,255,255,.05), inset 0 -2px 0 rgba(0,0,0,.4);
+    padding:18px;
+  }
+  .tv:before{
+    content:""; position:absolute; inset:10px; border-radius:22px;
+    background:linear-gradient(145deg,var(--lip1),var(--lip2));
+    box-shadow: inset 0 10px 24px rgba(0,0,0,.6); pointer-events:none;
+  }
+
+  /* Screen — clicks disabled */
+  .screen{
+    position:absolute; inset:28px; border-radius:16px; overflow:hidden; background:#000;
+    box-shadow: inset 0 0 60px rgba(0,0,0,.7);
+    pointer-events:none; /* disable touch/click on the video */
+  }
+  .holder{position:absolute; inset:0; overflow:hidden;}
+  .crop{position:absolute; inset:-8%; transform:scale(1.16); transform-origin:center;}
+  #player, iframe{width:100%; height:100%; border:0; display:block}
+
+  /* Mask to hide overlays when not playing */
+  .mask{position:absolute; inset:0; background:#000; opacity:1; pointer-events:none; transition:opacity .2s ease}
+  .mask.hide{opacity:0}
+
+  /* LED + vents */
+  .led{position:absolute; bottom:10px; left:16px; width:10px; height:10px; border-radius:50%}
+  .led.off{background:#ff3b30; box-shadow:0 0 10px #ff3b3066}
+  .led.on{ background:#36d44a; box-shadow:0 0 10px #36d44a66}
+  .vents{position:absolute;bottom:10px;left:34px;display:flex;gap:6px;opacity:.34}
+  .vents i{width:14px;height:3px;background:#cfcfcf;border-radius:2px;display:block}
+
+  /* Controls */
+  .bar{
+    width:min(94vw,1200px);
+    margin-top:12px;
+    display:flex; justify-content:flex-end; align-items:center; gap:12px;
+  }
+  .btn3d{
+    position:relative; border:0; cursor:pointer; user-select:none;
+    border-radius:14px; padding:10px 16px; color:#e9f2ff; font-weight:600; letter-spacing:.2px;
+    background:linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.02));
+    box-shadow:0 10px 24px rgba(0,0,0,.5), inset 0 0 0 1px rgba(255,255,255,.08), inset 0 -6px 14px rgba(0,0,0,.35), 0 0 0 1px rgba(99,102,241,.25);
+    backdrop-filter: blur(6px);
+    transform: translateY(0);
+    transition: transform .12s ease, box-shadow .12s ease;
+  }
+  .btn3d:hover{ transform: translateY(-1px); box-shadow:0 14px 30px rgba(0,0,0,.6), inset 0 0 0 1px rgba(255,255,255,.1), inset 0 -8px 16px rgba(0,0,0,.45), 0 0 0 1px rgba(99,102,241,.35)}
+  .btn3d:active{ transform: translateY(1px) }
+
+  .volwrap{
+    position:relative; display:flex; align-items:center; gap:10px;
+    background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02));
+    border-radius:999px; padding:8px 10px 8px 8px;
+    box-shadow:0 10px 24px rgba(0,0,0,.5), inset 0 0 0 1px rgba(255,255,255,.06);
+    backdrop-filter: blur(6px);
+  }
+  .vol-btn{
+    width:44px; height:44px; display:grid; place-items:center; border-radius:999px; border:0; cursor:pointer;
+    color:#e9f2ff;
+    background:radial-gradient(120% 120% at 30% 30%, rgba(255,255,255,.18), rgba(255,255,255,0)),
+      linear-gradient(180deg, rgba(255,255,255,.10), rgba(255,255,255,.02));
+    box-shadow:inset 0 0 0 1px rgba(255,255,255,.12), 0 10px 24px rgba(0,0,0,.55), 0 0 0 1px rgba(96,165,250,.35);
+    transition: transform .12s ease, box-shadow .12s ease;
+  }
+  .vol-btn:hover{ transform: translateY(-1px) }
+  .vol-btn:active{ transform: translateY(1px) }
+  .icon{width:20px;height:20px;display:block}
+
+  .vol-slider{ width:0; opacity:0; overflow:hidden; transition: width .22s ease, opacity .22s ease; margin-right:4px; }
+  .volwrap.open .vol-slider{ width:min(32vw,280px); opacity:1 }
+  .range{appearance:none; width:100%; height:6px; border-radius:999px; outline:none; background: linear-gradient(90deg, var(--accent), var(--accent2)); box-shadow: inset 0 0 0 1px rgba(255,255,255,.15);}
+  .range::-webkit-slider-thumb{appearance:none; width:18px; height:18px; border-radius:50%; background:#fff; box-shadow:0 2px 10px rgba(0,0,0,.5);}
+  .range::-moz-range-thumb{width:18px; height:18px; border-radius:50%; background:#fff; border:0; box-shadow:0 2px 10px rgba(0,0,0,.5)}
+
+  .chip{margin-left:8px; padding:3px 8px; border-radius:999px; font-size:12px; color:#00111a; background:linear-gradient(180deg,#7dd3fc,#60a5fa); box-shadow: inset 0 0 0 1px rgba(255,255,255,.55)}
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="tv" role="region" aria-label="TV video">
+      <div class="screen">
+        <div class="holder">
+          <div class="crop"><div id="player"></div></div>
+        </div>
+        <div id="mask" class="mask"></div>
+        <div id="led" class="led off" aria-hidden="true"></div>
+        <div class="vents" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div>
+      </div>
+    </div>
+
+    <div class="bar">
+      <button id="playPause" class="btn3d"><span id="ppLabel">Play</span><span id="ppChip" class="chip">Ready</span></button>
+      <div id="volWrap" class="volwrap">
+        <button id="muteBtn" class="vol-btn" title="Mute/Unmute">
+          <svg id="volIcon" class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M11 5l-5 4H3v6h3l5 4V5z"/>
+            <path id="waves" d="M15 9a3 3 0 010 6m2-8a6 6 0 010 10"/>
+          </svg>
+        </button>
+        <div class="vol-slider"><input id="vol" class="range" type="range" min="0" max="100" value="80" /></div>
+      </div>
+    </div>
+  </div>
+
+<script>
+const VIDEO_ID = "eJ1Ctu1zrbg";
+
+const mask = document.getElementById('mask');
+const led  = document.getElementById('led');
+const playPause = document.getElementById('playPause');
+const ppLabel = document.getElementById('ppLabel');
+const ppChip = document.getElementById('ppChip');
+const volWrap = document.getElementById('volWrap');
+const muteBtn = document.getElementById('muteBtn');
+const wavesPath = document.getElementById('waves');
+const vol = document.getElementById('vol');
+
+let player, ready=false, interacted=false, retryTimer=null;
+
+function setLED(on){ led.classList.toggle('on',on); led.classList.toggle('off',!on); }
+function uiPlaying(on){
+  if(on){ mask.classList.add('hide'); setLED(true); ppLabel.textContent='Pause'; ppChip.textContent='Playing'; }
+  else  { mask.classList.remove('hide'); setLED(false); ppLabel.textContent='Play'; ppChip.textContent='Paused'; }
+}
+function showMuted(m){ wavesPath.setAttribute('d', m ? '' : 'M15 9a3 3 0 010 6m2-8a6 6 0 010 10'); }
+
+/* Strong, explicit play used by the Play button (fixes “doesn’t resume after pause”) */
+function forcePlay(){
+  if(!ready) return;
+  try{
+    interacted = true;                 // treat button as user gesture
+    player.unMute();
+    player.setVolume(parseInt(vol.value,10) || 80);
+    const st = player.getPlayerState?.();
+
+    // If paused at the very end or just cued, seek to start first
+    if (st === YT.PlayerState.ENDED)      { player.seekTo(0, true); }
+    else if (st === YT.PlayerState.CUED)  { player.seekTo(0.1, true); }
+
+    player.playVideo();
+  }catch(_){}
+}
+
+/* Gentle retry loop (handles occasional race conditions) */
+function ensurePlay(retries=3){
+  forcePlay();
+  clearTimeout(retryTimer);
+  retryTimer = setTimeout(()=>{
+    const st = player.getPlayerState?.();
+    if(st !== YT.PlayerState.PLAYING && retries>0){ forcePlay(); ensurePlay(retries-1); }
+  }, 180);
+}
+
+function doPause(){ if(ready){ try{ player.pauseVideo(); }catch(_){}} }
+
+function applyVolume(){
+  if(!ready) return;
+  const v = parseInt(vol.value,10);
+  try{
+    player.setVolume(v);
+    if(v===0){ player.mute(); showMuted(true); }
+    else { player.unMute(); showMuted(false); }
+  }catch(_){}
+}
+function toggleMute(){
+  if(!ready) return;
+  try{
+    if(player.isMuted()){
+      player.unMute(); showMuted(false);
+      if(player.getVolume()===0){ player.setVolume(50); vol.value=50; }
+    }else{
+      player.mute(); showMuted(true);
+    }
+  }catch(_){}
+}
+
+function onYouTubeIframeAPIReady(){
+  player = new YT.Player('player', {
+    videoId: VIDEO_ID,
+    playerVars: {
+      autoplay: 1,
+      controls: 0,
+      rel: 0,
+      modestbranding: 1,
+      fs: 0,
+      iv_load_policy: 3,
+      disablekb: 1,
+      playsinline: 1,
+      cc_load_policy: 0,   // captions off
+      loop: 1,
+      playlist: VIDEO_ID,
+      origin: location.origin // improves reliability when served from a domain
+    },
+    events: {
+      onReady: (e)=>{
+        ready=true;
+        try{ e.target.mute(); e.target.playVideo(); }catch(_){}
+        uiPlaying(false);
+        // Best-effort captions off
+        try{ e.target.setOption('captions','track',{}); }catch(_){}
+      },
+      onStateChange: (e)=>{
+        if(e.data===YT.PlayerState.PLAYING || e.data===YT.PlayerState.BUFFERING){ uiPlaying(true); }
+        else { uiPlaying(false); }
+      },
+      onError: (_e)=>{
+        // Recover by reloading video then play
+        try{ player.loadVideoById({videoId: VIDEO_ID, startSeconds: 0}); }catch(_){}
+        ensurePlay();
+      }
+    }
+  });
+}
+
+/* Buttons */
+playPause.addEventListener('click', ()=>{
+  if(!ready) return;
+  const st = player.getPlayerState?.();
+  if(st===YT.PlayerState.PLAYING){ doPause(); }
+  else { ensurePlay(); }
+});
+
+/* Volume UI */
+muteBtn.addEventListener('click', (e)=>{ e.stopPropagation(); toggleMute(); });
+volWrap.addEventListener('click', ()=>{ volWrap.classList.toggle('open'); });
+vol.addEventListener('input', applyVolume);
+
+/* Load YT API */
+const s=document.createElement('script'); s.src="https://www.youtube.com/iframe_api"; document.head.appendChild(s);
+window.onYouTubeIframeAPIReady = onYouTubeIframeAPIReady;
+</script>
+</body>
+</html>
