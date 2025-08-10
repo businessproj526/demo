@@ -1,0 +1,889 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Privacy Policy - IAStune</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        
+        * {
+            font-family: 'Inter', sans-serif;
+        }
+        
+        .gradient-bg {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        
+        .glass-effect {
+            backdrop-filter: blur(10px);
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .section-divider {
+            background: linear-gradient(90deg, transparent, #e5e7eb, transparent);
+        }
+        
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        .toc-item {
+            transition: all 0.3s ease;
+        }
+        
+        .toc-item:hover {
+            transform: translateX(8px);
+            color: #667eea;
+        }
+        
+        .section-card {
+            transition: all 0.3s ease;
+            border-left: 4px solid transparent;
+        }
+        
+        .section-card:hover {
+            border-left-color: #667eea;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+        
+        .floating-nav {
+            position: fixed;
+            top: 50%;
+            right: 2rem;
+            transform: translateY(-50%);
+            z-index: 50;
+        }
+        
+        @media (max-width: 768px) {
+            .floating-nav {
+                display: none;
+            }
+        }
+        
+        .nav-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: #d1d5db;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .nav-dot.active {
+            background: #667eea;
+            transform: scale(1.3);
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Hero Section -->
+    <section class="gradient-bg min-h-screen flex items-center justify-center relative overflow-hidden">
+        <!-- Animated background elements -->
+        <div class="absolute inset-0 opacity-20">
+            <div class="absolute top-20 left-20 w-32 h-32 bg-white rounded-full animate-pulse"></div>
+            <div class="absolute bottom-20 right-20 w-24 h-24 bg-white rounded-full animate-bounce"></div>
+            <div class="absolute top-1/2 left-1/4 w-16 h-16 bg-white rounded-full animate-ping"></div>
+        </div>
+        
+        <div class="container mx-auto px-6 text-center text-white relative z-10">
+            <div class="glass-effect rounded-3xl p-12 max-w-4xl mx-auto">
+                <h1 class="text-6xl font-bold mb-6 bg-gradient-to-r from-white to-blue-200 bg-clip-text text-transparent">
+                    Privacy Policy
+                </h1>
+                <p class="text-xl mb-8 text-blue-100 max-w-2xl mx-auto leading-relaxed">
+                    Your privacy is important to us. Here's how we protect it.
+                </p>
+                <p class="text-sm text-blue-200 mb-8">
+                    Last updated: December 2024
+                </p>
+                <a href="#introduction" class="inline-flex items-center bg-white text-purple-600 px-8 py-4 rounded-full font-semibold hover:bg-blue-50 transition-all duration-300 transform hover:scale-105 shadow-lg">
+                    Read Our Policy
+                    <svg class="ml-2 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
+                    </svg>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Floating Navigation -->
+    <div class="floating-nav">
+        <div class="flex flex-col space-y-3">
+            <div class="nav-dot active" data-section="introduction" title="Introduction"></div>
+            <div class="nav-dot" data-section="information-collect" title="Information We Collect"></div>
+            <div class="nav-dot" data-section="how-collect" title="How We Collect"></div>
+            <div class="nav-dot" data-section="how-use" title="How We Use"></div>
+            <div class="nav-dot" data-section="cookies" title="Cookies"></div>
+            <div class="nav-dot" data-section="sharing" title="Sharing"></div>
+            <div class="nav-dot" data-section="security" title="Security"></div>
+            <div class="nav-dot" data-section="retention" title="Data Retention"></div>
+            <div class="nav-dot" data-section="user-rights" title="User Rights"></div>
+            <div class="nav-dot" data-section="third-party" title="Third-Party Links"></div>
+            <div class="nav-dot" data-section="children" title="Children's Privacy"></div>
+            <div class="nav-dot" data-section="changes" title="Policy Changes"></div>
+            <div class="nav-dot" data-section="contact" title="Contact"></div>
+        </div>
+    </div>
+
+    <!-- Table of Contents -->
+    <section class="bg-white py-16">
+        <div class="container mx-auto px-6 max-w-4xl">
+            <div class="bg-gradient-to-r from-blue-50 to-purple-50 rounded-2xl p-8 shadow-lg">
+                <h2 class="text-3xl font-bold text-gray-800 mb-8 text-center">Table of Contents</h2>
+                <div class="grid md:grid-cols-2 gap-4">
+                    <a href="#introduction" class="toc-item flex items-center p-4 rounded-lg hover:bg-white transition-all duration-300">
+                        <span class="w-8 h-8 bg-blue-500 text-white rounded-full flex items-center justify-center text-sm font-bold mr-4">1</span>
+                        <span class="font-medium text-gray-700">Introduction</span>
+                    </a>
+                    <a href="#information-collect" class="toc-item flex items-center p-4 rounded-lg hover:bg-white transition-all duration-300">
+                        <span class="w-8 h-8 bg-blue-500 text-white rounded-full flex items-center justify-center text-sm font-bold mr-4">2</span>
+                        <span class="font-medium text-gray-700">Information We Collect</span>
+                    </a>
+                    <a href="#how-collect" class="toc-item flex items-center p-4 rounded-lg hover:bg-white transition-all duration-300">
+                        <span class="w-8 h-8 bg-blue-500 text-white rounded-full flex items-center justify-center text-sm font-bold mr-4">3</span>
+                        <span class="font-medium text-gray-700">How We Collect Information</span>
+                    </a>
+                    <a href="#how-use" class="toc-item flex items-center p-4 rounded-lg hover:bg-white transition-all duration-300">
+                        <span class="w-8 h-8 bg-blue-500 text-white rounded-full flex items-center justify-center text-sm font-bold mr-4">4</span>
+                        <span class="font-medium text-gray-700">How We Use Your Information</span>
+                    </a>
+                    <a href="#cookies" class="toc-item flex items-center p-4 rounded-lg hover:bg-white transition-all duration-300">
+                        <span class="w-8 h-8 bg-blue-500 text-white rounded-full flex items-center justify-center text-sm font-bold mr-4">5</span>
+                        <span class="font-medium text-gray-700">Cookies & Tracking</span>
+                    </a>
+                    <a href="#sharing" class="toc-item flex items-center p-4 rounded-lg hover:bg-white transition-all duration-300">
+                        <span class="w-8 h-8 bg-blue-500 text-white rounded-full flex items-center justify-center text-sm font-bold mr-4">6</span>
+                        <span class="font-medium text-gray-700">Sharing of Information</span>
+                    </a>
+                    <a href="#security" class="toc-item flex items-center p-4 rounded-lg hover:bg-white transition-all duration-300">
+                        <span class="w-8 h-8 bg-blue-500 text-white rounded-full flex items-center justify-center text-sm font-bold mr-4">7</span>
+                        <span class="font-medium text-gray-700">Data Security</span>
+                    </a>
+                    <a href="#retention" class="toc-item flex items-center p-4 rounded-lg hover:bg-white transition-all duration-300">
+                        <span class="w-8 h-8 bg-blue-500 text-white rounded-full flex items-center justify-center text-sm font-bold mr-4">8</span>
+                        <span class="font-medium text-gray-700">Data Retention</span>
+                    </a>
+                    <a href="#user-rights" class="toc-item flex items-center p-4 rounded-lg hover:bg-white transition-all duration-300">
+                        <span class="w-8 h-8 bg-blue-500 text-white rounded-full flex items-center justify-center text-sm font-bold mr-4">9</span>
+                        <span class="font-medium text-gray-700">User Rights</span>
+                    </a>
+                    <a href="#third-party" class="toc-item flex items-center p-4 rounded-lg hover:bg-white transition-all duration-300">
+                        <span class="w-8 h-8 bg-blue-500 text-white rounded-full flex items-center justify-center text-sm font-bold mr-4">10</span>
+                        <span class="font-medium text-gray-700">Third-Party Links</span>
+                    </a>
+                    <a href="#children" class="toc-item flex items-center p-4 rounded-lg hover:bg-white transition-all duration-300">
+                        <span class="w-8 h-8 bg-blue-500 text-white rounded-full flex items-center justify-center text-sm font-bold mr-4">11</span>
+                        <span class="font-medium text-gray-700">Children's Privacy</span>
+                    </a>
+                    <a href="#changes" class="toc-item flex items-center p-4 rounded-lg hover:bg-white transition-all duration-300">
+                        <span class="w-8 h-8 bg-blue-500 text-white rounded-full flex items-center justify-center text-sm font-bold mr-4">12</span>
+                        <span class="font-medium text-gray-700">Changes to This Policy</span>
+                    </a>
+                    <a href="#contact" class="toc-item flex items-center p-4 rounded-lg hover:bg-white transition-all duration-300">
+                        <span class="w-8 h-8 bg-blue-500 text-white rounded-full flex items-center justify-center text-sm font-bold mr-4">13</span>
+                        <span class="font-medium text-gray-700">Contact Information</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Content Sections -->
+    <main class="bg-gray-50 py-16">
+        <div class="container mx-auto px-6 max-w-4xl space-y-12">
+            
+            <!-- Section 1: Introduction -->
+            <section id="introduction" class="section-card bg-white rounded-2xl p-8 shadow-lg">
+                <div class="flex items-center mb-6">
+                    <div class="w-12 h-12 bg-gradient-to-r from-blue-500 to-purple-600 text-white rounded-full flex items-center justify-center text-xl font-bold mr-4">1</div>
+                    <h2 class="text-3xl font-bold text-gray-800">Introduction</h2>
+                </div>
+                <div class="prose prose-lg max-w-none text-gray-600 leading-relaxed">
+                    <p class="mb-4">Welcome to IAStune, your comprehensive platform for IAS exam preparation through innovative mind maps and simulations. This Privacy Policy describes how IAStune ("we," "our," or "us") collects, uses, and protects your personal information when you use our platform and services.</p>
+                    <p class="mb-4">By accessing or using IAStune, you acknowledge that you have read, understood, and agree to be bound by this Privacy Policy. If you do not agree with our practices, please do not use our services.</p>
+                    <p>We are committed to protecting your privacy and ensuring transparency in how we handle your data. This policy complies with applicable data protection laws and regulations.</p>
+                </div>
+            </section>
+
+            <div class="section-divider h-px"></div>
+
+            <!-- Section 2: Information We Collect -->
+            <section id="information-collect" class="section-card bg-white rounded-2xl p-8 shadow-lg">
+                <div class="flex items-center mb-6">
+                    <div class="w-12 h-12 bg-gradient-to-r from-blue-500 to-purple-600 text-white rounded-full flex items-center justify-center text-xl font-bold mr-4">2</div>
+                    <h2 class="text-3xl font-bold text-gray-800">Information We Collect</h2>
+                </div>
+                <div class="prose prose-lg max-w-none text-gray-600 leading-relaxed">
+                    <h3 class="text-xl font-semibold text-gray-800 mb-3">Personal Information</h3>
+                    <ul class="mb-6 space-y-2">
+                        <li>• Full name and contact information</li>
+                        <li>• Email address for account creation and communication</li>
+                        <li>• Payment details when purchasing premium features or subscriptions</li>
+                        <li>• Educational background and exam preferences</li>
+                    </ul>
+                    
+                    <h3 class="text-xl font-semibold text-gray-800 mb-3">Non-Personal Information</h3>
+                    <ul class="mb-6 space-y-2">
+                        <li>• Browser type, version, and operating system</li>
+                        <li>• Device information and screen resolution</li>
+                        <li>• IP address and general location data</li>
+                        <li>• Usage statistics and interaction patterns</li>
+                        <li>• Performance metrics and error logs</li>
+                    </ul>
+                    
+                    <h3 class="text-xl font-semibold text-gray-800 mb-3">Optional Data</h3>
+                    <ul class="space-y-2">
+                        <li>• Profile picture (if you choose to upload one)</li>
+                        <li>• Study preferences and customization settings</li>
+                        <li>• Feedback and survey responses</li>
+                        <li>• Social media profile information (if you connect accounts)</li>
+                    </ul>
+                </div>
+            </section>
+
+            <div class="section-divider h-px"></div>
+
+            <!-- Section 3: How We Collect Information -->
+            <section id="how-collect" class="section-card bg-white rounded-2xl p-8 shadow-lg">
+                <div class="flex items-center mb-6">
+                    <div class="w-12 h-12 bg-gradient-to-r from-blue-500 to-purple-600 text-white rounded-full flex items-center justify-center text-xl font-bold mr-4">3</div>
+                    <h2 class="text-3xl font-bold text-gray-800">How We Collect Information</h2>
+                </div>
+                <div class="prose prose-lg max-w-none text-gray-600 leading-relaxed">
+                    <h3 class="text-xl font-semibold text-gray-800 mb-3">Direct Collection</h3>
+                    <p class="mb-4">We collect information directly from you when you:</p>
+                    <ul class="mb-6 space-y-2">
+                        <li>• Register for an account on our platform</li>
+                        <li>• Make payments for premium features or subscriptions</li>
+                        <li>• Fill out contact forms or submit support requests</li>
+                        <li>• Participate in surveys or provide feedback</li>
+                        <li>• Subscribe to our newsletter or promotional communications</li>
+                    </ul>
+                    
+                    <h3 class="text-xl font-semibold text-gray-800 mb-3">Automatic Collection</h3>
+                    <p class="mb-4">We automatically collect certain information through:</p>
+                    <ul class="space-y-2">
+                        <li>• Cookies and similar tracking technologies</li>
+                        <li>• Web analytics tools (such as Google Analytics)</li>
+                        <li>• Server logs and usage tracking systems</li>
+                        <li>• Performance monitoring and error reporting tools</li>
+                    </ul>
+                </div>
+            </section>
+
+            <div class="section-divider h-px"></div>
+
+            <!-- Section 4: How We Use Your Information -->
+            <section id="how-use" class="section-card bg-white rounded-2xl p-8 shadow-lg">
+                <div class="flex items-center mb-6">
+                    <div class="w-12 h-12 bg-gradient-to-r from-blue-500 to-purple-600 text-white rounded-full flex items-center justify-center text-xl font-bold mr-4">4</div>
+                    <h2 class="text-3xl font-bold text-gray-800">How We Use Your Information</h2>
+                </div>
+                <div class="prose prose-lg max-w-none text-gray-600 leading-relaxed">
+                    <p class="mb-6">We use your information for the following purposes:</p>
+                    
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div class="bg-blue-50 p-6 rounded-xl">
+                            <h3 class="text-lg font-semibold text-gray-800 mb-3">Service Provision</h3>
+                            <ul class="space-y-2 text-sm">
+                                <li>• Provide access to mind maps and simulations</li>
+                                <li>• Process payments and manage subscriptions</li>
+                                <li>• Maintain and improve platform functionality</li>
+                                <li>• Provide customer support and technical assistance</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="bg-purple-50 p-6 rounded-xl">
+                            <h3 class="text-lg font-semibold text-gray-800 mb-3">Personalization</h3>
+                            <ul class="space-y-2 text-sm">
+                                <li>• Customize your learning experience</li>
+                                <li>• Recommend relevant study materials</li>
+                                <li>• Track your progress and achievements</li>
+                                <li>• Adapt content to your learning preferences</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="bg-green-50 p-6 rounded-xl">
+                            <h3 class="text-lg font-semibold text-gray-800 mb-3">Communication</h3>
+                            <ul class="space-y-2 text-sm">
+                                <li>• Send important service updates and notifications</li>
+                                <li>• Share exam tips and study resources</li>
+                                <li>• Deliver promotional content (with opt-out option)</li>
+                                <li>• Respond to your inquiries and feedback</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="bg-orange-50 p-6 rounded-xl">
+                            <h3 class="text-lg font-semibold text-gray-800 mb-3">Analytics & Improvement</h3>
+                            <ul class="space-y-2 text-sm">
+                                <li>• Analyze usage patterns and user behavior</li>
+                                <li>• Improve our services and develop new features</li>
+                                <li>• Conduct research and statistical analysis</li>
+                                <li>• Ensure platform security and prevent fraud</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <div class="section-divider h-px"></div>
+
+            <!-- Section 5: Cookies & Tracking Technologies -->
+            <section id="cookies" class="section-card bg-white rounded-2xl p-8 shadow-lg">
+                <div class="flex items-center mb-6">
+                    <div class="w-12 h-12 bg-gradient-to-r from-blue-500 to-purple-600 text-white rounded-full flex items-center justify-center text-xl font-bold mr-4">5</div>
+                    <h2 class="text-3xl font-bold text-gray-800">Cookies & Tracking Technologies</h2>
+                </div>
+                <div class="prose prose-lg max-w-none text-gray-600 leading-relaxed">
+                    <p class="mb-6">We use cookies and similar technologies to enhance your experience on our platform. Here's what you need to know:</p>
+                    
+                    <h3 class="text-xl font-semibold text-gray-800 mb-3">Types of Cookies We Use</h3>
+                    <div class="space-y-4 mb-6">
+                        <div class="border-l-4 border-blue-500 pl-4">
+                            <h4 class="font-semibold text-gray-800">Essential Cookies</h4>
+                            <p class="text-sm">Required for basic site functionality, session management, and security.</p>
+                        </div>
+                        <div class="border-l-4 border-green-500 pl-4">
+                            <h4 class="font-semibold text-gray-800">Analytics Cookies</h4>
+                            <p class="text-sm">Help us understand how users interact with our platform to improve services.</p>
+                        </div>
+                        <div class="border-l-4 border-purple-500 pl-4">
+                            <h4 class="font-semibold text-gray-800">Preference Cookies</h4>
+                            <p class="text-sm">Remember your settings and preferences for a personalized experience.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-yellow-50 border border-yellow-200 rounded-lg p-4">
+                        <h4 class="font-semibold text-gray-800 mb-2">Cookie Management</h4>
+                        <p class="text-sm">You can disable cookies through your browser settings. However, please note that disabling certain cookies may affect the functionality and user experience of our platform.</p>
+                    </div>
+                </div>
+            </section>
+
+            <div class="section-divider h-px"></div>
+
+            <!-- Section 6: Sharing of Information -->
+            <section id="sharing" class="section-card bg-white rounded-2xl p-8 shadow-lg">
+                <div class="flex items-center mb-6">
+                    <div class="w-12 h-12 bg-gradient-to-r from-blue-500 to-purple-600 text-white rounded-full flex items-center justify-center text-xl font-bold mr-4">6</div>
+                    <h2 class="text-3xl font-bold text-gray-800">Sharing of Information</h2>
+                </div>
+                <div class="prose prose-lg max-w-none text-gray-600 leading-relaxed">
+                    <div class="bg-red-50 border border-red-200 rounded-lg p-6 mb-6">
+                        <h3 class="text-xl font-semibold text-red-800 mb-3">🔒 Our Commitment</h3>
+                        <p class="text-red-700">We do not sell, rent, or trade your personal information to third parties for their marketing purposes.</p>
+                    </div>
+                    
+                    <h3 class="text-xl font-semibold text-gray-800 mb-3">When We May Share Information</h3>
+                    <div class="space-y-4">
+                        <div class="bg-blue-50 p-4 rounded-lg">
+                            <h4 class="font-semibold text-gray-800 mb-2">Trusted Service Providers</h4>
+                            <p class="text-sm">We may share information with carefully vetted third-party service providers who assist us in:</p>
+                            <ul class="text-sm mt-2 space-y-1">
+                                <li>• Payment processing (secure payment gateways)</li>
+                                <li>• Analytics and performance monitoring</li>
+                                <li>• Email delivery and communication services</li>
+                                <li>• Cloud hosting and data storage</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="bg-orange-50 p-4 rounded-lg">
+                            <h4 class="font-semibold text-gray-800 mb-2">Legal Requirements</h4>
+                            <p class="text-sm">We may disclose information when required by law or to:</p>
+                            <ul class="text-sm mt-2 space-y-1">
+                                <li>• Comply with legal processes or government requests</li>
+                                <li>• Protect our rights, property, or safety</li>
+                                <li>• Protect the rights and safety of our users</li>
+                                <li>• Prevent fraud or security threats</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <div class="section-divider h-px"></div>
+
+            <!-- Section 7: Data Security -->
+            <section id="security" class="section-card bg-white rounded-2xl p-8 shadow-lg">
+                <div class="flex items-center mb-6">
+                    <div class="w-12 h-12 bg-gradient-to-r from-blue-500 to-purple-600 text-white rounded-full flex items-center justify-center text-xl font-bold mr-4">7</div>
+                    <h2 class="text-3xl font-bold text-gray-800">Data Security</h2>
+                </div>
+                <div class="prose prose-lg max-w-none text-gray-600 leading-relaxed">
+                    <p class="mb-6">We implement comprehensive security measures to protect your personal information:</p>
+                    
+                    <div class="grid md:grid-cols-3 gap-6 mb-6">
+                        <div class="text-center p-6 bg-green-50 rounded-xl">
+                            <div class="w-16 h-16 bg-green-500 text-white rounded-full flex items-center justify-center mx-auto mb-4 text-2xl">🔐</div>
+                            <h3 class="font-semibold text-gray-800 mb-2">Encryption</h3>
+                            <p class="text-sm">All data transmission is protected using industry-standard SSL/TLS encryption.</p>
+                        </div>
+                        
+                        <div class="text-center p-6 bg-blue-50 rounded-xl">
+                            <div class="w-16 h-16 bg-blue-500 text-white rounded-full flex items-center justify-center mx-auto mb-4 text-2xl">🛡️</div>
+                            <h3 class="font-semibold text-gray-800 mb-2">Secure Servers</h3>
+                            <p class="text-sm">Our servers are hosted in secure data centers with physical and digital protection.</p>
+                        </div>
+                        
+                        <div class="text-center p-6 bg-purple-50 rounded-xl">
+                            <div class="w-16 h-16 bg-purple-500 text-white rounded-full flex items-center justify-center mx-auto mb-4 text-2xl">🔍</div>
+                            <h3 class="font-semibold text-gray-800 mb-2">Regular Audits</h3>
+                            <p class="text-sm">We conduct regular security audits and vulnerability assessments.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-yellow-50 border border-yellow-200 rounded-lg p-4">
+                        <h4 class="font-semibold text-gray-800 mb-2">Your Responsibility</h4>
+                        <p class="text-sm">Please keep your login credentials secure and notify us immediately if you suspect unauthorized access to your account. Use strong, unique passwords and enable two-factor authentication when available.</p>
+                    </div>
+                </div>
+            </section>
+
+            <div class="section-divider h-px"></div>
+
+            <!-- Section 8: Data Retention -->
+            <section id="retention" class="section-card bg-white rounded-2xl p-8 shadow-lg">
+                <div class="flex items-center mb-6">
+                    <div class="w-12 h-12 bg-gradient-to-r from-blue-500 to-purple-600 text-white rounded-full flex items-center justify-center text-xl font-bold mr-4">8</div>
+                    <h2 class="text-3xl font-bold text-gray-800">Data Retention</h2>
+                </div>
+                <div class="prose prose-lg max-w-none text-gray-600 leading-relaxed">
+                    <p class="mb-6">We retain your personal information only as long as necessary to fulfill the purposes outlined in this Privacy Policy:</p>
+                    
+                    <div class="space-y-4 mb-6">
+                        <div class="flex items-start space-x-4 p-4 bg-blue-50 rounded-lg">
+                            <div class="w-8 h-8 bg-blue-500 text-white rounded-full flex items-center justify-center text-sm font-bold flex-shrink-0">📊</div>
+                            <div>
+                                <h4 class="font-semibold text-gray-800 mb-1">Account Data</h4>
+                                <p class="text-sm">Retained while your account is active and for a reasonable period after account closure for legal and business purposes.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start space-x-4 p-4 bg-green-50 rounded-lg">
+                            <div class="w-8 h-8 bg-green-500 text-white rounded-full flex items-center justify-center text-sm font-bold flex-shrink-0">💳</div>
+                            <div>
+                                <h4 class="font-semibold text-gray-800 mb-1">Payment Information</h4>
+                                <p class="text-sm">Retained as required by law for tax and accounting purposes, typically 7 years after the last transaction.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start space-x-4 p-4 bg-purple-50 rounded-lg">
+                            <div class="w-8 h-8 bg-purple-500 text-white rounded-full flex items-center justify-center text-sm font-bold flex-shrink-0">📈</div>
+                            <div>
+                                <h4 class="font-semibold text-gray-800 mb-1">Usage Analytics</h4>
+                                <p class="text-sm">Aggregated and anonymized usage data may be retained indefinitely for research and improvement purposes.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-gray-50 p-6 rounded-lg">
+                        <h4 class="font-semibold text-gray-800 mb-3">Account Deletion Process</h4>
+                        <p class="text-sm mb-3">You can request account deletion at any time by contacting our support team. Upon deletion:</p>
+                        <ul class="text-sm space-y-1">
+                            <li>• Your personal information will be permanently deleted within 30 days</li>
+                            <li>• Some information may be retained in anonymized form for analytics</li>
+                            <li>• Legal or regulatory requirements may require longer retention periods</li>
+                            <li>• Backup systems may retain data for up to 90 days for recovery purposes</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <div class="section-divider h-px"></div>
+
+            <!-- Section 9: User Rights -->
+            <section id="user-rights" class="section-card bg-white rounded-2xl p-8 shadow-lg">
+                <div class="flex items-center mb-6">
+                    <div class="w-12 h-12 bg-gradient-to-r from-blue-500 to-purple-600 text-white rounded-full flex items-center justify-center text-xl font-bold mr-4">9</div>
+                    <h2 class="text-3xl font-bold text-gray-800">User Rights</h2>
+                </div>
+                <div class="prose prose-lg max-w-none text-gray-600 leading-relaxed">
+                    <p class="mb-6">You have several rights regarding your personal information. Here's what you can do:</p>
+                    
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div class="space-y-4">
+                            <div class="border border-blue-200 rounded-lg p-4">
+                                <h4 class="font-semibold text-blue-800 mb-2">🔍 Right to Access</h4>
+                                <p class="text-sm text-gray-600">Request a copy of all personal information we hold about you, including how it's being used.</p>
+                            </div>
+                            
+                            <div class="border border-green-200 rounded-lg p-4">
+                                <h4 class="font-semibold text-green-800 mb-2">✏️ Right to Correct</h4>
+                                <p class="text-sm text-gray-600">Update or correct any inaccurate or incomplete personal information in your account.</p>
+                            </div>
+                            
+                            <div class="border border-red-200 rounded-lg p-4">
+                                <h4 class="font-semibold text-red-800 mb-2">🗑️ Right to Delete</h4>
+                                <p class="text-sm text-gray-600">Request deletion of your personal information, subject to legal and contractual obligations.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="space-y-4">
+                            <div class="border border-purple-200 rounded-lg p-4">
+                                <h4 class="font-semibold text-purple-800 mb-2">📤 Right to Portability</h4>
+                                <p class="text-sm text-gray-600">Receive your personal data in a structured, machine-readable format for transfer to another service.</p>
+                            </div>
+                            
+                            <div class="border border-orange-200 rounded-lg p-4">
+                                <h4 class="font-semibold text-orange-800 mb-2">🚫 Right to Object</h4>
+                                <p class="text-sm text-gray-600">Object to certain types of processing, including direct marketing communications.</p>
+                            </div>
+                            
+                            <div class="border border-gray-200 rounded-lg p-4">
+                                <h4 class="font-semibold text-gray-800 mb-2">⏸️ Right to Restrict</h4>
+                                <p class="text-sm text-gray-600">Request that we limit how we process your information in certain circumstances.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-blue-50 border border-blue-200 rounded-lg p-6 mt-6">
+                        <h4 class="font-semibold text-gray-800 mb-3">How to Exercise Your Rights</h4>
+                        <p class="text-sm mb-3">To exercise any of these rights, please contact us at:</p>
+                        <div class="flex items-center space-x-2">
+                            <span class="text-sm font-medium">Email:</span>
+                            <a href="mailto:contact@iastune.in" class="text-blue-600 hover:text-blue-800 text-sm font-medium">contact@iastune.in</a>
+                        </div>
+                        <p class="text-xs text-gray-500 mt-3">We will respond to your request within 30 days and may require identity verification for security purposes.</p>
+                    </div>
+                </div>
+            </section>
+
+            <div class="section-divider h-px"></div>
+
+            <!-- Section 10: Third-Party Links -->
+            <section id="third-party" class="section-card bg-white rounded-2xl p-8 shadow-lg">
+                <div class="flex items-center mb-6">
+                    <div class="w-12 h-12 bg-gradient-to-r from-blue-500 to-purple-600 text-white rounded-full flex items-center justify-center text-xl font-bold mr-4">10</div>
+                    <h2 class="text-3xl font-bold text-gray-800">Third-Party Links</h2>
+                </div>
+                <div class="prose prose-lg max-w-none text-gray-600 leading-relaxed">
+                    <div class="bg-yellow-50 border border-yellow-200 rounded-lg p-6 mb-6">
+                        <h3 class="text-xl font-semibold text-yellow-800 mb-3">⚠️ Important Notice</h3>
+                        <p class="text-yellow-700">Our platform may contain links to external websites, resources, or services that are not operated by IAStune. We are not responsible for the privacy practices or content of these third-party sites.</p>
+                    </div>
+                    
+                    <h3 class="text-xl font-semibold text-gray-800 mb-4">What This Means for You</h3>
+                    
+                    <div class="space-y-4">
+                        <div class="flex items-start space-x-4 p-4 bg-blue-50 rounded-lg">
+                            <div class="w-8 h-8 bg-blue-500 text-white rounded-full flex items-center justify-center text-sm font-bold flex-shrink-0">🔗</div>
+                            <div>
+                                <h4 class="font-semibold text-gray-800 mb-1">External Links</h4>
+                                <p class="text-sm">When you click on links to external websites, you leave our platform and are subject to the privacy policies and terms of those sites.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start space-x-4 p-4 bg-orange-50 rounded-lg">
+                            <div class="w-8 h-8 bg-orange-500 text-white rounded-full flex items-center justify-center text-sm font-bold flex-shrink-0">🛡️</div>
+                            <div>
+                                <h4 class="font-semibold text-gray-800 mb-1">Your Protection</h4>
+                                <p class="text-sm">We encourage you to review the privacy policies of any third-party sites you visit to understand how they collect and use your information.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start space-x-4 p-4 bg-green-50 rounded-lg">
+                            <div class="w-8 h-8 bg-green-500 text-white rounded-full flex items-center justify-center text-sm font-bold flex-shrink-0">✅</div>
+                            <div>
+                                <h4 class="font-semibold text-gray-800 mb-1">Our Commitment</h4>
+                                <p class="text-sm">We strive to link only to reputable, educational resources that align with our mission to support IAS exam preparation.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <p class="mt-6 text-sm text-gray-500 italic">This Privacy Policy applies only to information collected by IAStune and does not cover any information collected by third-party websites or services.</p>
+                </div>
+            </section>
+
+            <div class="section-divider h-px"></div>
+
+            <!-- Section 11: Children's Privacy -->
+            <section id="children" class="section-card bg-white rounded-2xl p-8 shadow-lg">
+                <div class="flex items-center mb-6">
+                    <div class="w-12 h-12 bg-gradient-to-r from-blue-500 to-purple-600 text-white rounded-full flex items-center justify-center text-xl font-bold mr-4">11</div>
+                    <h2 class="text-3xl font-bold text-gray-800">Children's Privacy</h2>
+                </div>
+                <div class="prose prose-lg max-w-none text-gray-600 leading-relaxed">
+                    <div class="bg-red-50 border border-red-200 rounded-lg p-6 mb-6">
+                        <h3 class="text-xl font-semibold text-red-800 mb-3">👶 Age Restriction</h3>
+                        <p class="text-red-700 font-medium">IAStune is not intended for use by children under the age of 16 without parental consent.</p>
+                    </div>
+                    
+                    <h3 class="text-xl font-semibold text-gray-800 mb-4">Our Policy</h3>
+                    
+                    <div class="space-y-4 mb-6">
+                        <div class="bg-blue-50 p-4 rounded-lg">
+                            <h4 class="font-semibold text-gray-800 mb-2">No Intentional Collection</h4>
+                            <p class="text-sm">We do not knowingly collect personal information from children under 16 years of age without proper parental consent.</p>
+                        </div>
+                        
+                        <div class="bg-green-50 p-4 rounded-lg">
+                            <h4 class="font-semibold text-gray-800 mb-2">Parental Consent</h4>
+                            <p class="text-sm">If a child under 16 wishes to use our services, we require verifiable parental consent before collecting any personal information.</p>
+                        </div>
+                        
+                        <div class="bg-orange-50 p-4 rounded-lg">
+                            <h4 class="font-semibold text-gray-800 mb-2">Discovery and Removal</h4>
+                            <p class="text-sm">If we discover that we have collected information from a child under 16 without parental consent, we will delete that information immediately.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-gray-50 p-6 rounded-lg">
+                        <h4 class="font-semibold text-gray-800 mb-3">For Parents and Guardians</h4>
+                        <p class="text-sm mb-3">If you believe your child has provided personal information to us without your consent, please contact us immediately at:</p>
+                        <div class="flex items-center space-x-2">
+                            <span class="text-sm font-medium">Email:</span>
+                            <a href="mailto:contact@iastune.in" class="text-blue-600 hover:text-blue-800 text-sm font-medium">contact@iastune.in</a>
+                        </div>
+                        <p class="text-xs text-gray-500 mt-3">We will work with you to address your concerns and take appropriate action to protect your child's privacy.</p>
+                    </div>
+                </div>
+            </section>
+
+            <div class="section-divider h-px"></div>
+
+            <!-- Section 12: Changes to This Policy -->
+            <section id="changes" class="section-card bg-white rounded-2xl p-8 shadow-lg">
+                <div class="flex items-center mb-6">
+                    <div class="w-12 h-12 bg-gradient-to-r from-blue-500 to-purple-600 text-white rounded-full flex items-center justify-center text-xl font-bold mr-4">12</div>
+                    <h2 class="text-3xl font-bold text-gray-800">Changes to This Policy</h2>
+                </div>
+                <div class="prose prose-lg max-w-none text-gray-600 leading-relaxed">
+                    <p class="mb-6">We may update this Privacy Policy from time to time to reflect changes in our practices, technology, legal requirements, or other factors.</p>
+                    
+                    <div class="grid md:grid-cols-2 gap-6 mb-6">
+                        <div class="bg-blue-50 p-6 rounded-xl">
+                            <h3 class="text-lg font-semibold text-gray-800 mb-3">📢 How We Notify You</h3>
+                            <ul class="space-y-2 text-sm">
+                                <li>• Email notification to registered users</li>
+                                <li>• Prominent notice on our platform</li>
+                                <li>• Updated "Last Modified" date at the top</li>
+                                <li>• In-app notifications for significant changes</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="bg-green-50 p-6 rounded-xl">
+                            <h3 class="text-lg font-semibold text-gray-800 mb-3">⏰ When Changes Take Effect</h3>
+                            <ul class="space-y-2 text-sm">
+                                <li>• Minor changes: Effective immediately upon posting</li>
+                                <li>• Major changes: 30 days after notification</li>
+                                <li>• Legal requirement changes: As required by law</li>
+                                <li>• Your continued use constitutes acceptance</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-yellow-50 border border-yellow-200 rounded-lg p-6">
+                        <h4 class="font-semibold text-gray-800 mb-3">📋 Types of Changes We May Make</h4>
+                        <div class="grid md:grid-cols-2 gap-4 text-sm">
+                            <div>
+                                <h5 class="font-medium text-gray-700 mb-2">Routine Updates:</h5>
+                                <ul class="space-y-1 text-xs">
+                                    <li>• Clarification of existing practices</li>
+                                    <li>• Contact information updates</li>
+                                    <li>• Minor wording improvements</li>
+                                </ul>
+                            </div>
+                            <div>
+                                <h5 class="font-medium text-gray-700 mb-2">Significant Changes:</h5>
+                                <ul class="space-y-1 text-xs">
+                                    <li>• New data collection practices</li>
+                                    <li>• Changes in data sharing policies</li>
+                                    <li>• New third-party integrations</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <p class="mt-6 text-sm text-gray-500 italic">We encourage you to review this Privacy Policy periodically to stay informed about how we protect your information.</p>
+                </div>
+            </section>
+
+            <div class="section-divider h-px"></div>
+
+            <!-- Section 13: Contact Information -->
+            <section id="contact" class="section-card bg-white rounded-2xl p-8 shadow-lg">
+                <div class="flex items-center mb-6">
+                    <div class="w-12 h-12 bg-gradient-to-r from-blue-500 to-purple-600 text-white rounded-full flex items-center justify-center text-xl font-bold mr-4">13</div>
+                    <h2 class="text-3xl font-bold text-gray-800">Contact Information</h2>
+                </div>
+                <div class="prose prose-lg max-w-none text-gray-600 leading-relaxed">
+                    <p class="mb-6">If you have any questions, concerns, or requests regarding this Privacy Policy or our data practices, we're here to help.</p>
+                    
+                    <div class="grid md:grid-cols-2 gap-8">
+                        <div class="bg-gradient-to-br from-blue-50 to-purple-50 p-6 rounded-xl">
+                            <h3 class="text-xl font-semibold text-gray-800 mb-4">📧 Contact Us</h3>
+                            <div class="space-y-3">
+                                <div class="flex items-center space-x-3">
+                                    <div class="w-8 h-8 bg-blue-500 text-white rounded-full flex items-center justify-center text-sm">📧</div>
+                                    <div>
+                                        <p class="text-sm font-medium text-gray-700">All Inquiries</p>
+                                        <a href="mailto:contact@iastune.in" class="text-blue-600 hover:text-blue-800 font-medium">contact@iastune.in</a>
+                                    </div>
+                                </div>
+                                
+                                <div class="bg-white p-4 rounded-lg mt-4">
+                                    <p class="text-sm text-gray-600">
+                                        For all questions including privacy matters, security issues, general inquiries, and support requests, please use the email above.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-gradient-to-br from-green-50 to-blue-50 p-6 rounded-xl">
+                            <h3 class="text-xl font-semibold text-gray-800 mb-4">⏱️ Response Times</h3>
+                            <div class="space-y-3">
+                                <div class="flex items-center justify-between p-3 bg-white rounded-lg">
+                                    <span class="text-sm font-medium text-gray-700">General Inquiries</span>
+                                    <span class="text-sm text-blue-600 font-medium">24-48 hours</span>
+                                </div>
+                                
+                                <div class="flex items-center justify-between p-3 bg-white rounded-lg">
+                                    <span class="text-sm font-medium text-gray-700">Privacy Requests</span>
+                                    <span class="text-sm text-purple-600 font-medium">Within 30 days</span>
+                                </div>
+                                
+                                <div class="flex items-center justify-between p-3 bg-white rounded-lg">
+                                    <span class="text-sm font-medium text-gray-700">Urgent Matters</span>
+                                    <span class="text-sm text-red-600 font-medium">Within 24 hours</span>
+                                </div>
+                            </div>
+                            
+                            <div class="mt-4 p-3 bg-yellow-100 rounded-lg">
+                                <p class="text-xs text-yellow-800">
+                                    <strong>Note:</strong> For urgent matters, please include "URGENT" in your subject line to ensure priority handling.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-8 bg-gray-50 p-6 rounded-lg">
+                        <h4 class="font-semibold text-gray-800 mb-3">📍 Business Information</h4>
+                        <div class="grid md:grid-cols-2 gap-4 text-sm">
+                            <div>
+                                <p class="font-medium text-gray-700">Company Name:</p>
+                                <p class="text-gray-600">IAStune Educational Services</p>
+                            </div>
+                            <div>
+                                <p class="font-medium text-gray-700">Registration:</p>
+                                <p class="text-gray-600">India • Educational Technology</p>
+                            </div>
+                        </div>
+                        <p class="text-xs text-gray-500 mt-4">
+                            When contacting us, please provide as much detail as possible about your inquiry to help us assist you more effectively.
+                        </p>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-12">
+        <div class="container mx-auto px-6 text-center">
+            <div class="mb-8">
+                <h3 class="text-2xl font-bold mb-4">IAStune</h3>
+                <p class="text-gray-400 max-w-2xl mx-auto">
+                    Empowering IAS aspirants with innovative mind maps and simulations. Your privacy and success are our priorities.
+                </p>
+            </div>
+            
+            <div class="border-t border-gray-700 pt-8">
+                <div class="flex flex-col md:flex-row justify-between items-center">
+                    <p class="text-gray-400 text-sm mb-4 md:mb-0">
+                        © 2024 IAStune. All rights reserved.
+                    </p>
+                    <div class="flex space-x-6">
+                        <a href="https://www.iastune.in/faq/" target="_blank" class="text-gray-400 hover:text-white text-sm transition-colors">FAQ</a>
+                        <a href="https://www.iastune.in/contact-us/" target="_blank" class="text-gray-400 hover:text-white text-sm transition-colors">Contact Us</a>
+                        <a href="https://www.iastune.in/terms-of-service/" target="_blank" class="text-gray-400 hover:text-white text-sm transition-colors">Terms of Service</a>
+                        <a href="https://www.iastune.in/refund-policy/" target="_blank" class="text-gray-400 hover:text-white text-sm transition-colors">Refund Policy</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling for navigation
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Floating navigation dots
+        const sections = document.querySelectorAll('section[id]');
+        const navDots = document.querySelectorAll('.nav-dot');
+
+        function updateActiveNavDot() {
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (window.pageYOffset >= sectionTop - 200) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navDots.forEach(dot => {
+                dot.classList.remove('active');
+                if (dot.getAttribute('data-section') === current) {
+                    dot.classList.add('active');
+                }
+            });
+        }
+
+        // Add click handlers to nav dots
+        navDots.forEach(dot => {
+            dot.addEventListener('click', () => {
+                const sectionId = dot.getAttribute('data-section');
+                const section = document.getElementById(sectionId);
+                if (section) {
+                    section.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Update active nav dot on scroll
+        window.addEventListener('scroll', updateActiveNavDot);
+        updateActiveNavDot(); // Initial call
+
+        // Add scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe all section cards
+        document.querySelectorAll('.section-card').forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(20px)';
+            card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(card);
+        });
+    </script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'96cfddd1f68d5cb8',t:'MTc1NDgzMjgyMi4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
