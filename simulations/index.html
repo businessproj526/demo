@@ -1,119 +1,63 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SimuLab - Interactive Simulations Library (UPSC/APPSC)</title>
+    <title>SimuLab — Simulations Library</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <script>
         tailwind.config = {
+            darkMode: 'class',
             theme: {
                 extend: {
-                    fontFamily: {
-                        'inter': ['Inter', 'sans-serif'],
+                    colors: {
+                        'dark-bg': '#0b0f1a',
+                        'glass': 'rgba(255, 255, 255, 0.05)',
+                        'glass-border': 'rgba(255, 255, 255, 0.1)'
                     },
                     animation: {
-                        'fade-in': 'fadeIn 0.8s ease-out',
-                        'slide-in': 'slideIn 0.6s ease-out',
-                        'glow': 'glow 0.5s ease-in-out',
+                        'fade-in': 'fadeIn 0.5s ease-out',
+                        'slide-in': 'slideIn 0.4s ease-out',
+                        'bounce': 'bounce 0.6s ease-out',
+                        'pulse-glow': 'pulseGlow 2s ease-in-out infinite',
+                        'float': 'float 3s ease-in-out infinite',
+                        'shimmer': 'shimmer 2s linear infinite',
                         'scale-in': 'scaleIn 0.4s ease-out',
-                        'bounce-subtle': 'bounceSubtle 1s ease-out',
-                        'float': 'float 8s ease-in-out infinite',
-                        'pulse-glow': 'pulseGlow 3s ease-in-out infinite',
-                        'shimmer': 'shimmer 2.5s linear infinite',
-                        'card-hover': 'cardHover 0.4s ease-out',
-                        'rotate-3d': 'rotate3d 20s linear infinite',
-                        'matrix-rain': 'matrixRain 15s linear infinite',
-                        'hologram': 'hologram 4s ease-in-out infinite',
-                        'neon-pulse': 'neonPulse 2s ease-in-out infinite',
-                        'cyber-glitch': 'cyberGlitch 3s ease-in-out infinite',
-                        'particle-float': 'particleFloat 12s ease-in-out infinite',
-                        'wave': 'wave 6s ease-in-out infinite',
-                        'morph': 'morph 8s ease-in-out infinite'
+                        'slide-up': 'slideUp 0.5s ease-out'
                     },
                     keyframes: {
                         fadeIn: {
-                            '0%': { opacity: '0', transform: 'translateY(30px)' },
-                            '100%': { opacity: '1', transform: 'translateY(0)' }
+                            '0%': { opacity: '0', transform: 'translateY(20px) scale(0.95)' },
+                            '100%': { opacity: '1', transform: 'translateY(0) scale(1)' }
                         },
                         slideIn: {
-                            '0%': { transform: 'translateX(-50px)', opacity: '0' },
-                            '100%': { transform: 'translateX(0)', opacity: '1' }
+                            '0%': { opacity: '0', transform: 'translateX(-30px)' },
+                            '100%': { opacity: '1', transform: 'translateX(0)' }
                         },
-                        glow: {
-                            '0%': { boxShadow: '0 0 10px rgba(59, 130, 246, 0.3)' },
-                            '100%': { boxShadow: '0 0 40px rgba(59, 130, 246, 0.9), 0 0 60px rgba(59, 130, 246, 0.7)' }
-                        },
-                        scaleIn: {
-                            '0%': { transform: 'scale(0.8)', opacity: '0' },
-                            '100%': { transform: 'scale(1)', opacity: '1' }
-                        },
-                        bounceSubtle: {
-                            '0%, 20%, 50%, 80%, 100%': { transform: 'translateY(0)' },
-                            '40%': { transform: 'translateY(-12px)' },
-                            '60%': { transform: 'translateY(-6px)' }
-                        },
-                        float: {
-                            '0%, 100%': { transform: 'translateY(0px) rotate(0deg)' },
-                            '33%': { transform: 'translateY(-15px) rotate(120deg)' },
-                            '66%': { transform: 'translateY(-8px) rotate(240deg)' }
+                        bounce: {
+                            '0%, 20%, 53%, 80%, 100%': { transform: 'translateY(0)' },
+                            '40%, 43%': { transform: 'translateY(-10px)' },
+                            '70%': { transform: 'translateY(-5px)' }
                         },
                         pulseGlow: {
-                            '0%, 100%': { boxShadow: '0 0 30px rgba(59, 130, 246, 0.4)' },
-                            '50%': { boxShadow: '0 0 60px rgba(59, 130, 246, 0.9)' }
+                            '0%, 100%': { boxShadow: '0 0 20px rgba(99, 102, 241, 0.3)' },
+                            '50%': { boxShadow: '0 0 30px rgba(99, 102, 241, 0.6), 0 0 40px rgba(34, 197, 94, 0.3)' }
+                        },
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0px)' },
+                            '50%': { transform: 'translateY(-5px)' }
                         },
                         shimmer: {
-                            '0%': { backgroundPosition: '-300% 0' },
-                            '100%': { backgroundPosition: '300% 0' }
+                            '0%': { backgroundPosition: '-200% 0' },
+                            '100%': { backgroundPosition: '200% 0' }
                         },
-                        cardHover: {
-                            '0%': { transform: 'translateY(0) rotateX(0) rotateY(0)' },
-                            '100%': { transform: 'translateY(-15px) rotateX(5deg) rotateY(5deg)' }
+                        scaleIn: {
+                            '0%': { opacity: '0', transform: 'scale(0.8)' },
+                            '100%': { opacity: '1', transform: 'scale(1)' }
                         },
-                        rotate3d: {
-                            '0%': { transform: 'rotateX(0deg) rotateY(0deg) rotateZ(0deg)' },
-                            '33%': { transform: 'rotateX(360deg) rotateY(120deg) rotateZ(0deg)' },
-                            '66%': { transform: 'rotateX(0deg) rotateY(240deg) rotateZ(180deg)' },
-                            '100%': { transform: 'rotateX(0deg) rotateY(360deg) rotateZ(360deg)' }
-                        },
-                        matrixRain: {
-                            '0%': { transform: 'translateY(-100vh)', opacity: '0' },
-                            '10%': { opacity: '1' },
-                            '90%': { opacity: '1' },
-                            '100%': { transform: 'translateY(100vh)', opacity: '0' }
-                        },
-                        hologram: {
-                            '0%, 100%': { opacity: '0.8', transform: 'scale(1)' },
-                            '50%': { opacity: '1', transform: 'scale(1.05)' }
-                        },
-                        neonPulse: {
-                            '0%, 100%': { textShadow: '0 0 10px currentColor, 0 0 20px currentColor' },
-                            '50%': { textShadow: '0 0 20px currentColor, 0 0 40px currentColor, 0 0 60px currentColor' }
-                        },
-                        cyberGlitch: {
-                            '0%, 100%': { transform: 'translate(0)' },
-                            '20%': { transform: 'translate(-2px, 2px)' },
-                            '40%': { transform: 'translate(-2px, -2px)' },
-                            '60%': { transform: 'translate(2px, 2px)' },
-                            '80%': { transform: 'translate(2px, -2px)' }
-                        },
-                        particleFloat: {
-                            '0%, 100%': { transform: 'translateY(0px) translateX(0px)' },
-                            '25%': { transform: 'translateY(-20px) translateX(10px)' },
-                            '50%': { transform: 'translateY(-10px) translateX(-15px)' },
-                            '75%': { transform: 'translateY(-25px) translateX(5px)' }
-                        },
-                        wave: {
-                            '0%, 100%': { transform: 'rotate(0deg)' },
-                            '25%': { transform: 'rotate(5deg)' },
-                            '75%': { transform: 'rotate(-5deg)' }
-                        },
-                        morph: {
-                            '0%, 100%': { borderRadius: '30% 70% 70% 30% / 30% 30% 70% 70%' },
-                            '25%': { borderRadius: '58% 42% 75% 25% / 76% 46% 54% 24%' },
-                            '50%': { borderRadius: '50% 50% 33% 67% / 55% 27% 73% 45%' },
-                            '75%': { borderRadius: '33% 67% 58% 42% / 63% 68% 32% 37%' }
+                        slideUp: {
+                            '0%': { opacity: '0', transform: 'translateY(30px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' }
                         }
                     }
                 }
@@ -121,1549 +65,849 @@
         }
     </script>
     <style>
-        body {
-            font-family: 'Inter', sans-serif;
-            background: radial-gradient(ellipse at top, #0f172a 0%, #1e293b 50%, #334155 100%);
-            perspective: 1000px;
+        .glass-morphism {
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
         }
         
-        .glass-effect {
-            backdrop-filter: blur(25px);
-            background: rgba(15, 23, 42, 0.85);
-            border: 1px solid rgba(148, 163, 184, 0.15);
-        }
-        
-        .glass-light {
-            backdrop-filter: blur(20px);
-            background: rgba(30, 41, 59, 0.7);
-            border: 1px solid rgba(148, 163, 184, 0.25);
-        }
-        
-        .interactive-card {
-            transform-style: preserve-3d;
-            transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        .card-hover {
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             position: relative;
             overflow: hidden;
         }
         
-        .interactive-card::before {
+        .card-hover::before {
             content: '';
             position: absolute;
             top: 0;
             left: -100%;
             width: 100%;
             height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-            transition: left 0.8s;
-        }
-        
-        .interactive-card:hover::before {
-            left: 100%;
-        }
-        
-        .interactive-card:hover {
-            transform: translateY(-20px) rotateX(10deg) rotateY(5deg) scale(1.05);
-            box-shadow: 0 40px 80px -12px rgba(0, 0, 0, 0.6), 0 0 50px rgba(59, 130, 246, 0.4);
-        }
-        
-        .simulation-active {
-            background: linear-gradient(135deg, #3b82f6, #8b5cf6, #ec4899);
-            color: white;
-            border-left: 6px solid #f59e0b;
-            box-shadow: 0 15px 35px rgba(59, 130, 246, 0.4);
-            animation: neon-pulse 2s ease-in-out infinite;
-        }
-        
-        .gradient-text {
-            background: linear-gradient(135deg, #60a5fa, #a78bfa, #f472b6, #fbbf24);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            animation: shimmer 3s linear infinite;
-            background-size: 300% 100%;
-        }
-        
-        .holographic {
-            background: linear-gradient(45deg, 
-                rgba(255, 0, 150, 0.1) 0%,
-                rgba(0, 255, 255, 0.1) 25%,
-                rgba(255, 255, 0, 0.1) 50%,
-                rgba(255, 0, 255, 0.1) 75%,
-                rgba(0, 255, 150, 0.1) 100%);
-            background-size: 400% 400%;
-            animation: hologram 4s ease-in-out infinite;
-        }
-        
-        .cyber-border {
-            position: relative;
-            border: 2px solid transparent;
-            background: linear-gradient(45deg, #3b82f6, #8b5cf6, #ec4899) border-box;
-            -webkit-mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
-            -webkit-mask-composite: exclude;
-        }
-        
-        .matrix-bg {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: -1;
-            opacity: 0.1;
-        }
-        
-        .particle-system {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            overflow: hidden;
-            pointer-events: none;
-        }
-        
-        .particle {
-            position: absolute;
-            width: 4px;
-            height: 4px;
-            background: radial-gradient(circle, #3b82f6, transparent);
-            border-radius: 50%;
-            animation: particle-float 12s ease-in-out infinite;
-        }
-        
-        .simulation-preview {
-            position: relative;
-            overflow: hidden;
-            border-radius: 20px;
-            background: linear-gradient(135deg, rgba(59, 130, 246, 0.1), rgba(139, 92, 246, 0.1));
-        }
-        
-        .simulation-preview::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(45deg, transparent 30%, rgba(255, 255, 255, 0.1) 50%, transparent 70%);
-            transform: translateX(-100%);
-            transition: transform 0.8s;
-        }
-        
-        .interactive-card:hover .simulation-preview::before {
-            transform: translateX(100%);
-        }
-        
-        .floating-icon {
-            animation: float 6s ease-in-out infinite;
-        }
-        
-        .cyber-text {
-            position: relative;
-            display: inline-block;
-        }
-        
-        .cyber-text::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-            transform: translateX(-100%);
-            animation: shimmer 2s infinite;
-        }
-        
-        .interactive-element {
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-        
-        .interactive-element:hover {
-            transform: scale(1.1);
-            filter: brightness(1.2);
-        }
-        
-        .progress-ring {
-            transform: rotate(-90deg);
-        }
-        
-        .progress-ring-circle {
-            stroke-dasharray: 251.2;
-            stroke-dashoffset: 251.2;
-            transition: stroke-dashoffset 0.5s ease-in-out;
-        }
-        
-        .neural-network {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            opacity: 0.3;
-        }
-        
-        .neural-node {
-            position: absolute;
-            width: 8px;
-            height: 8px;
-            background: radial-gradient(circle, #3b82f6, transparent);
-            border-radius: 50%;
-            animation: pulse-glow 3s ease-in-out infinite;
-        }
-        
-        .neural-connection {
-            position: absolute;
-            height: 1px;
-            background: linear-gradient(90deg, transparent, #3b82f6, transparent);
-            animation: shimmer 4s linear infinite;
-        }
-        
-        .morphing-shape {
-            animation: morph 8s ease-in-out infinite;
-        }
-        
-        .glitch-effect {
-            position: relative;
-        }
-        
-        .glitch-effect::before,
-        .glitch-effect::after {
-            content: attr(data-text);
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-        }
-        
-        .glitch-effect::before {
-            animation: cyber-glitch 3s infinite;
-            color: #ff0080;
-            z-index: -1;
-        }
-        
-        .glitch-effect::after {
-            animation: cyber-glitch 2s infinite reverse;
-            color: #00ffff;
-            z-index: -2;
-        }
-        
-        .theme-toggle {
-            background: linear-gradient(135deg, #1e293b, #334155);
-            border: 1px solid rgba(148, 163, 184, 0.3);
-            box-shadow: 0 0 20px rgba(59, 130, 246, 0.3);
-        }
-        
-        .custom-scrollbar::-webkit-scrollbar {
-            width: 8px;
-        }
-        
-        .custom-scrollbar::-webkit-scrollbar-track {
-            background: rgba(30, 41, 59, 0.4);
-            border-radius: 4px;
-        }
-        
-        .custom-scrollbar::-webkit-scrollbar-thumb {
-            background: linear-gradient(135deg, #3b82f6, #8b5cf6);
-            border-radius: 4px;
-        }
-        
-        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
-            background: linear-gradient(135deg, #2563eb, #7c3aed);
-        }
-        
-        .simulation-stats {
-            background: rgba(15, 23, 42, 0.9);
-            backdrop-filter: blur(20px);
-            border: 1px solid rgba(59, 130, 246, 0.3);
-        }
-        
-        .interactive-button {
-            position: relative;
-            overflow: hidden;
-            background: linear-gradient(135deg, #3b82f6, #8b5cf6);
-            transition: all 0.4s ease;
-        }
-        
-        .interactive-button::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
             transition: left 0.6s;
+            z-index: 1;
         }
         
-        .interactive-button:hover::before {
+        .card-hover:hover::before {
             left: 100%;
         }
         
-        .interactive-button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 20px 40px rgba(59, 130, 246, 0.4);
+        .card-hover:hover {
+            transform: perspective(1000px) rotateX(3deg) rotateY(-3deg) scale(1.05);
+            box-shadow: 0 20px 40px rgba(99, 102, 241, 0.3), 0 0 30px rgba(34, 197, 94, 0.2);
+        }
+        
+        .neon-border {
+            box-shadow: 0 0 15px rgba(99, 102, 241, 0.6), 0 0 30px rgba(99, 102, 241, 0.4);
+            animation: pulse-glow 2s ease-in-out infinite;
+        }
+        
+        .search-highlight {
+            background: linear-gradient(90deg, rgba(99, 102, 241, 0.4), rgba(34, 197, 94, 0.4));
+            padding: 2px 6px;
+            border-radius: 6px;
+            animation: pulse-glow 1.5s ease-in-out infinite;
+        }
+        
+        .floating-element {
+            animation: float 3s ease-in-out infinite;
+        }
+        
+        .shimmer-text {
+            background: linear-gradient(90deg, #60a5fa, #34d399, #a78bfa, #60a5fa);
+            background-size: 200% 100%;
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: shimmer 3s linear infinite;
+        }
+        
+        .stagger-animation {
+            opacity: 0;
+            animation: fadeIn 0.6s ease-out forwards;
         }
     </style>
 </head>
-<body class="bg-dark-950 text-white min-h-screen relative overflow-x-hidden">
-    <!-- Matrix Background Effect -->
-    <div class="matrix-bg">
-        <canvas id="matrixCanvas" class="w-full h-full"></canvas>
-    </div>
-
-    <!-- Floating Geometric Shapes -->
-    <div class="fixed inset-0 pointer-events-none z-0">
-        <div class="absolute top-20 left-10 w-32 h-32 bg-gradient-to-r from-blue-500/20 to-purple-500/20 morphing-shape"></div>
-        <div class="absolute top-1/3 right-20 w-24 h-24 bg-gradient-to-r from-pink-500/20 to-yellow-500/20 morphing-shape" style="animation-delay: 2s;"></div>
-        <div class="absolute bottom-1/4 left-1/4 w-40 h-40 bg-gradient-to-r from-cyan-500/20 to-green-500/20 morphing-shape" style="animation-delay: 4s;"></div>
-    </div>
-
-    <!-- Neural Network Background -->
-    <div class="neural-network">
-        <!-- Neural nodes and connections will be generated by JavaScript -->
-    </div>
-
-    <!-- Theme Toggle -->
-    <button id="themeToggle" class="fixed top-6 right-6 z-50 theme-toggle p-4 rounded-full hover:scale-110 transition-all duration-300 group" aria-label="Toggle theme">
-        <div class="relative">
-            <svg id="darkIcon" class="w-7 h-7 text-yellow-400 transition-all duration-300" fill="currentColor" viewBox="0 0 20 20">
-                <path fill-rule="evenodd" d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" clip-rule="evenodd"></path>
-            </svg>
-        </div>
-    </button>
-
-    <!-- Advanced Search Bar -->
-    <div class="sticky top-0 z-40 p-6 glass-effect border-b border-slate-700/50">
-        <div class="max-w-7xl mx-auto">
-            <div class="relative group">
-                <div class="absolute inset-y-0 left-0 pl-6 flex items-center pointer-events-none">
-                    <div class="relative">
-                        <svg class="h-7 w-7 text-slate-400 group-focus-within:text-blue-400 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+<body class="bg-dark-bg text-white min-h-screen font-sans">
+    <!-- Top Bar -->
+    <header class="fixed top-0 left-0 right-0 z-50 bg-dark-bg/80 glass-morphism border-b border-glass-border">
+        <div class="flex items-center justify-between px-6 py-4">
+            <h1 class="text-2xl font-bold shimmer-text floating-element">
+                SimuLab — Simulations Library
+            </h1>
+            
+            <div class="flex items-center gap-4 flex-1 max-w-2xl mx-8">
+                <div class="relative flex-1">
+                    <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                        <svg class="h-5 w-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
                         </svg>
-                        <div class="absolute inset-0 bg-blue-400/20 rounded-full animate-ping opacity-0 group-focus-within:opacity-100"></div>
                     </div>
-                </div>
-                <input 
-                    type="search" 
-                    id="searchInput" 
-                    placeholder="Search interactive simulations... (Ctrl+K for AI search)" 
-                    class="w-full pl-16 pr-20 py-6 rounded-3xl bg-slate-800/60 backdrop-blur-sm text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:bg-slate-800/80 transition-all text-lg border border-slate-700/50 hover:border-slate-600/50 cyber-border"
-                    role="searchbox"
-                    aria-label="Search simulations"
-                >
-                <div class="absolute inset-y-0 right-0 pr-6 flex items-center space-x-3">
-                    <button id="voiceSearch" class="p-2 rounded-full hover:bg-slate-700/50 transition-all duration-300 hover:scale-110 group" aria-label="Voice search">
-                        <svg class="h-5 w-5 text-slate-400 group-hover:text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z"></path>
-                        </svg>
-                    </button>
-                    <button id="clearSearch" class="p-2 rounded-full hover:bg-slate-700/50 transition-all duration-300 hover:scale-110 opacity-0">
-                        <svg class="h-5 w-5 text-slate-400 hover:text-red-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                    <input 
+                        type="text" 
+                        id="searchInput"
+                        placeholder="Search simulations... (Press / to focus)"
+                        class="w-full pl-10 pr-10 py-3 bg-glass border border-glass-border rounded-full text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all duration-200"
+                    >
+                    <button 
+                        id="clearSearch"
+                        class="absolute inset-y-0 right-0 pr-3 flex items-center text-gray-400 hover:text-white transition-colors duration-200"
+                        style="display: none;"
+                    >
+                        <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
                         </svg>
                     </button>
                 </div>
             </div>
+            
+            <button 
+                id="themeToggle"
+                class="p-2 rounded-full bg-glass border border-glass-border hover:bg-white/10 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+            >
+                <span class="text-2xl">🌗</span>
+            </button>
         </div>
-    </div>
+    </header>
 
-    <!-- Main Layout -->
-    <div class="flex max-w-7xl mx-auto min-h-screen">
-        <!-- Left Sidebar - Always Visible -->
-        <aside class="w-80 p-6 border-r border-slate-700/50">
-            <div class="glass-light rounded-3xl p-8 sticky top-32 max-h-[calc(100vh-10rem)] overflow-y-auto custom-scrollbar">
-                <!-- Logo Section -->
-                <div class="text-center mb-10">
-                    <div class="relative mb-6">
-                        <div class="text-7xl animate-rotate-3d floating-icon">🧪</div>
-                        <div class="absolute inset-0 flex items-center justify-center">
-                            <div class="w-20 h-20 bg-blue-500/30 rounded-full blur-2xl animate-pulse-glow"></div>
-                        </div>
-                    </div>
-                    <h1 class="text-4xl font-black gradient-text mb-3 cyber-text" data-text="SimuLab">SimuLab</h1>
-                    <p class="text-slate-400 text-sm mb-4">Interactive Simulations Library</p>
-                    <div class="flex justify-center space-x-2 mb-6">
-                        <span class="px-4 py-2 bg-blue-500/20 text-blue-300 rounded-full text-xs font-bold border border-blue-500/30 animate-pulse">INTERACTIVE</span>
-                        <span class="px-4 py-2 bg-purple-500/20 text-purple-300 rounded-full text-xs font-bold border border-purple-500/30 animate-pulse" style="animation-delay: 0.5s;">3D SIMULATIONS</span>
-                    </div>
-                    
-                    <!-- Live Stats -->
-                    <div class="simulation-stats rounded-2xl p-4 mb-6">
-                        <div class="grid grid-cols-2 gap-4 text-center">
-                            <div>
-                                <div class="text-2xl font-bold text-cyan-400" id="activeSimulations">24</div>
-                                <div class="text-xs text-slate-400">Active Sims</div>
-                            </div>
-                            <div>
-                                <div class="text-2xl font-bold text-green-400" id="userInteractions">1.2K</div>
-                                <div class="text-xs text-slate-400">Interactions</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Categories Navigation -->
-                <nav role="navigation" aria-label="Simulation categories">
-                    <h2 class="text-lg font-bold text-slate-300 mb-6 flex items-center">
-                        <span class="text-2xl mr-3 animate-wave">🎯</span>
-                        Simulation Categories
-                    </h2>
-                    <ul id="categoryList" class="space-y-4">
-                        <!-- Categories will be populated by JavaScript -->
-                    </ul>
-                </nav>
+    <div class="flex pt-20">
+        <!-- Sidebar -->
+        <aside class="fixed left-0 top-20 bottom-0 w-80 bg-glass glass-morphism border-r border-glass-border p-6 overflow-y-auto">
+            <nav>
+                <ul class="space-y-3" id="subjectList">
+                    <!-- Subjects will be populated by JavaScript -->
+                </ul>
+            </nav>
+            
+            <div class="mt-8 pt-6 border-t border-glass-border">
+                <button 
+                    id="shortcutsBtn"
+                    class="flex items-center gap-2 text-gray-400 hover:text-white transition-colors duration-200 text-sm"
+                >
+                    <span>❓</span>
+                    <span>Keyboard Shortcuts</span>
+                </button>
             </div>
         </aside>
 
-        <!-- Main Content Area -->
-        <main class="flex-1 p-6 relative">
-            <!-- Particle System -->
-            <div class="particle-system">
-                <!-- Particles will be generated by JavaScript -->
-            </div>
-
-            <!-- Welcome Message -->
-            <div id="welcomeMessage" class="text-center py-20 animate-fade-in relative">
-                <div class="relative mb-12">
-                    <div class="text-9xl mb-8 animate-float">🚀</div>
-                    <div class="absolute inset-0 flex items-center justify-center">
-                        <div class="w-40 h-40 bg-gradient-to-r from-blue-500/30 to-purple-500/30 rounded-full blur-3xl animate-pulse-glow"></div>
-                    </div>
+        <!-- Main Content -->
+        <main class="flex-1 ml-80 p-6">
+            <div class="mb-8">
+                <div class="mb-4">
+                    <h2 class="text-3xl font-bold shimmer-text mb-2 floating-element">
+                        ✨ Sample Simulations
+                    </h2>
+                    <p class="text-gray-400 text-lg">Experience our interactive learning simulations across different subjects</p>
                 </div>
-                
-                <h2 class="text-6xl font-black mb-8">
-                    Welcome to <span class="gradient-text glitch-effect" data-text="SimuLab">SimuLab</span>
-                </h2>
-                
-                <p class="text-slate-400 text-2xl max-w-5xl mx-auto leading-relaxed mb-16">
-                    Experience the future of learning with our cutting-edge interactive simulations. 
-                    Dive into immersive 3D environments designed for UPSC & APPSC mastery.
-                </p>
-                
-                <!-- Interactive Stats Dashboard -->
-                <div class="grid md:grid-cols-4 gap-8 max-w-6xl mx-auto mb-12">
-                    <div class="interactive-card glass-light rounded-3xl p-8 group holographic">
-                        <div class="text-5xl mb-6 group-hover:animate-bounce">🎮</div>
-                        <div class="text-4xl font-bold text-blue-400 mb-3" id="totalSimulations">18</div>
-                        <div class="text-slate-300 font-medium">Interactive Simulations</div>
-                        <div class="mt-4 w-full bg-slate-700 rounded-full h-2">
-                            <div class="bg-gradient-to-r from-blue-400 to-blue-600 h-2 rounded-full animate-pulse" style="width: 85%"></div>
-                        </div>
-                    </div>
-                    
-                    <div class="interactive-card glass-light rounded-3xl p-8 group holographic" style="animation-delay: 0.2s;">
-                        <div class="text-5xl mb-6 group-hover:animate-bounce">🧬</div>
-                        <div class="text-4xl font-bold text-purple-400 mb-3">3D</div>
-                        <div class="text-slate-300 font-medium">Immersive Models</div>
-                        <div class="mt-4 w-full bg-slate-700 rounded-full h-2">
-                            <div class="bg-gradient-to-r from-purple-400 to-purple-600 h-2 rounded-full animate-pulse" style="width: 92%"></div>
-                        </div>
-                    </div>
-                    
-                    <div class="interactive-card glass-light rounded-3xl p-8 group holographic" style="animation-delay: 0.4s;">
-                        <div class="text-5xl mb-6 group-hover:animate-bounce">⚡</div>
-                        <div class="text-4xl font-bold text-yellow-400 mb-3">AI</div>
-                        <div class="text-slate-300 font-medium">Smart Learning</div>
-                        <div class="mt-4 w-full bg-slate-700 rounded-full h-2">
-                            <div class="bg-gradient-to-r from-yellow-400 to-yellow-600 h-2 rounded-full animate-pulse" style="width: 78%"></div>
-                        </div>
-                    </div>
-                    
-                    <div class="interactive-card glass-light rounded-3xl p-8 group holographic" style="animation-delay: 0.6s;">
-                        <div class="text-5xl mb-6 group-hover:animate-bounce">🎯</div>
-                        <div class="text-4xl font-bold text-green-400 mb-3">100%</div>
-                        <div class="text-slate-300 font-medium">Success Rate</div>
-                        <div class="mt-4 w-full bg-slate-700 rounded-full h-2">
-                            <div class="bg-gradient-to-r from-green-400 to-green-600 h-2 rounded-full animate-pulse" style="width: 100%"></div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Interactive Launch Button -->
-                <button id="exploreButton" class="interactive-button text-white px-12 py-6 rounded-3xl text-xl font-bold hover:scale-105 transition-all duration-300 shadow-2xl">
-                    🚀 Start Exploring Simulations
-                </button>
-            </div>
-
-            <!-- Category Header -->
-            <div id="categoryHeader" class="hidden mb-12 animate-slide-in">
-                <div class="glass-light rounded-3xl p-10 border border-slate-700/50 holographic">
-                    <div class="flex items-center justify-between">
-                        <div class="flex-1">
-                            <h2 id="categoryTitle" class="text-5xl font-black mb-4 gradient-text"></h2>
-                            <p id="categoryDescription" class="text-slate-400 text-xl leading-relaxed"></p>
-                        </div>
-                        <div class="text-8xl animate-float" id="categoryIcon"></div>
-                    </div>
+                <div id="activeSubjectChip" class="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-indigo-500/20 to-cyan-500/20 border border-indigo-500/30 rounded-full text-indigo-300 font-medium floating-element">
+                    <span id="activeSubjectIcon" class="text-xl">🏛️</span>
+                    <span id="activeSubjectName">History</span>
                 </div>
             </div>
 
-            <!-- Simulations Grid -->
-            <div id="simulationsGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
-                <!-- Simulations will be populated by JavaScript -->
+            <div id="simulationsGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                <!-- Simulation cards will be populated by JavaScript -->
             </div>
 
-            <!-- No Results Message -->
-            <div id="noResults" class="text-center py-20 hidden">
-                <div class="text-9xl mb-8 opacity-50 animate-bounce-subtle">🔍</div>
-                <h3 class="text-4xl font-bold text-slate-300 mb-6">No Simulations Found</h3>
-                <p class="text-slate-400 text-xl mb-10">
-                    Try different keywords or explore categories from the sidebar.
-                </p>
-                <button id="clearSearchBtn" class="interactive-button text-white px-10 py-5 rounded-3xl font-bold text-lg hover:scale-105">
-                    🔄 Clear Search
+            <div id="emptyState" class="text-center py-16 hidden animate-fade-in">
+                <div class="text-6xl mb-4 floating-element">🔍</div>
+                <h3 class="text-xl font-semibold text-gray-300 mb-2 animate-slide-up">No results found</h3>
+                <p class="text-gray-400 mb-6 animate-slide-up" style="animation-delay: 0.1s">Try adjusting your search terms or browse different subjects</p>
+                <button 
+                    id="clearSearchBtn"
+                    class="px-6 py-3 bg-indigo-600 hover:bg-indigo-700 hover:scale-105 rounded-full font-medium transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-indigo-500 animate-scale-in"
+                    style="animation-delay: 0.2s"
+                >
+                    Clear Search
                 </button>
             </div>
         </main>
     </div>
 
-    <!-- Simulation Modal -->
-    <div id="simulationModal" class="fixed inset-0 z-50 hidden items-center justify-center p-6 bg-black/80 backdrop-blur-sm">
-        <div class="glass-effect rounded-3xl max-w-6xl w-full max-h-[95vh] overflow-y-auto shadow-2xl animate-scale-in border border-slate-700/50 holographic">
-            <div class="p-12">
-                <div class="flex justify-between items-start mb-10">
-                    <div class="flex-1">
-                        <h3 id="modalTitle" class="text-5xl font-black text-white mb-4 gradient-text"></h3>
-                        <p id="modalCategory" class="text-blue-400 font-bold text-xl mb-4"></p>
-                        <div class="flex items-center space-x-4">
-                            <span class="px-4 py-2 bg-green-500/20 text-green-300 rounded-full text-sm font-bold border border-green-500/30">
-                                ✅ Interactive
-                            </span>
-                            <span class="px-4 py-2 bg-purple-500/20 text-purple-300 rounded-full text-sm font-bold border border-purple-500/30">
-                                🎮 3D Simulation
-                            </span>
+    <!-- Modal -->
+    <div id="modal" class="fixed inset-0 z-50 hidden">
+        <div class="fixed inset-0 bg-black/50 glass-morphism" id="modalOverlay"></div>
+        <div class="fixed inset-0 flex items-center justify-center p-4">
+            <div class="bg-dark-bg border border-glass-border rounded-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto glass-morphism">
+                <div class="p-6">
+                    <div class="flex items-start justify-between mb-4">
+                        <div>
+                            <h2 id="modalTitle" class="text-2xl font-bold text-white mb-2"></h2>
+                            <p id="modalRole" class="text-gray-400"></p>
                         </div>
+                        <button 
+                            id="closeModal"
+                            class="p-2 hover:bg-white/10 rounded-full transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                        >
+                            <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+                            </svg>
+                        </button>
                     </div>
-                    <button id="closeModal" class="p-4 rounded-full hover:bg-slate-700/50 transition-all duration-300 hover:scale-110" aria-label="Close modal">
-                        <svg class="w-8 h-8 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
-                        </svg>
-                    </button>
-                </div>
-                
-                <!-- Simulation Preview Area -->
-                <div id="simulationPreview" class="simulation-preview h-96 mb-10 flex items-center justify-center">
-                    <div class="text-center">
-                        <div class="text-8xl mb-6 animate-float" id="previewIcon">🎮</div>
-                        <h4 class="text-3xl font-bold text-white mb-4">Interactive Simulation Ready</h4>
-                        <p class="text-slate-400 text-lg mb-8">Click the button below to launch the full simulation experience</p>
-                        <button id="launchSimulation" class="interactive-button text-white px-10 py-5 rounded-3xl text-lg font-bold">
+                    
+                    <div id="modalBadges" class="flex flex-wrap gap-2 mb-6">
+                        <!-- Badges will be populated by JavaScript -->
+                    </div>
+                    
+                    <div class="mb-6">
+                        <h3 class="text-lg font-semibold text-white mb-3">Brief</h3>
+                        <p id="modalBrief" class="text-gray-300 leading-relaxed"></p>
+                    </div>
+                    
+                    <div class="mb-8">
+                        <h3 class="text-lg font-semibold text-white mb-3">Learning Points</h3>
+                        <ul id="modalLearningPoints" class="space-y-2 text-gray-300">
+                            <!-- Learning points will be populated by JavaScript -->
+                        </ul>
+                    </div>
+                    
+                    <div class="flex gap-3">
+                        <button 
+                            id="launchSimulation"
+                            class="flex-1 px-6 py-3 bg-gradient-to-r from-indigo-600 to-cyan-600 hover:from-indigo-700 hover:to-cyan-700 rounded-xl font-semibold transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-indigo-500 transform hover:scale-105"
+                        >
                             🚀 Launch Simulation
+                        </button>
+                        <button 
+                            id="closeModalBtn"
+                            class="px-6 py-3 bg-glass border border-glass-border hover:bg-white/10 rounded-xl font-medium transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-gray-500"
+                        >
+                            Close
                         </button>
                     </div>
                 </div>
-                
-                <div id="modalContent" class="space-y-8">
-                    <!-- Modal content will be populated by JavaScript -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Shortcuts Modal -->
+    <div id="shortcutsModal" class="fixed inset-0 z-50 hidden">
+        <div class="fixed inset-0 bg-black/50 glass-morphism" id="shortcutsOverlay"></div>
+        <div class="fixed inset-0 flex items-center justify-center p-4">
+            <div class="bg-dark-bg border border-glass-border rounded-2xl max-w-md w-full glass-morphism">
+                <div class="p-6">
+                    <div class="flex items-center justify-between mb-4">
+                        <h2 class="text-xl font-bold text-white">Keyboard Shortcuts</h2>
+                        <button 
+                            id="closeShortcuts"
+                            class="p-2 hover:bg-white/10 rounded-full transition-colors duration-200"
+                        >
+                            <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+                            </svg>
+                        </button>
+                    </div>
+                    
+                    <div class="space-y-3 text-sm">
+                        <div class="flex justify-between">
+                            <span class="text-gray-400">Focus search</span>
+                            <kbd class="px-2 py-1 bg-glass border border-glass-border rounded text-xs">/</kbd>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-gray-400">Clear search</span>
+                            <kbd class="px-2 py-1 bg-glass border border-glass-border rounded text-xs">Esc</kbd>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-gray-400">Previous subject</span>
+                            <kbd class="px-2 py-1 bg-glass border border-glass-border rounded text-xs">[</kbd>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-gray-400">Next subject</span>
+                            <kbd class="px-2 py-1 bg-glass border border-glass-border rounded text-xs">]</kbd>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-gray-400">Toggle theme</span>
+                            <kbd class="px-2 py-1 bg-glass border border-glass-border rounded text-xs">L</kbd>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 
     <script>
-        // Comprehensive simulation data
-        const simulationsData = {
-            "Physics Simulations": {
-                icon: "⚛️",
-                color: "from-blue-500 to-cyan-500",
-                borderColor: "border-blue-500/30",
-                description: "Interactive physics experiments and quantum mechanics visualizations",
-                simulations: [
-                    {
-                        title: "Quantum Mechanics Lab",
-                        icon: "🔬",
-                        description: "Explore wave-particle duality and quantum tunneling effects",
-                        difficulty: "Advanced",
-                        duration: "45 min",
-                        interactions: 1250,
-                        details: "Dive deep into quantum mechanics with interactive experiments on wave functions, probability distributions, and quantum entanglement. Visualize complex quantum phenomena in real-time."
-                    },
-                    {
-                        title: "Electromagnetic Fields",
-                        icon: "⚡",
-                        description: "Visualize electric and magnetic field interactions in 3D space",
-                        difficulty: "Intermediate",
-                        duration: "30 min",
-                        interactions: 890,
-                        details: "Interactive 3D visualization of electromagnetic fields, Maxwell's equations, and electromagnetic wave propagation through different media."
-                    },
-                    {
-                        title: "Thermodynamics Engine",
-                        icon: "🌡️",
-                        description: "Simulate heat transfer and thermodynamic processes",
-                        difficulty: "Intermediate",
-                        duration: "35 min",
-                        interactions: 720,
-                        details: "Explore heat engines, refrigeration cycles, and entropy changes through interactive thermodynamic simulations with real-time data visualization."
-                    },
-                    {
-                        title: "Optics Laboratory",
-                        icon: "🔍",
-                        description: "Ray tracing and wave optics experiments",
-                        difficulty: "Beginner",
-                        duration: "25 min",
-                        interactions: 650,
-                        details: "Interactive optics lab with lens systems, interference patterns, diffraction gratings, and polarization experiments in virtual environment."
-                    }
+        // Sample simulations data
+        const simulations = [
+            {
+                id: "macro-policy",
+                title: "A Macro Policy Simulator",
+                role: "Navigate complex macroeconomic policy decisions",
+                difficulty: "Advanced",
+                duration: "18 min",
+                xp: 180,
+                url: "https://www.iastune.in/sample-simulations/A%20Macro%20Policy%20Simulator/",
+                subjects: ["Economics"],
+                brief: "Take control of national economic policy in this comprehensive macroeconomic simulation. Balance fiscal and monetary policies while managing inflation, unemployment, and economic growth.",
+                learningPoints: [
+                    "Macroeconomic policy formulation and implementation",
+                    "Understanding trade-offs between economic indicators",
+                    "Fiscal and monetary policy coordination",
+                    "Economic forecasting and scenario planning"
                 ]
             },
-            "Chemistry Lab": {
-                icon: "🧪",
-                color: "from-green-500 to-emerald-500",
-                borderColor: "border-green-500/30",
-                description: "Virtual chemistry laboratory with molecular modeling and reactions",
-                simulations: [
-                    {
-                        title: "Molecular Dynamics",
-                        icon: "🧬",
-                        description: "3D molecular modeling and chemical bond visualization",
-                        difficulty: "Advanced",
-                        duration: "50 min",
-                        interactions: 1100,
-                        details: "Advanced molecular dynamics simulation with real-time bond formation, protein folding, and chemical reaction pathways visualization."
-                    },
-                    {
-                        title: "Periodic Table Explorer",
-                        icon: "⚗️",
-                        description: "Interactive periodic table with element properties",
-                        difficulty: "Beginner",
-                        duration: "20 min",
-                        interactions: 980,
-                        details: "Comprehensive periodic table with 3D atomic models, electron configurations, and interactive element property comparisons."
-                    },
-                    {
-                        title: "Chemical Reactions",
-                        icon: "💥",
-                        description: "Simulate chemical reactions and equilibrium states",
-                        difficulty: "Intermediate",
-                        duration: "40 min",
-                        interactions: 750,
-                        details: "Interactive chemical reaction simulator with stoichiometry calculations, reaction kinetics, and equilibrium constant determinations."
-                    },
-                    {
-                        title: "Organic Chemistry Builder",
-                        icon: "🔗",
-                        description: "Build and analyze organic molecular structures",
-                        difficulty: "Advanced",
-                        duration: "45 min",
-                        interactions: 820,
-                        details: "Advanced organic chemistry toolkit for building complex molecules, analyzing stereochemistry, and predicting reaction mechanisms."
-                    }
+            {
+                id: "battle-buxar",
+                title: "Battle Of Buxar",
+                role: "Command strategic military operations in historic battle",
+                difficulty: "Intermediate",
+                duration: "15 min",
+                xp: 150,
+                url: "https://www.iastune.in/sample-simulations/Battle%20Of%20Buxar/",
+                subjects: ["History"],
+                brief: "Experience the pivotal Battle of Buxar (1764) that established British supremacy in India. Make strategic decisions as military commander and understand the historical significance.",
+                learningPoints: [
+                    "Colonial military strategy and tactics",
+                    "Historical significance of the Battle of Buxar",
+                    "Political consequences of military victories",
+                    "East India Company's expansion strategy"
                 ]
             },
-            "Biology Systems": {
-                icon: "🧬",
-                color: "from-emerald-500 to-teal-500",
-                borderColor: "border-emerald-500/30",
-                description: "Living systems simulation and biological process modeling",
-                simulations: [
-                    {
-                        title: "Cell Division Simulator",
-                        icon: "🔬",
-                        description: "Watch mitosis and meiosis in real-time 3D animation",
-                        difficulty: "Intermediate",
-                        duration: "35 min",
-                        interactions: 920,
-                        details: "Detailed cell division simulation showing chromosome behavior, spindle formation, and cellular organelle distribution during mitosis and meiosis."
-                    },
-                    {
-                        title: "DNA Replication Lab",
-                        icon: "🧬",
-                        description: "Interactive DNA replication and protein synthesis",
-                        difficulty: "Advanced",
-                        duration: "40 min",
-                        interactions: 1050,
-                        details: "Comprehensive DNA replication simulation with helicase action, polymerase function, and real-time protein synthesis visualization."
-                    },
-                    {
-                        title: "Ecosystem Dynamics",
-                        icon: "🌿",
-                        description: "Model predator-prey relationships and food webs",
-                        difficulty: "Intermediate",
-                        duration: "45 min",
-                        interactions: 680,
-                        details: "Dynamic ecosystem modeling with population dynamics, energy flow, and environmental factor impacts on species interactions."
-                    },
-                    {
-                        title: "Human Anatomy 3D",
-                        icon: "🫀",
-                        description: "Explore human body systems in interactive 3D",
-                        difficulty: "Beginner",
-                        duration: "30 min",
-                        interactions: 1200,
-                        details: "Comprehensive 3D human anatomy explorer with detailed organ systems, physiological processes, and interactive dissection tools."
-                    }
+            {
+                id: "digital-agriculture",
+                title: "Digital Agriculture: Challenges & Solutions",
+                role: "Implement digital transformation in agriculture",
+                difficulty: "Intermediate",
+                duration: "14 min",
+                xp: 140,
+                url: "https://www.iastune.in/sample-simulations/Digital%20Agriculture_%20Challenges%20&%20Solutions/",
+                subjects: ["Science & Technology", "Environment"],
+                brief: "Lead the digital transformation of agriculture sector. Address challenges in technology adoption while maximizing benefits for farmers and food security.",
+                learningPoints: [
+                    "Digital agriculture technologies and applications",
+                    "Challenges in rural technology adoption",
+                    "Sustainable farming practices",
+                    "Agricultural policy and innovation"
                 ]
             },
-            "Mathematics": {
-                icon: "📐",
-                color: "from-purple-500 to-violet-500",
-                borderColor: "border-purple-500/30",
-                description: "Mathematical concepts visualization and problem-solving tools",
-                simulations: [
-                    {
-                        title: "Calculus Visualizer",
-                        icon: "📊",
-                        description: "Interactive calculus concepts with 3D graphing",
-                        difficulty: "Advanced",
-                        duration: "40 min",
-                        interactions: 850,
-                        details: "Advanced calculus visualization tool with derivatives, integrals, multivariable functions, and vector field representations in 3D space."
-                    },
-                    {
-                        title: "Geometry Workshop",
-                        icon: "📐",
-                        description: "Construct and analyze geometric shapes and proofs",
-                        difficulty: "Intermediate",
-                        duration: "30 min",
-                        interactions: 720,
-                        details: "Interactive geometry construction tool with theorem proving, angle measurements, and dynamic geometric relationship exploration."
-                    },
-                    {
-                        title: "Statistics Playground",
-                        icon: "📈",
-                        description: "Data analysis and probability distribution modeling",
-                        difficulty: "Intermediate",
-                        duration: "35 min",
-                        interactions: 640,
-                        details: "Comprehensive statistics toolkit with probability distributions, hypothesis testing, and real-time data visualization capabilities."
-                    },
-                    {
-                        title: "Linear Algebra Studio",
-                        icon: "🔢",
-                        description: "Matrix operations and vector space transformations",
-                        difficulty: "Advanced",
-                        duration: "45 min",
-                        interactions: 580,
-                        details: "Advanced linear algebra simulator with matrix transformations, eigenvalue calculations, and vector space visualization in multiple dimensions."
-                    }
+            {
+                id: "drain-theory",
+                title: "Drain Theory",
+                role: "Analyze economic exploitation during colonial period",
+                difficulty: "Basic",
+                duration: "12 min",
+                xp: 120,
+                url: "https://www.iastune.in/sample-simulations/drain%20theory/",
+                subjects: ["History", "Economics"],
+                brief: "Explore Dadabhai Naoroji's Drain Theory and understand how colonial economic policies systematically drained India's wealth to Britain.",
+                learningPoints: [
+                    "Colonial economic exploitation mechanisms",
+                    "Dadabhai Naoroji's economic analysis",
+                    "Impact of drain of wealth on Indian economy",
+                    "Historical economic theories and evidence"
                 ]
             },
-            "Economics Models": {
-                icon: "💹",
-                color: "from-amber-500 to-orange-500",
-                borderColor: "border-amber-500/30",
-                description: "Economic theory simulation and market behavior modeling",
-                simulations: [
-                    {
-                        title: "Market Dynamics",
-                        icon: "📊",
-                        description: "Supply and demand curves with real-time market simulation",
-                        difficulty: "Intermediate",
-                        duration: "35 min",
-                        interactions: 780,
-                        details: "Interactive market simulation with supply-demand dynamics, price elasticity, and consumer behavior modeling in various market conditions."
-                    },
-                    {
-                        title: "Game Theory Lab",
-                        icon: "🎯",
-                        description: "Strategic decision making and Nash equilibrium",
-                        difficulty: "Advanced",
-                        duration: "50 min",
-                        interactions: 620,
-                        details: "Advanced game theory simulation with prisoner's dilemma, auction theory, and strategic interaction modeling between rational agents."
-                    },
-                    {
-                        title: "Macroeconomic Model",
-                        icon: "🌍",
-                        description: "National economy simulation with policy impacts",
-                        difficulty: "Advanced",
-                        duration: "60 min",
-                        interactions: 540,
-                        details: "Comprehensive macroeconomic model with fiscal policy, monetary policy, and international trade impact simulations on national economies."
-                    },
-                    {
-                        title: "Investment Portfolio",
-                        icon: "💰",
-                        description: "Risk analysis and portfolio optimization tools",
-                        difficulty: "Intermediate",
-                        duration: "40 min",
-                        interactions: 690,
-                        details: "Interactive portfolio management simulation with risk assessment, diversification strategies, and real-time market data integration."
-                    }
+            {
+                id: "e-tech-dimensions",
+                title: "E-Technology Dimensions",
+                role: "Explore multifaceted aspects of digital technology",
+                difficulty: "Intermediate",
+                duration: "13 min",
+                xp: 130,
+                url: "https://www.iastune.in/sample-simulations/E%E2%80%91Technology%20Dimensions/",
+                subjects: ["Science & Technology"],
+                brief: "Navigate the complex dimensions of e-technology implementation across various sectors. Understand technological integration challenges and opportunities.",
+                learningPoints: [
+                    "Multi-dimensional aspects of e-technology",
+                    "Technology integration strategies",
+                    "Digital transformation challenges",
+                    "Emerging technology trends and applications"
                 ]
             },
-            "Geography & Climate": {
-                icon: "🌍",
-                color: "from-cyan-500 to-blue-500",
-                borderColor: "border-cyan-500/30",
-                description: "Earth systems and climate modeling simulations",
-                simulations: [
-                    {
-                        title: "Climate Change Model",
-                        icon: "🌡️",
-                        description: "Global warming simulation with feedback loops",
-                        difficulty: "Advanced",
-                        duration: "55 min",
-                        interactions: 890,
-                        details: "Comprehensive climate model with greenhouse gas effects, ocean currents, ice sheet dynamics, and long-term climate projection capabilities."
-                    },
-                    {
-                        title: "Plate Tectonics",
-                        icon: "🌋",
-                        description: "Continental drift and earthquake simulation",
-                        difficulty: "Intermediate",
-                        duration: "40 min",
-                        interactions: 750,
-                        details: "Interactive plate tectonics simulation with continental drift, earthquake generation, volcanic activity, and mountain formation processes."
-                    },
-                    {
-                        title: "Weather Systems",
-                        icon: "⛈️",
-                        description: "Atmospheric dynamics and weather pattern formation",
-                        difficulty: "Intermediate",
-                        duration: "35 min",
-                        interactions: 680,
-                        details: "Real-time weather system simulation with atmospheric pressure, wind patterns, precipitation formation, and storm development tracking."
-                    },
-                    {
-                        title: "Ocean Currents",
-                        icon: "🌊",
-                        description: "Marine circulation and ecosystem interactions",
-                        difficulty: "Intermediate",
-                        duration: "30 min",
-                        interactions: 590,
-                        details: "Interactive ocean current simulation with thermohaline circulation, marine ecosystem impacts, and climate regulation mechanisms."
-                    }
+            {
+                id: "e-tech-agriculture",
+                title: "E-Technology in Agriculture",
+                role: "Revolutionize farming through technology integration",
+                difficulty: "Basic",
+                duration: "11 min",
+                xp: 110,
+                url: "https://www.iastune.in/sample-simulations/E-Technology%20in%20Agriculture/",
+                subjects: ["Science & Technology", "Environment"],
+                brief: "Implement cutting-edge e-technology solutions in agriculture. Transform traditional farming practices through digital innovation and smart farming techniques.",
+                learningPoints: [
+                    "Agricultural technology applications",
+                    "Smart farming and precision agriculture",
+                    "Technology adoption in rural areas",
+                    "Sustainable agricultural practices"
+                ]
+            },
+            {
+                id: "phillips-curve",
+                title: "Phillips Curve Explorer",
+                role: "Analyze relationship between inflation and unemployment",
+                difficulty: "Advanced",
+                duration: "16 min",
+                xp: 160,
+                url: "https://www.iastune.in/sample-simulations/Phillips%20Curve%20Explorer/",
+                subjects: ["Economics"],
+                brief: "Explore the Phillips Curve relationship and its implications for economic policy. Understand the trade-offs between inflation and unemployment in different economic scenarios.",
+                learningPoints: [
+                    "Phillips Curve theory and applications",
+                    "Inflation-unemployment trade-offs",
+                    "Monetary policy implications",
+                    "Economic modeling and analysis"
+                ]
+            },
+            {
+                id: "revenue-receipts",
+                title: "Revenue Receipts Simulator",
+                role: "Optimize government revenue collection strategies",
+                difficulty: "Intermediate",
+                duration: "14 min",
+                xp: 140,
+                url: "https://www.iastune.in/sample-simulations/Revenue%20Receipts%20Simulator/",
+                subjects: ["Economics", "Polity"],
+                brief: "Manage government revenue receipts and optimize tax collection strategies. Balance revenue generation with economic growth and social welfare objectives.",
+                learningPoints: [
+                    "Government revenue sources and management",
+                    "Tax policy and administration",
+                    "Fiscal planning and budgeting",
+                    "Public finance principles"
+                ]
+            },
+            {
+                id: "ict-agriculture",
+                title: "Role of ICT in Agriculture",
+                role: "Leverage information technology for agricultural development",
+                difficulty: "Basic",
+                duration: "12 min",
+                xp: 120,
+                url: "https://www.iastune.in/sample-simulations/Role%20of%20ICT%20in%20Agriculture/",
+                subjects: ["Science & Technology", "Environment"],
+                brief: "Harness the power of Information and Communication Technology to transform agriculture. Implement ICT solutions for better crop management and farmer empowerment.",
+                learningPoints: [
+                    "ICT applications in agriculture",
+                    "Digital literacy for farmers",
+                    "Technology-enabled agricultural services",
+                    "Rural development through technology"
+                ]
+            },
+            {
+                id: "regulating-act",
+                title: "The Regulating Act of 1773",
+                role: "Navigate colonial administrative reforms",
+                difficulty: "Intermediate",
+                duration: "13 min",
+                xp: 130,
+                url: "https://www.iastune.in/sample-simulations/The%20Regulating%20Act%20of%201773/",
+                subjects: ["History", "Polity"],
+                brief: "Experience the implementation of the Regulating Act of 1773, the first step towards parliamentary control over the East India Company's Indian territories.",
+                learningPoints: [
+                    "Colonial administrative reforms",
+                    "Parliamentary control over East India Company",
+                    "Constitutional development in colonial India",
+                    "Historical significance of regulatory acts"
                 ]
             }
-        };
+        ];
 
-        let currentCategory = null;
-        let searchResults = [];
-        let isSearching = false;
-        let particleSystem = [];
-        let animationId = null;
+        // Subject categories
+        const subjects = [
+            { name: "History", icon: "🏛️" },
+            { name: "Geography", icon: "🌍" },
+            { name: "Polity", icon: "🏛️" },
+            { name: "Economics", icon: "💰" },
+            { name: "Science & Technology", icon: "🔬" },
+            { name: "Environment", icon: "🌱" },
+            { name: "Current Affairs", icon: "📰" },
+            { name: "Art & Culture", icon: "🎭" }
+        ];
 
-        // Initialize the application
-        document.addEventListener('DOMContentLoaded', function() {
-            initializeApp();
-            setupEventListeners();
-            createMatrixEffect();
-            createNeuralNetwork();
-            createParticleSystem();
-            startAnimations();
-            updateLiveStats();
-        });
+        // Application state
+        let currentSubject = 0;
+        let searchQuery = '';
+        let filteredSimulations = [...simulations];
 
-        function initializeApp() {
-            populateCategories();
+        // DOM elements
+        const searchInput = document.getElementById('searchInput');
+        const clearSearch = document.getElementById('clearSearch');
+        const clearSearchBtn = document.getElementById('clearSearchBtn');
+        const themeToggle = document.getElementById('themeToggle');
+        const subjectList = document.getElementById('subjectList');
+        const activeSubjectIcon = document.getElementById('activeSubjectIcon');
+        const activeSubjectName = document.getElementById('activeSubjectName');
+        const simulationsGrid = document.getElementById('simulationsGrid');
+        const emptyState = document.getElementById('emptyState');
+        const modal = document.getElementById('modal');
+        const shortcutsModal = document.getElementById('shortcutsModal');
+
+        // Initialize application
+        function init() {
+            console.log('Initializing SimuLab...');
+            console.log('Total simulations:', simulations.length);
+            loadTheme();
+            renderSubjects();
+            renderSimulations();
+            bindEvents();
         }
 
-        function populateCategories() {
-            const categoryList = document.getElementById('categoryList');
-            categoryList.innerHTML = '';
+        // Theme management
+        function loadTheme() {
+            const savedTheme = localStorage.getItem('theme') || 'dark';
+            document.documentElement.className = savedTheme;
+        }
 
-            Object.keys(simulationsData).forEach((category, index) => {
-                const li = document.createElement('li');
-                li.innerHTML = `
+        function toggleTheme() {
+            const currentTheme = document.documentElement.className;
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            document.documentElement.className = newTheme;
+            localStorage.setItem('theme', newTheme);
+        }
+
+        // Render subjects sidebar
+        function renderSubjects() {
+            console.log('Rendering subjects...');
+            subjectList.innerHTML = subjects.map((subject, index) => `
+                <li class="stagger-animation" style="animation-delay: ${index * 80}ms">
                     <button 
-                        class="w-full text-left p-5 rounded-3xl transition-all duration-500 hover:bg-slate-700/40 focus:outline-none focus:ring-2 focus:ring-blue-400 text-slate-300 hover:text-white hover:scale-105 group border ${simulationsData[category].borderColor} hover:border-opacity-70 interactive-element"
-                        data-category="${category}"
-                        tabindex="0"
-                        role="menuitem"
-                        aria-label="Select ${category}"
-                        style="animation-delay: ${index * 100}ms"
+                        class="w-full flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-300 text-left hover:bg-white/10 hover:scale-105 focus:outline-none focus:ring-2 focus:ring-indigo-500 ${
+                            index === currentSubject ? 'bg-indigo-500/20 border border-indigo-500/50 neon-border' : 'border border-transparent'
+                        }"
+                        data-subject="${index}"
                     >
-                        <div class="flex items-center space-x-5">
-                            <div class="text-4xl group-hover:scale-125 transition-transform duration-500 floating-icon" style="animation-delay: ${index * 200}ms">${simulationsData[category].icon}</div>
-                            <div class="flex-1">
-                                <div class="font-bold text-lg mb-2 group-hover:text-transparent group-hover:bg-gradient-to-r group-hover:${simulationsData[category].color} group-hover:bg-clip-text transition-all duration-300">${category}</div>
-                                <div class="text-xs text-slate-400 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                                    ${simulationsData[category].simulations.length} interactive simulations
-                                </div>
-                                <div class="mt-2 w-full bg-slate-700/50 rounded-full h-1 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                                    <div class="bg-gradient-to-r ${simulationsData[category].color} h-1 rounded-full animate-pulse" style="width: ${Math.random() * 40 + 60}%"></div>
-                                </div>
-                            </div>
-                            <div class="w-3 h-3 rounded-full bg-gradient-to-r ${simulationsData[category].color} opacity-60 group-hover:opacity-100 transition-opacity animate-pulse"></div>
-                        </div>
+                        <span class="text-2xl floating-element" style="animation-delay: ${index * 200}ms">${subject.icon}</span>
+                        <span class="font-medium">${subject.name}</span>
                     </button>
+                </li>
+            `).join('');
+        }
+
+        // Render simulations grid
+        function renderSimulations() {
+            console.log('Rendering simulations...');
+            const currentSubjectName = subjects[currentSubject].name;
+            
+            // Update active subject chip with animation
+            activeSubjectIcon.textContent = subjects[currentSubject].icon;
+            activeSubjectName.textContent = currentSubjectName;
+            
+            // Add bounce animation to subject chip
+            activeSubjectChip.style.animation = 'none';
+            setTimeout(() => {
+                activeSubjectChip.style.animation = 'bounce 0.6s ease-out';
+            }, 10);
+
+            // Always show all simulations (filtered by search if applicable)
+            let displaySimulations = filteredSimulations;
+
+            console.log('Display simulations:', displaySimulations.length);
+
+            if (displaySimulations.length === 0) {
+                simulationsGrid.classList.add('hidden');
+                emptyState.classList.remove('hidden');
+                return;
+            }
+
+            simulationsGrid.classList.remove('hidden');
+            emptyState.classList.add('hidden');
+
+            // Add grid refresh animation
+            simulationsGrid.style.opacity = '0';
+            simulationsGrid.style.transform = 'translateY(20px)';
+            
+            setTimeout(() => {
+                simulationsGrid.innerHTML = displaySimulations.map((sim, index) => {
+                const highlightedTitle = highlightSearchTerm(sim.title, searchQuery);
+                const difficultyColor = getDifficultyColor(sim.difficulty);
+                
+                return `
+                    <div 
+                        class="card-hover bg-gradient-to-br from-indigo-500/10 to-cyan-500/10 border border-glass-border rounded-2xl p-6 cursor-pointer focus:outline-none focus:ring-2 focus:ring-indigo-500 group stagger-animation relative z-10"
+                        data-sim-id="${sim.id}"
+                        tabindex="0"
+                        style="animation-delay: ${index * 120}ms"
+                    >
+                        <div class="mb-4">
+                            <h3 class="text-lg font-semibold text-white mb-2 group-hover:text-cyan-300 transition-colors duration-200">${highlightedTitle}</h3>
+                            <p class="text-gray-400 text-sm leading-relaxed">${sim.role}</p>
+                        </div>
+                        
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            ${sim.subjects.map(subject => `
+                                <span class="px-2 py-1 bg-indigo-500/20 border border-indigo-500/30 rounded-full text-xs text-indigo-300">
+                                    ${subject}
+                                </span>
+                            `).join('')}
+                            <span class="px-2 py-1 ${difficultyColor.bg} border ${difficultyColor.border} rounded-full text-xs ${difficultyColor.text}">
+                                ${sim.difficulty}
+                            </span>
+                            <span class="px-2 py-1 bg-gray-500/20 border border-gray-500/30 rounded-full text-xs text-gray-300">
+                                ⏱️ ${sim.duration}
+                            </span>
+                            <span class="px-2 py-1 bg-yellow-500/20 border border-yellow-500/30 rounded-full text-xs text-yellow-300">
+                                ⭐ ${sim.xp} XP
+                            </span>
+                        </div>
+                        
+                        <button class="w-full px-4 py-2 bg-glass border border-glass-border hover:bg-white/10 rounded-lg text-sm font-medium transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-indigo-500 group-hover:border-indigo-500/50">
+                            View Details
+                        </button>
+                    </div>
                 `;
-                li.classList.add('animate-slide-in');
-                categoryList.appendChild(li);
-            });
-        }
-
-        function setupEventListeners() {
-            // Category selection
-            document.getElementById('categoryList').addEventListener('click', function(e) {
-                if (e.target.closest('button')) {
-                    const category = e.target.closest('button').dataset.category;
-                    selectCategory(category);
-                }
-            });
-
-            // Search functionality
-            const searchInput = document.getElementById('searchInput');
-            searchInput.addEventListener('input', handleSearch);
+            }).join('');
             
-            // Voice search (placeholder)
-            document.getElementById('voiceSearch').addEventListener('click', function() {
-                // Placeholder for voice search functionality
-                this.classList.add('animate-pulse');
-                setTimeout(() => this.classList.remove('animate-pulse'), 2000);
-            });
-
-            // Clear search
-            document.getElementById('clearSearch').addEventListener('click', clearSearch);
-            document.getElementById('clearSearchBtn').addEventListener('click', clearSearch);
-
-            // Explore button
-            document.getElementById('exploreButton').addEventListener('click', function() {
-                const firstCategory = Object.keys(simulationsData)[0];
-                selectCategory(firstCategory);
-            });
-
-            // Modal controls
-            document.getElementById('closeModal').addEventListener('click', closeModal);
-            document.getElementById('simulationModal').addEventListener('click', function(e) {
-                if (e.target === this) closeModal();
-            });
-
-            // Launch simulation
-            document.getElementById('launchSimulation').addEventListener('click', launchSimulation);
-
-            // Keyboard shortcuts
-            document.addEventListener('keydown', function(e) {
-                if (e.key === 'Escape') {
-                    closeModal();
-                }
-                if (e.ctrlKey && e.key === 'k') {
-                    e.preventDefault();
-                    searchInput.focus();
-                }
-            });
+            // Animate grid back in
+            setTimeout(() => {
+                simulationsGrid.style.transition = 'all 0.5s ease-out';
+                simulationsGrid.style.opacity = '1';
+                simulationsGrid.style.transform = 'translateY(0)';
+            }, 50);
+            }, 100);
         }
 
-        function selectCategory(category) {
-            currentCategory = category;
-            isSearching = false;
-            
-            // Clear search
-            document.getElementById('searchInput').value = '';
-            document.getElementById('clearSearch').classList.remove('opacity-100');
-            document.getElementById('clearSearch').classList.add('opacity-0');
-            
-            // Update active state
-            document.querySelectorAll('#categoryList button').forEach(btn => {
-                btn.classList.remove('simulation-active');
-            });
-            const activeBtn = document.querySelector(`#categoryList [data-category="${category}"]`);
-            if (activeBtn) activeBtn.classList.add('simulation-active');
-
-            // Show category content
-            showCategorySimulations(category);
-        }
-
-        function showCategorySimulations(category) {
-            const welcomeMessage = document.getElementById('welcomeMessage');
-            const categoryHeader = document.getElementById('categoryHeader');
-            const categoryTitle = document.getElementById('categoryTitle');
-            const categoryDescription = document.getElementById('categoryDescription');
-            const categoryIcon = document.getElementById('categoryIcon');
-            const simulationsGrid = document.getElementById('simulationsGrid');
-            const noResults = document.getElementById('noResults');
-
-            // Hide other elements
-            welcomeMessage.classList.add('hidden');
-            noResults.classList.add('hidden');
-
-            // Show category header
-            categoryTitle.textContent = category;
-            categoryDescription.textContent = simulationsData[category].description;
-            categoryIcon.textContent = simulationsData[category].icon;
-            categoryHeader.classList.remove('hidden');
-
-            // Populate simulations
-            const simulations = simulationsData[category].simulations;
-            simulationsGrid.innerHTML = '';
-
-            simulations.forEach((simulation, index) => {
-                const simulationCard = createSimulationCard(simulation, category, index);
-                simulationsGrid.appendChild(simulationCard);
-            });
-        }
-
-        function createSimulationCard(simulation, category, index) {
-            const card = document.createElement('div');
-            card.className = `interactive-card glass-light rounded-3xl p-8 cursor-pointer group relative overflow-hidden border ${simulationsData[category].borderColor} hover:border-opacity-70 holographic`;
-            card.setAttribute('tabindex', '0');
-            card.setAttribute('role', 'button');
-            card.setAttribute('aria-label', `Open ${simulation.title} simulation`);
-
-            // Add staggered animation delay
-            card.style.animationDelay = `${index * 200}ms`;
-            card.classList.add('animate-scale-in');
-
-            // Difficulty color mapping
-            const difficultyColors = {
-                'Beginner': 'text-green-400 border-green-500/30',
-                'Intermediate': 'text-yellow-400 border-yellow-500/30',
-                'Advanced': 'text-red-400 border-red-500/30'
-            };
-
-            card.innerHTML = `
-                <div class="relative z-10 h-full flex flex-col">
-                    <!-- Header Section -->
-                    <div class="flex items-start justify-between mb-6">
-                        <div class="text-6xl group-hover:scale-125 transition-transform duration-500 floating-icon">${simulation.icon}</div>
-                        <div class="flex flex-col items-end space-y-2">
-                            <div class="w-4 h-4 rounded-full bg-gradient-to-r ${simulationsData[category].color} opacity-60 group-hover:opacity-100 transition-opacity animate-pulse"></div>
-                            <span class="text-xs font-bold px-3 py-1 rounded-full border ${difficultyColors[simulation.difficulty]} ${difficultyColors[simulation.difficulty].split(' ')[0]}">
-                                ${simulation.difficulty}
-                            </span>
-                        </div>
-                    </div>
-                    
-                    <!-- Content Section -->
-                    <div class="flex-1 flex flex-col">
-                        <h3 class="text-2xl font-black text-white mb-4 group-hover:text-transparent group-hover:bg-gradient-to-r group-hover:${simulationsData[category].color} group-hover:bg-clip-text transition-all duration-300">
-                            ${simulation.title}
-                        </h3>
-                        
-                        <p class="text-slate-400 leading-relaxed mb-6 flex-1 text-base">
-                            ${simulation.description}
-                        </p>
-                        
-                        <!-- Stats Section -->
-                        <div class="grid grid-cols-2 gap-4 mb-6">
-                            <div class="text-center">
-                                <div class="text-lg font-bold text-cyan-400">⏱️ ${simulation.duration}</div>
-                                <div class="text-xs text-slate-500">Duration</div>
-                            </div>
-                            <div class="text-center">
-                                <div class="text-lg font-bold text-purple-400">👥 ${simulation.interactions}</div>
-                                <div class="text-xs text-slate-500">Users</div>
-                            </div>
-                        </div>
-                        
-                        <!-- Footer Section -->
-                        <div class="flex items-center justify-between mt-auto">
-                            <span class="text-xs font-bold bg-gradient-to-r ${simulationsData[category].color} bg-clip-text text-transparent px-4 py-2 rounded-full border ${simulationsData[category].borderColor}">
-                                ${category}
-                            </span>
-                            <button class="interactive-button bg-gradient-to-r ${simulationsData[category].color} text-white px-6 py-3 rounded-2xl text-sm font-bold hover:scale-105 transition-all duration-300 shadow-lg">
-                                Launch 🚀
-                            </button>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Gradient overlay on hover -->
-                <div class="absolute inset-0 bg-gradient-to-br ${simulationsData[category].color} opacity-0 group-hover:opacity-10 transition-opacity duration-500"></div>
-            `;
-
-            card.addEventListener('click', () => openSimulationModal(simulation, category));
-            card.addEventListener('keydown', (e) => {
-                if (e.key === 'Enter' || e.key === ' ') {
-                    e.preventDefault();
-                    openSimulationModal(simulation, category);
-                }
-            });
-
-            return card;
-        }
-
-        function handleSearch(e) {
-            const query = e.target.value.toLowerCase().trim();
-            const clearBtn = document.getElementById('clearSearch');
-            
-            if (query === '') {
-                clearSearch();
-                clearBtn.classList.remove('opacity-100');
-                clearBtn.classList.add('opacity-0');
-                return;
+        // Get difficulty color scheme
+        function getDifficultyColor(difficulty) {
+            switch (difficulty) {
+                case 'Basic':
+                    return {
+                        bg: 'bg-emerald-500/20',
+                        border: 'border-emerald-500/30',
+                        text: 'text-emerald-300'
+                    };
+                case 'Intermediate':
+                    return {
+                        bg: 'bg-amber-500/20',
+                        border: 'border-amber-500/30',
+                        text: 'text-amber-300'
+                    };
+                case 'Advanced':
+                    return {
+                        bg: 'bg-rose-500/20',
+                        border: 'border-rose-500/30',
+                        text: 'text-rose-300'
+                    };
+                default:
+                    return {
+                        bg: 'bg-gray-500/20',
+                        border: 'border-gray-500/30',
+                        text: 'text-gray-300'
+                    };
             }
-
-            clearBtn.classList.remove('opacity-0');
-            clearBtn.classList.add('opacity-100');
-            isSearching = true;
-            searchResults = [];
-            
-            // Search through all categories and simulations
-            Object.keys(simulationsData).forEach(category => {
-                simulationsData[category].simulations.forEach(simulation => {
-                    if (simulation.title.toLowerCase().includes(query) || 
-                        simulation.description.toLowerCase().includes(query) ||
-                        simulation.details.toLowerCase().includes(query) ||
-                        category.toLowerCase().includes(query)) {
-                        searchResults.push({
-                            category: category,
-                            simulation: simulation
-                        });
-                    }
-                });
-            });
-
-            displaySearchResults(query);
         }
 
-        function displaySearchResults(query) {
-            const welcomeMessage = document.getElementById('welcomeMessage');
-            const categoryHeader = document.getElementById('categoryHeader');
-            const categoryTitle = document.getElementById('categoryTitle');
-            const categoryDescription = document.getElementById('categoryDescription');
-            const categoryIcon = document.getElementById('categoryIcon');
-            const simulationsGrid = document.getElementById('simulationsGrid');
-            const noResults = document.getElementById('noResults');
+        // Highlight search terms
+        function highlightSearchTerm(text, term) {
+            if (!term) return text;
+            const regex = new RegExp(`(${term})`, 'gi');
+            return text.replace(regex, '<span class="search-highlight">$1</span>');
+        }
 
-            welcomeMessage.classList.add('hidden');
-
-            if (searchResults.length === 0) {
-                categoryHeader.classList.add('hidden');
-                simulationsGrid.innerHTML = '';
-                noResults.classList.remove('hidden');
-                return;
+        // Search functionality
+        function performSearch(query) {
+            searchQuery = query.toLowerCase();
+            
+            if (query) {
+                clearSearch.style.display = 'flex';
+                filteredSimulations = simulations.filter(sim => 
+                    sim.title.toLowerCase().includes(searchQuery) ||
+                    sim.role.toLowerCase().includes(searchQuery) ||
+                    sim.difficulty.toLowerCase().includes(searchQuery) ||
+                    sim.subjects.some(subject => subject.toLowerCase().includes(searchQuery))
+                );
+            } else {
+                clearSearch.style.display = 'none';
+                filteredSimulations = [...simulations];
             }
-
-            // Show search results header
-            categoryTitle.innerHTML = `🔍 Search Results for "<span class="gradient-text">${query}</span>"`;
-            categoryDescription.textContent = `Found ${searchResults.length} matching simulations across all categories`;
-            categoryIcon.textContent = '🎯';
-            categoryHeader.classList.remove('hidden');
-            noResults.classList.add('hidden');
-
-            // Populate search results
-            simulationsGrid.innerHTML = '';
-            searchResults.forEach((result, index) => {
-                const simulationCard = createSearchResultCard(result, index, query);
-                simulationsGrid.appendChild(simulationCard);
-            });
+            
+            renderSimulations();
         }
 
-        function createSearchResultCard(result, index, query) {
-            const card = document.createElement('div');
-            card.className = `interactive-card glass-light rounded-3xl p-8 cursor-pointer group relative overflow-hidden border ${simulationsData[result.category].borderColor} hover:border-opacity-70 holographic`;
-            
-            // Add staggered animation delay
-            card.style.animationDelay = `${index * 200}ms`;
-            card.classList.add('animate-scale-in');
-
-            // Highlight matching text
-            const highlightText = (text, query) => {
-                const regex = new RegExp(`(${query})`, 'gi');
-                return text.replace(regex, '<mark class="bg-yellow-400/30 text-yellow-300 px-1 rounded font-bold">$1</mark>');
-            };
-
-            const difficultyColors = {
-                'Beginner': 'text-green-400 border-green-500/30',
-                'Intermediate': 'text-yellow-400 border-yellow-500/30',
-                'Advanced': 'text-red-400 border-red-500/30'
-            };
-
-            card.innerHTML = `
-                <div class="relative z-10 h-full flex flex-col">
-                    <!-- Header Section -->
-                    <div class="flex items-start justify-between mb-6">
-                        <div class="flex items-center space-x-4">
-                            <span class="text-3xl">${simulationsData[result.category].icon}</span>
-                            <span class="text-xs font-bold bg-gradient-to-r ${simulationsData[result.category].color} bg-clip-text text-transparent px-3 py-1 rounded-full border ${simulationsData[result.category].borderColor}">
-                                ${result.category}
-                            </span>
-                        </div>
-                        <div class="flex flex-col items-end space-y-2">
-                            <div class="text-5xl group-hover:scale-125 transition-transform duration-500">${result.simulation.icon}</div>
-                            <span class="text-xs font-bold px-3 py-1 rounded-full border ${difficultyColors[result.simulation.difficulty]} ${difficultyColors[result.simulation.difficulty].split(' ')[0]}">
-                                ${result.simulation.difficulty}
-                            </span>
-                        </div>
-                    </div>
-                    
-                    <!-- Content Section -->
-                    <div class="flex-1 flex flex-col">
-                        <h3 class="text-2xl font-black text-white mb-4 group-hover:text-transparent group-hover:bg-gradient-to-r group-hover:${simulationsData[result.category].color} group-hover:bg-clip-text transition-all duration-300">
-                            ${highlightText(result.simulation.title, query)}
-                        </h3>
-                        
-                        <p class="text-slate-400 leading-relaxed mb-6 flex-1 text-base">
-                            ${highlightText(result.simulation.description, query)}
-                        </p>
-                        
-                        <!-- Stats Section -->
-                        <div class="grid grid-cols-2 gap-4 mb-6">
-                            <div class="text-center">
-                                <div class="text-lg font-bold text-cyan-400">⏱️ ${result.simulation.duration}</div>
-                                <div class="text-xs text-slate-500">Duration</div>
-                            </div>
-                            <div class="text-center">
-                                <div class="text-lg font-bold text-purple-400">👥 ${result.simulation.interactions}</div>
-                                <div class="text-xs text-slate-500">Users</div>
-                            </div>
-                        </div>
-                        
-                        <!-- Footer Section -->
-                        <div class="flex items-center justify-between mt-auto">
-                            <span class="text-blue-400 text-sm font-bold flex items-center">
-                                <span class="w-2 h-2 bg-blue-400 rounded-full mr-2 animate-pulse"></span>
-                                Match found
-                            </span>
-                            <button class="interactive-button bg-gradient-to-r ${simulationsData[result.category].color} text-white px-6 py-3 rounded-2xl text-sm font-bold hover:scale-105 transition-all duration-300 shadow-lg">
-                                Launch 🚀
-                            </button>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Gradient overlay on hover -->
-                <div class="absolute inset-0 bg-gradient-to-br from-yellow-500/5 to-blue-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-            `;
-
-            card.addEventListener('click', () => openSimulationModal(result.simulation, result.category));
-            
-            return card;
+        function clearSearchQuery() {
+            searchInput.value = '';
+            performSearch('');
+            searchInput.focus();
         }
 
-        function openSimulationModal(simulation, category) {
-            const modal = document.getElementById('simulationModal');
-            const modalTitle = document.getElementById('modalTitle');
-            const modalCategory = document.getElementById('modalCategory');
-            const previewIcon = document.getElementById('previewIcon');
-            const modalContent = document.getElementById('modalContent');
+        // Subject navigation
+        function changeSubject(newIndex) {
+            if (newIndex >= 0 && newIndex < subjects.length) {
+                currentSubject = newIndex;
+                renderSubjects();
+                renderSimulations();
+            }
+        }
 
-            modalTitle.textContent = simulation.title;
-            modalCategory.innerHTML = `${simulationsData[category].icon} ${category}`;
-            previewIcon.textContent = simulation.icon;
-            
-            modalContent.innerHTML = `
-                <div class="grid md:grid-cols-2 gap-10 mb-10">
-                    <div class="glass-light rounded-3xl p-8 border border-blue-500/20 hover:border-blue-500/40 transition-colors">
-                        <h5 class="font-black text-blue-400 mb-6 flex items-center text-xl">
-                            <span class="text-3xl mr-4">📊</span>
-                            Simulation Details
-                        </h5>
-                        <div class="space-y-4">
-                            <div class="flex justify-between items-center">
-                                <span class="text-slate-400">Difficulty:</span>
-                                <span class="font-bold text-white">${simulation.difficulty}</span>
-                            </div>
-                            <div class="flex justify-between items-center">
-                                <span class="text-slate-400">Duration:</span>
-                                <span class="font-bold text-cyan-400">${simulation.duration}</span>
-                            </div>
-                            <div class="flex justify-between items-center">
-                                <span class="text-slate-400">User Interactions:</span>
-                                <span class="font-bold text-purple-400">${simulation.interactions}</span>
-                            </div>
-                            <div class="flex justify-between items-center">
-                                <span class="text-slate-400">Category:</span>
-                                <span class="font-bold text-green-400">${category}</span>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="glass-light rounded-3xl p-8 border border-purple-500/20 hover:border-purple-500/40 transition-colors">
-                        <h5 class="font-black text-purple-400 mb-6 flex items-center text-xl">
-                            <span class="text-3xl mr-4">🎯</span>
-                            Learning Outcomes
-                        </h5>
-                        <ul class="text-slate-300 space-y-3">
-                            <li class="flex items-start">
-                                <span class="text-purple-400 mr-3 text-lg">•</span>
-                                Interactive 3D visualization
-                            </li>
-                            <li class="flex items-start">
-                                <span class="text-purple-400 mr-3 text-lg">•</span>
-                                Real-time parameter adjustment
-                            </li>
-                            <li class="flex items-start">
-                                <span class="text-purple-400 mr-3 text-lg">•</span>
-                                Data export capabilities
-                            </li>
-                            <li class="flex items-start">
-                                <span class="text-purple-400 mr-3 text-lg">•</span>
-                                Progress tracking
-                            </li>
-                        </ul>
-                    </div>
-                </div>
+        // Modal functions
+        function openModal(simId) {
+            const sim = simulations.find(s => s.id === simId);
+            if (!sim) return;
 
-                <div class="glass-light rounded-3xl p-10 mb-10 border border-slate-700/30">
-                    <h4 class="text-3xl font-black text-white mb-6 flex items-center">
-                        <span class="text-4xl mr-4">📚</span>
-                        Comprehensive Overview
-                    </h4>
-                    <p class="text-slate-300 leading-relaxed text-lg">${simulation.details}</p>
-                </div>
+            const difficultyColor = getDifficultyColor(sim.difficulty);
 
-                <div class="glass-light rounded-3xl p-8 border border-green-500/20 hover:border-green-500/40 transition-colors">
-                    <h5 class="font-black text-green-400 mb-6 flex items-center text-xl">
-                        <span class="text-3xl mr-3">🚀</span>
-                        Ready to Start?
-                    </h5>
-                    <p class="text-slate-300 leading-relaxed text-lg mb-6">
-                        This simulation provides hands-on experience with cutting-edge interactive technology. 
-                        Perfect for UPSC/APPSC preparation with immersive learning experiences.
-                    </p>
-                    <div class="flex items-center space-x-4">
-                        <span class="px-4 py-2 bg-green-500/20 text-green-300 rounded-full text-sm font-bold border border-green-500/30">
-                            ✅ Fully Interactive
-                        </span>
-                        <span class="px-4 py-2 bg-blue-500/20 text-blue-300 rounded-full text-sm font-bold border border-blue-500/30">
-                            🎮 3D Experience
-                        </span>
-                        <span class="px-4 py-2 bg-purple-500/20 text-purple-300 rounded-full text-sm font-bold border border-purple-500/30">
-                            📊 Real-time Data
-                        </span>
-                    </div>
-                </div>
+            document.getElementById('modalTitle').textContent = sim.title;
+            document.getElementById('modalRole').textContent = sim.role;
+            document.getElementById('modalBrief').textContent = sim.brief;
+
+            // Store simulation ID for launch function
+            document.getElementById('launchSimulation').dataset.simId = simId;
+
+            // Render badges
+            document.getElementById('modalBadges').innerHTML = `
+                ${sim.subjects.map(subject => `
+                    <span class="px-3 py-1 bg-indigo-500/20 border border-indigo-500/30 rounded-full text-sm text-indigo-300">
+                        ${subject}
+                    </span>
+                `).join('')}
+                <span class="px-3 py-1 ${difficultyColor.bg} border ${difficultyColor.border} rounded-full text-sm ${difficultyColor.text}">
+                    ${sim.difficulty}
+                </span>
+                <span class="px-3 py-1 bg-gray-500/20 border border-gray-500/30 rounded-full text-sm text-gray-300">
+                    ⏱️ ${sim.duration}
+                </span>
+                <span class="px-3 py-1 bg-yellow-500/20 border border-yellow-500/30 rounded-full text-sm text-yellow-300">
+                    ⭐ ${sim.xp} XP
+                </span>
             `;
+
+            // Render learning points
+            document.getElementById('modalLearningPoints').innerHTML = sim.learningPoints
+                .map(point => `<li class="flex items-start gap-2"><span class="text-indigo-400 mt-1">•</span><span>${point}</span></li>`)
+                .join('');
 
             modal.classList.remove('hidden');
-            modal.classList.add('flex');
-            document.body.style.overflow = 'hidden';
-        }
-
-        function launchSimulation() {
-            // Simulate launching the simulation
-            const button = document.getElementById('launchSimulation');
-            const preview = document.getElementById('simulationPreview');
-            
-            button.innerHTML = '🚀 Launching...';
-            button.disabled = true;
-            
-            // Add loading effect
-            preview.innerHTML = `
-                <div class="text-center">
-                    <div class="text-8xl mb-6 animate-spin">⚙️</div>
-                    <h4 class="text-3xl font-bold text-white mb-4">Initializing Simulation...</h4>
-                    <div class="w-64 bg-slate-700 rounded-full h-3 mx-auto mb-4">
-                        <div class="bg-gradient-to-r from-blue-400 to-purple-600 h-3 rounded-full animate-pulse" style="width: 0%" id="loadingBar"></div>
-                    </div>
-                    <p class="text-slate-400 text-lg">Setting up 3D environment and physics engine</p>
-                </div>
-            `;
-            
-            // Simulate loading progress
-            let progress = 0;
-            const loadingInterval = setInterval(() => {
-                progress += Math.random() * 15;
-                if (progress >= 100) {
-                    progress = 100;
-                    clearInterval(loadingInterval);
-                    
-                    // Show simulation ready state
-                    setTimeout(() => {
-                        preview.innerHTML = `
-                            <div class="text-center">
-                                <div class="text-8xl mb-6 animate-bounce">🎉</div>
-                                <h4 class="text-3xl font-bold text-white mb-4">Simulation Ready!</h4>
-                                <p class="text-slate-400 text-lg mb-6">Your interactive simulation is now fully loaded and ready to explore</p>
-                                <div class="flex justify-center space-x-4">
-                                    <button class="interactive-button bg-gradient-to-r from-green-500 to-emerald-600 text-white px-8 py-4 rounded-2xl font-bold">
-                                        🎮 Enter Simulation
-                                    </button>
-                                    <button class="interactive-button bg-gradient-to-r from-blue-500 to-cyan-600 text-white px-8 py-4 rounded-2xl font-bold">
-                                        📚 View Tutorial
-                                    </button>
-                                </div>
-                            </div>
-                        `;
-                        
-                        button.innerHTML = '✅ Simulation Loaded';
-                        button.classList.add('bg-green-500');
-                    }, 1000);
-                }
-                
-                const loadingBar = document.getElementById('loadingBar');
-                if (loadingBar) {
-                    loadingBar.style.width = progress + '%';
-                }
-            }, 200);
+            document.getElementById('launchSimulation').focus();
         }
 
         function closeModal() {
-            const modal = document.getElementById('simulationModal');
             modal.classList.add('hidden');
-            modal.classList.remove('flex');
-            document.body.style.overflow = 'auto';
-            
-            // Reset modal content
-            document.getElementById('launchSimulation').innerHTML = '🚀 Launch Simulation';
-            document.getElementById('launchSimulation').disabled = false;
-            document.getElementById('launchSimulation').classList.remove('bg-green-500');
         }
 
-        function clearSearch() {
-            const searchInput = document.getElementById('searchInput');
-            searchInput.value = '';
-            document.getElementById('clearSearch').classList.remove('opacity-100');
-            document.getElementById('clearSearch').classList.add('opacity-0');
-            
-            searchResults = [];
-            isSearching = false;
-            
-            if (currentCategory) {
-                showCategorySimulations(currentCategory);
-            } else {
-                showWelcomeMessage();
-            }
-        }
+        function launchSimulation() {
+            const currentSim = simulations.find(s => s.id === document.getElementById('launchSimulation').dataset.simId);
+            if (!currentSim) return;
 
-        function showWelcomeMessage() {
-            const welcomeMessage = document.getElementById('welcomeMessage');
-            const categoryHeader = document.getElementById('categoryHeader');
-            const simulationsGrid = document.getElementById('simulationsGrid');
-            const noResults = document.getElementById('noResults');
+            // Create dramatic launch overlay
+            const launchOverlay = document.createElement('div');
+            launchOverlay.className = 'fixed inset-0 z-[100] flex items-center justify-center';
+            launchOverlay.innerHTML = `
+                <div class="absolute inset-0 bg-gradient-to-br from-indigo-900/90 via-purple-900/90 to-cyan-900/90 backdrop-blur-sm"></div>
+                <div class="relative text-center">
+                    <div class="text-8xl mb-6 animate-bounce">🚀</div>
+                    <h2 class="text-4xl font-bold text-white mb-4 animate-pulse">Launching Simulation...</h2>
+                    <p class="text-xl text-cyan-300 mb-8">${currentSim.title}</p>
+                    <div class="flex justify-center">
+                        <div class="w-64 h-2 bg-gray-700 rounded-full overflow-hidden">
+                            <div class="h-full bg-gradient-to-r from-cyan-400 to-indigo-400 rounded-full animate-pulse" style="width: 0%; animation: loadingBar 2s ease-out forwards;"></div>
+                        </div>
+                    </div>
+                    <p class="text-gray-300 mt-4 text-sm">Preparing your immersive learning experience...</p>
+                </div>
+            `;
 
-            categoryHeader.classList.add('hidden');
-            simulationsGrid.innerHTML = '';
-            noResults.classList.add('hidden');
-            welcomeMessage.classList.remove('hidden');
-            
-            // Clear active states
-            document.querySelectorAll('button[data-category]').forEach(btn => {
-                btn.classList.remove('simulation-active');
-            });
-            
-            currentCategory = null;
-        }
-
-        function createMatrixEffect() {
-            const canvas = document.getElementById('matrixCanvas');
-            const ctx = canvas.getContext('2d');
-            
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
-            
-            const matrix = "ABCDEFGHIJKLMNOPQRSTUVWXYZ123456789@#$%^&*()*&^%+-/~{[|`]}";
-            const matrixArray = matrix.split("");
-            
-            const fontSize = 10;
-            const columns = canvas.width / fontSize;
-            
-            const drops = [];
-            for (let x = 0; x < columns; x++) {
-                drops[x] = 1;
-            }
-            
-            function drawMatrix() {
-                ctx.fillStyle = 'rgba(15, 23, 42, 0.04)';
-                ctx.fillRect(0, 0, canvas.width, canvas.height);
-                
-                ctx.fillStyle = '#3b82f6';
-                ctx.font = fontSize + 'px monospace';
-                
-                for (let i = 0; i < drops.length; i++) {
-                    const text = matrixArray[Math.floor(Math.random() * matrixArray.length)];
-                    ctx.fillStyle = `rgba(59, 130, 246, ${Math.random() * 0.5 + 0.1})`;
-                    ctx.fillText(text, i * fontSize, drops[i] * fontSize);
-                    
-                    if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
-                        drops[i] = 0;
-                    }
-                    drops[i]++;
+            // Add loading animation keyframes
+            const style = document.createElement('style');
+            style.textContent = `
+                @keyframes loadingBar {
+                    0% { width: 0%; }
+                    50% { width: 70%; }
+                    100% { width: 100%; }
                 }
-            }
-            
-            setInterval(drawMatrix, 35);
+                @keyframes rocketLaunch {
+                    0% { transform: translateY(0) scale(1); }
+                    50% { transform: translateY(-20px) scale(1.1); }
+                    100% { transform: translateY(-100vh) scale(0.5); opacity: 0; }
+                }
+            `;
+            document.head.appendChild(style);
+
+            document.body.appendChild(launchOverlay);
+
+            // Animate rocket launch after 2 seconds
+            setTimeout(() => {
+                const rocket = launchOverlay.querySelector('.text-8xl');
+                rocket.style.animation = 'rocketLaunch 1s ease-in forwards';
+            }, 2000);
+
+            // Redirect after dramatic animation
+            setTimeout(() => {
+                window.open(currentSim.url, '_blank');
+                document.body.removeChild(launchOverlay);
+                document.head.removeChild(style);
+                closeModal();
+            }, 3200);
         }
 
-        function createNeuralNetwork() {
-            const neuralNetwork = document.querySelector('.neural-network');
-            const nodeCount = 20;
-            
-            // Create neural nodes
-            for (let i = 0; i < nodeCount; i++) {
-                const node = document.createElement('div');
-                node.className = 'neural-node';
-                node.style.left = Math.random() * 100 + '%';
-                node.style.top = Math.random() * 100 + '%';
-                node.style.animationDelay = Math.random() * 3 + 's';
-                neuralNetwork.appendChild(node);
-            }
-            
-            // Create connections between nodes
-            for (let i = 0; i < nodeCount / 2; i++) {
-                const connection = document.createElement('div');
-                connection.className = 'neural-connection';
-                connection.style.left = Math.random() * 100 + '%';
-                connection.style.top = Math.random() * 100 + '%';
-                connection.style.width = Math.random() * 200 + 50 + 'px';
-                connection.style.transform = `rotate(${Math.random() * 360}deg)`;
-                connection.style.animationDelay = Math.random() * 4 + 's';
-                neuralNetwork.appendChild(connection);
-            }
+        // Event bindings
+        function bindEvents() {
+            // Search
+            searchInput.addEventListener('input', (e) => performSearch(e.target.value));
+            clearSearch.addEventListener('click', clearSearchQuery);
+            clearSearchBtn.addEventListener('click', clearSearchQuery);
+
+            // Theme toggle
+            themeToggle.addEventListener('click', toggleTheme);
+
+            // Subject navigation
+            subjectList.addEventListener('click', (e) => {
+                const subjectBtn = e.target.closest('[data-subject]');
+                if (subjectBtn) {
+                    const index = parseInt(subjectBtn.dataset.subject);
+                    changeSubject(index);
+                }
+            });
+
+            // Simulation cards
+            simulationsGrid.addEventListener('click', (e) => {
+                const card = e.target.closest('[data-sim-id]');
+                if (card) {
+                    openModal(card.dataset.simId);
+                }
+            });
+
+            // Modal events
+            document.getElementById('closeModal').addEventListener('click', closeModal);
+            document.getElementById('closeModalBtn').addEventListener('click', closeModal);
+            document.getElementById('modalOverlay').addEventListener('click', closeModal);
+            document.getElementById('launchSimulation').addEventListener('click', launchSimulation);
+
+            // Shortcuts modal
+            document.getElementById('shortcutsBtn').addEventListener('click', () => {
+                shortcutsModal.classList.remove('hidden');
+            });
+            document.getElementById('closeShortcuts').addEventListener('click', () => {
+                shortcutsModal.classList.add('hidden');
+            });
+            document.getElementById('shortcutsOverlay').addEventListener('click', () => {
+                shortcutsModal.classList.add('hidden');
+            });
+
+            // Keyboard shortcuts
+            document.addEventListener('keydown', (e) => {
+                if (e.target.tagName === 'INPUT' && e.key !== 'Escape' && e.key !== '/') return;
+
+                switch (e.key) {
+                    case '/':
+                        e.preventDefault();
+                        searchInput.focus();
+                        break;
+                    case 'Escape':
+                        if (modal.classList.contains('hidden') && shortcutsModal.classList.contains('hidden')) {
+                            clearSearchQuery();
+                        } else {
+                            closeModal();
+                            shortcutsModal.classList.add('hidden');
+                        }
+                        break;
+                    case '[':
+                        e.preventDefault();
+                        changeSubject(currentSubject - 1);
+                        break;
+                    case ']':
+                        e.preventDefault();
+                        changeSubject(currentSubject + 1);
+                        break;
+                    case 'l':
+                    case 'L':
+                        if (!e.target.matches('input')) {
+                            e.preventDefault();
+                            toggleTheme();
+                        }
+                        break;
+                }
+            });
         }
 
-        function createParticleSystem() {
-            const particleContainer = document.querySelector('.particle-system');
-            const particleCount = 30;
-            
-            for (let i = 0; i < particleCount; i++) {
-                const particle = document.createElement('div');
-                particle.className = 'particle';
-                particle.style.left = Math.random() * 100 + '%';
-                particle.style.top = Math.random() * 100 + '%';
-                particle.style.animationDelay = Math.random() * 12 + 's';
-                particle.style.animationDuration = (Math.random() * 8 + 8) + 's';
-                particleContainer.appendChild(particle);
-                
-                particleSystem.push({
-                    element: particle,
-                    x: Math.random() * window.innerWidth,
-                    y: Math.random() * window.innerHeight,
-                    vx: (Math.random() - 0.5) * 2,
-                    vy: (Math.random() - 0.5) * 2
-                });
-            }
-        }
-
-        function startAnimations() {
-            function animate() {
-                // Update particle positions
-                particleSystem.forEach(particle => {
-                    particle.x += particle.vx;
-                    particle.y += particle.vy;
-                    
-                    // Bounce off edges
-                    if (particle.x <= 0 || particle.x >= window.innerWidth) particle.vx *= -1;
-                    if (particle.y <= 0 || particle.y >= window.innerHeight) particle.vy *= -1;
-                    
-                    particle.element.style.left = particle.x + 'px';
-                    particle.element.style.top = particle.y + 'px';
-                });
-                
-                animationId = requestAnimationFrame(animate);
-            }
-            
-            animate();
-        }
-
-        function updateLiveStats() {
-            const activeSimulations = document.getElementById('activeSimulations');
-            const userInteractions = document.getElementById('userInteractions');
-            const totalSimulations = document.getElementById('totalSimulations');
-            
-            setInterval(() => {
-                // Simulate live data updates
-                const currentActive = parseInt(activeSimulations.textContent);
-                const currentInteractions = parseFloat(userInteractions.textContent);
-                
-                activeSimulations.textContent = Math.max(20, currentActive + Math.floor(Math.random() * 3 - 1));
-                userInteractions.textContent = (currentInteractions + Math.random() * 0.1).toFixed(1) + 'K';
-                
-                // Add pulse effect
-                activeSimulations.classList.add('animate-pulse');
-                userInteractions.classList.add('animate-pulse');
-                
-                setTimeout(() => {
-                    activeSimulations.classList.remove('animate-pulse');
-                    userInteractions.classList.remove('animate-pulse');
-                }, 1000);
-            }, 5000);
-        }
-
-        // Handle window resize
-        window.addEventListener('resize', () => {
-            const canvas = document.getElementById('matrixCanvas');
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
-        });
-
-        // Add smooth scrolling
-        document.documentElement.style.scrollBehavior = 'smooth';
+        // Initialize the application
+        document.addEventListener('DOMContentLoaded', init);
     </script>
-<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'96c8fd44a52a49d5',t:'MTc1NDc2MDcxMC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'96d7972993e3cd03',t:'MTc1NDkxMzgxNC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
