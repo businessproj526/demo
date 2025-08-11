@@ -4,17 +4,21 @@
   <meta charset="utf-8" />
   <title>Redirecting…</title>
   <meta name="robots" content="noindex" />
-  <!-- Fast fallback if JS is blocked -->
+  <!-- Fallback if JS is blocked -->
   <meta http-equiv="refresh" content="0; url=/page-not-found">
   <link rel="canonical" href="https://www.iastune.in/page-not-found">
 </head>
 <body>
   <script>
-    // Preserve any query/hash from the wrong URL
-    const target = new URL('/other', location.origin);
+    // Preserve query + hash, and replace history entry
+    const target = new URL('/page-not-found', location.origin);
     if (location.search) target.search = location.search;
     if (location.hash)   target.hash   = location.hash;
     location.replace(target.toString());
   </script>
+
+  <noscript>
+    <p>Redirecting… If you’re not redirected, <a href="/page-not-found">click here</a>.</p>
+  </noscript>
 </body>
 </html>
