@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>IAStune - Interactive Mind Maps Library (UPSC/APPSC)</title>
+    <title>Mind Map Library - Interactive Learning Hub</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <script>
@@ -14,41 +14,43 @@
                         'inter': ['Inter', 'sans-serif'],
                     },
                     animation: {
-                        'fade-in': 'fadeIn 0.6s ease-out',
-                        'slide-in': 'slideIn 0.4s ease-out',
-                        'glow': 'glow 0.4s ease-in-out',
-                        'scale-in': 'scaleIn 0.3s ease-out',
-                        'bounce-subtle': 'bounceSubtle 0.8s ease-out',
+                        'fade-in': 'fadeIn 0.8s ease-out',
+                        'slide-in': 'slideIn 0.6s ease-out',
+                        'glow': 'glow 0.5s ease-in-out',
+                        'scale-in': 'scaleIn 0.4s ease-out',
+                        'bounce-subtle': 'bounceSubtle 1s ease-out',
                         'float': 'float 6s ease-in-out infinite',
                         'pulse-glow': 'pulseGlow 2s ease-in-out infinite',
                         'shimmer': 'shimmer 2s linear infinite',
-                        'card-hover': 'cardHover 0.3s ease-out'
+                        'card-hover': 'cardHover 0.3s ease-out',
+                        'rotate-slow': 'rotateSlow 20s linear infinite',
+                        'wave': 'wave 3s ease-in-out infinite'
                     },
                     keyframes: {
                         fadeIn: {
-                            '0%': { opacity: '0', transform: 'translateY(20px)' },
+                            '0%': { opacity: '0', transform: 'translateY(30px)' },
                             '100%': { opacity: '1', transform: 'translateY(0)' }
                         },
                         slideIn: {
-                            '0%': { transform: 'translateX(-30px)', opacity: '0' },
+                            '0%': { transform: 'translateX(-50px)', opacity: '0' },
                             '100%': { transform: 'translateX(0)', opacity: '1' }
                         },
                         glow: {
-                            '0%': { boxShadow: '0 0 5px rgba(59, 130, 246, 0.3)' },
-                            '100%': { boxShadow: '0 0 25px rgba(59, 130, 246, 0.8), 0 0 40px rgba(59, 130, 246, 0.6)' }
+                            '0%': { boxShadow: '0 0 10px rgba(59, 130, 246, 0.3)' },
+                            '100%': { boxShadow: '0 0 40px rgba(59, 130, 246, 0.9), 0 0 60px rgba(59, 130, 246, 0.7)' }
                         },
                         scaleIn: {
-                            '0%': { transform: 'scale(0.9)', opacity: '0' },
+                            '0%': { transform: 'scale(0.8)', opacity: '0' },
                             '100%': { transform: 'scale(1)', opacity: '1' }
                         },
                         bounceSubtle: {
                             '0%, 20%, 50%, 80%, 100%': { transform: 'translateY(0)' },
-                            '40%': { transform: 'translateY(-8px)' },
-                            '60%': { transform: 'translateY(-4px)' }
+                            '40%': { transform: 'translateY(-12px)' },
+                            '60%': { transform: 'translateY(-6px)' }
                         },
                         float: {
-                            '0%, 100%': { transform: 'translateY(0px)' },
-                            '50%': { transform: 'translateY(-10px)' }
+                            '0%, 100%': { transform: 'translateY(0px) rotate(0deg)' },
+                            '50%': { transform: 'translateY(-20px) rotate(180deg)' }
                         },
                         pulseGlow: {
                             '0%, 100%': { boxShadow: '0 0 20px rgba(59, 130, 246, 0.4)' },
@@ -60,22 +62,16 @@
                         },
                         cardHover: {
                             '0%': { transform: 'translateY(0) scale(1)' },
-                            '100%': { transform: 'translateY(-8px) scale(1.02)' }
-                        }
-                    },
-                    colors: {
-                        'dark': {
-                            50: '#f8fafc',
-                            100: '#f1f5f9',
-                            200: '#e2e8f0',
-                            300: '#cbd5e1',
-                            400: '#94a3b8',
-                            500: '#64748b',
-                            600: '#475569',
-                            700: '#334155',
-                            800: '#1e293b',
-                            900: '#0f172a',
-                            950: '#020617'
+                            '100%': { transform: 'translateY(-10px) scale(1.02)' }
+                        },
+                        rotateSlow: {
+                            '0%': { transform: 'rotate(0deg)' },
+                            '100%': { transform: 'rotate(360deg)' }
+                        },
+                        wave: {
+                            '0%, 100%': { transform: 'rotate(0deg)' },
+                            '25%': { transform: 'rotate(5deg)' },
+                            '75%': { transform: 'rotate(-5deg)' }
                         }
                     }
                 }
@@ -91,35 +87,22 @@
         .glass-effect {
             backdrop-filter: blur(20px);
             background: rgba(15, 23, 42, 0.8);
-            border: 1px solid rgba(148, 163, 184, 0.1);
-        }
-        
-        .glass-light {
-            backdrop-filter: blur(16px);
-            background: rgba(30, 41, 59, 0.6);
             border: 1px solid rgba(148, 163, 184, 0.2);
         }
         
-        .search-highlight {
-            animation: glow 0.4s ease-in-out;
-            border: 2px solid #3b82f6;
-            font-weight: 600;
+        .glass-light {
+            backdrop-filter: blur(15px);
+            background: rgba(30, 41, 59, 0.6);
+            border: 1px solid rgba(148, 163, 184, 0.3);
         }
         
-        .gradient-text {
-            background: linear-gradient(135deg, #60a5fa, #a78bfa, #f472b6);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-        
-        .card-hover {
+        .interactive-card {
             transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             position: relative;
             overflow: hidden;
         }
         
-        .card-hover::before {
+        .interactive-card::before {
             content: '';
             position: absolute;
             top: 0;
@@ -127,1064 +110,676 @@
             width: 100%;
             height: 100%;
             background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
-            transition: left 0.5s;
+            transition: left 0.6s;
         }
         
-        .card-hover:hover::before {
+        .interactive-card:hover::before {
             left: 100%;
         }
         
-        .card-hover:hover {
-            transform: translateY(-12px) scale(1.03);
+        .interactive-card:hover {
+            transform: translateY(-15px) scale(1.03);
             box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5), 0 0 30px rgba(59, 130, 246, 0.3);
         }
         
-        .subject-active {
+        .course-active {
             background: linear-gradient(135deg, #3b82f6, #8b5cf6);
             color: white;
             border-left: 4px solid #f59e0b;
             box-shadow: 0 10px 25px rgba(59, 130, 246, 0.3);
         }
         
-        .topic-grid {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.6s ease-out;
-        }
-        
-        .topic-grid.show {
-            opacity: 1;
-            transform: translateY(0);
-        }
-        
-        .view-button {
-            opacity: 0;
-            transform: translateY(15px);
-            transition: all 0.4s ease-out;
-        }
-        
-        .card-hover:hover .view-button {
-            opacity: 1;
-            transform: translateY(0);
-        }
-        
-        .neon-border {
-            box-shadow: 0 0 20px rgba(59, 130, 246, 0.5), inset 0 0 20px rgba(59, 130, 246, 0.1);
-        }
-        
-        .shimmer-effect {
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+        .gradient-text {
+            background: linear-gradient(135deg, #60a5fa, #a78bfa, #f472b6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: shimmer 3s linear infinite;
             background-size: 200% 100%;
-            animation: shimmer 2s linear infinite;
         }
         
-        .floating-orb {
+        .floating-icon {
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        .mind-map-preview {
+            position: relative;
+            overflow: hidden;
+            border-radius: 15px;
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.1), rgba(139, 92, 246, 0.1));
+        }
+        
+        .mind-map-preview::before {
+            content: '';
             position: absolute;
-            border-radius: 50%;
-            background: radial-gradient(circle, rgba(59, 130, 246, 0.3), transparent);
-            filter: blur(40px);
-            animation: float 8s ease-in-out infinite;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, transparent 30%, rgba(255, 255, 255, 0.1) 50%, transparent 70%);
+            transform: translateX(-100%);
+            transition: transform 0.6s;
         }
         
-        .theme-toggle {
-            background: linear-gradient(135deg, #1e293b, #334155);
-            border: 1px solid rgba(148, 163, 184, 0.2);
+        .interactive-card:hover .mind-map-preview::before {
+            transform: translateX(100%);
         }
         
-        .light-mode {
-            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 50%, #cbd5e1 100%);
+        .explore-btn {
+            background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
         }
         
-        .light-mode .glass-effect {
-            background: rgba(255, 255, 255, 0.8);
-            border: 1px solid rgba(148, 163, 184, 0.2);
+        .explore-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s;
         }
         
-        .light-mode .glass-light {
-            background: rgba(248, 250, 252, 0.6);
-            border: 1px solid rgba(148, 163, 184, 0.3);
+        .explore-btn:hover::before {
+            left: 100%;
         }
         
-        .scrollbar-hide {
-            -ms-overflow-style: none;
-            scrollbar-width: none;
+        .explore-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 15px 30px rgba(59, 130, 246, 0.4);
         }
         
-        .scrollbar-hide::-webkit-scrollbar {
-            display: none;
+        .stats-card {
+            background: rgba(15, 23, 42, 0.9);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(59, 130, 246, 0.2);
         }
         
-        .custom-scrollbar::-webkit-scrollbar {
-            width: 6px;
-        }
-        
-        .custom-scrollbar::-webkit-scrollbar-track {
-            background: rgba(30, 41, 59, 0.3);
-            border-radius: 3px;
-        }
-        
-        .custom-scrollbar::-webkit-scrollbar-thumb {
-            background: rgba(59, 130, 246, 0.5);
-            border-radius: 3px;
-        }
-        
-        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
-            background: rgba(59, 130, 246, 0.7);
+        .search-highlight {
+            background: rgba(251, 191, 36, 0.3);
+            color: #fbbf24;
+            padding: 2px 4px;
+            border-radius: 4px;
+            font-weight: bold;
         }
     </style>
 </head>
-<body class="bg-dark-950 text-white min-h-screen relative overflow-x-hidden">
-    <!-- Floating Background Orbs -->
-    <div class="floating-orb w-96 h-96 top-10 -left-48 opacity-30" style="animation-delay: 0s;"></div>
-    <div class="floating-orb w-80 h-80 top-1/2 -right-40 opacity-20" style="animation-delay: 2s;"></div>
-    <div class="floating-orb w-64 h-64 bottom-20 left-1/3 opacity-25" style="animation-delay: 4s;"></div>
-
-    <!-- Theme Toggle -->
-    <button id="themeToggle" class="fixed top-6 right-6 z-50 theme-toggle p-3 rounded-full hover:scale-110 transition-all duration-300 group" aria-label="Toggle theme">
-        <div class="relative">
-            <svg id="darkIcon" class="w-6 h-6 text-yellow-400 transition-all duration-300" fill="currentColor" viewBox="0 0 20 20">
-                <path fill-rule="evenodd" d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" clip-rule="evenodd"></path>
-            </svg>
-            <svg id="lightIcon" class="w-6 h-6 text-slate-400 absolute inset-0 opacity-0 transition-all duration-300" fill="currentColor" viewBox="0 0 20 20">
-                <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path>
-            </svg>
-        </div>
-    </button>
-
-    <!-- Search Bar (Sticky) -->
-    <div class="sticky top-0 z-40 p-6 glass-effect border-b border-slate-700/50">
-        <div class="max-w-7xl mx-auto">
-            <div class="relative group">
-                <div class="absolute inset-y-0 left-0 pl-6 flex items-center pointer-events-none">
-                    <svg class="h-6 w-6 text-slate-400 group-focus-within:text-blue-400 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
-                    </svg>
-                </div>
-                <input 
-                    type="search" 
-                    id="searchInput" 
-                    placeholder="Search across all subjects and topics... (Ctrl+K)" 
-                    class="w-full pl-16 pr-16 py-5 rounded-2xl bg-slate-800/50 backdrop-blur-sm text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:bg-slate-800/70 transition-all text-lg border border-slate-700/50 hover:border-slate-600/50"
-                    role="searchbox"
-                    aria-label="Search topics across all subjects"
-                >
-                <button id="clearSearch" class="absolute inset-y-0 right-0 pr-6 flex items-center opacity-0 transition-all duration-300 hover:scale-110">
-                    <svg class="h-6 w-6 text-slate-400 hover:text-red-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
-                    </svg>
-                </button>
-            </div>
-        </div>
-    </div>
-
-    <!-- Main Layout -->
-    <div class="flex max-w-7xl mx-auto min-h-screen">
-        <!-- Left Sidebar - Always Visible -->
-        <aside class="w-80 p-6 border-r border-slate-700/50">
-            <div class="glass-light rounded-3xl p-8 sticky top-32 max-h-[calc(100vh-10rem)] overflow-y-auto custom-scrollbar">
-                <!-- Logo Section -->
-                <div class="text-center mb-8">
-                    <div class="text-6xl mb-4 animate-bounce-subtle">🎯</div>
-                    <h1 class="text-3xl font-black gradient-text mb-2">IAStune</h1>
-                    <p class="text-slate-400 text-sm">Interactive Mind Maps Library</p>
-                    <div class="flex justify-center space-x-2 mt-4">
-                        <span class="px-3 py-1 bg-blue-500/20 text-blue-300 rounded-full text-xs font-medium">UPSC</span>
-                        <span class="px-3 py-1 bg-purple-500/20 text-purple-300 rounded-full text-xs font-medium">APPSC</span>
+<body class="bg-slate-900 text-white min-h-screen">
+    <!-- Header -->
+    <header class="sticky top-0 z-50 glass-effect border-b border-slate-700/50">
+        <div class="max-w-7xl mx-auto px-6 py-4">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center space-x-4">
+                    <div class="text-4xl animate-float">🧠</div>
+                    <div>
+                        <h1 class="text-2xl font-black gradient-text">Mind Map Library</h1>
+                        <p class="text-slate-400 text-sm">Interactive Learning Hub</p>
                     </div>
                 </div>
                 
-                <!-- Subjects Navigation -->
-                <nav role="navigation" aria-label="Subject navigation">
-                    <h2 class="text-lg font-bold text-slate-300 mb-4 flex items-center">
-                        <span class="text-xl mr-2">📚</span>
-                        All Subjects
-                    </h2>
-                    <ul id="subjectList" class="space-y-3">
-                        <!-- Subjects will be populated by JavaScript -->
-                    </ul>
+                <!-- Search Bar -->
+                <div class="relative max-w-md w-full">
+                    <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+                        <svg class="h-5 w-5 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                        </svg>
+                    </div>
+                    <input 
+                        type="search" 
+                        id="searchInput" 
+                        placeholder="Search mind maps..." 
+                        class="w-full pl-12 pr-4 py-3 rounded-xl bg-slate-800/60 text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:bg-slate-800/80 transition-all border border-slate-700/50"
+                    >
+                </div>
+                
+                <div class="flex items-center space-x-4">
+                    <div class="stats-card px-4 py-2 rounded-lg">
+                        <span class="text-blue-400 font-bold" id="totalMaps">24</span>
+                        <span class="text-slate-400 text-sm ml-1">Maps</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Layout -->
+    <div class="flex max-w-7xl mx-auto min-h-screen">
+        <!-- Sidebar -->
+        <aside class="w-80 p-6 border-r border-slate-700/50">
+            <div class="glass-light rounded-2xl p-6 sticky top-24">
+                <h2 class="text-xl font-bold text-slate-300 mb-6 flex items-center">
+                    <span class="text-2xl mr-3 animate-wave">📚</span>
+                    Course Categories
+                </h2>
+                <nav id="courseList" class="space-y-3">
+                    <!-- Course categories will be populated by JavaScript -->
                 </nav>
             </div>
         </aside>
 
-        <!-- Main Content Area -->
+        <!-- Main Content -->
         <main class="flex-1 p-6">
-            <!-- Welcome Message -->
-            <div id="welcomeMessage" class="text-center py-20 animate-fade-in">
-                <div class="relative">
-                    <div class="text-9xl mb-8 animate-float">📚</div>
-                    <div class="absolute inset-0 flex items-center justify-center">
-                        <div class="w-32 h-32 bg-blue-500/20 rounded-full blur-3xl animate-pulse-glow"></div>
-                    </div>
-                </div>
+            <!-- Welcome Section -->
+            <div id="welcomeSection" class="text-center py-16 animate-fade-in">
+                <div class="text-8xl mb-8 animate-float">🎯</div>
                 <h2 class="text-5xl font-black mb-6">
-                    Welcome to <span class="gradient-text">IAStune</span>
+                    Welcome to <span class="gradient-text">Mind Map Library</span>
                 </h2>
-                <p class="text-slate-400 text-xl max-w-4xl mx-auto leading-relaxed mb-12">
-                    Your comprehensive interactive mind maps library for UPSC & APPSC preparation. 
-                    Explore 18 subjects with carefully curated topics and visual learning aids designed for success.
+                <p class="text-slate-400 text-xl max-w-3xl mx-auto leading-relaxed mb-12">
+                    Explore comprehensive mind maps designed for UPSC & APPSC preparation. 
+                    Visual learning made simple and effective.
                 </p>
                 
-                <!-- Stats Cards -->
-                <div class="grid md:grid-cols-3 gap-8 max-w-4xl mx-auto">
-                    <div class="glass-light rounded-2xl p-8 hover:scale-105 transition-all duration-300 group">
-                        <div class="text-4xl mb-4 group-hover:animate-bounce">🎯</div>
-                        <div class="text-3xl font-bold text-blue-400 mb-2">18</div>
-                        <div class="text-slate-300 font-medium">Comprehensive Subjects</div>
+                <!-- Stats Dashboard -->
+                <div class="grid md:grid-cols-4 gap-6 max-w-4xl mx-auto">
+                    <div class="interactive-card glass-light rounded-2xl p-6 group">
+                        <div class="text-4xl mb-4 group-hover:animate-bounce">📊</div>
+                        <div class="text-3xl font-bold text-blue-400 mb-2">24</div>
+                        <div class="text-slate-300">Mind Maps</div>
                     </div>
-                    <div class="glass-light rounded-2xl p-8 hover:scale-105 transition-all duration-300 group">
-                        <div class="text-4xl mb-4 group-hover:animate-bounce">📖</div>
-                        <div class="text-3xl font-bold text-purple-400 mb-2">72+</div>
-                        <div class="text-slate-300 font-medium">Curated Topics</div>
+                    <div class="interactive-card glass-light rounded-2xl p-6 group">
+                        <div class="text-4xl mb-4 group-hover:animate-bounce">🎓</div>
+                        <div class="text-3xl font-bold text-purple-400 mb-2">8</div>
+                        <div class="text-slate-300">Subjects</div>
                     </div>
-                    <div class="glass-light rounded-2xl p-8 hover:scale-105 transition-all duration-300 group">
-                        <div class="text-4xl mb-4 group-hover:animate-bounce">🔍</div>
-                        <div class="text-3xl font-bold text-pink-400 mb-2">AI</div>
-                        <div class="text-slate-300 font-medium">Smart Search</div>
+                    <div class="interactive-card glass-light rounded-2xl p-6 group">
+                        <div class="text-4xl mb-4 group-hover:animate-bounce">⭐</div>
+                        <div class="text-3xl font-bold text-yellow-400 mb-2">4.9</div>
+                        <div class="text-slate-300">Rating</div>
+                    </div>
+                    <div class="interactive-card glass-light rounded-2xl p-6 group">
+                        <div class="text-4xl mb-4 group-hover:animate-bounce">👥</div>
+                        <div class="text-3xl font-bold text-green-400 mb-2">2.5K</div>
+                        <div class="text-slate-300">Users</div>
                     </div>
                 </div>
             </div>
 
-            <!-- Subject Title -->
-            <div id="subjectHeader" class="hidden mb-10 animate-slide-in">
-                <div class="glass-light rounded-3xl p-8 border border-slate-700/50">
-                    <h2 id="subjectTitle" class="text-4xl font-black mb-4"></h2>
-                    <p id="subjectDescription" class="text-slate-400 text-xl leading-relaxed"></p>
+            <!-- Course Header -->
+            <div id="courseHeader" class="hidden mb-8 animate-slide-in">
+                <div class="glass-light rounded-2xl p-8 border border-slate-700/50">
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <h2 id="courseTitle" class="text-4xl font-black mb-3 gradient-text"></h2>
+                            <p id="courseDescription" class="text-slate-400 text-lg"></p>
+                        </div>
+                        <div class="text-6xl animate-float" id="courseIcon"></div>
+                    </div>
                 </div>
             </div>
 
-            <!-- Topics Grid - Vertical Layout -->
-            <div id="topicsGrid" class="topic-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- Topics will be populated by JavaScript -->
+            <!-- Mind Maps Grid -->
+            <div id="mindMapsGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Mind maps will be populated by JavaScript -->
             </div>
 
-            <!-- No Results Message -->
-            <div id="noResults" class="text-center py-20 hidden">
-                <div class="text-8xl mb-6 opacity-50">🔍</div>
-                <h3 class="text-3xl font-bold text-slate-300 mb-4">No Results Found</h3>
-                <p class="text-slate-400 text-xl mb-8">
-                    Try different keywords or browse subjects from the sidebar.
+            <!-- No Results -->
+            <div id="noResults" class="text-center py-16 hidden">
+                <div class="text-8xl mb-8 opacity-50 animate-bounce-subtle">🔍</div>
+                <h3 class="text-3xl font-bold text-slate-300 mb-4">No Mind Maps Found</h3>
+                <p class="text-slate-400 text-lg mb-8">
+                    Try different keywords or explore categories from the sidebar.
                 </p>
-                <button id="clearSearchBtn" class="px-8 py-4 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-2xl hover:from-blue-700 hover:to-purple-700 transition-all duration-300 font-semibold text-lg hover:scale-105">
-                    Clear Search
+                <button id="clearSearchBtn" class="explore-btn text-white px-8 py-4 rounded-xl font-bold text-lg hover:scale-105">
+                    🔄 Clear Search
                 </button>
             </div>
         </main>
     </div>
 
-    <!-- Topic Modal -->
-    <div id="topicModal" class="fixed inset-0 z-50 hidden items-center justify-center p-6 bg-black/70 backdrop-blur-sm">
-        <div class="glass-effect rounded-3xl max-w-5xl w-full max-h-[90vh] overflow-y-auto shadow-2xl animate-scale-in border border-slate-700/50">
-            <div class="p-10">
-                <div class="flex justify-between items-start mb-8">
-                    <div class="flex-1">
-                        <h3 id="modalTitle" class="text-4xl font-black text-white mb-3"></h3>
-                        <p id="modalSubject" class="text-blue-400 font-semibold text-lg"></p>
-                    </div>
-                    <button id="closeModal" class="p-3 rounded-full hover:bg-slate-700/50 transition-all duration-300 hover:scale-110" aria-label="Close modal">
-                        <svg class="w-7 h-7 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
-                        </svg>
-                    </button>
-                </div>
-                <div id="modalContent" class="prose prose-invert max-w-none">
-                    <!-- Modal content will be populated by JavaScript -->
-                </div>
-            </div>
-        </div>
-    </div>
-
     <script>
-        // Comprehensive subject data
-        const subjectsData = {
-            "Indian Polity": {
+        // Mind maps data
+        const mindMapsData = {
+            "History": {
                 icon: "🏛️",
-                color: "from-red-500 to-pink-500",
-                borderColor: "border-red-500/30",
-                description: "Constitutional framework, governance structures, and political institutions of India",
-                topics: [
-                    {
-                        title: "Preamble",
-                        icon: "📜",
-                        description: "Foundation principles and objectives of the Indian Constitution",
-                        details: "The Preamble declares India as a sovereign, socialist, secular, democratic republic. It outlines the objectives of justice, liberty, equality, and fraternity, serving as the guiding philosophy for the entire Constitution."
-                    },
-                    {
-                        title: "Fundamental Rights",
-                        icon: "⚖️",
-                        description: "Basic human rights guaranteed to all citizens",
-                        details: "Six fundamental rights including Right to Equality, Right to Freedom, Right against Exploitation, Right to Freedom of Religion, Cultural and Educational Rights, and Right to Constitutional Remedies."
-                    },
-                    {
-                        title: "Parliament",
-                        icon: "🏢",
-                        description: "Structure and functions of the Indian Parliament",
-                        details: "Bicameral legislature consisting of Lok Sabha and Rajya Sabha. Powers include legislation, budget approval, executive oversight, and constitutional amendments."
-                    },
-                    {
-                        title: "Supreme Court",
-                        icon: "⚖️",
-                        description: "Apex judicial authority and guardian of the Constitution",
-                        details: "Highest court with original, appellate, and advisory jurisdictions. Guardian of fundamental rights and final interpreter of the Constitution."
-                    }
-                ]
-            },
-            "Indian Economy": {
-                icon: "💰",
-                color: "from-green-500 to-emerald-500",
-                borderColor: "border-green-500/30",
-                description: "Economic policies, financial systems, and development strategies",
-                topics: [
-                    {
-                        title: "Inflation & Deflation",
-                        icon: "📈",
-                        description: "Price level changes and their economic impact",
-                        details: "Inflation is sustained increase in general price levels. Types include demand-pull, cost-push, and built-in inflation. Deflation is the opposite with falling prices and economic contraction."
-                    },
-                    {
-                        title: "Banking in India",
-                        icon: "🏦",
-                        description: "Banking system structure and monetary policy",
-                        details: "RBI as central bank, commercial banks, cooperative banks, and regional rural banks. Key functions include credit creation, monetary policy implementation, and financial inclusion initiatives."
-                    },
-                    {
-                        title: "Public Finance",
-                        icon: "💳",
-                        description: "Government revenue, expenditure, and fiscal policy",
-                        details: "Union and state finances, tax structure, fiscal deficit, public debt, and budgetary process. GST implementation and its impact on federal fiscal relations."
-                    },
-                    {
-                        title: "Union Budget 2025",
-                        icon: "📊",
-                        description: "Latest budget allocations and policy directions",
-                        details: "Annual financial statement showing government's revenue and expenditure. Key focus areas include infrastructure, healthcare, education, and digital transformation initiatives."
-                    }
-                ]
-            },
-            "Art & Culture": {
-                icon: "🎨",
-                color: "from-purple-500 to-violet-500",
-                borderColor: "border-purple-500/30",
-                description: "Rich cultural heritage, arts, and traditions of India",
-                topics: [
-                    {
-                        title: "Classical Dances",
-                        icon: "💃",
-                        description: "Eight classical dance forms of India",
-                        details: "Bharatanatyam, Kathak, Kathakali, Kuchipudi, Manipuri, Mohiniyattam, Odissi, and Sattriya. Each represents unique regional traditions and spiritual expressions."
-                    },
-                    {
-                        title: "Architecture",
-                        icon: "🏛️",
-                        description: "Architectural styles and monuments",
-                        details: "Indo-Islamic, Dravidian, Nagara, and Vesara architectural styles. Famous monuments like Taj Mahal, Red Fort, temples of Khajuraho, and modern architectural developments."
-                    },
-                    {
-                        title: "UNESCO Heritage Sites",
-                        icon: "🏺",
-                        description: "World Heritage Sites in India",
-                        details: "40 UNESCO World Heritage Sites including cultural sites like Taj Mahal, Ajanta Caves, and natural sites like Western Ghats, Sundarbans National Park."
-                    },
-                    {
-                        title: "Buddhism",
-                        icon: "☸️",
-                        description: "Buddhist philosophy and its influence in India",
-                        details: "Life of Buddha, Four Noble Truths, Eightfold Path, Buddhist councils, and the spread of Buddhism. Revival movements and contemporary Buddhist practices in India."
-                    }
-                ]
-            },
-            "Environment": {
-                icon: "🌱",
-                color: "from-emerald-500 to-teal-500",
-                borderColor: "border-emerald-500/30",
-                description: "Environmental conservation, ecology, and sustainable development",
-                topics: [
-                    {
-                        title: "Climate Change",
-                        icon: "🌡️",
-                        description: "Global warming impacts and mitigation strategies",
-                        details: "Causes of climate change, greenhouse effect, Paris Agreement, India's climate commitments, renewable energy initiatives, and adaptation strategies for vulnerable communities."
-                    },
-                    {
-                        title: "Biodiversity",
-                        icon: "🦋",
-                        description: "Species diversity and conservation efforts",
-                        details: "India as one of 17 megadiverse countries. Biodiversity hotspots, endemic species, conservation strategies, and the role of protected areas in maintaining ecological balance."
-                    },
-                    {
-                        title: "EIA",
-                        icon: "📋",
-                        description: "Environmental Impact Assessment procedures",
-                        details: "Systematic process to evaluate environmental consequences of proposed projects. EIA notification, clearance procedures, public participation, and monitoring mechanisms."
-                    },
-                    {
-                        title: "National Parks",
-                        icon: "🏞️",
-                        description: "Protected areas and wildlife conservation",
-                        details: "Network of national parks, wildlife sanctuaries, and biosphere reserves. Project Tiger, Project Elephant, and other conservation initiatives for endangered species."
-                    }
-                ]
-            },
-            "Modern History": {
-                icon: "📜",
                 color: "from-amber-500 to-orange-500",
-                borderColor: "border-amber-500/30",
-                description: "Colonial period, freedom struggle, and independence movement",
-                topics: [
+                description: "Ancient to Modern Indian History mind maps",
+                maps: [
+                    {
+                        title: "Ancient Indian History",
+                        icon: "🏺",
+                        description: "Indus Valley to Gupta Empire comprehensive overview",
+                        topics: 45,
+                        difficulty: "Intermediate",
+                        lastUpdated: "2024-01-15"
+                    },
+                    {
+                        title: "Medieval Indian History",
+                        icon: "🏰",
+                        description: "Delhi Sultanate to Mughal Empire detailed analysis",
+                        topics: 38,
+                        difficulty: "Advanced",
+                        lastUpdated: "2024-01-12"
+                    },
+                    {
+                        title: "Modern Indian History",
+                        icon: "🚂",
+                        description: "British Rule to Independence movement",
+                        topics: 52,
+                        difficulty: "Advanced",
+                        lastUpdated: "2024-01-18"
+                    },
                     {
                         title: "Freedom Struggle",
-                        icon: "🗽",
-                        description: "Indian independence movement and key events",
-                        details: "Major movements like Non-Cooperation, Civil Disobedience, Quit India. Key leaders like Gandhi, Nehru, Patel, and revolutionary activities across the country."
-                    },
-                    {
-                        title: "Colonial Economy",
-                        icon: "⚖️",
-                        description: "Economic impact of British rule",
-                        details: "Drain of wealth theory, deindustrialization, commercialization of agriculture, and the transformation of India's economy under colonial exploitation."
-                    },
-                    {
-                        title: "Social Reforms",
-                        icon: "🔄",
-                        description: "19th-century social reform movements",
-                        details: "Reform movements led by Raja Ram Mohan Roy, Dayananda Saraswati, and others. Issues addressed included sati, child marriage, and caste system reforms."
-                    },
-                    {
-                        title: "Partition of India",
-                        icon: "🗺️",
-                        description: "Division of British India in 1947",
-                        details: "Causes of partition, role of communal politics, mass migration, refugee crisis, and the integration of princely states into India and Pakistan."
-                    }
-                ]
-            },
-            "Ancient History": {
-                icon: "🏺",
-                color: "from-orange-500 to-red-500",
-                borderColor: "border-orange-500/30",
-                description: "Early civilizations, empires, and cultural developments",
-                topics: [
-                    {
-                        title: "Indus Valley Civilization",
-                        icon: "🏛️",
-                        description: "Harappan civilization and urban planning",
-                        details: "Advanced urban planning, sophisticated drainage system, extensive trade networks, and the mystery of the undeciphered Harappan script. Major sites include Harappa and Mohenjo-daro."
-                    },
-                    {
-                        title: "Vedic Period",
-                        icon: "📖",
-                        description: "Early Vedic and Later Vedic periods",
-                        details: "Rigvedic society, evolution of caste system, religious practices, and the transition from pastoral to agricultural society in the Later Vedic period."
-                    },
-                    {
-                        title: "Mauryan Empire",
-                        icon: "👑",
-                        description: "First pan-Indian empire under Chandragupta and Ashoka",
-                        details: "Centralized administrative system, Ashoka's dhamma, rock and pillar edicts, and the spread of Buddhism under Mauryan patronage across Asia."
-                    },
-                    {
-                        title: "Gupta Period",
-                        icon: "✨",
-                        description: "Golden age of ancient India",
-                        details: "Cultural achievements, scientific developments, art and architecture, and the works of Kalidasa, Aryabhata, and other scholars during the classical period."
-                    }
-                ]
-            },
-            "Medieval History": {
-                icon: "🕌",
-                color: "from-indigo-500 to-purple-500",
-                borderColor: "border-indigo-500/30",
-                description: "Medieval kingdoms, Islamic rule, and cultural synthesis",
-                topics: [
-                    {
-                        title: "Delhi Sultanate",
-                        icon: "🏰",
-                        description: "Muslim rule in medieval India",
-                        details: "Five dynasties of Delhi Sultanate, administrative innovations, military technology, cultural synthesis, and the impact of Turkish and Afghan invasions."
-                    },
-                    {
-                        title: "Mughal Empire",
-                        icon: "👑",
-                        description: "Mughal administration and cultural achievements",
-                        details: "From Babur to Aurangzeb, administrative innovations like mansabdari system, architectural marvels, and the synthesis of Indo-Islamic culture and art."
-                    },
-                    {
-                        title: "Bhakti Movement",
-                        icon: "🙏",
-                        description: "Religious reform movement in medieval India",
-                        details: "Saints like Kabir, Nanak, Chaitanya, and regional variations of the Bhakti movement. Impact on society, literature, and cultural transformation."
-                    },
-                    {
-                        title: "Regional Kingdoms",
-                        icon: "🏛️",
-                        description: "Deccan and South Indian kingdoms",
-                        details: "Vijayanagara Empire, Bahmani Sultanate, Maratha Empire, and other regional powers that shaped medieval Indian politics and culture."
+                        icon: "🇮🇳",
+                        description: "Independence movement leaders and events",
+                        topics: 41,
+                        difficulty: "Intermediate",
+                        lastUpdated: "2024-01-10"
                     }
                 ]
             },
             "Geography": {
-                icon: "🗺️",
-                color: "from-blue-500 to-cyan-500",
-                borderColor: "border-blue-500/30",
-                description: "Physical features, climate, and natural resources of India",
-                topics: [
+                icon: "🌍",
+                color: "from-green-500 to-teal-500",
+                description: "Physical and Human Geography concepts",
+                maps: [
                     {
-                        title: "Physical Features",
-                        icon: "⛰️",
-                        description: "Mountains, plains, plateaus, and coastal regions",
-                        details: "Himalayas, Indo-Gangetic plains, Peninsular plateau, Western and Eastern Ghats, and coastal plains. Geological formation and significance of each region."
+                        title: "Physical Geography",
+                        icon: "🏔️",
+                        description: "Landforms, climate, and natural phenomena",
+                        topics: 48,
+                        difficulty: "Intermediate",
+                        lastUpdated: "2024-01-16"
                     },
                     {
-                        title: "Climate",
-                        icon: "🌦️",
-                        description: "Monsoon system and seasonal variations",
-                        details: "Southwest and northeast monsoons, factors affecting Indian climate, regional variations, El Niño effects, and the impact of climate change on monsoon patterns."
+                        title: "Indian Geography",
+                        icon: "🗺️",
+                        description: "Physical features and regional geography of India",
+                        topics: 55,
+                        difficulty: "Advanced",
+                        lastUpdated: "2024-01-14"
                     },
                     {
-                        title: "Rivers",
-                        icon: "🏞️",
-                        description: "Major river systems and water resources",
-                        details: "Ganga, Brahmaputra, Indus river systems, peninsular rivers, river linking projects, water disputes between states, and water conservation strategies."
+                        title: "World Geography",
+                        icon: "🌐",
+                        description: "Continents, countries, and global patterns",
+                        topics: 42,
+                        difficulty: "Intermediate",
+                        lastUpdated: "2024-01-13"
+                    }
+                ]
+            },
+            "Polity": {
+                icon: "🏛️",
+                color: "from-blue-500 to-indigo-500",
+                description: "Indian Constitution and Political System",
+                maps: [
+                    {
+                        title: "Indian Constitution",
+                        icon: "📜",
+                        description: "Fundamental rights, duties, and constitutional provisions",
+                        topics: 62,
+                        difficulty: "Advanced",
+                        lastUpdated: "2024-01-17"
                     },
                     {
-                        title: "Natural Resources",
-                        icon: "💎",
-                        description: "Mineral resources and their distribution",
-                        details: "Coal, iron ore, petroleum, natural gas distribution, renewable energy potential, mining policies, and sustainable resource management strategies."
+                        title: "Union Government",
+                        icon: "🏢",
+                        description: "Executive, Legislature, and Judiciary",
+                        topics: 39,
+                        difficulty: "Intermediate",
+                        lastUpdated: "2024-01-11"
+                    },
+                    {
+                        title: "State Government",
+                        icon: "🏛️",
+                        description: "State executive, legislature, and local governance",
+                        topics: 35,
+                        difficulty: "Intermediate",
+                        lastUpdated: "2024-01-09"
+                    }
+                ]
+            },
+            "Economics": {
+                icon: "💰",
+                color: "from-purple-500 to-pink-500",
+                description: "Indian Economy and Economic Concepts",
+                maps: [
+                    {
+                        title: "Indian Economy",
+                        icon: "📈",
+                        description: "Economic development, planning, and policies",
+                        topics: 47,
+                        difficulty: "Advanced",
+                        lastUpdated: "2024-01-19"
+                    },
+                    {
+                        title: "Economic Survey",
+                        icon: "📊",
+                        description: "Annual economic survey highlights and analysis",
+                        topics: 33,
+                        difficulty: "Advanced",
+                        lastUpdated: "2024-01-08"
+                    },
+                    {
+                        title: "Banking & Finance",
+                        icon: "🏦",
+                        description: "Banking system, monetary policy, and financial markets",
+                        topics: 41,
+                        difficulty: "Intermediate",
+                        lastUpdated: "2024-01-15"
                     }
                 ]
             },
             "Science & Technology": {
                 icon: "🔬",
                 color: "from-cyan-500 to-blue-500",
-                borderColor: "border-cyan-500/30",
-                description: "Scientific achievements, technological innovations, and research",
-                topics: [
+                description: "Scientific developments and technological advances",
+                maps: [
                     {
                         title: "Space Technology",
                         icon: "🚀",
-                        description: "ISRO achievements and space missions",
-                        details: "Mars Orbiter Mission, Chandrayaan missions, satellite technology, launch vehicles, and India's growing role in global space exploration and commercial space sector."
-                    },
-                    {
-                        title: "Nuclear Technology",
-                        icon: "⚛️",
-                        description: "Nuclear energy and strategic programs",
-                        details: "Nuclear power plants, three-stage nuclear program, nuclear doctrine, civilian nuclear cooperation, and international nuclear agreements and non-proliferation efforts."
+                        description: "ISRO missions and space exploration",
+                        topics: 28,
+                        difficulty: "Intermediate",
+                        lastUpdated: "2024-01-16"
                     },
                     {
                         title: "Biotechnology",
                         icon: "🧬",
-                        description: "Genetic engineering and medical advances",
-                        details: "GM crops, vaccine development, biopharmaceuticals, gene therapy, and the role of biotechnology in agriculture, healthcare, and industrial applications."
+                        description: "Genetic engineering and biomedical advances",
+                        topics: 35,
+                        difficulty: "Advanced",
+                        lastUpdated: "2024-01-12"
                     },
                     {
                         title: "Information Technology",
                         icon: "💻",
-                        description: "IT revolution and digital initiatives",
-                        details: "Software industry growth, Digital India initiatives, cybersecurity challenges, artificial intelligence, machine learning, and the digital transformation of governance."
+                        description: "Digital India and IT developments",
+                        topics: 31,
+                        difficulty: "Intermediate",
+                        lastUpdated: "2024-01-14"
                     }
                 ]
             },
-            "International Relations": {
-                icon: "🌍",
-                color: "from-teal-500 to-green-500",
-                borderColor: "border-teal-500/30",
-                description: "Foreign policy, diplomacy, and global partnerships",
-                topics: [
-                    {
-                        title: "Foreign Policy",
-                        icon: "🤝",
-                        description: "India's diplomatic strategies and principles",
-                        details: "Non-alignment evolution, Panchsheel principles, Look East/Act East policy, and India's emerging role in global governance and multilateral institutions."
-                    },
-                    {
-                        title: "Neighborhood Policy",
-                        icon: "🏘️",
-                        description: "Relations with South Asian countries",
-                        details: "SAARC dynamics, bilateral relations with Pakistan, China, Bangladesh, Sri Lanka, and the challenges of regional cooperation and connectivity projects."
-                    },
-                    {
-                        title: "Global Organizations",
-                        icon: "🏛️",
-                        description: "India's role in international institutions",
-                        details: "UN Security Council reform aspirations, BRICS cooperation, G20 presidency, WTO participation, and India's contribution to global governance mechanisms."
-                    },
-                    {
-                        title: "Strategic Partnerships",
-                        icon: "🔗",
-                        description: "Key bilateral relationships and alliances",
-                        details: "India-US strategic partnership, Quad cooperation, India-Russia relations, Indo-Pacific strategy, and emerging partnerships in defense and technology sectors."
-                    }
-                ]
-            },
-            "Ethics": {
-                icon: "⚖️",
-                color: "from-rose-500 to-pink-500",
-                borderColor: "border-rose-500/30",
-                description: "Moral philosophy, ethical theories, and applied ethics",
-                topics: [
-                    {
-                        title: "Ethical Theories",
-                        icon: "🤔",
-                        description: "Fundamental approaches to ethics and morality",
-                        details: "Consequentialism, deontological ethics, virtue ethics, care ethics, and their application in governance, public administration, and personal decision-making."
-                    },
-                    {
-                        title: "Public Service Ethics",
-                        icon: "🏛️",
-                        description: "Ethical standards in civil services",
-                        details: "Code of conduct, integrity, accountability, transparency, neutrality, and ethical dilemmas faced by civil servants in policy implementation and public service delivery."
-                    },
-                    {
-                        title: "Corporate Ethics",
-                        icon: "🏢",
-                        description: "Business ethics and social responsibility",
-                        details: "Corporate governance, CSR initiatives, stakeholder theory, ethical leadership, and addressing challenges in business practices and corporate decision-making."
-                    },
-                    {
-                        title: "Applied Ethics",
-                        icon: "⚕️",
-                        description: "Ethics in specific domains and situations",
-                        details: "Medical ethics, environmental ethics, research ethics, media ethics, and ethical considerations in emerging technologies like AI and biotechnology."
-                    }
-                ]
-            },
-            "Public Administration": {
-                icon: "🏢",
-                color: "from-slate-500 to-gray-500",
-                borderColor: "border-slate-500/30",
-                description: "Administrative theories, governance, and public policy",
-                topics: [
-                    {
-                        title: "Administrative Theories",
-                        icon: "📚",
-                        description: "Classical and modern theories of administration",
-                        details: "Weber's bureaucracy, scientific management, human relations approach, new public management, and contemporary theories of governance and public administration."
-                    },
-                    {
-                        title: "Indian Administration",
-                        icon: "🇮🇳",
-                        description: "Structure and functioning of Indian bureaucracy",
-                        details: "All India Services, central and state administration, district administration, local governance, and ongoing administrative reforms and capacity building initiatives."
-                    },
-                    {
-                        title: "Good Governance",
-                        icon: "✅",
-                        description: "Principles and practices of effective governance",
-                        details: "Transparency, accountability, participation, rule of law, responsiveness, and e-governance initiatives for improving service delivery and citizen engagement."
-                    },
-                    {
-                        title: "Policy Implementation",
-                        icon: "📋",
-                        description: "Process of policy formulation and execution",
-                        details: "Policy cycle, implementation challenges, monitoring and evaluation, stakeholder engagement, and the role of various actors in the policy process."
-                    }
-                ]
-            },
-            "Sociology": {
-                icon: "👥",
-                color: "from-pink-500 to-rose-500",
-                borderColor: "border-pink-500/30",
-                description: "Social structures, institutions, and cultural dynamics",
-                topics: [
-                    {
-                        title: "Social Structure",
-                        icon: "🏗️",
-                        description: "Caste, class, and social stratification",
-                        details: "Caste system dynamics, social mobility patterns, class structure, intersectionality, and changing patterns of social stratification in contemporary India."
-                    },
-                    {
-                        title: "Social Change",
-                        icon: "🔄",
-                        description: "Modernization and social transformation",
-                        details: "Factors of social change, modernization processes, westernization, sanskritization, secularization, and the impact of globalization on Indian society."
-                    },
-                    {
-                        title: "Social Movements",
-                        icon: "✊",
-                        description: "Collective action for social reform",
-                        details: "Peasant movements, tribal movements, women's movements, environmental movements, Dalit movements, and their role in social transformation and policy change."
-                    },
-                    {
-                        title: "Marriage & Family",
-                        icon: "👨‍👩‍👧‍👦",
-                        description: "Changing patterns of family and kinship",
-                        details: "Joint and nuclear families, changing marriage patterns, gender roles, kinship systems, and the impact of urbanization and modernization on family structures."
-                    }
-                ]
-            },
-            "Philosophy": {
-                icon: "🤔",
-                color: "from-violet-500 to-purple-500",
-                borderColor: "border-violet-500/30",
-                description: "Philosophical traditions, ethics, and metaphysical inquiries",
-                topics: [
-                    {
-                        title: "Indian Philosophy",
-                        icon: "🕉️",
-                        description: "Schools of Indian philosophical thought",
-                        details: "Six orthodox schools (Darshanas), heterodox schools like Buddhism and Jainism, Advaita Vedanta, and their contributions to metaphysics, epistemology, and ethics."
-                    },
-                    {
-                        title: "Western Philosophy",
-                        icon: "🏛️",
-                        description: "Major Western philosophical traditions",
-                        details: "Ancient Greek philosophy, medieval scholasticism, modern rationalism and empiricism, existentialism, and contemporary philosophical movements and debates."
-                    },
-                    {
-                        title: "Political Philosophy",
-                        icon: "🗳️",
-                        description: "Theories of state, power, and governance",
-                        details: "Social contract theory, theories of justice, democracy, rights, liberty, equality, and contemporary debates in political philosophy and governance."
-                    },
-                    {
-                        title: "Ethics & Morality",
-                        icon: "⚖️",
-                        description: "Philosophical approaches to moral questions",
-                        details: "Meta-ethics, normative ethics, applied ethics, moral relativism vs universalism, and cross-cultural perspectives on moral philosophy and ethical reasoning."
-                    }
-                ]
-            },
-            "Psychology": {
-                icon: "🧠",
+            "Environment": {
+                icon: "🌱",
                 color: "from-emerald-500 to-green-500",
-                borderColor: "border-emerald-500/30",
-                description: "Human behavior, cognition, and mental processes",
-                topics: [
+                description: "Environmental issues and conservation",
+                maps: [
                     {
-                        title: "Cognitive Psychology",
-                        icon: "🧩",
-                        description: "Mental processes and information processing",
-                        details: "Perception, memory, learning, attention, problem-solving, decision-making, language processing, and the cognitive approach to understanding human behavior."
+                        title: "Climate Change",
+                        icon: "🌡️",
+                        description: "Global warming, causes, and mitigation strategies",
+                        topics: 37,
+                        difficulty: "Advanced",
+                        lastUpdated: "2024-01-18"
                     },
                     {
-                        title: "Social Psychology",
-                        icon: "👥",
-                        description: "Individual behavior in social contexts",
-                        details: "Attitude formation and change, group dynamics, social influence, conformity, prejudice, stereotypes, interpersonal relationships, and social cognition."
+                        title: "Biodiversity",
+                        icon: "🦋",
+                        description: "Flora, fauna, and conservation efforts",
+                        topics: 43,
+                        difficulty: "Intermediate",
+                        lastUpdated: "2024-01-13"
                     },
                     {
-                        title: "Developmental Psychology",
-                        icon: "👶",
-                        description: "Human development across the lifespan",
-                        details: "Cognitive, emotional, and social development from infancy to old age, developmental theories, attachment, and factors influencing human development."
-                    },
-                    {
-                        title: "Applied Psychology",
-                        icon: "🔬",
-                        description: "Psychology in practical settings",
-                        details: "Clinical psychology, counseling, organizational psychology, educational psychology, health psychology, and psychological assessment and intervention techniques."
+                        title: "Pollution Control",
+                        icon: "🏭",
+                        description: "Air, water, and soil pollution management",
+                        topics: 39,
+                        difficulty: "Intermediate",
+                        lastUpdated: "2024-01-11"
                     }
                 ]
             },
-            "Anthropology": {
-                icon: "🏛️",
-                color: "from-amber-500 to-yellow-500",
-                borderColor: "border-amber-500/30",
-                description: "Human evolution, cultures, and social organization",
-                topics: [
+            "Current Affairs": {
+                icon: "📰",
+                color: "from-red-500 to-rose-500",
+                description: "Latest developments and current events",
+                maps: [
                     {
-                        title: "Physical Anthropology",
-                        icon: "🦴",
-                        description: "Human evolution and biological diversity",
-                        details: "Human evolution, primatology, human genetics, forensic anthropology, and biological variations among human populations across different environments."
-                    },
-                    {
-                        title: "Cultural Anthropology",
-                        icon: "🎭",
-                        description: "Study of human cultures and societies",
-                        details: "Culture concept, kinship systems, economic anthropology, political anthropology, religious practices, and comparative cultural studies across societies."
-                    },
-                    {
-                        title: "Indian Anthropology",
+                        title: "National Affairs",
                         icon: "🇮🇳",
-                        description: "Anthropological studies of Indian society",
-                        details: "Tribal studies, caste and kinship, village studies, urban anthropology, and anthropological perspectives on Indian social institutions and cultural practices."
+                        description: "Recent national developments and policies",
+                        topics: 25,
+                        difficulty: "Beginner",
+                        lastUpdated: "2024-01-20"
                     },
                     {
-                        title: "Applied Anthropology",
-                        icon: "🔧",
-                        description: "Anthropology in development and policy",
-                        details: "Development anthropology, medical anthropology, educational anthropology, and the role of anthropological insights in policy-making and social interventions."
+                        title: "International Relations",
+                        icon: "🌐",
+                        description: "Global affairs and India's foreign policy",
+                        topics: 32,
+                        difficulty: "Intermediate",
+                        lastUpdated: "2024-01-19"
+                    },
+                    {
+                        title: "Awards & Honors",
+                        icon: "🏆",
+                        description: "Recent awards, honors, and recognitions",
+                        topics: 18,
+                        difficulty: "Beginner",
+                        lastUpdated: "2024-01-17"
                     }
                 ]
             },
-            "Political Science": {
-                icon: "🗳️",
-                color: "from-blue-500 to-indigo-500",
-                borderColor: "border-blue-500/30",
-                description: "Political systems, governance, and power dynamics",
-                topics: [
+            "Art & Culture": {
+                icon: "🎭",
+                color: "from-violet-500 to-purple-500",
+                description: "Indian art, culture, and heritage",
+                maps: [
                     {
-                        title: "Political Theory",
-                        icon: "📖",
-                        description: "Concepts and theories of politics",
-                        details: "State, sovereignty, power, authority, democracy, liberty, equality, justice, rights, and contemporary political theories and their relevance to modern governance."
+                        title: "Classical Arts",
+                        icon: "🎨",
+                        description: "Dance, music, and traditional art forms",
+                        topics: 34,
+                        difficulty: "Intermediate",
+                        lastUpdated: "2024-01-15"
                     },
                     {
-                        title: "Comparative Politics",
-                        icon: "🔄",
-                        description: "Comparative study of political systems",
-                        details: "Parliamentary and presidential systems, federal and unitary systems, electoral systems, party systems, and comparative analysis of democratic institutions worldwide."
+                        title: "Monuments & Heritage",
+                        icon: "🕌",
+                        description: "UNESCO sites and architectural marvels",
+                        topics: 41,
+                        difficulty: "Intermediate",
+                        lastUpdated: "2024-01-12"
                     },
                     {
-                        title: "Indian Politics",
-                        icon: "🇮🇳",
-                        description: "Indian political system and processes",
-                        details: "Constitutional framework, electoral system, political parties, coalition politics, federalism, and contemporary challenges to Indian democracy and governance."
-                    },
-                    {
-                        title: "International Politics",
-                        icon: "🌍",
-                        description: "Global political relations and institutions",
-                        details: "International system, balance of power, international organizations, globalization, security studies, and contemporary global challenges and cooperation mechanisms."
+                        title: "Festivals & Traditions",
+                        icon: "🎉",
+                        description: "Indian festivals and cultural traditions",
+                        topics: 29,
+                        difficulty: "Beginner",
+                        lastUpdated: "2024-01-10"
                     }
                 ]
             }
         };
 
-        let currentSubject = null;
+        let currentCourse = null;
         let searchResults = [];
         let isSearching = false;
-        let isDarkMode = true;
 
         // Initialize the application
         document.addEventListener('DOMContentLoaded', function() {
-            initializeApp();
+            populateCourses();
             setupEventListeners();
         });
 
-        function initializeApp() {
-            populateSubjects();
-        }
+        function populateCourses() {
+            const courseList = document.getElementById('courseList');
+            courseList.innerHTML = '';
 
-        function populateSubjects() {
-            const subjectList = document.getElementById('subjectList');
-            subjectList.innerHTML = '';
+            Object.keys(mindMapsData).forEach((course, index) => {
+                const button = document.createElement('button');
+                button.className = `w-full text-left p-4 rounded-xl transition-all duration-300 hover:bg-slate-700/40 focus:outline-none focus:ring-2 focus:ring-blue-400 text-slate-300 hover:text-white hover:scale-105 group`;
+                button.setAttribute('data-course', course);
+                button.style.animationDelay = `${index * 100}ms`;
+                button.classList.add('animate-slide-in');
 
-            Object.keys(subjectsData).forEach((subject, index) => {
-                const li = document.createElement('li');
-                li.innerHTML = `
-                    <button 
-                        class="w-full text-left p-4 rounded-2xl transition-all duration-300 hover:bg-slate-700/30 focus:outline-none focus:ring-2 focus:ring-blue-400 text-slate-300 hover:text-white hover:scale-105 group border ${subjectsData[subject].borderColor} hover:border-opacity-50"
-                        data-subject="${subject}"
-                        tabindex="0"
-                        role="menuitem"
-                        aria-label="Select ${subject}"
-                        style="animation-delay: ${index * 50}ms"
-                    >
-                        <div class="flex items-center space-x-4">
-                            <div class="text-3xl group-hover:scale-110 transition-transform duration-300">${subjectsData[subject].icon}</div>
-                            <div class="flex-1">
-                                <div class="font-bold text-base mb-1">${subject}</div>
-                                <div class="text-xs text-slate-400 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                                    ${subjectsData[subject].topics.length} comprehensive topics
-                                </div>
+                button.innerHTML = `
+                    <div class="flex items-center space-x-4">
+                        <div class="text-3xl group-hover:scale-110 transition-transform duration-300">${mindMapsData[course].icon}</div>
+                        <div class="flex-1">
+                            <div class="font-bold text-lg mb-1 group-hover:text-transparent group-hover:bg-gradient-to-r group-hover:${mindMapsData[course].color} group-hover:bg-clip-text">${course}</div>
+                            <div class="text-xs text-slate-400 opacity-0 group-hover:opacity-100 transition-opacity">
+                                ${mindMapsData[course].maps.length} mind maps
                             </div>
-                            <div class="w-2 h-2 rounded-full bg-gradient-to-r ${subjectsData[subject].color} opacity-60 group-hover:opacity-100 transition-opacity"></div>
                         </div>
-                    </button>
+                        <div class="w-2 h-2 rounded-full bg-gradient-to-r ${mindMapsData[course].color} opacity-60 group-hover:opacity-100 transition-opacity"></div>
+                    </div>
                 `;
-                li.classList.add('animate-slide-in');
-                subjectList.appendChild(li);
+
+                courseList.appendChild(button);
             });
         }
 
         function setupEventListeners() {
-            // Subject selection
-            document.getElementById('subjectList').addEventListener('click', function(e) {
+            // Course selection
+            document.getElementById('courseList').addEventListener('click', function(e) {
                 if (e.target.closest('button')) {
-                    const subject = e.target.closest('button').dataset.subject;
-                    selectSubject(subject);
-                }
-            });
-
-            // Keyboard navigation
-            document.addEventListener('keydown', function(e) {
-                if (e.target.closest('button[data-subject]') && (e.key === 'Enter' || e.key === ' ')) {
-                    e.preventDefault();
-                    const subject = e.target.dataset.subject;
-                    selectSubject(subject);
+                    const course = e.target.closest('button').dataset.course;
+                    selectCourse(course);
                 }
             });
 
             // Search functionality
-            const searchInput = document.getElementById('searchInput');
-            searchInput.addEventListener('input', handleSearch);
-            searchInput.addEventListener('focus', function() {
-                this.classList.add('ring-2', 'ring-blue-500', 'bg-slate-800/70');
-            });
-            searchInput.addEventListener('blur', function() {
-                this.classList.remove('ring-2', 'ring-blue-500');
-                if (!this.value) this.classList.remove('bg-slate-800/70');
-            });
+            document.getElementById('searchInput').addEventListener('input', handleSearch);
 
             // Clear search
-            document.getElementById('clearSearch').addEventListener('click', clearSearch);
             document.getElementById('clearSearchBtn').addEventListener('click', clearSearch);
 
-            // Theme toggle
-            document.getElementById('themeToggle').addEventListener('click', toggleTheme);
-
-            // Modal controls
-            document.getElementById('closeModal').addEventListener('click', closeModal);
-            document.getElementById('topicModal').addEventListener('click', function(e) {
-                if (e.target === this) closeModal();
-            });
-
-            // Keyboard shortcuts
-            document.addEventListener('keydown', function(e) {
-                if (e.key === 'Escape') {
-                    closeModal();
-                }
-                if (e.ctrlKey && e.key === 'k') {
+            // All explore buttons redirect to external link
+            document.addEventListener('click', function(e) {
+                if (e.target.closest('.explore-btn')) {
                     e.preventDefault();
-                    searchInput.focus();
+                    window.open('https://www.iastune.in/mind-map/light/', '_blank');
                 }
             });
         }
 
-        function selectSubject(subject) {
-            currentSubject = subject;
+        function selectCourse(course) {
+            currentCourse = course;
             isSearching = false;
             
             // Clear search
             document.getElementById('searchInput').value = '';
-            document.getElementById('clearSearch').classList.remove('opacity-100');
-            document.getElementById('clearSearch').classList.add('opacity-0');
             
             // Update active state
-            document.querySelectorAll('#subjectList button').forEach(btn => {
-                btn.classList.remove('subject-active');
+            document.querySelectorAll('#courseList button').forEach(btn => {
+                btn.classList.remove('course-active');
             });
-            const activeBtn = document.querySelector(`#subjectList [data-subject="${subject}"]`);
-            if (activeBtn) activeBtn.classList.add('subject-active');
+            const activeBtn = document.querySelector(`#courseList [data-course="${course}"]`);
+            if (activeBtn) activeBtn.classList.add('course-active');
 
-            // Show subject content
-            showSubjectTopics(subject);
+            showCourseMindMaps(course);
         }
 
-        function showSubjectTopics(subject) {
-            const welcomeMessage = document.getElementById('welcomeMessage');
-            const subjectHeader = document.getElementById('subjectHeader');
-            const subjectTitle = document.getElementById('subjectTitle');
-            const subjectDescription = document.getElementById('subjectDescription');
-            const topicsGrid = document.getElementById('topicsGrid');
+        function showCourseMindMaps(course) {
+            const welcomeSection = document.getElementById('welcomeSection');
+            const courseHeader = document.getElementById('courseHeader');
+            const courseTitle = document.getElementById('courseTitle');
+            const courseDescription = document.getElementById('courseDescription');
+            const courseIcon = document.getElementById('courseIcon');
+            const mindMapsGrid = document.getElementById('mindMapsGrid');
             const noResults = document.getElementById('noResults');
 
-            // Hide other elements
-            welcomeMessage.classList.add('hidden');
+            // Hide other sections
+            welcomeSection.classList.add('hidden');
             noResults.classList.add('hidden');
 
-            // Show subject header
-            subjectTitle.innerHTML = `${subjectsData[subject].icon} ${subject}`;
-            subjectDescription.textContent = subjectsData[subject].description;
-            subjectHeader.classList.remove('hidden');
+            // Show course header
+            courseTitle.textContent = course;
+            courseDescription.textContent = mindMapsData[course].description;
+            courseIcon.textContent = mindMapsData[course].icon;
+            courseHeader.classList.remove('hidden');
 
-            // Fade out current grid
-            topicsGrid.classList.remove('show');
-            
-            setTimeout(() => {
-                // Populate topics
-                const topics = subjectsData[subject].topics;
-                topicsGrid.innerHTML = '';
+            // Populate mind maps
+            const maps = mindMapsData[course].maps;
+            mindMapsGrid.innerHTML = '';
 
-                topics.forEach((topic, index) => {
-                    const topicCard = createTopicCard(topic, subject, index);
-                    topicsGrid.appendChild(topicCard);
-                });
-
-                // Fade in new grid
-                setTimeout(() => {
-                    topicsGrid.classList.add('show');
-                }, 100);
-            }, 300);
+            maps.forEach((map, index) => {
+                const mapCard = createMindMapCard(map, course, index);
+                mindMapsGrid.appendChild(mapCard);
+            });
         }
 
-        function createTopicCard(topic, subject, index) {
+        function createMindMapCard(map, course, index) {
             const card = document.createElement('div');
-            card.className = `card-hover glass-light rounded-3xl p-8 cursor-pointer group relative overflow-hidden border ${subjectsData[subject].borderColor} hover:border-opacity-70`;
-            card.setAttribute('tabindex', '0');
-            card.setAttribute('role', 'button');
-            card.setAttribute('aria-label', `Open ${topic.title} details`);
-
-            // Add staggered animation delay
+            card.className = `interactive-card glass-light rounded-2xl p-6 cursor-pointer group relative overflow-hidden`;
             card.style.animationDelay = `${index * 150}ms`;
             card.classList.add('animate-scale-in');
 
+            const difficultyColors = {
+                'Beginner': 'text-green-400',
+                'Intermediate': 'text-yellow-400',
+                'Advanced': 'text-red-400'
+            };
+
             card.innerHTML = `
-                <div class="relative z-10 h-full flex flex-col">
-                    <!-- Header Section -->
-                    <div class="flex items-start justify-between mb-6">
-                        <div class="text-5xl group-hover:scale-110 transition-transform duration-300">${topic.icon}</div>
-                        <div class="w-4 h-4 rounded-full bg-gradient-to-r ${subjectsData[subject].color} opacity-60 group-hover:opacity-100 transition-opacity"></div>
-                    </div>
-                    
-                    <!-- Content Section -->
-                    <div class="flex-1 flex flex-col">
-                        <h3 class="text-2xl font-black text-white mb-4 group-hover:text-transparent group-hover:bg-gradient-to-r group-hover:${subjectsData[subject].color} group-hover:bg-clip-text transition-all duration-300">
-                            ${topic.title}
-                        </h3>
-                        
-                        <p class="text-slate-400 leading-relaxed mb-6 flex-1 text-base">
-                            ${topic.description}
-                        </p>
-                        
-                        <!-- Footer Section -->
-                        <div class="flex items-center justify-between mt-auto">
-                            <span class="text-xs font-bold bg-gradient-to-r ${subjectsData[subject].color} bg-clip-text text-transparent px-4 py-2 rounded-full border ${subjectsData[subject].borderColor}">
-                                ${subject}
-                            </span>
-                            <button class="view-button bg-gradient-to-r ${subjectsData[subject].color} text-white px-6 py-3 rounded-2xl text-sm font-bold hover:scale-105 transition-all duration-300 shadow-lg">
-                                Explore →
-                            </button>
+                <div class="relative z-10">
+                    <!-- Header -->
+                    <div class="flex items-start justify-between mb-4">
+                        <div class="text-5xl group-hover:scale-110 transition-transform duration-300">${map.icon}</div>
+                        <div class="text-right">
+                            <div class="text-xs ${difficultyColors[map.difficulty]} font-bold mb-1">${map.difficulty}</div>
+                            <div class="text-xs text-slate-500">${map.lastUpdated}</div>
                         </div>
                     </div>
+                    
+                    <!-- Content -->
+                    <h3 class="text-xl font-bold text-white mb-3 group-hover:text-transparent group-hover:bg-gradient-to-r group-hover:${mindMapsData[course].color} group-hover:bg-clip-text transition-all duration-300">
+                        ${map.title}
+                    </h3>
+                    
+                    <p class="text-slate-400 text-sm leading-relaxed mb-4">
+                        ${map.description}
+                    </p>
+                    
+                    <!-- Mind Map Preview -->
+                    <div class="mind-map-preview h-32 mb-4 flex items-center justify-center">
+                        <div class="text-center">
+                            <div class="text-4xl mb-2 opacity-60">${map.icon}</div>
+                            <div class="text-xs text-slate-500">Interactive Mind Map</div>
+                        </div>
+                    </div>
+                    
+                    <!-- Stats -->
+                    <div class="flex items-center justify-between mb-4">
+                        <div class="flex items-center space-x-4 text-sm">
+                            <span class="text-blue-400">📊 ${map.topics} topics</span>
+                        </div>
+                        <div class="w-3 h-3 rounded-full bg-gradient-to-r ${mindMapsData[course].color} opacity-60 group-hover:opacity-100 transition-opacity animate-pulse"></div>
+                    </div>
+                    
+                    <!-- Action Button -->
+                    <button class="explore-btn w-full text-white py-3 rounded-xl font-bold text-sm hover:scale-105 transition-all duration-300 shadow-lg">
+                        🧠 Explore Mind Map
+                    </button>
                 </div>
                 
-                <!-- Gradient overlay on hover -->
-                <div class="absolute inset-0 bg-gradient-to-br ${subjectsData[subject].color} opacity-0 group-hover:opacity-5 transition-opacity duration-500"></div>
-                
-                <!-- Shimmer effect -->
-                <div class="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 shimmer-effect"></div>
+                <!-- Gradient overlay -->
+                <div class="absolute inset-0 bg-gradient-to-br ${mindMapsData[course].color} opacity-0 group-hover:opacity-5 transition-opacity duration-300"></div>
             `;
-
-            card.addEventListener('click', () => openTopicModal(topic, subject));
-            card.addEventListener('keydown', (e) => {
-                if (e.key === 'Enter' || e.key === ' ') {
-                    e.preventDefault();
-                    openTopicModal(topic, subject);
-                }
-            });
 
             return card;
         }
 
         function handleSearch(e) {
             const query = e.target.value.toLowerCase().trim();
-            const clearBtn = document.getElementById('clearSearch');
             
             if (query === '') {
                 clearSearch();
-                clearBtn.classList.remove('opacity-100');
-                clearBtn.classList.add('opacity-0');
                 return;
             }
 
-            clearBtn.classList.remove('opacity-0');
-            clearBtn.classList.add('opacity-100');
             isSearching = true;
             searchResults = [];
             
-            // Search through all subjects and topics
-            Object.keys(subjectsData).forEach(subject => {
-                subjectsData[subject].topics.forEach(topic => {
-                    if (topic.title.toLowerCase().includes(query) || 
-                        topic.description.toLowerCase().includes(query) ||
-                        topic.details.toLowerCase().includes(query) ||
-                        subject.toLowerCase().includes(query)) {
+            // Search through all courses and mind maps
+            Object.keys(mindMapsData).forEach(course => {
+                mindMapsData[course].maps.forEach(map => {
+                    if (map.title.toLowerCase().includes(query) || 
+                        map.description.toLowerCase().includes(query) ||
+                        course.toLowerCase().includes(query)) {
                         searchResults.push({
-                            subject: subject,
-                            topic: topic
+                            course: course,
+                            map: map
                         });
                     }
                 });
@@ -1194,311 +789,133 @@
         }
 
         function displaySearchResults(query) {
-            const welcomeMessage = document.getElementById('welcomeMessage');
-            const subjectHeader = document.getElementById('subjectHeader');
-            const subjectTitle = document.getElementById('subjectTitle');
-            const subjectDescription = document.getElementById('subjectDescription');
-            const topicsGrid = document.getElementById('topicsGrid');
+            const welcomeSection = document.getElementById('welcomeSection');
+            const courseHeader = document.getElementById('courseHeader');
+            const courseTitle = document.getElementById('courseTitle');
+            const courseDescription = document.getElementById('courseDescription');
+            const courseIcon = document.getElementById('courseIcon');
+            const mindMapsGrid = document.getElementById('mindMapsGrid');
             const noResults = document.getElementById('noResults');
 
-            welcomeMessage.classList.add('hidden');
+            welcomeSection.classList.add('hidden');
 
             if (searchResults.length === 0) {
-                subjectHeader.classList.add('hidden');
-                topicsGrid.classList.remove('show');
+                courseHeader.classList.add('hidden');
+                mindMapsGrid.innerHTML = '';
                 noResults.classList.remove('hidden');
                 return;
             }
 
             // Show search results header
-            subjectTitle.innerHTML = `🔍 Search Results for "<span class="gradient-text">${query}</span>"`;
-            subjectDescription.textContent = `Found ${searchResults.length} matching topics across all subjects`;
-            subjectHeader.classList.remove('hidden');
+            courseTitle.innerHTML = `🔍 Search Results for "${query}"`;
+            courseDescription.textContent = `Found ${searchResults.length} mind maps matching your search`;
+            courseIcon.textContent = '🎯';
+            courseHeader.classList.remove('hidden');
             noResults.classList.add('hidden');
 
-            // Fade out current grid
-            topicsGrid.classList.remove('show');
-            
-            setTimeout(() => {
-                // Populate search results
-                topicsGrid.innerHTML = '';
-                searchResults.forEach((result, index) => {
-                    const topicCard = createSearchResultCard(result, index, query);
-                    topicsGrid.appendChild(topicCard);
-                });
-
-                // Fade in results
-                setTimeout(() => {
-                    topicsGrid.classList.add('show');
-                    
-                    // Add search highlight animation
-                    setTimeout(() => {
-                        document.querySelectorAll('.search-result-card').forEach((card, index) => {
-                            setTimeout(() => {
-                                card.classList.add('search-highlight');
-                                setTimeout(() => {
-                                    card.classList.remove('search-highlight');
-                                }, 1500);
-                            }, index * 150);
-                        });
-                    }, 400);
-                }, 100);
-            }, 300);
+            // Populate search results
+            mindMapsGrid.innerHTML = '';
+            searchResults.forEach((result, index) => {
+                const mapCard = createSearchResultCard(result, index, query);
+                mindMapsGrid.appendChild(mapCard);
+            });
         }
 
         function createSearchResultCard(result, index, query) {
             const card = document.createElement('div');
-            card.className = `search-result-card card-hover glass-light rounded-3xl p-8 cursor-pointer group relative overflow-hidden border ${subjectsData[result.subject].borderColor} hover:border-opacity-70`;
-            card.setAttribute('tabindex', '0');
-            card.setAttribute('role', 'button');
-            card.setAttribute('aria-label', `Open ${result.topic.title} from ${result.subject}`);
-
-            // Add staggered animation delay
+            card.className = `interactive-card glass-light rounded-2xl p-6 cursor-pointer group relative overflow-hidden`;
             card.style.animationDelay = `${index * 150}ms`;
             card.classList.add('animate-scale-in');
 
             // Highlight matching text
             const highlightText = (text, query) => {
                 const regex = new RegExp(`(${query})`, 'gi');
-                return text.replace(regex, '<mark class="bg-yellow-400/30 text-yellow-300 px-1 rounded font-bold">$1</mark>');
+                return text.replace(regex, '<span class="search-highlight">$1</span>');
+            };
+
+            const difficultyColors = {
+                'Beginner': 'text-green-400',
+                'Intermediate': 'text-yellow-400',
+                'Advanced': 'text-red-400'
             };
 
             card.innerHTML = `
-                <div class="relative z-10 h-full flex flex-col">
-                    <!-- Header Section -->
-                    <div class="flex items-start justify-between mb-6">
-                        <div class="flex items-center space-x-4">
-                            <span class="text-3xl">${subjectsData[result.subject].icon}</span>
-                            <span class="text-xs font-bold bg-gradient-to-r ${subjectsData[result.subject].color} bg-clip-text text-transparent px-3 py-1 rounded-full border ${subjectsData[result.subject].borderColor}">
-                                ${result.subject}
+                <div class="relative z-10">
+                    <!-- Header -->
+                    <div class="flex items-start justify-between mb-4">
+                        <div class="flex items-center space-x-3">
+                            <span class="text-2xl">${mindMapsData[result.course].icon}</span>
+                            <span class="text-xs font-bold bg-gradient-to-r ${mindMapsData[result.course].color} bg-clip-text text-transparent px-2 py-1 rounded-full border border-slate-600">
+                                ${result.course}
                             </span>
                         </div>
-                        <div class="text-4xl group-hover:scale-110 transition-transform duration-300">${result.topic.icon}</div>
+                        <div class="text-right">
+                            <div class="text-4xl mb-2">${result.map.icon}</div>
+                            <div class="text-xs ${difficultyColors[result.map.difficulty]} font-bold">${result.map.difficulty}</div>
+                        </div>
                     </div>
                     
-                    <!-- Content Section -->
-                    <div class="flex-1 flex flex-col">
-                        <h3 class="text-2xl font-black text-white mb-4 group-hover:text-transparent group-hover:bg-gradient-to-r group-hover:${subjectsData[result.subject].color} group-hover:bg-clip-text transition-all duration-300">
-                            ${highlightText(result.topic.title, query)}
-                        </h3>
-                        
-                        <p class="text-slate-400 leading-relaxed mb-6 flex-1 text-base">
-                            ${highlightText(result.topic.description, query)}
-                        </p>
-                        
-                        <!-- Footer Section -->
-                        <div class="flex items-center justify-between mt-auto">
-                            <span class="text-blue-400 text-sm font-bold flex items-center">
-                                <span class="w-2 h-2 bg-blue-400 rounded-full mr-2 animate-pulse"></span>
-                                Match found
-                            </span>
-                            <button class="view-button bg-gradient-to-r ${subjectsData[result.subject].color} text-white px-6 py-3 rounded-2xl text-sm font-bold hover:scale-105 transition-all duration-300 shadow-lg">
-                                View Details →
-                            </button>
+                    <!-- Content -->
+                    <h3 class="text-xl font-bold text-white mb-3 group-hover:text-transparent group-hover:bg-gradient-to-r group-hover:${mindMapsData[result.course].color} group-hover:bg-clip-text transition-all duration-300">
+                        ${highlightText(result.map.title, query)}
+                    </h3>
+                    
+                    <p class="text-slate-400 text-sm leading-relaxed mb-4">
+                        ${highlightText(result.map.description, query)}
+                    </p>
+                    
+                    <!-- Stats -->
+                    <div class="flex items-center justify-between mb-4">
+                        <div class="flex items-center space-x-4 text-sm">
+                            <span class="text-blue-400">📊 ${result.map.topics} topics</span>
+                            <span class="text-slate-500">${result.map.lastUpdated}</span>
                         </div>
+                        <span class="text-blue-400 text-xs font-bold">Match found</span>
                     </div>
+                    
+                    <!-- Action Button -->
+                    <button class="explore-btn w-full text-white py-3 rounded-xl font-bold text-sm hover:scale-105 transition-all duration-300 shadow-lg">
+                        🧠 Explore Mind Map
+                    </button>
                 </div>
                 
-                <!-- Gradient overlay on hover -->
-                <div class="absolute inset-0 bg-gradient-to-br from-yellow-500/5 to-blue-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                <!-- Gradient overlay -->
+                <div class="absolute inset-0 bg-gradient-to-br from-yellow-500/5 to-blue-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
             `;
-
-            card.addEventListener('click', () => openTopicModal(result.topic, result.subject));
-            card.addEventListener('keydown', (e) => {
-                if (e.key === 'Enter' || e.key === ' ') {
-                    e.preventDefault();
-                    openTopicModal(result.topic, result.subject);
-                }
-            });
 
             return card;
         }
 
-        function openTopicModal(topic, subject) {
-            const modal = document.getElementById('topicModal');
-            const modalTitle = document.getElementById('modalTitle');
-            const modalSubject = document.getElementById('modalSubject');
-            const modalContent = document.getElementById('modalContent');
-
-            modalTitle.textContent = topic.title;
-            modalSubject.innerHTML = `${subjectsData[subject].icon} ${subject}`;
-            
-            modalContent.innerHTML = `
-                <div class="mb-10">
-                    <div class="flex items-center mb-8">
-                        <span class="text-6xl mr-6">${topic.icon}</span>
-                        <div class="flex-1">
-                            <p class="text-2xl text-slate-300 font-medium mb-4">${topic.description}</p>
-                            <div class="flex items-center space-x-3">
-                                <span class="inline-block bg-gradient-to-r ${subjectsData[subject].color} bg-clip-text text-transparent px-4 py-2 rounded-2xl border ${subjectsData[subject].borderColor} text-sm font-bold">
-                                    ${subject}
-                                </span>
-                                <span class="text-slate-500 text-sm">•</span>
-                                <span class="text-slate-400 text-sm">UPSC/APPSC Preparation</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="glass-light rounded-3xl p-10 mb-10 border border-slate-700/30">
-                    <h4 class="text-3xl font-black text-white mb-6 flex items-center">
-                        <span class="text-3xl mr-4">📚</span>
-                        Comprehensive Overview
-                    </h4>
-                    <p class="text-slate-300 leading-relaxed text-lg">${topic.details}</p>
-                </div>
-
-                <div class="grid md:grid-cols-2 gap-8 mb-10">
-                    <div class="glass-light rounded-3xl p-8 border border-green-500/20 hover:border-green-500/40 transition-colors">
-                        <h5 class="font-black text-green-400 mb-6 flex items-center text-xl">
-                            <span class="text-2xl mr-3">🎯</span>
-                            Key Learning Points
-                        </h5>
-                        <ul class="text-slate-300 space-y-3">
-                            <li class="flex items-start">
-                                <span class="text-green-400 mr-3 text-lg">•</span>
-                                Comprehensive UPSC/APPSC coverage
-                            </li>
-                            <li class="flex items-start">
-                                <span class="text-green-400 mr-3 text-lg">•</span>
-                                Updated with latest developments
-                            </li>
-                            <li class="flex items-start">
-                                <span class="text-green-400 mr-3 text-lg">•</span>
-                                Interactive mind map format
-                            </li>
-                            <li class="flex items-start">
-                                <span class="text-green-400 mr-3 text-lg">•</span>
-                                Practice questions included
-                            </li>
-                        </ul>
-                    </div>
-                    
-                    <div class="glass-light rounded-3xl p-8 border border-purple-500/20 hover:border-purple-500/40 transition-colors">
-                        <h5 class="font-black text-purple-400 mb-6 flex items-center text-xl">
-                            <span class="text-2xl mr-3">📈</span>
-                            Exam Relevance
-                        </h5>
-                        <ul class="text-slate-300 space-y-3">
-                            <li class="flex items-start">
-                                <span class="text-purple-400 mr-3 text-lg">•</span>
-                                High weightage in Prelims
-                            </li>
-                            <li class="flex items-start">
-                                <span class="text-purple-400 mr-3 text-lg">•</span>
-                                Mains answer writing practice
-                            </li>
-                            <li class="flex items-start">
-                                <span class="text-purple-400 mr-3 text-lg">•</span>
-                                Interview preparation material
-                            </li>
-                            <li class="flex items-start">
-                                <span class="text-purple-400 mr-3 text-lg">•</span>
-                                Current affairs integration
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="glass-light rounded-3xl p-8 border border-amber-500/20 hover:border-amber-500/40 transition-colors">
-                    <h5 class="font-black text-amber-400 mb-4 flex items-center text-xl">
-                        <span class="text-2xl mr-3">💡</span>
-                        Study Tips & Strategy
-                    </h5>
-                    <p class="text-slate-300 leading-relaxed text-lg">
-                        Create visual connections, practice with previous year questions, and regularly revise using spaced repetition. 
-                        Connect this topic with current events and other subjects for holistic understanding. Use active recall techniques and mind mapping for better retention.
-                    </p>
-                </div>
-            `;
-
-            modal.classList.remove('hidden');
-            modal.classList.add('flex');
-            document.body.style.overflow = 'hidden';
-        }
-
-        function closeModal() {
-            const modal = document.getElementById('topicModal');
-            modal.classList.add('hidden');
-            modal.classList.remove('flex');
-            document.body.style.overflow = 'auto';
-        }
-
         function clearSearch() {
-            const searchInput = document.getElementById('searchInput');
-            searchInput.value = '';
-            document.getElementById('clearSearch').classList.remove('opacity-100');
-            document.getElementById('clearSearch').classList.add('opacity-0');
-            
+            document.getElementById('searchInput').value = '';
             searchResults = [];
             isSearching = false;
             
-            if (currentSubject) {
-                showSubjectTopics(currentSubject);
+            if (currentCourse) {
+                showCourseMindMaps(currentCourse);
             } else {
-                showWelcomeMessage();
+                showWelcomeSection();
             }
         }
 
-        function showWelcomeMessage() {
-            const welcomeMessage = document.getElementById('welcomeMessage');
-            const subjectHeader = document.getElementById('subjectHeader');
-            const topicsGrid = document.getElementById('topicsGrid');
+        function showWelcomeSection() {
+            const welcomeSection = document.getElementById('welcomeSection');
+            const courseHeader = document.getElementById('courseHeader');
+            const mindMapsGrid = document.getElementById('mindMapsGrid');
             const noResults = document.getElementById('noResults');
 
-            subjectHeader.classList.add('hidden');
-            topicsGrid.classList.remove('show');
+            courseHeader.classList.add('hidden');
+            mindMapsGrid.innerHTML = '';
             noResults.classList.add('hidden');
-            welcomeMessage.classList.remove('hidden');
+            welcomeSection.classList.remove('hidden');
             
             // Clear active states
-            document.querySelectorAll('button[data-subject]').forEach(btn => {
-                btn.classList.remove('subject-active');
+            document.querySelectorAll('button[data-course]').forEach(btn => {
+                btn.classList.remove('course-active');
             });
             
-            currentSubject = null;
+            currentCourse = null;
         }
-
-        function toggleTheme() {
-            isDarkMode = !isDarkMode;
-            const body = document.body;
-            const darkIcon = document.getElementById('darkIcon');
-            const lightIcon = document.getElementById('lightIcon');
-            
-            if (isDarkMode) {
-                body.classList.remove('light-mode');
-                darkIcon.classList.remove('opacity-0');
-                lightIcon.classList.add('opacity-0');
-            } else {
-                body.classList.add('light-mode');
-                darkIcon.classList.add('opacity-0');
-                lightIcon.classList.remove('opacity-0');
-            }
-        }
-
-        // Add smooth scrolling for better UX
-        document.documentElement.style.scrollBehavior = 'smooth';
-
-        // Add some interactive particles effect
-        function createParticles() {
-            const particles = document.createElement('div');
-            particles.className = 'fixed inset-0 pointer-events-none z-0';
-            
-            for (let i = 0; i < 50; i++) {
-                const particle = document.createElement('div');
-                particle.className = 'absolute w-1 h-1 bg-blue-400/20 rounded-full';
-                particle.style.left = Math.random() * 100 + '%';
-                particle.style.top = Math.random() * 100 + '%';
-                particle.style.animationDelay = Math.random() * 20 + 's';
-                particle.style.animation = 'float 20s linear infinite';
-                particles.appendChild(particle);
-            }
-            
-            document.body.appendChild(particles);
-        }
-
-        // Initialize particles on load
-        setTimeout(createParticles, 1000);
     </script>
-<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'96c8e907252249d5',t:'MTc1NDc1OTg4Mi4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'96d6392bf7cbdf6e',t:'MTc1NDg5OTQ3OS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
