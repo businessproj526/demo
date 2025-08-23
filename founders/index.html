@@ -3,2243 +3,695 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>UPSC Master - Interactive Simulations & Mind Maps</title>
-    <meta name="description" content="Learn by doing. Master every UPSC concept with interactive simulations and crystal-clear mind maps. Short, visual, and unforgettable.">
-    
-    <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Source+Serif+Pro:wght@400;600;700&display=swap" rel="stylesheet">
-    
-    <!-- Tailwind CSS -->
+    <title>Founders' Circle - Round Table Animation</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    fontFamily: {
-                        'sans': ['Inter', 'system-ui', 'sans-serif'],
-                        'serif': ['Source Serif Pro', 'serif'],
-                    },
-                    colors: {
-                        'electric-blue': '#0066FF',
-                        'electric-blue-dark': '#0052CC',
-                    },
-                    animation: {
-                        'fade-in': 'fadeIn 0.6s ease-out',
-                        'slide-up': 'slideUp 0.8s ease-out',
-                        'float': 'float 3s ease-in-out infinite',
-                    }
-                }
-            }
-        }
-    </script>
-    
     <style>
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
         
-        @keyframes slideUp {
-            from { opacity: 0; transform: translateY(30px); }
-            to { opacity: 1; transform: translateY(0); }
+        * {
+            font-family: 'Inter', sans-serif;
         }
-        
-        @keyframes float {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-10px); }
-        }
-        
-        @keyframes pulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.05); }
-        }
-        
-        @keyframes glow {
-            0%, 100% { box-shadow: 0 0 20px rgba(0, 102, 255, 0.3); }
-            50% { box-shadow: 0 0 40px rgba(0, 102, 255, 0.6); }
-        }
-        
-        @keyframes shimmer {
-            0% { background-position: -200% 0; }
-            100% { background-position: 200% 0; }
-        }
-        
-        .glassmorphism {
-            background: rgba(255, 255, 255, 0.15);
-            backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-        }
-        
-        .gradient-bg {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+
+        .founders-container {
             position: relative;
-            overflow: hidden;
+            width: 500px;
+            height: 500px;
+            margin: 0 auto;
         }
-        
-        .gradient-bg::before {
-            content: '';
+
+        .center-circle {
             position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(45deg, transparent 30%, rgba(255, 255, 255, 0.1) 50%, transparent 70%);
-            animation: shimmer 3s infinite;
-        }
-        
-        .text-gradient {
-            background: linear-gradient(135deg, #0066FF, #00CCFF, #FF6B6B);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            background-size: 200% 200%;
-            animation: shimmer 3s ease-in-out infinite;
-        }
-        
-        .simulation-preview {
-            background: linear-gradient(45deg, #f0f9ff, #e0f2fe, #fef3c7);
-            border: 3px solid transparent;
-            background-clip: padding-box;
-            position: relative;
-        }
-        
-        .simulation-preview::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            padding: 3px;
-            background: linear-gradient(45deg, #0066FF, #00CCFF, #FF6B6B);
-            border-radius: inherit;
-            mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-            mask-composite: exclude;
-            animation: glow 2s ease-in-out infinite;
-        }
-        
-        .feature-card {
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .feature-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-            transition: left 0.5s;
-        }
-        
-        .feature-card:hover::before {
-            left: 100%;
-        }
-        
-        .feature-card:hover {
-            transform: translateY(-10px) scale(1.02);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
-        }
-        
-        .btn-primary {
-            background: linear-gradient(135deg, #0066FF, #0052CC);
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .btn-primary::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
-            transition: left 0.5s;
-        }
-        
-        .btn-primary:hover::before {
-            left: 100%;
-        }
-        
-        .btn-primary:hover {
-            transform: translateY(-3px) scale(1.05);
-            box-shadow: 0 15px 35px rgba(0, 102, 255, 0.4);
-        }
-        
-        .btn-secondary {
-            background: rgba(255, 255, 255, 0.2);
-            backdrop-filter: blur(10px);
-            border: 2px solid rgba(255, 255, 255, 0.3);
-            transition: all 0.4s ease;
-        }
-        
-        .btn-secondary:hover {
-            background: rgba(255, 255, 255, 0.3);
-            transform: translateY(-2px);
-            box-shadow: 0 10px 25px rgba(255, 255, 255, 0.2);
-        }
-        
-        .trust-badge {
-            transition: all 0.3s ease;
-            backdrop-filter: blur(10px);
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 50px;
-            padding: 8px 16px;
-        }
-        
-        .trust-badge:hover {
-            transform: scale(1.1);
-            background: rgba(255, 255, 255, 0.2);
-        }
-        
-        .course-card {
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .course-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(45deg, transparent, rgba(0, 102, 255, 0.1), transparent);
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-        
-        .course-card:hover::before {
-            opacity: 1;
-        }
-        
-        .course-card:hover {
-            transform: translateY(-8px) rotateX(5deg);
-            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.2);
-        }
-        
-        .pricing-card {
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .pricing-card:hover {
-            transform: translateY(-10px) scale(1.02);
-            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.15);
-        }
-        
-        .logo-container {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-        
-        .logo {
-            width: 40px;
-            height: 40px;
-            background: linear-gradient(135deg, #0066FF, #00CCFF);
-            border-radius: 12px;
+            top: 250px;
+            left: 250px;
+            transform: translate(-50%, -50%);
+            width: 140px;
+            height: 140px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
+            color: white;
+            font-weight: 700;
+            font-size: 16px;
+            text-align: center;
+            box-shadow: 0 0 30px rgba(102, 126, 234, 0.4);
+            animation: centerGlow 4s ease-in-out infinite alternate;
+            z-index: 10;
+        }
+
+        @keyframes centerGlow {
+            from {
+                box-shadow: 0 0 30px rgba(102, 126, 234, 0.4);
+                transform: translate(-50%, -50%) scale(1);
+            }
+            to {
+                box-shadow: 0 0 50px rgba(102, 126, 234, 0.8);
+                transform: translate(-50%, -50%) scale(1.02);
+            }
+        }
+
+        .founder-name {
+            position: absolute;
+            width: 160px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            border-radius: 25px;
+            color: white;
+            font-weight: 600;
+            font-size: 14px;
+            cursor: pointer;
+            transition: transform 1.5s ease-in-out, box-shadow 0.3s ease;
+            box-shadow: 0 8px 25px rgba(240, 147, 251, 0.3);
+            z-index: 5;
+            top: 250px;
+            left: 250px;
+        }
+
+        .founder-name:hover {
+            animation-play-state: paused;
+            transform: scale(1.1) !important;
+            box-shadow: 0 12px 35px rgba(240, 147, 251, 0.5);
+            z-index: 20;
+        }
+
+        .founder-tooltip {
+            position: absolute;
+            bottom: -60px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(0, 0, 0, 0.9);
+            color: white;
+            padding: 8px 12px;
+            border-radius: 8px;
+            font-size: 12px;
+            white-space: nowrap;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+            z-index: 30;
+        }
+
+        .founder-name:hover .founder-tooltip {
+            opacity: 1;
+        }
+
+        .founder-tooltip::before {
+            content: '';
+            position: absolute;
+            top: -5px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-left: 5px solid transparent;
+            border-right: 5px solid transparent;
+            border-bottom: 5px solid rgba(0, 0, 0, 0.9);
+        }
+
+        /* Position classes for the three seats - perfect triangle formation */
+        .position-0 { /* Top: 0° */
+            transform: translate(-50%, calc(-50% - 180px));
+        }
+        
+        .position-1 { /* Bottom-Right: 120° */
+            transform: translate(calc(-50% + 180px * 0.866), calc(-50% + 180px * 0.5));
+        }
+        
+        .position-2 { /* Bottom-Left: 240° */
+            transform: translate(calc(-50% - 180px * 0.866), calc(-50% + 180px * 0.5));
+        }
+
+        .team-card {
+            background: linear-gradient(135deg, #1f2937 0%, #374151 100%);
+            border-radius: 20px;
+            padding: 1.5rem;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+            opacity: 0;
+            transform: translateY(30px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .team-card.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .team-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 60px rgba(240, 147, 251, 0.3);
+            border: 1px solid rgba(240, 147, 251, 0.3);
+        }
+
+        .profile-img {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 24px;
+            font-weight: 600;
+            margin: 0 auto 1rem;
+        }
+
+        @media (max-width: 768px) {
+            .founders-container {
+                width: 350px;
+                height: 350px;
+                margin: 0 auto;
+            }
+            
+            .center-circle {
+                width: 100px;
+                height: 100px;
+                font-size: 12px;
+            }
+            
+            .founder-name {
+                width: 120px;
+                height: 40px;
+                font-size: 12px;
+                top: 175px;
+                left: 175px;
+            }
+            
+            /* Mobile position classes - scaled down radius for triangle */
+            .position-0 { /* Top: 0° */
+                transform: translate(-50%, calc(-50% - 130px)) !important;
+            }
+            
+            .position-1 { /* Bottom-Right: 120° */
+                transform: translate(calc(-50% + 130px * 0.866), calc(-50% + 130px * 0.5)) !important;
+            }
+            
+            .position-2 { /* Bottom-Left: 240° */
+                transform: translate(calc(-50% - 130px * 0.866), calc(-50% + 130px * 0.5)) !important;
+            }
+            
+            .founder-tooltip {
+                font-size: 10px;
+                padding: 6px 8px;
+                bottom: -50px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .founders-container {
+                width: 280px;
+                height: 280px;
+            }
+            
+            .center-circle {
+                width: 80px;
+                height: 80px;
+                font-size: 10px;
+                top: 140px;
+                left: 140px;
+            }
+            
+            .founder-name {
+                width: 100px;
+                height: 35px;
+                font-size: 11px;
+                top: 140px;
+                left: 140px;
+            }
+            
+            /* Extra small mobile - even smaller radius for triangle */
+            .position-0 { /* Top: 0° */
+                transform: translate(-50%, calc(-50% - 100px)) !important;
+            }
+            
+            .position-1 { /* Bottom-Right: 120° */
+                transform: translate(calc(-50% + 100px * 0.866), calc(-50% + 100px * 0.5)) !important;
+            }
+            
+            .position-2 { /* Bottom-Left: 240° */
+                transform: translate(calc(-50% - 100px * 0.866), calc(-50% + 100px * 0.5)) !important;
+            }
+        }
+
+        /* UPSC Experts Section Styles */
+        @keyframes animate-spin-slow {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        
+        .animate-spin-slow {
+            animation: animate-spin-slow 8s linear infinite;
+        }
+
+        .expert-card {
+            perspective: 1000px;
+            height: 320px;
+            cursor: pointer;
+        }
+
+        .expert-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            text-align: center;
+            transition: transform 0.8s;
+            transform-style: preserve-3d;
+        }
+
+        .expert-card:hover .expert-inner {
+            transform: rotateY(180deg);
+        }
+
+        .expert-front, .expert-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            border-radius: 20px;
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .expert-front {
+            background: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 100%);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.2);
+            box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+        }
+
+        .expert-back {
+            background: linear-gradient(135deg, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.6) 100%);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255,255,255,0.1);
+            transform: rotateY(180deg);
+            box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+        }
+
+        .expert-avatar {
+            position: relative;
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 50%, #d97706 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            margin-bottom: 1rem;
+            box-shadow: 0 0 30px rgba(251, 191, 36, 0.5);
+            animation: avatarGlow 3s ease-in-out infinite alternate;
+        }
+
+        @keyframes avatarGlow {
+            from {
+                box-shadow: 0 0 30px rgba(251, 191, 36, 0.5);
+                transform: scale(1);
+            }
+            to {
+                box-shadow: 0 0 40px rgba(251, 191, 36, 0.8);
+                transform: scale(1.05);
+            }
+        }
+
+        .expert-ring {
+            position: absolute;
+            top: -5px;
+            left: -5px;
+            right: -5px;
+            bottom: -5px;
+            border: 2px solid transparent;
+            border-radius: 50%;
+            background: linear-gradient(45deg, #fbbf24, #f59e0b, #d97706, #fbbf24);
+            background-size: 400% 400%;
+            animation: ringRotate 3s linear infinite;
+            z-index: -1;
+        }
+
+        @keyframes ringRotate {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .expert-badge {
+            background: linear-gradient(135deg, #ec4899 0%, #be185d 100%);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.875rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            box-shadow: 0 4px 15px rgba(236, 72, 153, 0.3);
+        }
+
+        .expert-stats {
+            display: flex;
+            gap: 1.5rem;
+            margin-top: 1rem;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-number {
+            display: block;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #fbbf24;
+            text-shadow: 0 0 10px rgba(251, 191, 36, 0.5);
+        }
+
+        .stat-label {
+            font-size: 0.75rem;
+            color: #d1d5db;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .expertise-list {
+            width: 100%;
+            margin-bottom: 2rem;
+        }
+
+        .expertise-item {
+            background: rgba(255,255,255,0.1);
+            margin: 0.5rem 0;
+            padding: 0.75rem;
+            border-radius: 10px;
+            color: white;
+            font-size: 0.875rem;
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(255,255,255,0.1);
+            transition: all 0.3s ease;
+        }
+
+        .expertise-item:hover {
+            background: rgba(255,255,255,0.2);
+            transform: translateX(5px);
+        }
+
+        .success-rate {
+            text-align: center;
+        }
+
+        .rate-circle {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 0.5rem;
+            box-shadow: 0 0 20px rgba(16, 185, 129, 0.4);
+            animation: pulse 2s infinite;
+        }
+
+        .rate-text {
+            color: white;
+            font-weight: 700;
+            font-size: 1rem;
+        }
+
+        .rate-label {
+            color: #d1d5db;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .expert-cta-btn {
+            background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 50%, #6d28d9 100%);
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1.125rem;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            box-shadow: 0 10px 30px rgba(139, 92, 246, 0.3);
             position: relative;
             overflow: hidden;
         }
-        
-        .logo::before {
+
+        .expert-cta-btn::before {
             content: '';
             position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.3), transparent);
-            animation: shimmer 2s infinite;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s;
         }
-        
-        .free-trial-badge {
-            background: linear-gradient(135deg, #10B981, #059669);
-            color: white;
-            padding: 4px 12px;
-            border-radius: 20px;
-            font-size: 12px;
-            font-weight: 600;
-            animation: pulse 2s infinite;
+
+        .expert-cta-btn:hover::before {
+            left: 100%;
         }
-        
-        .no-card-badge {
-            background: linear-gradient(135deg, #F59E0B, #D97706);
-            color: white;
-            padding: 4px 12px;
-            border-radius: 20px;
-            font-size: 12px;
-            font-weight: 600;
+
+        .expert-cta-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(139, 92, 246, 0.4);
         }
-        
-        .hero-decoration {
-            position: absolute;
-            width: 200px;
-            height: 200px;
-            border-radius: 50%;
-            background: linear-gradient(45deg, rgba(0, 102, 255, 0.1), rgba(0, 204, 255, 0.1));
-            filter: blur(40px);
-            animation: float 6s ease-in-out infinite;
+
+        .btn-icon {
+            transition: transform 0.3s ease;
         }
-        
-        .hero-decoration:nth-child(1) {
-            top: 10%;
-            left: 10%;
-            animation-delay: 0s;
+
+        .expert-cta-btn:hover .btn-icon {
+            transform: translateX(5px);
         }
-        
-        .hero-decoration:nth-child(2) {
-            top: 60%;
-            right: 10%;
-            animation-delay: 2s;
-        }
-        
-        .hero-decoration:nth-child(3) {
-            bottom: 20%;
-            left: 20%;
-            animation-delay: 4s;
+
+        /* Mobile responsiveness for expert cards */
+        @media (max-width: 768px) {
+            .expert-card {
+                height: 280px;
+            }
+            
+            .expert-front, .expert-back {
+                padding: 1.5rem;
+            }
+            
+            .expert-avatar {
+                width: 60px;
+                height: 60px;
+            }
+            
+            .expert-avatar span {
+                font-size: 1.5rem;
+            }
+            
+            .expert-stats {
+                gap: 1rem;
+            }
+            
+            .stat-number {
+                font-size: 1.25rem;
+            }
         }
     </style>
 </head>
-<body class="font-sans bg-gray-50 text-gray-900">
-    <!-- Navigation -->
-    <nav class="fixed top-0 w-full z-50 glassmorphism">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between items-center h-16">
-                <div class="logo-container">
-                    <div class="text-3xl font-bold text-white nav-brand">IAStune</div>
-                </div>
-                
-                <div class="hidden md:flex items-center space-x-8">
-                    <a href="#home" class="nav-link text-white hover:text-yellow-300 transition-all duration-300 font-medium relative group">
-                        Home
-                        <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-yellow-300 transition-all duration-300 group-hover:w-full"></span>
-                    </a>
-                    <a href="#" onclick="showComingSoonModal()" class="nav-link text-white hover:text-yellow-300 transition-all duration-300 font-medium relative group">
-                        Courses
-                        <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-yellow-300 transition-all duration-300 group-hover:w-full"></span>
-                    </a>
-                    <a href="https://www.iastune.in/simulations/" target="_blank" class="nav-link text-white hover:text-yellow-300 transition-all duration-300 font-medium relative group">
-                        Simulations
-                        <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-yellow-300 transition-all duration-300 group-hover:w-full"></span>
-                    </a>
-                    <a href="https://www.iastune.in/mindmaps/" target="_blank" class="nav-link text-white hover:text-yellow-300 transition-all duration-300 font-medium relative group">
-                        Mind Maps
-                        <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-yellow-300 transition-all duration-300 group-hover:w-full"></span>
-                    </a>
-                    <a href="#pricing" class="nav-link text-white hover:text-yellow-300 transition-all duration-300 font-medium relative group">
-                        Pricing
-                        <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-yellow-300 transition-all duration-300 group-hover:w-full"></span>
-                    </a>
-                    <a href="https://www.iastune.in/founders/" target="_blank" class="nav-link text-white hover:text-yellow-300 transition-all duration-300 font-medium relative group">
-                        Founders
-                        <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-yellow-300 transition-all duration-300 group-hover:w-full"></span>
-                    </a>
-                    <a href="https://www.iastune.in/about-us/" target="_blank" class="nav-link text-white hover:text-yellow-300 transition-all duration-300 font-medium relative group">
-                        About Us
-                        <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-yellow-300 transition-all duration-300 group-hover:w-full"></span>
-                    </a>
-                </div>
-                
-                <div class="flex items-center space-x-4">
-                    <!-- Navigation actions can be added here if needed -->
-                </div>
-                
-                <!-- Mobile menu button -->
-                <div class="md:hidden">
-                    <button onclick="toggleMobileMenu()" class="nav-mobile-btn text-white">
-                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
-                        </svg>
-                    </button>
-                </div>
-            </div>
-        </div>
-        
-        <!-- Mobile menu -->
-        <div id="mobile-menu" class="hidden md:hidden glassmorphism">
-            <div class="px-2 pt-2 pb-3 space-y-1">
-                <a href="#home" class="nav-mobile-link block px-3 py-2 text-white hover:text-yellow-300">Home</a>
-                <a href="#" onclick="showComingSoonModal()" class="nav-mobile-link block px-3 py-2 text-white hover:text-yellow-300">Courses</a>
-                <a href="https://www.iastune.in/simulations/" target="_blank" class="nav-mobile-link block px-3 py-2 text-white hover:text-yellow-300">Simulations</a>
-                <a href="https://www.iastune.in/mindmaps/" target="_blank" class="nav-mobile-link block px-3 py-2 text-white hover:text-yellow-300">Mind Maps</a>
-                <a href="#pricing" class="nav-mobile-link block px-3 py-2 text-white hover:text-yellow-300">Pricing</a>
-                <a href="https://www.iastune.in/founders/" target="_blank" class="nav-mobile-link block px-3 py-2 text-white hover:text-yellow-300">Founders</a>
-                <a href="https://www.iastune.in/about-us/" target="_blank" class="nav-mobile-link block px-3 py-2 text-white hover:text-yellow-300">About Us</a>
-            </div>
-        </div>
-    </nav>
+<body class="bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 min-h-screen">
+    <!-- Header -->
+    <header class="text-center py-8 md:py-16 px-4">
+        <h1 class="text-3xl md:text-5xl font-bold text-white mb-4">Meet Our Founders</h1>
+        <p class="text-lg md:text-xl text-gray-300 max-w-3xl mx-auto px-4">At IAStune, our founders blend education, creativity, and technology to reimagine UPSC preparation. This round table reflects our shared commitment to making learning visual, interactive, and unforgettable.</p>
+    </header>
 
-    <!-- Hero Section -->
-    <section id="home" class="pt-20 pb-16 gradient-bg min-h-screen flex items-center relative overflow-hidden">
-        <!-- Floating Decorations -->
-        <div class="hero-decoration"></div>
-        <div class="hero-decoration"></div>
-        <div class="hero-decoration"></div>
-        
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-            <div class="grid lg:grid-cols-2 gap-12 items-center">
-                <!-- Left Side - Content -->
-                <div class="text-white animate-slide-up">
-                    <div class="flex items-center gap-4 mb-6">
-                        <span class="free-trial-badge">🚀 FREE TRIAL AVAILABLE</span>
-                        <span class="no-card-badge">💳 NO CARD REQUIRED</span>
-                    </div>
-                    
-                    <h1 class="font-serif text-5xl lg:text-7xl font-bold mb-6 leading-tight">
-                        Crack UPSC with 
-                        <span class="text-gradient bg-gradient-to-r from-yellow-300 via-pink-300 to-blue-300 bg-clip-text text-transparent">
-                            Interactive Learning
-                        </span>
-                    </h1>
-                    
-                    <p class="text-xl mb-8 text-gray-100 leading-relaxed font-medium">
-                        Learn by doing. Master every UPSC concept with interactive simulations and crystal-clear mind maps.
-                    </p>
-                    
-                    <p class="text-lg mb-10 text-gray-200 font-light">
-                        Short, visual, and unforgettable. Try a free demo in 30 seconds.
-                    </p>
-                    
-                    <div class="flex flex-col sm:flex-row gap-4 mb-12">
-                        <button onclick="startFreeTrial()" class="btn-primary text-white px-10 py-4 rounded-full font-bold text-lg shadow-2xl">
-                            🎯 Start Free Trial
-                        </button>
-                        <button onclick="window.open('https://www.iastune.in/simulations/', '_blank')" class="btn-secondary text-white px-10 py-4 rounded-full font-bold text-lg shadow-xl">
-                            ▶️ Watch Demo
-                        </button>
-                    </div>
-                    
-                    <!-- Trust Badges -->
-                    <div class="flex flex-wrap items-center gap-6">
-                        <div class="trust-badge flex items-center gap-3">
-                            <div class="w-10 h-10 bg-gradient-to-br from-green-400 to-emerald-500 rounded-full flex items-center justify-center shadow-lg">
-                                <span class="text-white font-bold text-lg">✓</span>
-                            </div>
-                            <div>
-                                <div class="text-sm font-bold">25,000+</div>
-                                <div class="text-xs opacity-80">Happy Students</div>
-                            </div>
-                        </div>
-                        <div class="trust-badge flex items-center gap-3">
-                            <div class="w-10 h-10 bg-gradient-to-br from-yellow-400 to-orange-500 rounded-full flex items-center justify-center shadow-lg">
-                                <span class="text-white font-bold text-lg">★</span>
-                            </div>
-                            <div>
-                                <div class="text-sm font-bold">4.9/5</div>
-                                <div class="text-xs opacity-80">User Rating</div>
-                            </div>
-                        </div>
-                        <div class="trust-badge flex items-center gap-3">
-                            <div class="w-10 h-10 bg-gradient-to-br from-blue-400 to-purple-500 rounded-full flex items-center justify-center shadow-lg">
-                                <span class="text-white font-bold text-lg">🏆</span>
-                            </div>
-                            <div>
-                                <div class="text-sm font-bold">500+</div>
-                                <div class="text-xs opacity-80">Success Stories</div>
-                            </div>
-                        </div>
-                    </div>
+    <!-- Founders Circle Section -->
+    <section class="py-10 md:py-20">
+        <div class="container mx-auto px-4">
+            <div class="founders-container">
+                <!-- Central Circle -->
+                <div class="center-circle">
+                    Founders'<br>Circle
                 </div>
                 
-                <!-- Right Side - Simulation Preview -->
-                <div class="animate-fade-in">
-                    <div class="simulation-preview rounded-3xl p-8 shadow-2xl animate-float relative">
-                        <div class="bg-white rounded-2xl p-6 shadow-xl relative overflow-hidden">
-                            <!-- Header -->
-                            <div class="flex items-center justify-between mb-6">
-                                <div class="flex items-center gap-3">
-                                    <div class="w-8 h-8 bg-gradient-to-br from-electric-blue to-purple-500 rounded-lg flex items-center justify-center">
-                                        <span class="text-white text-sm font-bold">🎯</span>
-                                    </div>
-                                    <h3 class="font-bold text-gray-800">Live Simulation</h3>
-                                </div>
-                                <div class="flex gap-2">
-                                    <div class="w-3 h-3 bg-red-400 rounded-full animate-pulse"></div>
-                                    <div class="w-3 h-3 bg-yellow-400 rounded-full animate-pulse" style="animation-delay: 0.2s;"></div>
-                                    <div class="w-3 h-3 bg-green-400 rounded-full animate-pulse" style="animation-delay: 0.4s;"></div>
-                                </div>
-                            </div>
-                            
-                            <!-- Main Content -->
-                            <div class="bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50 rounded-xl p-8 mb-6 relative overflow-hidden">
-                                <div class="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-electric-blue/10 to-purple-500/10 rounded-full -translate-y-16 translate-x-16"></div>
-                                <div class="absolute bottom-0 left-0 w-24 h-24 bg-gradient-to-br from-pink-500/10 to-orange-500/10 rounded-full translate-y-12 -translate-x-12"></div>
-                                
-                                <div class="text-center relative z-10">
-                                    <div class="w-20 h-20 bg-gradient-to-br from-electric-blue to-purple-500 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg animate-pulse">
-                                        <svg class="w-10 h-10 text-white" fill="currentColor" viewBox="0 0 20 20">
-                                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clip-rule="evenodd"></path>
-                                        </svg>
-                                    </div>
-                                    <h4 class="font-bold text-xl text-gray-800 mb-3">Parliament Session</h4>
-                                    <p class="text-gray-600 mb-6 font-medium">Experience real-time bill passing process</p>
-                                    
-                                    <div class="flex items-center justify-center gap-4 mb-6">
-                                        <div class="flex items-center gap-2 bg-white/50 rounded-full px-3 py-1">
-                                            <div class="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
-                                            <span class="text-xs font-medium text-gray-700">Live</span>
-                                        </div>
-                                        <div class="flex items-center gap-2 bg-white/50 rounded-full px-3 py-1">
-                                            <span class="text-xs font-medium text-gray-700" id="online-count">👥 1,247 online</span>
-                                        </div>
-                                    </div>
-                                    
-                                    <button onclick="window.open('https://www.iastune.in/simulations/', '_blank')" class="btn-primary text-white px-8 py-3 rounded-full font-bold text-sm shadow-lg">
-                                        🚀 Try Free Demo
-                                    </button>
-                                </div>
-                            </div>
-                            
-                            <!-- Stats -->
-                            <div class="grid grid-cols-3 gap-4 text-center">
-                                <div class="bg-gray-50 rounded-lg p-3">
-                                    <div class="text-lg font-bold text-electric-blue">15min</div>
-                                    <div class="text-xs text-gray-600">Duration</div>
-                                </div>
-                                <div class="bg-gray-50 rounded-lg p-3">
-                                    <div class="text-lg font-bold text-green-500">Easy</div>
-                                    <div class="text-xs text-gray-600">Level</div>
-                                </div>
-                                <div class="bg-gray-50 rounded-lg p-3">
-                                    <div class="text-lg font-bold text-purple-500">Free</div>
-                                    <div class="text-xs text-gray-600">Access</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                <!-- Founder Names -->
+                <div class="founder-name position-0" data-founder="0">
+                    Afthaab Shaik
+                    <div class="founder-tooltip">Co-founder & CEO - Operations Expert</div>
                 </div>
+                
+                <div class="founder-name position-1" data-founder="1">
+                    Sathwika Reddy
+                    <div class="founder-tooltip">Co-founder & CEO - Tech Innovator</div>
+                </div>
+                
+                <div class="founder-name position-2" data-founder="2">
+                    Vishnu Yadav
+                    <div class="founder-tooltip">Co-founder & CEO - Visionary Leader</div>
+                </div>
+            </div>
+            
+            <div class="text-center mt-8 md:mt-12 px-4">
+                <p class="text-gray-300 text-base md:text-lg mb-4">From designing crystal-clear mind maps to building immersive 3D simulations, each founder brings a unique strength to help aspirants learn smarter, faster, and deeper</p>
+
             </div>
         </div>
     </section>
 
-    <!-- Meet Our Founders Section -->
-    <section class="py-24 bg-gradient-to-br from-slate-900 via-gray-900 to-black relative overflow-hidden">
-        <!-- Animated Background Elements -->
-        <div class="absolute inset-0">
-            <div class="absolute top-0 right-0 w-96 h-96 bg-gradient-to-br from-blue-500/10 to-cyan-500/10 rounded-full blur-3xl animate-pulse"></div>
-            <div class="absolute bottom-0 left-0 w-80 h-80 bg-gradient-to-br from-purple-500/10 to-pink-500/10 rounded-full blur-3xl animate-pulse" style="animation-delay: 1.5s;"></div>
-            <div class="absolute top-1/2 left-1/2 w-72 h-72 bg-gradient-to-br from-emerald-500/10 to-teal-500/10 rounded-full blur-3xl animate-pulse" style="animation-delay: 3s;"></div>
-        </div>
-        
-        <!-- Floating Particles -->
-        <div class="absolute inset-0 overflow-hidden">
-            <div class="absolute top-32 left-16 w-2 h-2 bg-blue-400/40 rounded-full animate-bounce" style="animation-delay: 0.3s;"></div>
-            <div class="absolute top-48 right-24 w-1.5 h-1.5 bg-purple-400/40 rounded-full animate-bounce" style="animation-delay: 1.1s;"></div>
-            <div class="absolute bottom-40 left-32 w-2.5 h-2.5 bg-cyan-400/40 rounded-full animate-bounce" style="animation-delay: 2.3s;"></div>
-            <div class="absolute top-64 left-2/3 w-1 h-1 bg-pink-400/40 rounded-full animate-bounce" style="animation-delay: 0.7s;"></div>
-            <div class="absolute bottom-32 right-16 w-2 h-2 bg-emerald-400/40 rounded-full animate-bounce" style="animation-delay: 1.9s;"></div>
-        </div>
-        
-        <!-- Grid Pattern Overlay -->
-        <div class="absolute inset-0 opacity-5">
-            <div class="w-full h-full" style="background-image: radial-gradient(circle at 1px 1px, rgba(255,255,255,0.3) 1px, transparent 0); background-size: 50px 50px;"></div>
-        </div>
-        
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-            <!-- Header -->
-            <div class="text-center mb-20">
-                <div class="inline-block mb-8">
-                    <div class="flex items-center justify-center gap-4 mb-6">
-                        <div class="w-16 h-16 bg-gradient-to-br from-blue-500 via-purple-500 to-cyan-500 rounded-2xl flex items-center justify-center shadow-2xl animate-pulse relative overflow-hidden">
-                            <div class="absolute inset-0 bg-gradient-to-br from-white/20 to-transparent rounded-2xl"></div>
-                            <span class="text-white text-2xl relative z-10">👥</span>
-                            <div class="absolute -top-2 -right-2 w-6 h-6 bg-yellow-400 rounded-full animate-bounce opacity-80" style="animation-delay: 0.5s;"></div>
-                        </div>
-                        <div class="text-sm font-bold uppercase tracking-wider text-white/80 bg-gradient-to-r from-blue-400 via-purple-400 to-cyan-400 bg-clip-text text-transparent">
-                            🌟 THE VISIONARIES BEHIND IASTUNE
-                        </div>
-                        <div class="w-16 h-16 bg-gradient-to-br from-purple-500 via-pink-500 to-blue-500 rounded-2xl flex items-center justify-center shadow-2xl animate-pulse relative overflow-hidden">
-                            <div class="absolute inset-0 bg-gradient-to-br from-white/20 to-transparent rounded-2xl"></div>
-                            <span class="text-white text-2xl relative z-10">🚀</span>
-                            <div class="absolute -bottom-2 -left-2 w-6 h-6 bg-green-400 rounded-full animate-bounce opacity-80" style="animation-delay: 1.2s;"></div>
-                        </div>
-                    </div>
+
+
+    <!-- Team Section -->
+    <section class="py-12 md:py-16 bg-gray-800">
+        <div class="container mx-auto px-4">
+            <h2 class="text-2xl md:text-3xl font-bold text-center text-white mb-4">Core Team Members</h2>
+            <p class="text-center text-gray-300 mb-8 md:mb-12 px-4">The talented individuals who make our vision a reality</p>
+            
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 max-w-6xl mx-auto">
+                <div class="team-card">
+                    <div class="profile-img">VS</div>
+                    <h3 class="text-lg md:text-xl font-semibold text-white mb-2">Venkata Swamy</h3>
+                    <p class="text-pink-400 font-medium mb-3">Product Manager</p>
+                    <p class="text-gray-300 text-sm">"Project management, roadmap planning, team coordination"</p>
                 </div>
                 
-                <h2 class="font-serif text-6xl lg:text-8xl font-bold mb-8 leading-tight">
-                    <span class="bg-gradient-to-r from-white via-blue-200 to-cyan-200 bg-clip-text text-transparent">
-                        Meet Our
-                    </span>
-                    <br>
-                    <span class="bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 bg-clip-text text-transparent animate-pulse">
-                        Founders
-                    </span>
-                </h2>
+                <div class="team-card">
+                    <div class="profile-img">PRT</div>
+                    <h3 class="text-lg md:text-xl font-semibold text-white mb-2">Prince Rahul Thomas</h3>
+                    <p class="text-pink-400 font-medium mb-3">Mind Map Content Lead</p>
+                    <p class="text-gray-300 text-sm">"Designs visually appealing, memory-friendly mind maps"</p>
+                </div>
                 
-                <p class="text-xl lg:text-2xl text-white/90 max-w-4xl mx-auto leading-relaxed font-light mb-8">
-                    Discover the passionate minds who transformed UPSC preparation through innovation, dedication, and a vision for accessible quality education.
-                </p>
+                <div class="team-card">
+                    <div class="profile-img">AD</div>
+                    <h3 class="text-lg md:text-xl font-semibold text-white mb-2">Aditya</h3>
+                    <p class="text-pink-400 font-medium mb-3">3D Simulation & Animation Lead</p>
+                    <p class="text-gray-300 text-sm">"3D artist or game developer with educational content experience"</p>
+                </div>
                 
-                <div class="flex items-center justify-center gap-8 mb-12">
-                    <div class="flex items-center gap-3 bg-white/10 backdrop-blur-xl rounded-full px-6 py-3 border border-white/20 shadow-xl">
-                        <div class="w-8 h-8 bg-gradient-to-br from-green-400 to-emerald-500 rounded-full flex items-center justify-center">
-                            <span class="text-white text-sm font-bold">✓</span>
-                        </div>
-                        <span class="text-white font-medium">Dynamic Team</span>
-                    </div>
-                    <div class="flex items-center gap-3 bg-white/10 backdrop-blur-xl rounded-full px-6 py-3 border border-white/20 shadow-xl">
-                        <div class="w-8 h-8 bg-gradient-to-br from-blue-400 to-indigo-500 rounded-full flex items-center justify-center">
-                            <span class="text-white text-sm font-bold">🎯</span>
-                        </div>
-                        <span class="text-white font-medium">UPSC Experts</span>
-                    </div>
-                    <div class="flex items-center gap-3 bg-white/10 backdrop-blur-xl rounded-full px-6 py-3 border border-white/20 shadow-xl">
-                        <div class="w-8 h-8 bg-gradient-to-br from-purple-400 to-pink-500 rounded-full flex items-center justify-center">
-                            <span class="text-white text-sm font-bold">💡</span>
-                        </div>
-                        <span class="text-white font-medium">EdTech Innovators</span>
-                    </div>
+                <div class="team-card">
+                    <div class="profile-img">KL</div>
+                    <h3 class="text-lg md:text-xl font-semibold text-white mb-2">Kalyani</h3>
+                    <p class="text-pink-400 font-medium mb-3">Front-End & UI/UX Developer</p>
+                    <p class="text-gray-300 text-sm">"Builds smooth, responsive user experience for the platform"</p>
+                </div>
+                
+                <div class="team-card">
+                    <div class="profile-img">SK</div>
+                    <h3 class="text-lg md:text-xl font-semibold text-white mb-2">Sunil Kumar</h3>
+                    <p class="text-pink-400 font-medium mb-3">Backend Developer</p>
+                    <p class="text-gray-300 text-sm">"Handles authentication, databases, payment integration, scalability, Firebase, Node.js, API integration, security"</p>
+                </div>
+                
+                <div class="team-card">
+                    <div class="profile-img">DW</div>
+                    <h3 class="text-lg md:text-xl font-semibold text-white mb-2">Diwakar</h3>
+                    <p class="text-pink-400 font-medium mb-3">Marketing</p>
+                    <p class="text-gray-300 text-sm">"Social media strategy, content marketing, ad campaigns, community building"</p>
                 </div>
             </div>
             
-            <!-- Founders Showcase -->
-            <div class="max-w-5xl mx-auto mb-20">
-                <div class="relative bg-gradient-to-br from-white/10 via-white/5 to-transparent backdrop-blur-3xl rounded-[3rem] p-12 lg:p-16 border border-white/20 shadow-[0_25px_50px_rgba(0,0,0,0.3)] overflow-hidden group hover:shadow-[0_35px_70px_rgba(59,130,246,0.4)] transition-all duration-700">
-                    
-                    <!-- Advanced Glow Effects -->
-                    <div class="absolute inset-0 bg-gradient-to-br from-blue-500/10 via-purple-500/10 to-cyan-500/10 rounded-[3rem] opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
-                    <div class="absolute -inset-4 bg-gradient-to-br from-blue-500/20 via-purple-500/20 to-cyan-500/20 rounded-[3.5rem] opacity-0 group-hover:opacity-100 transition-opacity duration-700 blur-2xl"></div>
-                    
-                    <!-- Animated Shimmer -->
-                    <div class="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-2000 rounded-[3rem]"></div>
-                    
-                    <!-- Floating Orbs -->
-                    <div class="absolute top-12 right-12 w-6 h-6 bg-gradient-to-br from-blue-400 to-cyan-500 rounded-full animate-pulse opacity-60 group-hover:opacity-100 transition-opacity duration-500"></div>
-                    <div class="absolute bottom-16 left-12 w-4 h-4 bg-gradient-to-br from-purple-400 to-pink-500 rounded-full animate-pulse opacity-40 group-hover:opacity-80 transition-opacity duration-500" style="animation-delay: 1s;"></div>
-                    <div class="absolute top-1/2 right-20 w-3 h-3 bg-gradient-to-br from-emerald-400 to-teal-500 rounded-full animate-pulse opacity-50 group-hover:opacity-90 transition-opacity duration-500" style="animation-delay: 2s;"></div>
-                    
-                    <div class="relative z-10 text-center">
-                        <!-- Founders Visual Representation -->
-                        <div class="flex items-center justify-center mb-12">
-                            <div class="relative">
-                                <!-- Central Innovation Hub -->
-                                <div class="w-32 h-32 lg:w-40 lg:h-40 bg-gradient-to-br from-blue-500 via-purple-500 to-cyan-500 rounded-3xl flex items-center justify-center shadow-[0_25px_50px_rgba(59,130,246,0.5)] group-hover:shadow-[0_35px_70px_rgba(59,130,246,0.7)] group-hover:scale-110 group-hover:rotate-6 transition-all duration-700 relative overflow-hidden">
-                                    <div class="absolute inset-0 bg-gradient-to-br from-white/30 via-white/10 to-transparent rounded-3xl"></div>
-                                    <div class="text-white text-5xl lg:text-6xl relative z-10">🧠</div>
-                                    
-                                    <!-- Orbiting Elements -->
-                                    <div class="absolute -top-6 -right-6 w-16 h-16 bg-gradient-to-br from-yellow-400 to-orange-500 rounded-2xl flex items-center justify-center shadow-xl animate-bounce" style="animation-delay: 0.5s;">
-                                        <span class="text-white text-xl font-bold">💡</span>
-                                    </div>
-                                    <div class="absolute -bottom-6 -left-6 w-16 h-16 bg-gradient-to-br from-green-400 to-emerald-500 rounded-2xl flex items-center justify-center shadow-xl animate-bounce" style="animation-delay: 1.2s;">
-                                        <span class="text-white text-xl font-bold">🎯</span>
-                                    </div>
-                                    <div class="absolute top-1/2 -left-8 w-12 h-12 bg-gradient-to-br from-pink-400 to-red-500 rounded-xl flex items-center justify-center shadow-lg animate-bounce" style="animation-delay: 0.8s;">
-                                        <span class="text-white text-lg font-bold">🚀</span>
-                                    </div>
-                                    <div class="absolute top-1/2 -right-8 w-12 h-12 bg-gradient-to-br from-indigo-400 to-blue-500 rounded-xl flex items-center justify-center shadow-lg animate-bounce" style="animation-delay: 1.5s;">
-                                        <span class="text-white text-lg font-bold">⭐</span>
-                                    </div>
-                                </div>
-                                
-                                <!-- Connection Lines -->
-                                <div class="absolute inset-0 pointer-events-none">
-                                    <svg class="w-full h-full" viewBox="0 0 200 200">
-                                        <defs>
-                                            <linearGradient id="connectionGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                                                <stop offset="0%" style="stop-color:#3B82F6;stop-opacity:0.6" />
-                                                <stop offset="50%" style="stop-color:#8B5CF6;stop-opacity:0.4" />
-                                                <stop offset="100%" style="stop-color:#06B6D4;stop-opacity:0.6" />
-                                            </linearGradient>
-                                        </defs>
-                                        <path d="M100,100 L150,50 M100,100 L50,150 M100,100 L50,50 M100,100 L150,150" 
-                                              stroke="url(#connectionGradient)" 
-                                              stroke-width="2" 
-                                              stroke-dasharray="5,5"
-                                              opacity="0.7">
-                                            <animate attributeName="stroke-dashoffset" values="0;10" dur="2s" repeatCount="indefinite"/>
-                                        </path>
-                                    </svg>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <!-- Founders Story -->
-                        <div class="mb-12">
-                            <h3 class="font-serif text-4xl lg:text-5xl font-bold mb-8 bg-gradient-to-r from-white via-blue-200 to-cyan-200 bg-clip-text text-transparent">
-                                Innovation Meets Passion
-                            </h3>
-                            
-                            <div class="grid lg:grid-cols-3 gap-8 mb-12">
-                                <!-- Vision -->
-                                <div class="bg-white/5 backdrop-blur-xl rounded-2xl p-8 border border-white/10 shadow-xl group-hover:bg-white/10 transition-all duration-500">
-                                    <div class="w-16 h-16 bg-gradient-to-br from-blue-500 to-cyan-500 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg">
-                                        <span class="text-white text-2xl">🔮</span>
-                                    </div>
-                                    <h4 class="font-bold text-2xl text-white mb-4">Vision</h4>
-                                    <p class="text-white/80 leading-relaxed">
-                                        To revolutionize UPSC preparation through cutting-edge technology and make quality education accessible to every aspirant across India.
-                                    </p>
-                                </div>
-                                
-                                <!-- Mission -->
-                                <div class="bg-white/5 backdrop-blur-xl rounded-2xl p-8 border border-white/10 shadow-xl group-hover:bg-white/10 transition-all duration-500">
-                                    <div class="w-16 h-16 bg-gradient-to-br from-purple-500 to-pink-500 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg">
-                                        <span class="text-white text-2xl">🎯</span>
-                                    </div>
-                                    <h4 class="font-bold text-2xl text-white mb-4">Mission</h4>
-                                    <p class="text-white/80 leading-relaxed">
-                                        Creating immersive learning experiences that transform complex concepts into engaging, memorable, and actionable knowledge.
-                                    </p>
-                                </div>
-                                
-                                <!-- Impact -->
-                                <div class="bg-white/5 backdrop-blur-xl rounded-2xl p-8 border border-white/10 shadow-xl group-hover:bg-white/10 transition-all duration-500">
-                                    <div class="w-16 h-16 bg-gradient-to-br from-emerald-500 to-teal-500 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg">
-                                        <span class="text-white text-2xl">🌟</span>
-                                    </div>
-                                    <h4 class="font-bold text-2xl text-white mb-4">Impact</h4>
-                                    <p class="text-white/80 leading-relaxed">
-                                        Empowering 25,000+ students with innovative learning tools and helping them achieve their civil services dreams.
-                                    </p>
-                                </div>
-                            </div>
-                            
-                            <p class="text-xl lg:text-2xl text-white/90 leading-relaxed font-light max-w-4xl mx-auto">
-                                Our founders combine decades of educational expertise with technological innovation to create learning experiences that don't just teach—they inspire, engage, and transform.
-                            </p>
-                        </div>
-                        
-                        <!-- Call to Action -->
-                        <div class="relative">
-                            <div class="absolute inset-0 bg-gradient-to-r from-blue-500 via-purple-500 to-cyan-500 rounded-3xl blur-2xl opacity-60 group-hover:opacity-100 transition-opacity duration-500"></div>
-                            <button onclick="window.open('https://www.iastune.in/founders/', '_blank')" class="relative bg-gradient-to-r from-blue-500 via-purple-500 to-cyan-500 text-white px-12 py-6 rounded-3xl font-bold text-xl shadow-2xl hover:shadow-blue-500/50 transform hover:scale-105 hover:-translate-y-2 transition-all duration-500 flex items-center gap-4 mx-auto group/btn">
-                                <div class="flex items-center gap-4">
-                                    <div class="w-12 h-12 bg-white/20 rounded-2xl flex items-center justify-center group-hover/btn:scale-110 group-hover/btn:rotate-12 transition-all duration-300">
-                                        <span class="text-2xl">👥</span>
-                                    </div>
-                                    <div class="text-left">
-                                        <div class="text-xl font-bold">Meet Our Founders</div>
-                                        <div class="text-sm opacity-90">Discover their inspiring journey</div>
-                                    </div>
-                                    <svg class="w-8 h-8 group-hover/btn:translate-x-2 transition-transform duration-300" fill="currentColor" viewBox="0 0 20 20">
-                                        <path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"></path>
-                                    </svg>
-                                </div>
-                                
-                                <!-- Button Glow Effect -->
-                                <div class="absolute inset-0 bg-gradient-to-r from-white/20 via-white/10 to-white/20 rounded-3xl opacity-0 group-hover/btn:opacity-100 transition-opacity duration-300"></div>
-                            </button>
-                        </div>
-                    </div>
-                    
-                    <!-- Enhanced Decorative Elements -->
-                    <div class="absolute top-8 left-8 w-24 h-24 bg-gradient-to-br from-blue-400/10 to-cyan-400/10 rounded-full group-hover:scale-150 group-hover:rotate-45 transition-all duration-700"></div>
-                    <div class="absolute bottom-8 right-8 w-20 h-20 bg-gradient-to-br from-purple-400/10 to-pink-400/10 rounded-full group-hover:scale-150 group-hover:-rotate-45 transition-all duration-700" style="transition-delay: 0.2s;"></div>
-                    <div class="absolute top-1/2 left-8 w-16 h-16 bg-gradient-to-br from-emerald-400/10 to-teal-400/10 rounded-full group-hover:scale-150 group-hover:rotate-90 transition-all duration-700" style="transition-delay: 0.4s;"></div>
-                </div>
-            </div>
-            
-            <!-- Achievement Stats -->
-            <div class="grid md:grid-cols-4 gap-8 max-w-6xl mx-auto">
-                <div class="text-center bg-white/5 backdrop-blur-xl rounded-2xl p-8 border border-white/10 shadow-xl hover:bg-white/10 transition-all duration-500 group">
-                    <div class="w-16 h-16 bg-gradient-to-br from-yellow-400 to-orange-500 rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-lg group-hover:scale-110 group-hover:rotate-6 transition-all duration-300">
-                        <span class="text-white text-2xl font-bold">🏆</span>
-                    </div>
-                    <div class="text-4xl font-bold text-white mb-2">500+</div>
-                    <div class="text-white/80">Success Stories</div>
-                </div>
-                
-                <div class="text-center bg-white/5 backdrop-blur-xl rounded-2xl p-8 border border-white/10 shadow-xl hover:bg-white/10 transition-all duration-500 group">
-                    <div class="w-16 h-16 bg-gradient-to-br from-green-400 to-emerald-500 rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-lg group-hover:scale-110 group-hover:rotate-6 transition-all duration-300">
-                        <span class="text-white text-2xl font-bold">📚</span>
-                    </div>
-                    <div class="text-4xl font-bold text-white mb-2">1000+</div>
-                    <div class="text-white/80">Learning Modules</div>
-                </div>
-                
-                <div class="text-center bg-white/5 backdrop-blur-xl rounded-2xl p-8 border border-white/10 shadow-xl hover:bg-white/10 transition-all duration-500 group">
-                    <div class="w-16 h-16 bg-gradient-to-br from-blue-400 to-indigo-500 rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-lg group-hover:scale-110 group-hover:rotate-6 transition-all duration-300">
-                        <span class="text-white text-2xl font-bold">⚡</span>
-                    </div>
-                    <div class="text-4xl font-bold text-white mb-2">50+</div>
-                    <div class="text-white/80">Interactive Simulations</div>
-                </div>
-                
-                <div class="text-center bg-white/5 backdrop-blur-xl rounded-2xl p-8 border border-white/10 shadow-xl hover:bg-white/10 transition-all duration-500 group">
-                    <div class="w-16 h-16 bg-gradient-to-br from-purple-400 to-pink-500 rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-lg group-hover:scale-110 group-hover:rotate-6 transition-all duration-300">
-                        <span class="text-white text-2xl font-bold">🎯</span>
-                    </div>
-                    <div class="text-4xl font-bold text-white mb-2">4.9</div>
-                    <div class="text-white/80">Average Rating</div>
-                </div>
+            <div class="text-center mt-8 md:mt-12">
+                <a href="https://forms.gle/XUG7GB4R5aXwYcBo6" target="_blank" rel="noopener noreferrer" class="inline-block bg-gradient-to-r from-pink-500 to-violet-600 text-white px-6 md:px-8 py-3 rounded-full font-semibold hover:from-pink-600 hover:to-violet-700 transition-all duration-300 transform hover:scale-105 text-sm md:text-base">
+                    Join Our Mission
+                </a>
             </div>
         </div>
     </section>
-
-    <!-- Library Section -->
-    <section class="py-24 bg-gradient-to-br from-indigo-900 via-purple-900 to-pink-900 relative overflow-hidden">
-        <!-- Animated Background Elements -->
-        <div class="absolute inset-0">
-            <div class="absolute top-0 left-0 w-96 h-96 bg-gradient-to-br from-blue-500/20 to-purple-500/20 rounded-full blur-3xl animate-pulse"></div>
-            <div class="absolute top-1/2 right-0 w-80 h-80 bg-gradient-to-br from-pink-500/20 to-orange-500/20 rounded-full blur-3xl animate-pulse" style="animation-delay: 1s;"></div>
-            <div class="absolute bottom-0 left-1/3 w-72 h-72 bg-gradient-to-br from-green-500/20 to-teal-500/20 rounded-full blur-3xl animate-pulse" style="animation-delay: 2s;"></div>
-        </div>
-        
-        <!-- Floating Particles -->
-        <div class="absolute inset-0 overflow-hidden">
-            <div class="absolute top-20 left-20 w-2 h-2 bg-white/30 rounded-full animate-bounce" style="animation-delay: 0.5s;"></div>
-            <div class="absolute top-40 right-32 w-1 h-1 bg-yellow-300/40 rounded-full animate-bounce" style="animation-delay: 1.2s;"></div>
-            <div class="absolute bottom-32 left-40 w-1.5 h-1.5 bg-pink-300/40 rounded-full animate-bounce" style="animation-delay: 2.1s;"></div>
-            <div class="absolute top-60 left-1/2 w-1 h-1 bg-blue-300/40 rounded-full animate-bounce" style="animation-delay: 0.8s;"></div>
-            <div class="absolute bottom-40 right-20 w-2 h-2 bg-purple-300/30 rounded-full animate-bounce" style="animation-delay: 1.8s;"></div>
-        </div>
-        
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-            <!-- Header -->
-            <div class="text-center mb-20">
-                <div class="inline-block bg-gradient-to-r from-yellow-400 via-pink-400 to-blue-400 text-transparent bg-clip-text mb-6">
-                    <div class="text-sm font-bold uppercase tracking-wider mb-2 text-white/80">🏛️ EXPLORE OUR DIGITAL LIBRARIES</div>
-                </div>
-                <h2 class="font-serif text-6xl lg:text-7xl font-bold mb-8 bg-gradient-to-r from-white via-yellow-200 to-pink-200 bg-clip-text text-transparent leading-tight">
-                    Knowledge Awaits
-                </h2>
-                <p class="text-xl lg:text-2xl text-white/90 max-w-4xl mx-auto leading-relaxed font-light">
-                    Step into our immersive digital libraries where learning comes alive through interactive experiences
-                </p>
-            </div>
-            
-            <!-- Library Cards -->
-            <div class="grid lg:grid-cols-2 gap-12 max-w-6xl mx-auto">
-                <!-- Simulation Library -->
-                <div class="group cursor-pointer" onclick="window.open('https://www.iastune.in/simulations/', '_blank')">
-                    <div class="relative bg-white/10 backdrop-blur-2xl rounded-3xl p-8 lg:p-12 border border-white/20 shadow-2xl hover:bg-white/15 transition-all duration-700 transform hover:scale-105 hover:-translate-y-4 hover:rotate-1">
-                        <!-- Glow Effect -->
-                        <div class="absolute inset-0 bg-gradient-to-br from-blue-500/20 via-purple-500/20 to-pink-500/20 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-700 blur-xl"></div>
-                        
-                        <!-- Content -->
-                        <div class="relative z-10">
-                            <!-- Icon -->
-                            <div class="w-24 h-24 lg:w-32 lg:h-32 bg-gradient-to-br from-blue-500 via-purple-500 to-indigo-600 rounded-3xl flex items-center justify-center mx-auto mb-8 shadow-2xl group-hover:scale-110 group-hover:rotate-6 transition-all duration-500 relative overflow-hidden">
-                                <div class="absolute inset-0 bg-gradient-to-br from-white/20 to-transparent"></div>
-                                <svg class="w-12 h-12 lg:w-16 lg:h-16 text-white relative z-10" fill="currentColor" viewBox="0 0 20 20">
-                                    <path fill-rule="evenodd" d="M3 4a1 1 0 011-1h4a1 1 0 010 2H6.414l2.293 2.293a1 1 0 01-1.414 1.414L5 6.414V8a1 1 0 01-2 0V4zm9 1a1 1 0 010-2h4a1 1 0 011 1v4a1 1 0 01-2 0V6.414l-2.293 2.293a1 1 0 11-1.414-1.414L13.586 5H12zm-9 7a1 1 0 012 0v1.586l2.293-2.293a1 1 0 111.414 1.414L6.414 15H8a1 1 0 010 2H4a1 1 0 01-1-1v-4zm13-1a1 1 0 011 1v4a1 1 0 01-1 1h-4a1 1 0 010-2h1.586l-2.293-2.293a1 1 0 111.414-1.414L15.586 13H14a1 1 0 01-1-1z" clip-rule="evenodd"></path>
-                                </svg>
-                                
-                                <!-- Floating Elements -->
-                                <div class="absolute -top-2 -right-2 w-6 h-6 bg-yellow-400 rounded-full animate-bounce opacity-80" style="animation-delay: 0.5s;"></div>
-                                <div class="absolute -bottom-1 -left-1 w-4 h-4 bg-pink-400 rounded-full animate-bounce opacity-60" style="animation-delay: 1.2s;"></div>
-                            </div>
-                            
-                            <!-- Title -->
-                            <h3 class="font-serif text-3xl lg:text-4xl font-bold text-white mb-6 text-center group-hover:text-yellow-200 transition-colors duration-500">
-                                🎯 Simulation Library
-                            </h3>
-                            
-                            <!-- Description -->
-                            <p class="text-lg lg:text-xl text-white/80 text-center mb-8 leading-relaxed group-hover:text-white/90 transition-colors duration-500">
-                                Experience real-world scenarios through interactive simulations. Practice parliamentary sessions, constitutional processes, and governance mechanisms.
-                            </p>
-                            
-                            <!-- Features -->
-                            <div class="space-y-4 mb-8">
-                                <div class="flex items-center gap-4 text-white/70 group-hover:text-white/90 transition-colors duration-500">
-                                    <div class="w-8 h-8 bg-gradient-to-br from-green-400 to-emerald-500 rounded-full flex items-center justify-center flex-shrink-0">
-                                        <span class="text-white text-sm font-bold">✓</span>
-                                    </div>
-                                    <span class="font-medium">Interactive Parliament Sessions</span>
-                                </div>
-                                <div class="flex items-center gap-4 text-white/70 group-hover:text-white/90 transition-colors duration-500">
-                                    <div class="w-8 h-8 bg-gradient-to-br from-green-400 to-emerald-500 rounded-full flex items-center justify-center flex-shrink-0">
-                                        <span class="text-white text-sm font-bold">✓</span>
-                                    </div>
-                                    <span class="font-medium">Constitutional Case Studies</span>
-                                </div>
-                                <div class="flex items-center gap-4 text-white/70 group-hover:text-white/90 transition-colors duration-500">
-                                    <div class="w-8 h-8 bg-gradient-to-br from-green-400 to-emerald-500 rounded-full flex items-center justify-center flex-shrink-0">
-                                        <span class="text-white text-sm font-bold">✓</span>
-                                    </div>
-                                    <span class="font-medium">Real-time Decision Making</span>
-                                </div>
-                            </div>
-                            
-                            <!-- CTA Button -->
-                            <div class="text-center">
-                                <div class="inline-flex items-center gap-3 bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 text-white px-8 py-4 rounded-2xl font-bold text-lg shadow-2xl group-hover:shadow-blue-500/25 group-hover:scale-105 transition-all duration-500">
-                                    <span>Enter Library</span>
-                                    <svg class="w-6 h-6 group-hover:translate-x-1 transition-transform duration-300" fill="currentColor" viewBox="0 0 20 20">
-                                        <path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"></path>
-                                    </svg>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <!-- Decorative Elements -->
-                        <div class="absolute top-4 right-4 w-20 h-20 bg-gradient-to-br from-white/5 to-transparent rounded-full group-hover:scale-150 transition-transform duration-700"></div>
-                        <div class="absolute bottom-4 left-4 w-16 h-16 bg-gradient-to-br from-white/5 to-transparent rounded-full group-hover:scale-150 transition-transform duration-700" style="transition-delay: 0.2s;"></div>
-                    </div>
-                </div>
-                
-                <!-- Mind Map Library -->
-                <div class="group cursor-pointer" onclick="window.open('https://www.iastune.in/mindmaps/', '_blank')">
-                    <div class="relative bg-white/10 backdrop-blur-2xl rounded-3xl p-8 lg:p-12 border border-white/20 shadow-2xl hover:bg-white/15 transition-all duration-700 transform hover:scale-105 hover:-translate-y-4 hover:-rotate-1">
-                        <!-- Glow Effect -->
-                        <div class="absolute inset-0 bg-gradient-to-br from-green-500/20 via-teal-500/20 to-blue-500/20 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-700 blur-xl"></div>
-                        
-                        <!-- Content -->
-                        <div class="relative z-10">
-                            <!-- Icon -->
-                            <div class="w-24 h-24 lg:w-32 lg:h-32 bg-gradient-to-br from-green-500 via-teal-500 to-emerald-600 rounded-3xl flex items-center justify-center mx-auto mb-8 shadow-2xl group-hover:scale-110 group-hover:-rotate-6 transition-all duration-500 relative overflow-hidden">
-                                <div class="absolute inset-0 bg-gradient-to-br from-white/20 to-transparent"></div>
-                                <svg class="w-12 h-12 lg:w-16 lg:h-16 text-white relative z-10" fill="currentColor" viewBox="0 0 20 20">
-                                    <path d="M5 3a2 2 0 00-2 2v2a2 2 0 002 2h2a2 2 0 002-2V5a2 2 0 00-2-2H5zM5 11a2 2 0 00-2 2v2a2 2 0 002 2h2a2 2 0 002-2v-2a2 2 0 00-2-2H5zM11 5a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V5zM11 13a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"></path>
-                                </svg>
-                                
-                                <!-- Floating Elements -->
-                                <div class="absolute -top-2 -left-2 w-6 h-6 bg-blue-400 rounded-full animate-bounce opacity-80" style="animation-delay: 0.8s;"></div>
-                                <div class="absolute -bottom-1 -right-1 w-4 h-4 bg-yellow-400 rounded-full animate-bounce opacity-60" style="animation-delay: 1.5s;"></div>
-                            </div>
-                            
-                            <!-- Title -->
-                            <h3 class="font-serif text-3xl lg:text-4xl font-bold text-white mb-6 text-center group-hover:text-green-200 transition-colors duration-500">
-                                🧠 Mind Map Library
-                            </h3>
-                            
-                            <!-- Description -->
-                            <p class="text-lg lg:text-xl text-white/80 text-center mb-8 leading-relaxed group-hover:text-white/90 transition-colors duration-500">
-                                Visualize complex concepts through beautifully crafted mind maps. Connect ideas, understand relationships, and memorize effectively.
-                            </p>
-                            
-                            <!-- Features -->
-                            <div class="space-y-4 mb-8">
-                                <div class="flex items-center gap-4 text-white/70 group-hover:text-white/90 transition-colors duration-500">
-                                    <div class="w-8 h-8 bg-gradient-to-br from-blue-400 to-indigo-500 rounded-full flex items-center justify-center flex-shrink-0">
-                                        <span class="text-white text-sm font-bold">✓</span>
-                                    </div>
-                                    <span class="font-medium">Visual Concept Mapping</span>
-                                </div>
-                                <div class="flex items-center gap-4 text-white/70 group-hover:text-white/90 transition-colors duration-500">
-                                    <div class="w-8 h-8 bg-gradient-to-br from-blue-400 to-indigo-500 rounded-full flex items-center justify-center flex-shrink-0">
-                                        <span class="text-white text-sm font-bold">✓</span>
-                                    </div>
-                                    <span class="font-medium">Interactive Learning Paths</span>
-                                </div>
-                                <div class="flex items-center gap-4 text-white/70 group-hover:text-white/90 transition-colors duration-500">
-                                    <div class="w-8 h-8 bg-gradient-to-br from-blue-400 to-indigo-500 rounded-full flex items-center justify-center flex-shrink-0">
-                                        <span class="text-white text-sm font-bold">✓</span>
-                                    </div>
-                                    <span class="font-medium">Memory Enhancement Tools</span>
-                                </div>
-                            </div>
-                            
-                            <!-- CTA Button -->
-                            <div class="text-center">
-                                <div class="inline-flex items-center gap-3 bg-gradient-to-r from-green-500 via-teal-500 to-blue-500 text-white px-8 py-4 rounded-2xl font-bold text-lg shadow-2xl group-hover:shadow-green-500/25 group-hover:scale-105 transition-all duration-500">
-                                    <span>Enter Library</span>
-                                    <svg class="w-6 h-6 group-hover:translate-x-1 transition-transform duration-300" fill="currentColor" viewBox="0 0 20 20">
-                                        <path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"></path>
-                                    </svg>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <!-- Decorative Elements -->
-                        <div class="absolute top-4 left-4 w-20 h-20 bg-gradient-to-br from-white/5 to-transparent rounded-full group-hover:scale-150 transition-transform duration-700"></div>
-                        <div class="absolute bottom-4 right-4 w-16 h-16 bg-gradient-to-br from-white/5 to-transparent rounded-full group-hover:scale-150 transition-transform duration-700" style="transition-delay: 0.2s;"></div>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Bottom CTA -->
-            <div class="text-center mt-20">
-                <div class="inline-block bg-white/10 backdrop-blur-xl rounded-2xl p-8 border border-white/20">
-                    <p class="text-white/80 text-lg mb-4">Ready to transform your UPSC preparation?</p>
-                    <button onclick="startFreeTrial()" class="bg-gradient-to-r from-yellow-400 via-pink-400 to-blue-400 text-gray-900 px-8 py-4 rounded-2xl font-bold text-lg hover:scale-105 transition-all duration-300 shadow-2xl">
-                        🚀 Start Your Free Journey
-                    </button>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Features Section -->
-    <section class="py-20 bg-white">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-16">
-                <h2 class="font-serif text-4xl font-bold text-gray-900 mb-4">Why Choose UPSC Master?</h2>
-                <p class="text-xl text-gray-600 max-w-3xl mx-auto">Experience learning like never before with our innovative approach to UPSC preparation</p>
-            </div>
-            
-            <div class="grid md:grid-cols-3 gap-8">
-                <!-- Feature 1 -->
-                <div class="feature-card glassmorphism rounded-2xl p-8 text-center shadow-lg">
-                    <div class="w-16 h-16 bg-gradient-to-br from-blue-500 to-purple-600 rounded-2xl flex items-center justify-center mx-auto mb-6">
-                        <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 20 20">
-                            <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                        </svg>
-                    </div>
-                    <h3 class="font-serif text-2xl font-semibold mb-4">Real Exam Scenarios</h3>
-                    <p class="text-gray-600 leading-relaxed">Practice with authentic UPSC exam simulations that mirror the actual test environment and question patterns.</p>
-                </div>
-                
-                <!-- Feature 2 -->
-                <div class="feature-card glassmorphism rounded-2xl p-8 text-center shadow-lg">
-                    <div class="w-16 h-16 bg-gradient-to-br from-green-500 to-teal-600 rounded-2xl flex items-center justify-center mx-auto mb-6">
-                        <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 20 20">
-                            <path fill-rule="evenodd" d="M3 4a1 1 0 011-1h4a1 1 0 010 2H6.414l2.293 2.293a1 1 0 01-1.414 1.414L5 6.414V8a1 1 0 01-2 0V4zm9 1a1 1 0 010-2h4a1 1 0 011 1v4a1 1 0 01-2 0V6.414l-2.293 2.293a1 1 0 11-1.414-1.414L13.586 5H12zm-9 7a1 1 0 012 0v1.586l2.293-2.293a1 1 0 111.414 1.414L6.414 15H8a1 1 0 010 2H4a1 1 0 01-1-1v-4zm13-1a1 1 0 011 1v4a1 1 0 01-1 1h-4a1 1 0 010-2h1.586l-2.293-2.293a1 1 0 111.414-1.414L15.586 13H14a1 1 0 01-1-1z" clip-rule="evenodd"></path>
-                        </svg>
-                    </div>
-                    <h3 class="font-serif text-2xl font-semibold mb-4">Visual Mind Maps</h3>
-                    <p class="text-gray-600 leading-relaxed">Crystal-clear mind maps that make complex topics simple and memorable with interactive visual learning.</p>
-                </div>
-                
-                <!-- Feature 3 -->
-                <div class="feature-card glassmorphism rounded-2xl p-8 text-center shadow-lg">
-                    <div class="w-16 h-16 bg-gradient-to-br from-orange-500 to-red-600 rounded-2xl flex items-center justify-center mx-auto mb-6">
-                        <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 20 20">
-                            <path d="M13 6a3 3 0 11-6 0 3 3 0 016 0zM18 8a2 2 0 11-4 0 2 2 0 014 0zM14 15a4 4 0 00-8 0v3h8v-3z"></path>
-                        </svg>
-                    </div>
-                    <h3 class="font-serif text-2xl font-semibold mb-4">Community Support</h3>
-                    <p class="text-gray-600 leading-relaxed">Join thousands of UPSC aspirants in our supportive community with expert guidance and peer learning.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Courses Preview Section -->
-    <section id="courses" class="py-20 bg-gray-50">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-16">
-                <h2 class="font-serif text-4xl font-bold text-gray-900 mb-4">Featured Courses</h2>
-                <p class="text-xl text-gray-600">Comprehensive courses designed by UPSC experts</p>
-            </div>
-            
-            <!-- Course Filters -->
-            <div class="flex flex-wrap justify-center gap-4 mb-12">
-                <button onclick="filterCourses('all')" class="filter-btn active bg-electric-blue text-white px-6 py-2 rounded-full font-medium">All Courses</button>
-                <button onclick="filterCourses('prelims')" class="filter-btn bg-white text-gray-700 px-6 py-2 rounded-full font-medium border hover:bg-gray-50">Prelims</button>
-                <button onclick="filterCourses('mains')" class="filter-btn bg-white text-gray-700 px-6 py-2 rounded-full font-medium border hover:bg-gray-50">Mains</button>
-                <button onclick="filterCourses('optional')" class="filter-btn bg-white text-gray-700 px-6 py-2 rounded-full font-medium border hover:bg-gray-50">Optional</button>
-            </div>
-            
-            <!-- Course Grid -->
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- Course 1 -->
-                <div class="course-card bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow" data-category="prelims">
-                    <div class="h-48 bg-gradient-to-br from-blue-400 to-purple-500 flex items-center justify-center">
-                        <div class="text-white text-center">
-                            <div class="w-16 h-16 bg-white bg-opacity-20 rounded-full flex items-center justify-center mx-auto mb-4">
-                                <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 20 20">
-                                    <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                                </svg>
-                            </div>
-                            <h3 class="font-semibold text-lg">Polity Mastery</h3>
-                        </div>
-                    </div>
-                    <div class="p-6">
-                        <div class="flex items-center justify-between mb-4">
-                            <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm font-medium">Prelims</span>
-                            <div class="flex items-center text-yellow-500">
-                                <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20">
-                                    <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
-                                </svg>
-                                <span class="ml-1 text-sm">4.8</span>
-                            </div>
-                        </div>
-                        <h4 class="font-semibold text-lg mb-2">Complete Indian Polity</h4>
-                        <p class="text-gray-600 text-sm mb-4">Master constitutional concepts with interactive simulations and comprehensive mind maps.</p>
-                        <div class="flex items-center justify-between">
-                            <div class="text-2xl font-bold text-electric-blue">₹2,999</div>
-                            <button onclick="viewCourse()" class="bg-gradient-to-r from-electric-blue to-electric-blue-dark text-white px-6 py-3 rounded-xl font-semibold hover:from-electric-blue-dark hover:to-electric-blue transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl">
-                                View Course
-                            </button>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Course 2 -->
-                <div class="course-card bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow" data-category="mains">
-                    <div class="h-48 bg-gradient-to-br from-green-400 to-teal-500 flex items-center justify-center">
-                        <div class="text-white text-center">
-                            <div class="w-16 h-16 bg-white bg-opacity-20 rounded-full flex items-center justify-center mx-auto mb-4">
-                                <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 20 20">
-                                    <path fill-rule="evenodd" d="M3 4a1 1 0 011-1h4a1 1 0 010 2H6.414l2.293 2.293a1 1 0 01-1.414 1.414L5 6.414V8a1 1 0 01-2 0V4zm9 1a1 1 0 010-2h4a1 1 0 011 1v4a1 1 0 01-2 0V6.414l-2.293 2.293a1 1 0 11-1.414-1.414L13.586 5H12z" clip-rule="evenodd"></path>
-                                </svg>
-                            </div>
-                            <h3 class="font-semibold text-lg">Geography Pro</h3>
-                        </div>
-                    </div>
-                    <div class="p-6">
-                        <div class="flex items-center justify-between mb-4">
-                            <span class="bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm font-medium">Mains</span>
-                            <div class="flex items-center text-yellow-500">
-                                <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20">
-                                    <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
-                                </svg>
-                                <span class="ml-1 text-sm">4.9</span>
-                            </div>
-                        </div>
-                        <h4 class="font-semibold text-lg mb-2">World & Indian Geography</h4>
-                        <p class="text-gray-600 text-sm mb-4">Visual learning with interactive maps and climate simulations for better understanding.</p>
-                        <div class="flex items-center justify-between">
-                            <div class="text-2xl font-bold text-electric-blue">₹3,499</div>
-                            <button onclick="viewCourse()" class="bg-gradient-to-r from-electric-blue to-electric-blue-dark text-white px-6 py-3 rounded-xl font-semibold hover:from-electric-blue-dark hover:to-electric-blue transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl">
-                                View Course
-                            </button>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Course 3 -->
-                <div class="course-card bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow" data-category="optional">
-                    <div class="h-48 bg-gradient-to-br from-purple-400 to-pink-500 flex items-center justify-center">
-                        <div class="text-white text-center">
-                            <div class="w-16 h-16 bg-white bg-opacity-20 rounded-full flex items-center justify-center mx-auto mb-4">
-                                <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 20 20">
-                                    <path d="M13 6a3 3 0 11-6 0 3 3 0 016 0zM18 8a2 2 0 11-4 0 2 2 0 014 0zM14 15a4 4 0 00-8 0v3h8v-3z"></path>
-                                </svg>
-                            </div>
-                            <h3 class="font-semibold text-lg">Psychology</h3>
-                        </div>
-                    </div>
-                    <div class="p-6">
-                        <div class="flex items-center justify-between mb-4">
-                            <span class="bg-purple-100 text-purple-800 px-3 py-1 rounded-full text-sm font-medium">Optional</span>
-                            <div class="flex items-center text-yellow-500">
-                                <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20">
-                                    <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
-                                </svg>
-                                <span class="ml-1 text-sm">4.7</span>
-                            </div>
-                        </div>
-                        <h4 class="font-semibold text-lg mb-2">Psychology Optional</h4>
-                        <p class="text-gray-600 text-sm mb-4">Complete psychology optional with case studies and practical applications.</p>
-                        <div class="flex items-center justify-between">
-                            <div class="text-2xl font-bold text-electric-blue">₹4,999</div>
-                            <button onclick="viewCourse()" class="bg-gradient-to-r from-electric-blue to-electric-blue-dark text-white px-6 py-3 rounded-xl font-semibold hover:from-electric-blue-dark hover:to-electric-blue transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl">
-                                View Course
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="text-center mt-12">
-                <button onclick="viewCourse()" class="bg-gradient-to-r from-electric-blue via-purple-500 to-pink-500 text-white px-10 py-4 rounded-full font-bold text-lg hover:shadow-2xl hover:shadow-electric-blue/25 transition-all transform hover:scale-105 hover:-translate-y-1 shadow-xl">
-                    View All Courses
-                </button>
-            </div>
-        </div>
-    </section>
-
-    <!-- Pricing Section -->
-    <section id="pricing" class="py-20 bg-gradient-to-br from-gray-50 via-blue-50 to-purple-50 relative overflow-hidden">
-        <!-- Background Decorations -->
-        <div class="absolute top-0 left-0 w-96 h-96 bg-gradient-to-br from-blue-400/10 to-purple-400/10 rounded-full -translate-x-48 -translate-y-48 animate-pulse"></div>
-        <div class="absolute bottom-0 right-0 w-96 h-96 bg-gradient-to-br from-pink-400/10 to-orange-400/10 rounded-full translate-x-48 translate-y-48 animate-pulse" style="animation-delay: 1s;"></div>
-        <div class="absolute top-1/2 left-1/2 w-64 h-64 bg-gradient-to-br from-green-400/5 to-teal-400/5 rounded-full -translate-x-32 -translate-y-32 animate-pulse" style="animation-delay: 2s;"></div>
-        
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-            <div class="text-center mb-20">
-                <div class="inline-block bg-gradient-to-r from-electric-blue to-purple-500 text-white px-6 py-2 rounded-full text-sm font-bold mb-6 animate-bounce">
-                    💰 Special Launch Pricing
-                </div>
-                <h2 class="font-serif text-5xl font-bold text-gray-900 mb-6 bg-gradient-to-r from-gray-900 via-electric-blue to-purple-600 bg-clip-text text-transparent">
-                    Choose Your Success Plan
-                </h2>
-                <p class="text-xl text-gray-600 max-w-2xl mx-auto">Transform your UPSC preparation with our revolutionary learning platform</p>
-            </div>
-            
-            <div class="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-                <!-- Free Trial Plan -->
-                <div class="pricing-card bg-white/80 backdrop-blur-xl rounded-3xl shadow-2xl border border-white/20 p-8 relative overflow-hidden group hover:bg-white/90 transition-all duration-500">
-                    <!-- Animated Background -->
-                    <div class="absolute inset-0 bg-gradient-to-br from-green-400/5 to-emerald-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                    <div class="absolute -top-20 -right-20 w-40 h-40 bg-gradient-to-br from-green-400/20 to-emerald-500/20 rounded-full blur-3xl group-hover:scale-150 transition-transform duration-700"></div>
-                    
-                    <div class="absolute top-6 right-6">
-                        <div class="bg-gradient-to-r from-green-500 to-emerald-600 text-white px-4 py-2 rounded-full text-sm font-bold shadow-lg animate-pulse">
-                            🆓 FREE
-                        </div>
-                    </div>
-                    
-                    <div class="text-center mb-8 relative z-10">
-                        <div class="w-20 h-20 bg-gradient-to-br from-green-400 to-emerald-500 rounded-3xl flex items-center justify-center mx-auto mb-6 shadow-2xl group-hover:scale-110 group-hover:rotate-6 transition-all duration-500">
-                            <span class="text-white text-3xl">🚀</span>
-                        </div>
-                        <h3 class="font-serif text-3xl font-bold mb-4 text-gray-800">Free Trial</h3>
-                        <div class="relative">
-                            <div class="text-5xl font-bold text-gray-900 mb-2">₹0</div>
-                            <div class="absolute -top-2 -right-8 text-lg font-semibold text-green-500 rotate-12">FREE!</div>
-                        </div>
-                        <p class="text-gray-600 font-medium">7 days unlimited access</p>
-                    </div>
-                    
-                    <ul class="space-y-4 mb-8 relative z-10">
-                        <li class="flex items-center group/item">
-                            <div class="w-8 h-8 bg-gradient-to-br from-green-500 to-emerald-600 rounded-full flex items-center justify-center mr-4 shadow-lg group-hover/item:scale-110 transition-transform duration-300">
-                                <span class="text-white text-sm font-bold">✓</span>
-                            </div>
-                            <span class="font-medium text-gray-700 group-hover/item:text-green-600 transition-colors duration-300">3 premium courses access</span>
-                        </li>
-                        <li class="flex items-center group/item">
-                            <div class="w-8 h-8 bg-gradient-to-br from-green-500 to-emerald-600 rounded-full flex items-center justify-center mr-4 shadow-lg group-hover/item:scale-110 transition-transform duration-300">
-                                <span class="text-white text-sm font-bold">✓</span>
-                            </div>
-                            <span class="font-medium text-gray-700 group-hover/item:text-green-600 transition-colors duration-300">Interactive simulations</span>
-                        </li>
-                        <li class="flex items-center group/item">
-                            <div class="w-8 h-8 bg-gradient-to-br from-green-500 to-emerald-600 rounded-full flex items-center justify-center mr-4 shadow-lg group-hover/item:scale-110 transition-transform duration-300">
-                                <span class="text-white text-sm font-bold">✓</span>
-                            </div>
-                            <span class="font-medium text-gray-700 group-hover/item:text-green-600 transition-colors duration-300">Visual mind maps</span>
-                        </li>
-                        <li class="flex items-center group/item">
-                            <div class="w-8 h-8 bg-gradient-to-br from-green-500 to-emerald-600 rounded-full flex items-center justify-center mr-4 shadow-lg group-hover/item:scale-110 transition-transform duration-300">
-                                <span class="text-white text-sm font-bold">✓</span>
-                            </div>
-                            <span class="font-medium text-gray-700 group-hover/item:text-green-600 transition-colors duration-300">No credit card required</span>
-                        </li>
-                    </ul>
-                    
-                    <button onclick="startFreeTrial()" class="w-full bg-gradient-to-r from-green-500 to-emerald-600 text-white py-4 rounded-2xl font-bold text-lg hover:from-green-600 hover:to-emerald-700 transition-all transform hover:scale-105 hover:-translate-y-1 shadow-2xl hover:shadow-green-500/25 relative z-10 group-hover:shadow-3xl">
-                        <span class="flex items-center justify-center gap-2">
-                            🎯 Start Free Trial
-                            <svg class="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" fill="currentColor" viewBox="0 0 20 20">
-                                <path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"></path>
-                            </svg>
-                        </span>
-                    </button>
-                </div>
-                
-                <!-- Pro Plan -->
-                <div class="pricing-card bg-white/90 backdrop-blur-xl rounded-3xl shadow-2xl border-2 border-electric-blue/30 p-8 relative overflow-hidden group hover:bg-white transition-all duration-500 transform hover:scale-105 hover:-translate-y-2">
-                    <!-- Animated Background Effects -->
-                    <div class="absolute inset-0 bg-gradient-to-br from-electric-blue/5 to-purple-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                    <div class="absolute -top-20 -right-20 w-40 h-40 bg-gradient-to-br from-electric-blue/20 to-purple-500/20 rounded-full blur-3xl group-hover:scale-150 transition-transform duration-700"></div>
-                    <div class="absolute -bottom-20 -left-20 w-40 h-40 bg-gradient-to-br from-purple-500/20 to-pink-500/20 rounded-full blur-3xl group-hover:scale-150 transition-transform duration-700"></div>
-                    
-                    <!-- Floating particles -->
-                    <div class="absolute top-20 left-10 w-2 h-2 bg-electric-blue rounded-full animate-bounce opacity-60" style="animation-delay: 0.5s;"></div>
-                    <div class="absolute top-32 right-16 w-1 h-1 bg-purple-500 rounded-full animate-bounce opacity-60" style="animation-delay: 1s;"></div>
-                    <div class="absolute bottom-24 left-20 w-1.5 h-1.5 bg-pink-500 rounded-full animate-bounce opacity-60" style="animation-delay: 1.5s;"></div>
-                    
-                    <div class="text-center mb-8 relative z-10 pt-4">
-                        <div class="w-24 h-24 bg-gradient-to-br from-electric-blue to-purple-500 rounded-3xl flex items-center justify-center mx-auto mb-6 shadow-2xl group-hover:scale-110 group-hover:rotate-6 transition-all duration-500 relative">
-                            <span class="text-white text-4xl">💎</span>
-                            <div class="absolute inset-0 bg-gradient-to-br from-white/20 to-transparent rounded-3xl"></div>
-                            <div class="absolute -top-1 -right-1 bg-gradient-to-r from-electric-blue via-purple-500 to-pink-500 text-white px-2 py-1 rounded-full text-xs font-bold shadow-lg animate-pulse z-10">
-                                ⭐ Most Popular
-                            </div>
-                        </div>
-                        <h3 class="font-serif text-3xl font-bold mb-4 text-gray-800">Pro</h3>
-                        <div class="relative mb-4">
-                            <div class="text-6xl font-bold bg-gradient-to-r from-electric-blue to-purple-500 bg-clip-text text-transparent mb-2">₹1,999</div>
-                            <div class="absolute -top-3 -right-12 bg-red-500 text-white px-3 py-1 rounded-full text-xs font-bold rotate-12 animate-pulse">
-                                50% OFF
-                            </div>
-                            <div class="text-lg text-gray-400 line-through">₹3,999</div>
-                        </div>
-                        <p class="text-gray-600 font-medium mb-4">per month</p>
-                        <div class="bg-gradient-to-r from-electric-blue/10 to-purple-500/10 text-electric-blue px-4 py-2 rounded-full text-sm font-bold border border-electric-blue/20">
-                            💳 No card needed for trial
-                        </div>
-                    </div>
-                    
-                    <ul class="space-y-4 mb-8 relative z-10">
-                        <li class="flex items-center group/item">
-                            <div class="w-8 h-8 bg-gradient-to-br from-electric-blue to-purple-500 rounded-full flex items-center justify-center mr-4 shadow-lg group-hover/item:scale-110 transition-transform duration-300">
-                                <span class="text-white text-sm font-bold">✓</span>
-                            </div>
-                            <span class="font-medium text-gray-700 group-hover/item:text-electric-blue transition-colors duration-300">Access to ALL courses</span>
-                        </li>
-                        <li class="flex items-center group/item">
-                            <div class="w-8 h-8 bg-gradient-to-br from-electric-blue to-purple-500 rounded-full flex items-center justify-center mr-4 shadow-lg group-hover/item:scale-110 transition-transform duration-300">
-                                <span class="text-white text-sm font-bold">✓</span>
-                            </div>
-                            <span class="font-medium text-gray-700 group-hover/item:text-electric-blue transition-colors duration-300">Advanced AI simulations</span>
-                        </li>
-                        <li class="flex items-center group/item">
-                            <div class="w-8 h-8 bg-gradient-to-br from-electric-blue to-purple-500 rounded-full flex items-center justify-center mr-4 shadow-lg group-hover/item:scale-110 transition-transform duration-300">
-                                <span class="text-white text-sm font-bold">✓</span>
-                            </div>
-                            <span class="font-medium text-gray-700 group-hover/item:text-electric-blue transition-colors duration-300">Interactive mind maps</span>
-                        </li>
-                        <li class="flex items-center group/item">
-                            <div class="w-8 h-8 bg-gradient-to-br from-electric-blue to-purple-500 rounded-full flex items-center justify-center mr-4 shadow-lg group-hover/item:scale-110 transition-transform duration-300">
-                                <span class="text-white text-sm font-bold">✓</span>
-                            </div>
-                            <span class="font-medium text-gray-700 group-hover/item:text-electric-blue transition-colors duration-300">Priority support</span>
-                        </li>
-                        <li class="flex items-center group/item">
-                            <div class="w-8 h-8 bg-gradient-to-br from-electric-blue to-purple-500 rounded-full flex items-center justify-center mr-4 shadow-lg group-hover/item:scale-110 transition-transform duration-300">
-                                <span class="text-white text-sm font-bold">✓</span>
-                            </div>
-                            <span class="font-medium text-gray-700 group-hover/item:text-electric-blue transition-colors duration-300">Progress analytics</span>
-                        </li>
-                    </ul>
-                    
-                    <button onclick="startFreeTrial()" class="w-full bg-gradient-to-r from-electric-blue via-purple-500 to-pink-500 text-white py-4 rounded-2xl font-bold text-lg hover:shadow-2xl hover:shadow-electric-blue/25 transition-all transform hover:scale-105 hover:-translate-y-1 relative z-10 group-hover:shadow-3xl">
-                        <span class="flex items-center justify-center gap-2">
-                            🚀 Start Free Trial
-                            <svg class="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" fill="currentColor" viewBox="0 0 20 20">
-                                <path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"></path>
-                            </svg>
-                        </span>
-                    </button>
-                </div>
-                
-                <!-- Premium Plan -->
-                <div class="pricing-card bg-white/80 backdrop-blur-xl rounded-3xl shadow-2xl border border-white/20 p-8 relative overflow-hidden group hover:bg-white/90 transition-all duration-500">
-                    <!-- Animated Background -->
-                    <div class="absolute inset-0 bg-gradient-to-br from-purple-500/5 to-pink-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                    <div class="absolute -top-20 -right-20 w-40 h-40 bg-gradient-to-br from-purple-500/20 to-pink-500/20 rounded-full blur-3xl group-hover:scale-150 transition-transform duration-700"></div>
-                    
-                    <div class="absolute top-6 right-6">
-                        <div class="bg-gradient-to-r from-purple-500 to-pink-500 text-white px-4 py-2 rounded-full text-sm font-bold shadow-lg">
-                            👑 VIP
-                        </div>
-                    </div>
-                    
-                    <div class="text-center mb-8 relative z-10">
-                        <div class="w-20 h-20 bg-gradient-to-br from-purple-500 to-pink-500 rounded-3xl flex items-center justify-center mx-auto mb-6 shadow-2xl group-hover:scale-110 group-hover:rotate-6 transition-all duration-500">
-                            <span class="text-white text-3xl">👑</span>
-                        </div>
-                        <h3 class="font-serif text-3xl font-bold mb-4 text-gray-800">Premium</h3>
-                        <div class="text-5xl font-bold text-gray-900 mb-2">₹3,999</div>
-                        <p class="text-gray-600 font-medium mb-4">per month</p>
-                        <div class="bg-gradient-to-r from-purple-100 to-pink-100 text-purple-600 px-4 py-2 rounded-full text-sm font-bold border border-purple-200">
-                            🎯 Best for serious aspirants
-                        </div>
-                    </div>
-                    
-                    <ul class="space-y-4 mb-8 relative z-10">
-                        <li class="flex items-center group/item">
-                            <div class="w-8 h-8 bg-gradient-to-br from-purple-500 to-pink-500 rounded-full flex items-center justify-center mr-4 shadow-lg group-hover/item:scale-110 transition-transform duration-300">
-                                <span class="text-white text-sm font-bold">✓</span>
-                            </div>
-                            <span class="font-medium text-gray-700 group-hover/item:text-purple-600 transition-colors duration-300">Everything in Pro</span>
-                        </li>
-                        <li class="flex items-center group/item">
-                            <div class="w-8 h-8 bg-gradient-to-br from-purple-500 to-pink-500 rounded-full flex items-center justify-center mr-4 shadow-lg group-hover/item:scale-110 transition-transform duration-300">
-                                <span class="text-white text-sm font-bold">✓</span>
-                            </div>
-                            <span class="font-medium text-gray-700 group-hover/item:text-purple-600 transition-colors duration-300">1-on-1 expert mentoring</span>
-                        </li>
-                        <li class="flex items-center group/item">
-                            <div class="w-8 h-8 bg-gradient-to-br from-purple-500 to-pink-500 rounded-full flex items-center justify-center mr-4 shadow-lg group-hover/item:scale-110 transition-transform duration-300">
-                                <span class="text-white text-sm font-bold">✓</span>
-                            </div>
-                            <span class="font-medium text-gray-700 group-hover/item:text-purple-600 transition-colors duration-300">Personalized study plans</span>
-                        </li>
-                        <li class="flex items-center group/item">
-                            <div class="w-8 h-8 bg-gradient-to-br from-purple-500 to-pink-500 rounded-full flex items-center justify-center mr-4 shadow-lg group-hover/item:scale-110 transition-transform duration-300">
-                                <span class="text-white text-sm font-bold">✓</span>
-                            </div>
-                            <span class="font-medium text-gray-700 group-hover/item:text-purple-600 transition-colors duration-300">Mock interviews</span>
-                        </li>
-                        <li class="flex items-center group/item">
-                            <div class="w-8 h-8 bg-gradient-to-br from-purple-500 to-pink-500 rounded-full flex items-center justify-center mr-4 shadow-lg group-hover/item:scale-110 transition-transform duration-300">
-                                <span class="text-white text-sm font-bold">✓</span>
-                            </div>
-                            <span class="font-medium text-gray-700 group-hover/item:text-purple-600 transition-colors duration-300">24/7 priority support</span>
-                        </li>
-                    </ul>
-                    
-                    <button onclick="startFreeTrial()" class="w-full bg-gradient-to-r from-purple-500 to-pink-500 text-white py-4 rounded-2xl font-bold text-lg hover:from-purple-600 hover:to-pink-600 transition-all transform hover:scale-105 hover:-translate-y-1 shadow-2xl hover:shadow-purple-500/25 relative z-10 group-hover:shadow-3xl">
-                        <span class="flex items-center justify-center gap-2">
-                            👑 Start Free Trial
-                            <svg class="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" fill="currentColor" viewBox="0 0 20 20">
-                                <path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"></path>
-                            </svg>
-                        </span>
-                    </button>
-                </div>
-            </div>
-            
-            <!-- Bottom Section -->
-            <div class="text-center mt-16">
-                <div class="bg-white/60 backdrop-blur-xl rounded-2xl p-8 shadow-xl border border-white/20 max-w-2xl mx-auto">
-                    <div class="flex items-center justify-center gap-2 mb-4">
-                        <div class="w-6 h-6 bg-green-500 rounded-full flex items-center justify-center">
-                            <span class="text-white text-xs font-bold">✓</span>
-                        </div>
-                        <p class="text-gray-700 font-semibold">Secure Payment • Instant Access • 30-Day Money Back Guarantee</p>
-                    </div>
-                    <div class="flex justify-center items-center gap-8 opacity-70">
-                        <div class="flex items-center gap-2">
-                            <div class="w-8 h-8 bg-gradient-to-br from-blue-500 to-purple-500 rounded-lg flex items-center justify-center">
-                                <span class="text-white text-xs font-bold">₹</span>
-                            </div>
-                            <span class="text-sm font-medium">Razorpay Secured</span>
-                        </div>
-                        <div class="flex items-center gap-2">
-                            <div class="w-8 h-8 bg-gradient-to-br from-green-500 to-teal-500 rounded-lg flex items-center justify-center">
-                                <span class="text-white text-xs font-bold">🔒</span>
-                            </div>
-                            <span class="text-sm font-medium">SSL Encrypted</span>
-                        </div>
-                        <div class="flex items-center gap-2">
-                            <div class="w-8 h-8 bg-gradient-to-br from-orange-500 to-red-500 rounded-lg flex items-center justify-center">
-                                <span class="text-white text-xs font-bold">📄</span>
-                            </div>
-                            <span class="text-sm font-medium">GST Invoice</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="bg-gray-900 text-white py-16">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid md:grid-cols-4 gap-8">
-                <div>
-                    <div class="text-2xl font-bold text-white mb-4">IAStune</div>
-                    <p class="text-gray-400 mb-6">Learn by doing. Master every UPSC concept with interactive simulations and crystal-clear mind maps.</p>
-                    
-                    <!-- Contact Information -->
-                    <div class="space-y-3 mb-6">
-                        <div class="flex items-center gap-3">
-                            <div class="w-8 h-8 bg-green-500 rounded-full flex items-center justify-center">
-                                <svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 24 24">
-                                    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.465 3.488"/>
-                                </svg>
-                            </div>
-                            <a href="https://wa.me/919392325134" target="_blank" class="text-gray-400 hover:text-white transition-colors">
-                                +91 9392325134
-                            </a>
-                        </div>
-                        
-                        <div class="flex items-center gap-3">
-                            <div class="w-8 h-8 bg-blue-500 rounded-full flex items-center justify-center">
-                                <svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 24 24">
-                                    <path d="M24 5.457v13.909c0 .904-.732 1.636-1.636 1.636h-3.819V11.73L12 16.64l-6.545-4.91v9.273H1.636A1.636 1.636 0 0 1 0 19.366V5.457c0-.904.732-1.636 1.636-1.636h.749L12 11.64 21.615 3.82h.749c.904 0 1.636.733 1.636 1.637z"/>
-                                </svg>
-                            </div>
-                            <a href="mailto:contact@iastune.in" class="text-gray-400 hover:text-white transition-colors">
-                                contact@iastune.in
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                
-                <div>
-                    <h4 class="font-semibold mb-4">Courses</h4>
-                    <ul class="space-y-2 text-gray-400">
-                        <li><a href="#courses" class="hover:text-white transition-colors">Prelims</a></li>
-                        <li><a href="#courses" class="hover:text-white transition-colors">Mains</a></li>
-                        <li><a href="#courses" class="hover:text-white transition-colors">Optional Subjects</a></li>
-                        <li><a href="#courses" class="hover:text-white transition-colors">Current Affairs</a></li>
-                    </ul>
-                </div>
-                
-                <div>
-                    <h4 class="font-semibold mb-4">Resources</h4>
-                    <ul class="space-y-2 text-gray-400">
-                        <li><a href="https://www.iastune.in/simulations/" target="_blank" class="hover:text-white transition-colors">Simulations</a></li>
-                        <li><a href="https://www.iastune.in/mindmaps/" target="_blank" class="hover:text-white transition-colors">Mind Maps</a></li>
-                        <li><a href="https://www.iastune.in/faq/" target="_blank" class="hover:text-white transition-colors">FAQ</a></li>
-                    </ul>
-                </div>
-                
-                <div>
-                    <h4 class="font-semibold mb-4">Company</h4>
-                    <ul class="space-y-2 text-gray-400">
-                        <li><a href="https://www.iastune.in/founders/" target="_blank" class="hover:text-white transition-colors">Founders</a></li>
-                        <li><a href="https://www.iastune.in/about-us/" target="_blank" class="hover:text-white transition-colors">About Us</a></li>
-                        <li><a href="https://forms.gle/LUZsdgBLSjTutLqWA" target="_blank" class="hover:text-white transition-colors">Contact Us</a></li>
-                    </ul>
-                </div>
-                
-                <div>
-                    <h4 class="font-semibold mb-4">Legal</h4>
-                    <ul class="space-y-2 text-gray-400">
-                        <li><a href="https://www.iastune.in/terms-of-service/" target="_blank" class="hover:text-white transition-colors">Terms of Service</a></li>
-                        <li><a href="https://www.iastune.in/privacy-policy/" target="_blank" class="hover:text-white transition-colors">Privacy Policy</a></li>
-                        <li><a href="https://www.iastune.in/refund-policy/" target="_blank" class="hover:text-white transition-colors">Refund Policy</a></li>
-                    </ul>
-                </div>
-            </div>
-            
-            <div class="border-t border-gray-800 mt-12 pt-8 text-center text-gray-400">
-                <p>&copy; 2024 IAStune. All rights reserved.</p>
-            </div>
-        </div>
-    </footer>
-
-    <!-- Auth Modal -->
-    <div id="auth-modal" class="fixed inset-0 bg-black bg-opacity-50 z-50 hidden flex items-center justify-center p-4">
-        <div class="bg-white rounded-2xl max-w-md w-full p-8 relative">
-            <button onclick="closeAuthModal()" class="absolute top-4 right-4 text-gray-400 hover:text-gray-600">
-                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
-                </svg>
-            </button>
-            
-            <div id="login-form" class="auth-form">
-                <h2 class="font-serif text-2xl font-bold mb-6 text-center">Welcome Back</h2>
-                
-                <button onclick="loginWithGoogle()" class="w-full bg-white border-2 border-gray-300 text-gray-700 py-3 rounded-lg font-medium mb-4 hover:bg-gray-50 transition-colors flex items-center justify-center">
-                    <svg class="w-5 h-5 mr-2" viewBox="0 0 24 24">
-                        <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
-                        <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
-                        <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/>
-                        <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/>
-                    </svg>
-                    Continue with Google
-                </button>
-                
-                <div class="text-center text-gray-500 mb-4">or</div>
-                
-                <form onsubmit="handleLogin(event)">
-                    <div class="mb-4">
-                        <input type="email" placeholder="Email" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-electric-blue">
-                    </div>
-                    <div class="mb-6">
-                        <input type="password" placeholder="Password" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-electric-blue">
-                    </div>
-                    <button type="submit" class="w-full btn-primary text-white py-3 rounded-lg font-semibold mb-4">
-                        Sign In
-                    </button>
-                </form>
-                
-                <p class="text-center text-gray-600">
-                    Don't have an account? 
-                    <button onclick="switchToSignup()" class="text-electric-blue font-medium hover:underline">Sign up</button>
-                </p>
-            </div>
-            
-            <div id="signup-form" class="auth-form hidden">
-                <h2 class="font-serif text-2xl font-bold mb-6 text-center">Create Account</h2>
-                
-                <button onclick="signupWithGoogle()" class="w-full bg-white border-2 border-gray-300 text-gray-700 py-3 rounded-lg font-medium mb-4 hover:bg-gray-50 transition-colors flex items-center justify-center">
-                    <svg class="w-5 h-5 mr-2" viewBox="0 0 24 24">
-                        <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
-                        <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
-                        <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/>
-                        <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/>
-                    </svg>
-                    Continue with Google
-                </button>
-                
-                <div class="text-center text-gray-500 mb-4">or</div>
-                
-                <form onsubmit="handleSignup(event)">
-                    <div class="mb-4">
-                        <input type="text" placeholder="Full Name" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-electric-blue">
-                    </div>
-                    <div class="mb-4">
-                        <input type="email" placeholder="Email" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-electric-blue">
-                    </div>
-                    <div class="mb-6">
-                        <input type="password" placeholder="Password" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-electric-blue">
-                    </div>
-                    <button type="submit" class="w-full btn-primary text-white py-3 rounded-lg font-semibold mb-4">
-                        Create Account
-                    </button>
-                </form>
-                
-                <p class="text-center text-gray-600">
-                    Already have an account? 
-                    <button onclick="switchToLogin()" class="text-electric-blue font-medium hover:underline">Sign in</button>
-                </p>
-            </div>
-        </div>
-    </div>
-
-    <!-- Coming Soon Modal -->
-    <div id="coming-soon-modal" class="fixed inset-0 bg-black/70 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
-        <div class="bg-gradient-to-br from-white via-blue-50 to-purple-50 rounded-3xl max-w-5xl w-full max-h-[90vh] overflow-hidden relative shadow-2xl border border-white/20">
-            <!-- Close Button -->
-            <button onclick="closeComingSoonModal()" class="absolute top-6 right-6 z-20 w-12 h-12 bg-white/20 backdrop-blur-xl rounded-full flex items-center justify-center text-gray-600 hover:text-gray-800 hover:bg-white/30 transition-all duration-300 group">
-                <svg class="w-6 h-6 group-hover:scale-110 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
-                </svg>
-            </button>
-            
-            <!-- Background Decorations -->
-            <div class="absolute inset-0 overflow-hidden">
-                <div class="absolute -top-20 -left-20 w-96 h-96 bg-gradient-to-br from-blue-400/20 to-purple-400/20 rounded-full blur-3xl animate-pulse"></div>
-                <div class="absolute -bottom-20 -right-20 w-96 h-96 bg-gradient-to-br from-pink-400/20 to-orange-400/20 rounded-full blur-3xl animate-pulse" style="animation-delay: 1s;"></div>
-                <div class="absolute top-1/2 left-1/2 w-64 h-64 bg-gradient-to-br from-green-400/10 to-teal-400/10 rounded-full blur-3xl animate-pulse" style="animation-delay: 2s;"></div>
-                
-                <!-- Floating Particles -->
-                <div class="absolute top-20 left-20 w-3 h-3 bg-blue-400/40 rounded-full animate-bounce" style="animation-delay: 0.5s;"></div>
-                <div class="absolute top-40 right-32 w-2 h-2 bg-purple-400/40 rounded-full animate-bounce" style="animation-delay: 1.2s;"></div>
-                <div class="absolute bottom-32 left-40 w-2.5 h-2.5 bg-pink-400/40 rounded-full animate-bounce" style="animation-delay: 2.1s;"></div>
-                <div class="absolute top-60 left-1/2 w-2 h-2 bg-green-400/40 rounded-full animate-bounce" style="animation-delay: 0.8s;"></div>
-                <div class="absolute bottom-40 right-20 w-3 h-3 bg-yellow-400/40 rounded-full animate-bounce" style="animation-delay: 1.8s;"></div>
-            </div>
-            
-            <div class="relative z-10 p-8 lg:p-12">
-                <!-- Header Section -->
-                <div class="text-center mb-12">
-                    <div class="inline-block mb-6">
-                        <div class="w-24 h-24 lg:w-32 lg:h-32 bg-gradient-to-br from-blue-500 via-purple-500 to-pink-500 rounded-3xl flex items-center justify-center mx-auto shadow-2xl animate-pulse relative overflow-hidden">
-                            <div class="absolute inset-0 bg-gradient-to-br from-white/20 to-transparent"></div>
-                            <span class="text-white text-4xl lg:text-5xl relative z-10">🚀</span>
-                            <div class="absolute -top-2 -right-2 w-8 h-8 bg-yellow-400 rounded-full animate-bounce opacity-80" style="animation-delay: 0.5s;"></div>
-                            <div class="absolute -bottom-1 -left-1 w-6 h-6 bg-green-400 rounded-full animate-bounce opacity-60" style="animation-delay: 1.2s;"></div>
-                        </div>
-                    </div>
-                    
-                    <div class="mb-6">
-                        <div class="inline-block bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 text-white px-6 py-3 rounded-full text-sm font-bold mb-4 animate-bounce shadow-lg">
-                            ⏰ COMING SOON
-                        </div>
-                    </div>
-                    
-                    <h2 class="font-serif text-4xl lg:text-6xl font-bold mb-6 bg-gradient-to-r from-gray-800 via-blue-600 to-purple-600 bg-clip-text text-transparent leading-tight">
-                        Full Platform Launch
-                    </h2>
-                    
-                    <p class="text-xl lg:text-2xl text-gray-600 max-w-3xl mx-auto leading-relaxed mb-8">
-                        While we're putting the finishing touches on our complete learning platform, explore our existing libraries to start your UPSC journey today!
-                    </p>
-                    
-                    <div class="bg-white/60 backdrop-blur-xl rounded-2xl p-6 border border-white/30 shadow-xl max-w-2xl mx-auto">
-                        <p class="text-lg font-semibold text-gray-700 mb-2">🎯 What's Available Right Now:</p>
-                        <p class="text-gray-600">Interactive simulations and comprehensive mind maps to accelerate your preparation</p>
-                    </div>
-                </div>
-                
-                <!-- Library Options Grid -->
-                <div class="grid lg:grid-cols-2 gap-12 max-w-6xl mx-auto">
-                    <!-- Simulation Library Room -->
-                    <div class="group cursor-pointer transform transition-all duration-700 hover:scale-105" onclick="window.open('https://www.iastune.in/simulations/', '_blank')">
-                        <div class="relative bg-gradient-to-br from-white/30 via-blue-50/50 to-purple-50/50 backdrop-blur-3xl rounded-[2rem] p-10 lg:p-12 border-2 border-white/40 shadow-[0_25px_50px_rgba(0,0,0,0.15)] hover:shadow-[0_35px_70px_rgba(59,130,246,0.3)] transition-all duration-700 overflow-hidden group-hover:border-blue-400/60">
-                            
-                            <!-- Advanced Glow Effects -->
-                            <div class="absolute inset-0 bg-gradient-to-br from-blue-500/10 via-purple-500/10 to-indigo-500/10 rounded-[2rem] opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
-                            <div class="absolute -inset-4 bg-gradient-to-br from-blue-500/20 via-purple-500/20 to-indigo-500/20 rounded-[2.5rem] opacity-0 group-hover:opacity-100 transition-opacity duration-700 blur-2xl"></div>
-                            
-                            <!-- Animated Shimmer -->
-                            <div class="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1500 rounded-[2rem]"></div>
-                            
-                            <!-- Floating Orbs -->
-                            <div class="absolute top-8 right-8 w-4 h-4 bg-gradient-to-br from-blue-400 to-purple-500 rounded-full animate-pulse opacity-60 group-hover:opacity-100 transition-opacity duration-500"></div>
-                            <div class="absolute bottom-12 left-8 w-3 h-3 bg-gradient-to-br from-purple-400 to-pink-500 rounded-full animate-pulse opacity-40 group-hover:opacity-80 transition-opacity duration-500" style="animation-delay: 1s;"></div>
-                            <div class="absolute top-1/2 right-12 w-2 h-2 bg-gradient-to-br from-indigo-400 to-blue-500 rounded-full animate-pulse opacity-50 group-hover:opacity-90 transition-opacity duration-500" style="animation-delay: 2s;"></div>
-                            
-                            <!-- Content -->
-                            <div class="relative z-10">
-                                <!-- Modern Square Icon -->
-                                <div class="w-28 h-28 lg:w-32 lg:h-32 bg-gradient-to-br from-blue-500 via-purple-500 to-indigo-600 rounded-[1.5rem] flex items-center justify-center mx-auto mb-8 shadow-[0_20px_40px_rgba(59,130,246,0.4)] group-hover:shadow-[0_25px_50px_rgba(59,130,246,0.6)] group-hover:scale-110 group-hover:rotate-3 transition-all duration-700 relative overflow-hidden">
-                                    <!-- Inner Glow -->
-                                    <div class="absolute inset-0 bg-gradient-to-br from-white/30 via-white/10 to-transparent rounded-[1.5rem]"></div>
-                                    
-                                    <!-- Icon -->
-                                    <div class="relative z-10 text-white">
-                                        <svg class="w-14 h-14 lg:w-16 lg:h-16" fill="currentColor" viewBox="0 0 24 24">
-                                            <path d="M12 2L2 7v10c0 5.55 3.84 9.74 9 11 5.16-1.26 9-5.45 9-11V7l-10-5z"/>
-                                            <path d="M10 17l-4-4 1.41-1.41L10 14.17l6.59-6.59L18 9l-8 8z" fill="rgba(255,255,255,0.9)"/>
-                                        </svg>
-                                    </div>
-                                    
-                                    <!-- Floating Micro Elements -->
-                                    <div class="absolute -top-3 -right-3 w-8 h-8 bg-gradient-to-br from-yellow-400 to-orange-500 rounded-xl animate-bounce opacity-90 shadow-lg" style="animation-delay: 0.5s;"></div>
-                                    <div class="absolute -bottom-2 -left-2 w-6 h-6 bg-gradient-to-br from-pink-400 to-red-500 rounded-lg animate-bounce opacity-70 shadow-lg" style="animation-delay: 1.2s;"></div>
-                                </div>
-                                
-                                <!-- Title with Enhanced Typography -->
-                                <div class="text-center mb-6">
-                                    <div class="inline-block bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-600 bg-clip-text text-transparent mb-2">
-                                        <h3 class="font-serif text-3xl lg:text-4xl font-bold group-hover:scale-105 transition-transform duration-500">
-                                            Simulation Library Room
-                                        </h3>
-                                    </div>
-                                    <div class="w-24 h-1 bg-gradient-to-r from-blue-500 via-purple-500 to-indigo-500 rounded-full mx-auto group-hover:w-32 transition-all duration-500"></div>
-                                </div>
-                                
-                                <!-- Enhanced Description -->
-                                <p class="text-lg lg:text-xl text-gray-700 text-center mb-8 leading-relaxed font-medium group-hover:text-gray-800 transition-colors duration-500">
-                                    Step into immersive simulations where UPSC concepts come alive through interactive experiences and real-world scenarios.
-                                </p>
-                                
-                                <!-- Modern Feature List -->
-                                <div class="space-y-4 mb-8">
-                                    <div class="flex items-center gap-4 bg-white/40 backdrop-blur-sm rounded-2xl p-4 group-hover:bg-white/60 transition-all duration-500">
-                                        <div class="w-10 h-10 bg-gradient-to-br from-emerald-500 to-green-600 rounded-xl flex items-center justify-center shadow-lg">
-                                            <span class="text-white text-sm font-bold">⚡</span>
-                                        </div>
-                                        <span class="font-semibold text-gray-700 group-hover:text-gray-800 transition-colors duration-300">Interactive Parliament Sessions</span>
-                                    </div>
-                                    <div class="flex items-center gap-4 bg-white/40 backdrop-blur-sm rounded-2xl p-4 group-hover:bg-white/60 transition-all duration-500">
-                                        <div class="w-10 h-10 bg-gradient-to-br from-emerald-500 to-green-600 rounded-xl flex items-center justify-center shadow-lg">
-                                            <span class="text-white text-sm font-bold">🎯</span>
-                                        </div>
-                                        <span class="font-semibold text-gray-700 group-hover:text-gray-800 transition-colors duration-300">Constitutional Case Studies</span>
-                                    </div>
-                                    <div class="flex items-center gap-4 bg-white/40 backdrop-blur-sm rounded-2xl p-4 group-hover:bg-white/60 transition-all duration-500">
-                                        <div class="w-10 h-10 bg-gradient-to-br from-emerald-500 to-green-600 rounded-xl flex items-center justify-center shadow-lg">
-                                            <span class="text-white text-sm font-bold">🚀</span>
-                                        </div>
-                                        <span class="font-semibold text-gray-700 group-hover:text-gray-800 transition-colors duration-300">Real-time Decision Making</span>
-                                    </div>
-                                </div>
-                                
-                                <!-- Ultra-Modern CTA Button -->
-                                <div class="text-center">
-                                    <div class="relative inline-block">
-                                        <div class="absolute inset-0 bg-gradient-to-r from-blue-500 via-purple-500 to-indigo-500 rounded-2xl blur-lg opacity-60 group-hover:opacity-100 transition-opacity duration-500"></div>
-                                        <button class="relative bg-gradient-to-r from-blue-500 via-purple-500 to-indigo-500 text-white px-10 py-5 rounded-2xl font-bold text-lg shadow-2xl hover:shadow-blue-500/50 transform hover:scale-105 hover:-translate-y-1 transition-all duration-500 flex items-center gap-3">
-                                            <span class="text-2xl">🎮</span>
-                                            <span>Enter Simulation Room</span>
-                                            <svg class="w-6 h-6 group-hover:translate-x-2 transition-transform duration-300" fill="currentColor" viewBox="0 0 20 20">
-                                                <path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"></path>
-                                            </svg>
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                            
-                            <!-- Enhanced Decorative Elements -->
-                            <div class="absolute top-6 right-6 w-20 h-20 bg-gradient-to-br from-blue-400/10 to-purple-400/10 rounded-full group-hover:scale-150 group-hover:rotate-45 transition-all duration-700"></div>
-                            <div class="absolute bottom-6 left-6 w-16 h-16 bg-gradient-to-br from-purple-400/10 to-indigo-400/10 rounded-full group-hover:scale-150 group-hover:-rotate-45 transition-all duration-700" style="transition-delay: 0.2s;"></div>
-                        </div>
-                    </div>
-                    
-                    <!-- Mind Map Library Room -->
-                    <div class="group cursor-pointer transform transition-all duration-700 hover:scale-105" onclick="window.open('https://www.iastune.in/mindmaps/', '_blank')">
-                        <div class="relative bg-gradient-to-br from-white/30 via-green-50/50 to-teal-50/50 backdrop-blur-3xl rounded-[2rem] p-10 lg:p-12 border-2 border-white/40 shadow-[0_25px_50px_rgba(0,0,0,0.15)] hover:shadow-[0_35px_70px_rgba(16,185,129,0.3)] transition-all duration-700 overflow-hidden group-hover:border-green-400/60">
-                            
-                            <!-- Advanced Glow Effects -->
-                            <div class="absolute inset-0 bg-gradient-to-br from-green-500/10 via-teal-500/10 to-emerald-500/10 rounded-[2rem] opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
-                            <div class="absolute -inset-4 bg-gradient-to-br from-green-500/20 via-teal-500/20 to-emerald-500/20 rounded-[2.5rem] opacity-0 group-hover:opacity-100 transition-opacity duration-700 blur-2xl"></div>
-                            
-                            <!-- Animated Shimmer -->
-                            <div class="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1500 rounded-[2rem]"></div>
-                            
-                            <!-- Floating Orbs -->
-                            <div class="absolute top-8 left-8 w-4 h-4 bg-gradient-to-br from-green-400 to-teal-500 rounded-full animate-pulse opacity-60 group-hover:opacity-100 transition-opacity duration-500"></div>
-                            <div class="absolute bottom-12 right-8 w-3 h-3 bg-gradient-to-br from-teal-400 to-cyan-500 rounded-full animate-pulse opacity-40 group-hover:opacity-80 transition-opacity duration-500" style="animation-delay: 1s;"></div>
-                            <div class="absolute top-1/2 left-12 w-2 h-2 bg-gradient-to-br from-emerald-400 to-green-500 rounded-full animate-pulse opacity-50 group-hover:opacity-90 transition-opacity duration-500" style="animation-delay: 2s;"></div>
-                            
-                            <!-- Content -->
-                            <div class="relative z-10">
-                                <!-- Modern Square Icon -->
-                                <div class="w-28 h-28 lg:w-32 lg:h-32 bg-gradient-to-br from-green-500 via-teal-500 to-emerald-600 rounded-[1.5rem] flex items-center justify-center mx-auto mb-8 shadow-[0_20px_40px_rgba(16,185,129,0.4)] group-hover:shadow-[0_25px_50px_rgba(16,185,129,0.6)] group-hover:scale-110 group-hover:-rotate-3 transition-all duration-700 relative overflow-hidden">
-                                    <!-- Inner Glow -->
-                                    <div class="absolute inset-0 bg-gradient-to-br from-white/30 via-white/10 to-transparent rounded-[1.5rem]"></div>
-                                    
-                                    <!-- Icon -->
-                                    <div class="relative z-10 text-white">
-                                        <svg class="w-14 h-14 lg:w-16 lg:h-16" fill="currentColor" viewBox="0 0 24 24">
-                                            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
-                                            <circle cx="12" cy="8" r="2" fill="rgba(255,255,255,0.9)"/>
-                                            <path d="M12 14c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z" fill="rgba(255,255,255,0.7)"/>
-                                        </svg>
-                                    </div>
-                                    
-                                    <!-- Floating Micro Elements -->
-                                    <div class="absolute -top-3 -left-3 w-8 h-8 bg-gradient-to-br from-cyan-400 to-blue-500 rounded-xl animate-bounce opacity-90 shadow-lg" style="animation-delay: 0.8s;"></div>
-                                    <div class="absolute -bottom-2 -right-2 w-6 h-6 bg-gradient-to-br from-yellow-400 to-orange-500 rounded-lg animate-bounce opacity-70 shadow-lg" style="animation-delay: 1.5s;"></div>
-                                </div>
-                                
-                                <!-- Title with Enhanced Typography -->
-                                <div class="text-center mb-6">
-                                    <div class="inline-block bg-gradient-to-r from-green-600 via-teal-600 to-emerald-600 bg-clip-text text-transparent mb-2">
-                                        <h3 class="font-serif text-3xl lg:text-4xl font-bold group-hover:scale-105 transition-transform duration-500">
-                                            Mind Map Library Room
-                                        </h3>
-                                    </div>
-                                    <div class="w-24 h-1 bg-gradient-to-r from-green-500 via-teal-500 to-emerald-500 rounded-full mx-auto group-hover:w-32 transition-all duration-500"></div>
-                                </div>
-                                
-                                <!-- Enhanced Description -->
-                                <p class="text-lg lg:text-xl text-gray-700 text-center mb-8 leading-relaxed font-medium group-hover:text-gray-800 transition-colors duration-500">
-                                    Explore beautifully crafted mind maps that transform complex concepts into visual masterpieces for effortless learning.
-                                </p>
-                                
-                                <!-- Modern Feature List -->
-                                <div class="space-y-4 mb-8">
-                                    <div class="flex items-center gap-4 bg-white/40 backdrop-blur-sm rounded-2xl p-4 group-hover:bg-white/60 transition-all duration-500">
-                                        <div class="w-10 h-10 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-xl flex items-center justify-center shadow-lg">
-                                            <span class="text-white text-sm font-bold">🧠</span>
-                                        </div>
-                                        <span class="font-semibold text-gray-700 group-hover:text-gray-800 transition-colors duration-300">Visual Concept Mapping</span>
-                                    </div>
-                                    <div class="flex items-center gap-4 bg-white/40 backdrop-blur-sm rounded-2xl p-4 group-hover:bg-white/60 transition-all duration-500">
-                                        <div class="w-10 h-10 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-xl flex items-center justify-center shadow-lg">
-                                            <span class="text-white text-sm font-bold">🎨</span>
-                                        </div>
-                                        <span class="font-semibold text-gray-700 group-hover:text-gray-800 transition-colors duration-300">Interactive Learning Paths</span>
-                                    </div>
-                                    <div class="flex items-center gap-4 bg-white/40 backdrop-blur-sm rounded-2xl p-4 group-hover:bg-white/60 transition-all duration-500">
-                                        <div class="w-10 h-10 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-xl flex items-center justify-center shadow-lg">
-                                            <span class="text-white text-sm font-bold">💡</span>
-                                        </div>
-                                        <span class="font-semibold text-gray-700 group-hover:text-gray-800 transition-colors duration-300">Memory Enhancement Tools</span>
-                                    </div>
-                                </div>
-                                
-                                <!-- Ultra-Modern CTA Button -->
-                                <div class="text-center">
-                                    <div class="relative inline-block">
-                                        <div class="absolute inset-0 bg-gradient-to-r from-green-500 via-teal-500 to-emerald-500 rounded-2xl blur-lg opacity-60 group-hover:opacity-100 transition-opacity duration-500"></div>
-                                        <button class="relative bg-gradient-to-r from-green-500 via-teal-500 to-emerald-500 text-white px-10 py-5 rounded-2xl font-bold text-lg shadow-2xl hover:shadow-green-500/50 transform hover:scale-105 hover:-translate-y-1 transition-all duration-500 flex items-center gap-3">
-                                            <span class="text-2xl">🗺️</span>
-                                            <span>Enter Mind Map Room</span>
-                                            <svg class="w-6 h-6 group-hover:translate-x-2 transition-transform duration-300" fill="currentColor" viewBox="0 0 20 20">
-                                                <path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"></path>
-                                            </svg>
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                            
-                            <!-- Enhanced Decorative Elements -->
-                            <div class="absolute top-6 left-6 w-20 h-20 bg-gradient-to-br from-green-400/10 to-teal-400/10 rounded-full group-hover:scale-150 group-hover:-rotate-45 transition-all duration-700"></div>
-                            <div class="absolute bottom-6 right-6 w-16 h-16 bg-gradient-to-br from-teal-400/10 to-emerald-400/10 rounded-full group-hover:scale-150 group-hover:rotate-45 transition-all duration-700" style="transition-delay: 0.2s;"></div>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Quick Access Buttons -->
-                <div class="text-center mt-12 mb-8">
-                    <div class="mb-8">
-                        <h3 class="font-serif text-2xl lg:text-3xl font-bold mb-4 bg-gradient-to-r from-gray-800 via-blue-600 to-purple-600 bg-clip-text text-transparent">
-                            Quick Access to Libraries
-                        </h3>
-                        <p class="text-gray-600 text-lg">Jump directly to our interactive learning resources</p>
-                    </div>
-                    
-                    <div class="flex flex-col sm:flex-row gap-6 justify-center max-w-2xl mx-auto">
-                        <!-- Simulations Button -->
-                        <div class="group cursor-pointer transform transition-all duration-500 hover:scale-105" onclick="window.open('https://www.iastune.in/simulations/', '_blank')">
-                            <div class="relative bg-gradient-to-br from-blue-500/20 via-purple-500/20 to-indigo-500/20 backdrop-blur-2xl rounded-2xl p-6 border-2 border-white/30 shadow-[0_15px_35px_rgba(59,130,246,0.3)] hover:shadow-[0_20px_45px_rgba(59,130,246,0.5)] transition-all duration-500 overflow-hidden group-hover:border-blue-400/60">
-                                
-                                <!-- Glow Effect -->
-                                <div class="absolute inset-0 bg-gradient-to-br from-blue-500/30 via-purple-500/30 to-indigo-500/30 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                                <div class="absolute -inset-2 bg-gradient-to-br from-blue-500/40 via-purple-500/40 to-indigo-500/40 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-xl"></div>
-                                
-                                <!-- Shimmer Effect -->
-                                <div class="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000 rounded-2xl"></div>
-                                
-                                <!-- Floating Particles -->
-                                <div class="absolute top-2 right-2 w-2 h-2 bg-blue-400 rounded-full animate-pulse opacity-60 group-hover:opacity-100 transition-opacity duration-300"></div>
-                                <div class="absolute bottom-3 left-3 w-1.5 h-1.5 bg-purple-400 rounded-full animate-pulse opacity-40 group-hover:opacity-80 transition-opacity duration-300" style="animation-delay: 0.5s;"></div>
-                                
-                                <div class="relative z-10 text-center">
-                                    <!-- Icon -->
-                                    <div class="w-16 h-16 bg-gradient-to-br from-blue-500 via-purple-500 to-indigo-600 rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-xl group-hover:scale-110 group-hover:rotate-3 transition-all duration-500 relative overflow-hidden">
-                                        <div class="absolute inset-0 bg-gradient-to-br from-white/20 to-transparent rounded-2xl"></div>
-                                        <svg class="w-8 h-8 text-white relative z-10" fill="currentColor" viewBox="0 0 24 24">
-                                            <path d="M12 2L2 7v10c0 5.55 3.84 9.74 9 11 5.16-1.26 9-5.45 9-11V7l-10-5z"/>
-                                            <path d="M10 17l-4-4 1.41-1.41L10 14.17l6.59-6.59L18 9l-8 8z" fill="rgba(255,255,255,0.9)"/>
-                                        </svg>
-                                        
-                                        <!-- Micro floating elements -->
-                                        <div class="absolute -top-1 -right-1 w-4 h-4 bg-yellow-400 rounded-full animate-bounce opacity-80" style="animation-delay: 0.3s;"></div>
-                                    </div>
-                                    
-                                    <!-- Title -->
-                                    <h4 class="font-bold text-xl text-gray-800 mb-2 group-hover:text-blue-700 transition-colors duration-300">
-                                        Simulations
-                                    </h4>
-                                    
-                                    <!-- Description -->
-                                    <p class="text-gray-600 text-sm mb-4 group-hover:text-gray-700 transition-colors duration-300">
-                                        Interactive scenarios & real-world practice
-                                    </p>
-                                    
-                                    <!-- Action Indicator -->
-                                    <div class="flex items-center justify-center gap-2 text-blue-600 font-medium text-sm group-hover:text-blue-700 transition-colors duration-300">
-                                        <span>Launch Now</span>
-                                        <svg class="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" fill="currentColor" viewBox="0 0 20 20">
-                                            <path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"></path>
-                                        </svg>
-                                    </div>
-                                </div>
-                                
-                                <!-- Decorative corner elements -->
-                                <div class="absolute top-2 left-2 w-8 h-8 bg-gradient-to-br from-blue-400/20 to-purple-400/20 rounded-full group-hover:scale-150 transition-transform duration-500"></div>
-                                <div class="absolute bottom-2 right-2 w-6 h-6 bg-gradient-to-br from-purple-400/20 to-indigo-400/20 rounded-full group-hover:scale-150 transition-transform duration-500" style="transition-delay: 0.1s;"></div>
-                            </div>
-                        </div>
-                        
-                        <!-- Mind Maps Button -->
-                        <div class="group cursor-pointer transform transition-all duration-500 hover:scale-105" onclick="window.open('https://www.iastune.in/mindmaps/', '_blank')">
-                            <div class="relative bg-gradient-to-br from-green-500/20 via-teal-500/20 to-emerald-500/20 backdrop-blur-2xl rounded-2xl p-6 border-2 border-white/30 shadow-[0_15px_35px_rgba(16,185,129,0.3)] hover:shadow-[0_20px_45px_rgba(16,185,129,0.5)] transition-all duration-500 overflow-hidden group-hover:border-green-400/60">
-                                
-                                <!-- Glow Effect -->
-                                <div class="absolute inset-0 bg-gradient-to-br from-green-500/30 via-teal-500/30 to-emerald-500/30 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                                <div class="absolute -inset-2 bg-gradient-to-br from-green-500/40 via-teal-500/40 to-emerald-500/40 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-xl"></div>
-                                
-                                <!-- Shimmer Effect -->
-                                <div class="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000 rounded-2xl"></div>
-                                
-                                <!-- Floating Particles -->
-                                <div class="absolute top-2 left-2 w-2 h-2 bg-green-400 rounded-full animate-pulse opacity-60 group-hover:opacity-100 transition-opacity duration-300"></div>
-                                <div class="absolute bottom-3 right-3 w-1.5 h-1.5 bg-teal-400 rounded-full animate-pulse opacity-40 group-hover:opacity-80 transition-opacity duration-300" style="animation-delay: 0.7s;"></div>
-                                
-                                <div class="relative z-10 text-center">
-                                    <!-- Icon -->
-                                    <div class="w-16 h-16 bg-gradient-to-br from-green-500 via-teal-500 to-emerald-600 rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-xl group-hover:scale-110 group-hover:-rotate-3 transition-all duration-500 relative overflow-hidden">
-                                        <div class="absolute inset-0 bg-gradient-to-br from-white/20 to-transparent rounded-2xl"></div>
-                                        <svg class="w-8 h-8 text-white relative z-10" fill="currentColor" viewBox="0 0 24 24">
-                                            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
-                                            <circle cx="12" cy="8" r="2" fill="rgba(255,255,255,0.9)"/>
-                                            <path d="M12 14c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z" fill="rgba(255,255,255,0.7)"/>
-                                        </svg>
-                                        
-                                        <!-- Micro floating elements -->
-                                        <div class="absolute -top-1 -left-1 w-4 h-4 bg-cyan-400 rounded-full animate-bounce opacity-80" style="animation-delay: 0.6s;"></div>
-                                    </div>
-                                    
-                                    <!-- Title -->
-                                    <h4 class="font-bold text-xl text-gray-800 mb-2 group-hover:text-green-700 transition-colors duration-300">
-                                        Mind Maps
-                                    </h4>
-                                    
-                                    <!-- Description -->
-                                    <p class="text-gray-600 text-sm mb-4 group-hover:text-gray-700 transition-colors duration-300">
-                                        Visual learning & concept mapping
-                                    </p>
-                                    
-                                    <!-- Action Indicator -->
-                                    <div class="flex items-center justify-center gap-2 text-green-600 font-medium text-sm group-hover:text-green-700 transition-colors duration-300">
-                                        <span>Launch Now</span>
-                                        <svg class="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" fill="currentColor" viewBox="0 0 20 20">
-                                            <path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"></path>
-                                        </svg>
-                                    </div>
-                                </div>
-                                
-                                <!-- Decorative corner elements -->
-                                <div class="absolute top-2 right-2 w-8 h-8 bg-gradient-to-br from-green-400/20 to-teal-400/20 rounded-full group-hover:scale-150 transition-transform duration-500"></div>
-                                <div class="absolute bottom-2 left-2 w-6 h-6 bg-gradient-to-br from-teal-400/20 to-emerald-400/20 rounded-full group-hover:scale-150 transition-transform duration-500" style="transition-delay: 0.1s;"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Bottom Section -->
-                <div class="text-center mt-8">
-                    <div class="bg-white/40 backdrop-blur-xl rounded-2xl p-6 shadow-xl border border-white/30 max-w-2xl mx-auto">
-                        <div class="flex items-center justify-center gap-2 mb-3">
-                            <div class="w-6 h-6 bg-gradient-to-br from-blue-500 to-purple-500 rounded-full flex items-center justify-center">
-                                <span class="text-white text-xs font-bold">🔔</span>
-                            </div>
-                            <p class="text-gray-700 font-semibold">Get notified when the full platform launches!</p>
-                        </div>
-                        <p class="text-gray-600 text-sm">Join thousands of UPSC aspirants already using our libraries</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Demo Modal -->
-    <div id="demo-modal" class="fixed inset-0 bg-black bg-opacity-50 z-50 hidden flex items-center justify-center p-4">
-        <div class="bg-white rounded-2xl max-w-4xl w-full max-h-[90vh] overflow-hidden relative">
-            <div class="flex items-center justify-between p-6 border-b">
-                <h2 class="font-serif text-2xl font-bold">Interactive Demo - Polity Simulation</h2>
-                <button onclick="closeDemoModal()" class="text-gray-400 hover:text-gray-600">
-                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
-                    </svg>
-                </button>
-            </div>
-            
-            <div class="p-6">
-                <div class="bg-gradient-to-br from-blue-50 to-indigo-100 rounded-xl p-8 text-center">
-                    <div class="w-24 h-24 bg-electric-blue rounded-full flex items-center justify-center mx-auto mb-6">
-                        <svg class="w-12 h-12 text-white" fill="currentColor" viewBox="0 0 20 20">
-                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clip-rule="evenodd"></path>
-                        </svg>
-                    </div>
-                    
-                    <h3 class="font-serif text-2xl font-bold mb-4">Parliament Session Simulation</h3>
-                    <p class="text-gray-600 mb-6">Experience how bills are passed in the Indian Parliament through our interactive simulation.</p>
-                    
-                    <div class="grid md:grid-cols-3 gap-4 mb-8">
-                        <div class="bg-white rounded-lg p-4">
-                            <div class="w-12 h-12 bg-green-500 rounded-full flex items-center justify-center mx-auto mb-3">
-                                <span class="text-white font-bold">1</span>
-                            </div>
-                            <h4 class="font-semibold mb-2">Introduction</h4>
-                            <p class="text-sm text-gray-600">Learn about the bill introduction process</p>
-                        </div>
-                        
-                        <div class="bg-white rounded-lg p-4">
-                            <div class="w-12 h-12 bg-yellow-500 rounded-full flex items-center justify-center mx-auto mb-3">
-                                <span class="text-white font-bold">2</span>
-                            </div>
-                            <h4 class="font-semibold mb-2">Committee Stage</h4>
-                            <p class="text-sm text-gray-600">Participate in committee discussions</p>
-                        </div>
-                        
-                        <div class="bg-white rounded-lg p-4">
-                            <div class="w-12 h-12 bg-blue-500 rounded-full flex items-center justify-center mx-auto mb-3">
-                                <span class="text-white font-bold">3</span>
-                            </div>
-                            <h4 class="font-semibold mb-2">Final Vote</h4>
-                            <p class="text-sm text-gray-600">Cast your vote and see the outcome</p>
-                        </div>
-                    </div>
-                    
-                    <div class="flex flex-col sm:flex-row gap-4 justify-center">
-                        <button onclick="startFullDemo()" class="btn-primary text-white px-8 py-3 rounded-full font-semibold">
-                            Start Full Demo
-                        </button>
-                        <button onclick="openAuthModal('signup')" class="bg-white text-electric-blue border-2 border-electric-blue px-8 py-3 rounded-full font-semibold hover:bg-electric-blue hover:text-white transition-colors">
-                            Sign Up for Full Access
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
 
     <script>
-        // Navigation
-        function toggleMobileMenu() {
-            const menu = document.getElementById('mobile-menu');
-            menu.classList.toggle('hidden');
-        }
+        // Founder data for enhanced tooltips
+        const foundersData = [
+            { name: "Afthaab Shaik", role: "Co-founder & CEO", bio: "Operations Expert" },
+            { name: "Sathwika Reddy", role: "Co-founder & CEO", bio: "Tech Innovator" },
+            { name: "Vishnu Yadav", role: "Co-founder & CEO", bio: "Visionary Leader" }
+        ];
 
-        function scrollToSection(sectionId) {
-            document.getElementById(sectionId).scrollIntoView({ behavior: 'smooth' });
-        }
+        // Position rotation logic
+        let currentPositions = [0, 1, 2]; // Current position indices for each founder
+        let isAnimating = false;
+        let rotationInterval;
 
-        // Free Trial Functions
-        function startFreeTrial() {
-            document.getElementById('coming-soon-modal').classList.remove('hidden');
-        }
-
-        function showNotification(message, type = 'info') {
-            const notification = document.createElement('div');
-            notification.className = `fixed top-4 right-4 z-50 p-4 rounded-lg shadow-lg max-w-sm transform transition-all duration-300 translate-x-full`;
+        function rotatePositions() {
+            if (isAnimating) return;
             
-            if (type === 'success') {
-                notification.className += ' bg-green-500 text-white';
-            } else if (type === 'error') {
-                notification.className += ' bg-red-500 text-white';
-            } else {
-                notification.className += ' bg-blue-500 text-white';
-            }
+            isAnimating = true;
             
-            notification.innerHTML = `
-                <div class="flex items-center gap-3">
-                    <div class="font-medium">${message}</div>
-                    <button onclick="this.parentElement.parentElement.remove()" class="text-white/80 hover:text-white">
-                        <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
-                            <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path>
-                        </svg>
-                    </button>
-                </div>
-            `;
+            // Rotate positions clockwise: each founder moves to next position
+            currentPositions = currentPositions.map(pos => (pos + 1) % 3);
             
-            document.body.appendChild(notification);
-            
-            // Animate in
-            setTimeout(() => {
-                notification.classList.remove('translate-x-full');
-            }, 100);
-            
-            // Auto remove after 5 seconds
-            setTimeout(() => {
-                notification.classList.add('translate-x-full');
-                setTimeout(() => notification.remove(), 300);
-            }, 5000);
-        }
-
-        // Demo Modal
-        function startDemo() {
-            document.getElementById('demo-modal').classList.remove('hidden');
-        }
-
-        function closeDemoModal() {
-            document.getElementById('demo-modal').classList.add('hidden');
-        }
-
-        function startFullDemo() {
-            alert('Full interactive demo would launch here with step-by-step simulation');
-            closeDemoModal();
-        }
-
-        // Coming Soon Modal
-        function closeComingSoonModal() {
-            document.getElementById('coming-soon-modal').classList.add('hidden');
-        }
-
-        // Course Filtering
-        function filterCourses(category) {
-            const cards = document.querySelectorAll('.course-card');
-            const buttons = document.querySelectorAll('.filter-btn');
-            
-            // Update button states
-            buttons.forEach(btn => {
-                btn.classList.remove('active', 'bg-electric-blue', 'text-white');
-                btn.classList.add('bg-white', 'text-gray-700', 'border');
+            // Update DOM elements with new positions
+            const founderElements = document.querySelectorAll('.founder-name');
+            founderElements.forEach((element, index) => {
+                // Remove old position class
+                element.className = element.className.replace(/position-\d/, '');
+                // Add new position class
+                element.classList.add(`position-${currentPositions[index]}`);
             });
             
-            event.target.classList.remove('bg-white', 'text-gray-700', 'border');
-            event.target.classList.add('active', 'bg-electric-blue', 'text-white');
+            // Reset animation flag after transition completes
+            setTimeout(() => {
+                isAnimating = false;
+            }, 1500);
+        }
+
+        // Start the rotation
+        function startRotation() {
+            rotationInterval = setInterval(rotatePositions, 3000);
+        }
+
+        // Stop the rotation
+        function stopRotation() {
+            clearInterval(rotationInterval);
+        }
+
+        // Initialize rotation on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            startRotation();
             
-            // Filter cards
-            cards.forEach(card => {
-                if (category === 'all' || card.dataset.category === category) {
-                    card.style.display = 'block';
-                } else {
-                    card.style.display = 'none';
+            // Add hover event listeners to pause/resume rotation
+            const founderElements = document.querySelectorAll('.founder-name');
+            founderElements.forEach(element => {
+                element.addEventListener('mouseenter', stopRotation);
+                element.addEventListener('mouseleave', startRotation);
+            });
+        });
+
+        // Animate team cards on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
                 }
             });
-        }
+        }, observerOptions);
 
-        // Course Actions - All course viewing now redirects to mind maps
-        function viewCourse() {
-            window.open('https://www.iastune.in/mindmaps/', '_blank');
-        }
+        document.querySelectorAll('.team-card').forEach((card, index) => {
+            card.style.transitionDelay = `${index * 0.1}s`;
+            observer.observe(card);
+        });
 
-        function showComingSoonModal() {
-            document.getElementById('coming-soon-modal').classList.remove('hidden');
-        }
-
-        // Pricing
-        function selectPlan(plan) {
-            alert(`Selected ${plan} plan. This would redirect to the checkout page with Razorpay integration.`);
-        }
-
-        // Smooth scrolling for navigation links
+        // Smooth scrolling for anchor links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
                 const target = document.querySelector(this.getAttribute('href'));
                 if (target) {
-                    target.scrollIntoView({ behavior: 'smooth' });
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
                 }
             });
         });
-
-        // Close modals when clicking outside
-        document.addEventListener('click', function(event) {
-            const authModal = document.getElementById('auth-modal');
-            const demoModal = document.getElementById('demo-modal');
-            const comingSoonModal = document.getElementById('coming-soon-modal');
-            
-            if (event.target === authModal) {
-                closeAuthModal();
-            }
-            
-            if (event.target === demoModal) {
-                closeDemoModal();
-            }
-            
-            if (event.target === comingSoonModal) {
-                closeComingSoonModal();
-            }
-        });
-
-        // Dynamic online count with truly unique numbers
-        let usedNumbers = new Set();
-        
-        function generateUniqueOnlineCount() {
-            let attempts = 0;
-            let newCount;
-            
-            do {
-                // Generate realistic online count between 800-2500
-                const baseCount = 800;
-                const variation = 1700;
-                newCount = baseCount + Math.floor(Math.random() * variation);
-                
-                // Add some realistic fluctuation patterns
-                const timeVariation = Math.sin(Date.now() / 60000) * 200;
-                newCount = Math.max(800, Math.floor(newCount + timeVariation));
-                
-                attempts++;
-                
-                // If we've tried too many times, clear the used numbers and start fresh
-                if (attempts > 50) {
-                    usedNumbers.clear();
-                    break;
-                }
-            } while (usedNumbers.has(newCount));
-            
-            usedNumbers.add(newCount);
-            return newCount;
-        }
-        
-        function updateOnlineCount() {
-            const onlineCountElement = document.getElementById('online-count');
-            if (onlineCountElement) {
-                const uniqueCount = generateUniqueOnlineCount();
-                onlineCountElement.textContent = `👥 ${uniqueCount.toLocaleString()} online`;
-            }
-        }
-
-        // Update online count every 3-7 seconds with random intervals
-        function scheduleNextUpdate() {
-            const minDelay = 3000; // 3 seconds
-            const maxDelay = 7000; // 7 seconds
-            const randomDelay = minDelay + Math.random() * (maxDelay - minDelay);
-            
-            setTimeout(() => {
-                updateOnlineCount();
-                scheduleNextUpdate(); // Schedule next update
-            }, randomDelay);
-        }
-
-        // Initialize with unique number on page load
-        document.addEventListener('DOMContentLoaded', function() {
-            updateOnlineCount(); // Set initial unique number
-            scheduleNextUpdate(); // Start the update cycle
-        });
-
-        // Add scroll effect to navigation with dynamic text colors
-        window.addEventListener('scroll', function() {
-            const nav = document.querySelector('nav');
-            const navBrand = document.querySelector('.nav-brand');
-            const navLinks = document.querySelectorAll('.nav-link');
-            const navMobileBtn = document.querySelector('.nav-mobile-btn');
-            const navMobileLinks = document.querySelectorAll('.nav-mobile-link');
-            
-            if (window.scrollY > 100) {
-                // Scrolled state - white background, dark text
-                nav.style.backgroundColor = 'rgba(255, 255, 255, 0.95)';
-                nav.style.boxShadow = '0 4px 20px rgba(0, 0, 0, 0.1)';
-                
-                // Change text colors to dark
-                if (navBrand) navBrand.style.color = '#1f2937';
-                navLinks.forEach(link => {
-                    link.style.color = '#374151';
-                    link.addEventListener('mouseenter', () => link.style.color = '#0066FF');
-                    link.addEventListener('mouseleave', () => link.style.color = '#374151');
-                });
-                if (navMobileBtn) navMobileBtn.style.color = '#374151';
-                navMobileLinks.forEach(link => {
-                    link.style.color = '#374151';
-                    link.addEventListener('mouseenter', () => link.style.color = '#0066FF');
-                    link.addEventListener('mouseleave', () => link.style.color = '#374151');
-                });
-            } else {
-                // Top state - transparent background, white text
-                nav.style.backgroundColor = 'rgba(255, 255, 255, 0.1)';
-                nav.style.boxShadow = 'none';
-                
-                // Change text colors to white
-                if (navBrand) navBrand.style.color = '#ffffff';
-                navLinks.forEach(link => {
-                    link.style.color = '#ffffff';
-                    link.addEventListener('mouseenter', () => link.style.color = '#fde047');
-                    link.addEventListener('mouseleave', () => link.style.color = '#ffffff');
-                });
-                if (navMobileBtn) navMobileBtn.style.color = '#ffffff';
-                navMobileLinks.forEach(link => {
-                    link.style.color = '#ffffff';
-                    link.addEventListener('mouseenter', () => link.style.color = '#fde047');
-                    link.addEventListener('mouseleave', () => link.style.color = '#ffffff');
-                });
-            }
-        });
     </script>
-<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'973854bb34457c72',t:'MTc1NTkyODIxMi4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9738733934f20fac',t:'MTc1NTkyOTQ2MS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
-
