@@ -587,7 +587,7 @@
                         <div class="w-8 h-8 bg-gradient-to-br from-green-400 to-emerald-500 rounded-full flex items-center justify-center">
                             <span class="text-white text-sm font-bold">✓</span>
                         </div>
-                        <span class="text-white font-medium">Dynamic Team</span>
+                        <span class="text-white font-medium">IIT Alumni</span>
                     </div>
                     <div class="flex items-center gap-3 bg-white/10 backdrop-blur-xl rounded-full px-6 py-3 border border-white/20 shadow-xl">
                         <div class="w-8 h-8 bg-gradient-to-br from-blue-400 to-indigo-500 rounded-full flex items-center justify-center">
@@ -2145,14 +2145,14 @@
             let newCount;
             
             do {
-                // Generate realistic online count between 800-2500
-                const baseCount = 800;
-                const variation = 1700;
+                // Generate realistic online count between 45-95
+                const baseCount = 45;
+                const variation = 50;
                 newCount = baseCount + Math.floor(Math.random() * variation);
                 
                 // Add some realistic fluctuation patterns
-                const timeVariation = Math.sin(Date.now() / 60000) * 200;
-                newCount = Math.max(800, Math.floor(newCount + timeVariation));
+                const timeVariation = Math.sin(Date.now() / 60000) * 10;
+                newCount = Math.max(45, Math.min(95, Math.floor(newCount + timeVariation)));
                 
                 attempts++;
                 
@@ -2240,5 +2240,5 @@
             }
         });
     </script>
-<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9738781040b6c508',t:'MTc1NTkyOTY1OS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'979ecc987269c66c',t:'MTc1NzAwMjY3MC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
