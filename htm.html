@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>File List Manager</title>
+
+<style>
+body{
+    font-family: Arial, sans-serif;
+    background:#f4f4f4;
+    padding:20px;
+}
+h2{margin-bottom:15px;}
+.item{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    background:#fff;
+    padding:8px 12px;
+    margin-bottom:6px;
+    border-radius:6px;
+    box-shadow:0 1px 3px rgba(0,0,0,0.15);
+}
+.text{flex:1;word-break:break-word;}
+button{
+    border:none;
+    padding:5px 12px;
+    border-radius:4px;
+    cursor:pointer;
+}
+.copy{background:#4caf50;color:#fff;}
+.delete{background:#f44336;color:#fff;}
+</style>
+</head>
+
+<body>
+
+<h2>MindManager File List</h2>
+<div id="list">
+
+<!-- START -->
+<div class="item"><div class="text">1. Contemporary world (700 - 1200 AD)-6L.mmap</div><button class="copy" onclick="copyText(this)">Copy</button><button class="delete" onclick="deleteItem(this)">Delete</button></div>
+<div class="item"><div class="text">1. Contemporary world (700 - 1200 AD)-6L.opml</div><button class="copy" onclick="copyText(this)">Copy</button><button class="delete" onclick="deleteItem(this)">Delete</button></div>
+<div class="item"><div class="text">1. Ethics Human Interface-6D.mmap</div><button class="copy" onclick="copyText(this)">Copy</button><button class="delete" onclick="deleteItem(this)">Delete</button></div>
+<div class="item"><div class="text">1. Ethics Human Interface-6D.opml</div><button class="copy" onclick="copyText(this)">Copy</button><button class="delete" onclick="deleteItem(this)">Delete</button></div>
+<div class="item"><div class="text">1. Physical Features-6E.mmap</div><button class="copy" onclick="copyText(this)">Copy</button><button class="delete" onclick="deleteItem(this)">Delete</button></div>
+<div class="item"><div class="text">1. Physical Features-6E.opml</div><button class="copy" onclick="copyText(this)">Copy</button><button class="delete" onclick="deleteItem(this)">Delete</button></div>
+<div class="item"><div class="text">1. Renaissance-6P.mmap</div><button class="copy" onclick="copyText(this)">Copy</button><button class="delete" onclick="deleteItem(this)">Delete</button></div>
+<div class="item"><div class="text">1. Renaissance-6P.opml</div><button class="copy" onclick="copyText(this)">Copy</button><button class="delete" onclick="deleteItem(this)">Delete</button></div>
+<div class="item"><div class="text">10.-Industry-6B.mmap</div><button class="copy" onclick="copyText(this)">Copy</button><button class="delete" onclick="deleteItem(this)">Delete</button></div>
+<div class="item"><div class="text">10.-Industry-6B.opml</div><button class="copy" onclick="copyText(this)">Copy</button><button class="delete" onclick="deleteItem(this)">Delete</button></div>
+<div class="item"><div class="text">14. Gupta Empire-6G.mmap</div><button class="copy" onclick="copyText(this)">Copy</button><button class="delete" onclick="deleteItem(this)">Delete</button></div>
+<div class="item"><div class="text">14. Gupta Empire-6G.opml</div><button class="copy" onclick="copyText(this)">Copy</button><button class="delete" onclick="deleteItem(this)">Delete</button></div>
+<div class="item"><div class="text">17. Special status of Jammu and Kashmir-6N.mmap</div><button class="copy" onclick="copyText(this)">Copy</button><button class="delete" onclick="deleteItem(this)">Delete</button></div>
+<div class="item"><div class="text">17. Special status of Jammu and Kashmir-6N.opml</div><button class="copy" onclick="copyText(this)">Copy</button><button class="delete" onclick="deleteItem(this)">Delete</button></div>
+<div class="item"><div class="text">2. Drainage system-6E.mmap</div><button class="copy" onclick="copyText(this)">Copy</button><button class="delete" onclick="deleteItem(this)">Delete</button></div>
+<div class="item"><div class="text">2. Drainage system-6E.opml</div><button class="copy" onclick="copyText(this)">Copy</button><button class="delete" onclick="deleteItem(this)">Delete</button></div>
+<div class="item"><div class="text">2.-Music-6H.mmap</div><button class="copy" onclick="copyText(this)">Copy</button><button class="delete" onclick="deleteItem(this)">Delete</button></div>
+<div class="item"><div class="text">2.-Music-6H.opml</div><button class="copy" onclick="copyText(this)">Copy</button><button class="delete" onclick="deleteItem(this)">Delete</button></div>
+<div class="item"><div class="text">20c. State Council of Ministers-6N.mmap</div><button class="copy" onclick="copyText(this)">Copy</button><button class="delete" onclick="deleteItem(this)">Delete</button></div>
+<div class="item"><div class="text">20c. State Council of Ministers-6N.opml</div><button class="copy" onclick="copyText(this)">Copy</button><button class="delete" onclick="deleteItem(this)">Delete</button></div>
+<div class="item"><div class="text">20e. High Court-6N.mmap</div><button class="copy" onclick="copyText(this)">Copy</button><button class="delete" onclick="deleteItem(this)">Delete</button></div>
+<div class="item"><div class="text">20e. High Court-6N.opml</div><button class="copy" onclick="copyText(this)">Copy</button><button class="delete" onclick="deleteItem(this)">Delete</button></div>
+<div class="item"><div class="text">22. INCLUSIVE GROWTH-6B.mmap</div><button class="copy" onclick="copyText(this)">Copy</button><button class="delete" onclick="deleteItem(this)">Delete</button></div>
+<div class="item"><div class="text">22. INCLUSIVE GROWTH-6B.opml</div><button class="copy" onclick="copyText(this)">Copy</button><button class="delete" onclick="deleteItem(this)">Delete</button></div>
+<div class="item"><div class="text">24. Other Constitutional Dimensions-6N.mmap</div><button class="copy" onclick="copyText(this)">Copy</button><button class="delete" onclick="deleteItem(this)">Delete</button></div>
+<div class="item"><div class="text">24. Other Constitutional Dimensions-6N.opml</div><button class="copy" onclick="copyText(this)">Copy</button><button class="delete" onclick="deleteItem(this)">Delete</button></div>
+<div class="item"><div class="text">26. Constitution-Comparison-6N.mmap</div><button class="copy" onclick="copyText(this)">Copy</button><button class="delete" onclick="deleteItem(this)">Delete</button></div>
+<div class="item"><div class="text">26. Constitution-Comparison-6N.opml</div><button class="copy" onclick="copyText(this)">Copy</button><button class="delete" onclick="deleteItem(this)">Delete</button></div>
+<div class="item"><div class="text">3. Justice-6N.mmap</div><button class="copy" onclick="copyText(this)">Copy</button><button class="delete" onclick="deleteItem(this)">Delete</button></div>
+<div class="item"><div class="text">3. Justice-6N.opml</div><button class="copy" onclick="copyText(this)">Copy</button><button class="delete" onclick="deleteItem(this)">Delete</button></div>
+<div class="item"><div class="text">3. Population and associated issues-6I.mmap</div><button class="copy" onclick="copyText(this)">Copy</button><button class="delete" onclick="deleteItem(this)">Delete</button></div>
+<div class="item"><div class="text">3. Population and associated issues-6I.opml</div><button class="copy" onclick="copyText(this)">Copy</button><button class="delete" onclick="deleteItem(this)">Delete</button></div>
+<div class="item"><div class="text">6. American war of Independence-6P.mmap</div><button class="copy" onclick="copyText(this)">Copy</button><button class="delete" onclick="deleteItem(this)">Delete</button></div>
+<div class="item"><div class="text">6. American war of Independence-6P.opml</div><button class="copy" onclick="copyText(this)">Copy</button><button class="delete" onclick="deleteItem(this)">Delete</button></div>
+<div class="item"><div class="text">6. Democracy-6N.mmap</div><button class="copy" onclick="copyText(this)">Copy</button><button class="delete" onclick="deleteItem(this)">Delete</button></div>
+<div class="item"><div class="text">6. Democracy-6N.opml</div><button class="copy" onclick="copyText(this)">Copy</button><button class="delete" onclick="deleteItem(this)">Delete</button></div>
+<div class="item"><div class="text">6. Economic Impact of British Colonial Rule-6M.mmap</div><button class="copy" onclick="copyText(this)">Copy</button><button class="delete" onclick="deleteItem(this)">Delete</button></div>
+<div class="item"><div class="text">6. Economic Impact of British Colonial Rule-6M.opml</div><button class="copy" onclick="copyText(this)">Copy</button><button class="delete" onclick="deleteItem(this)">Delete</button></div>
+<div class="item"><div class="text">6.-Environmental Pollution-6C.mmap</div><button class="copy" onclick="copyText(this)">Copy</button><button class="delete" onclick="deleteItem(this)">Delete</button></div>
+<div class="item"><div class="text">6.-Environmental Pollution-6C.opml</div><button class="copy" onclick="copyText(this)">Copy</button><button class="delete" onclick="deleteItem(this)">Delete</button></div>
+<div class="item"><div class="text">8. Atmosphere-6E.mmap</div><button class="copy" onclick="copyText(this)">Copy</button><button class="delete" onclick="deleteItem(this)">Delete</button></div>
+<div class="item"><div class="text">8. Atmosphere-6E.opml</div><button class="copy" onclick="copyText(this)">Copy</button><button class="delete" onclick="deleteItem(this)">Delete</button></div>
+<div class="item"><div class="text">9.-Languages-6H.mmap</div><button class="copy" onclick="copyText(this)">Copy</button><button class="delete" onclick="deleteItem(this)">Delete</button></div>
+<div class="item"><div class="text">9.-Languages-6H.opml</div><button class="copy" onclick="copyText(this)">Copy</button><button class="delete" onclick="deleteItem(this)">Delete</button></div>
+<div class="item"><div class="text">Ashoka and his Concept of Dhamma-6G.mmap</div><button class="copy" onclick="copyText(this)">Copy</button><button class="delete" onclick="deleteItem(this)">Delete</button></div>
+<div class="item"><div class="text">Ashoka and his Concept of Dhamma-6G.opml</div><button class="copy" onclick="copyText(this)">Copy</button><button class="delete" onclick="deleteItem(this)">Delete</button></div>
+<div class="item"><div class="text">Culture and Civilization-6H.mmap</div><button class="copy" onclick="copyText(this)">Copy</button><button class="delete" onclick="deleteItem(this)">Delete</button></div>
+<div class="item"><div class="text">Culture and Civilization-6H.opml</div><button class="copy" onclick="copyText(this)">Copy</button><button class="delete" onclick="deleteItem(this)">Delete</button></div>
+<div class="item"><div class="text">Indian Biodiversity-6C.mmap</div><button class="copy" onclick="copyText(this)">Copy</button><button class="delete" onclick="deleteItem(this)">Delete</button></div>
+<div class="item"><div class="text">Indian Biodiversity-6C.opml</div><button class="copy" onclick="copyText(this)">Copy</button><button class="delete" onclick="deleteItem(this)">Delete</button></div>
+<div class="item"><div class="text">Investment Models-6B.mmap</div><button class="copy" onclick="copyText(this)">Copy</button><button class="delete" onclick="deleteItem(this)">Delete</button></div>
+<div class="item"><div class="text">Investment Models-6B.opml</div><button class="copy" onclick="copyText(this)">Copy</button><button class="delete" onclick="deleteItem(this)">Delete</button></div>
+<div class="item"><div class="text">Pattern of World Trade-6E.mmap</div><button class="copy" onclick="copyText(this)">Copy</button><button class="delete" onclick="deleteItem(this)">Delete</button></div>
+<div class="item"><div class="text">Pattern of World Trade-6E.opml</div><button class="copy" onclick="copyText(this)">Copy</button><button class="delete" onclick="deleteItem(this)">Delete</button></div>
+<div class="item"><div class="text">Principles of Natural Justice Vs Legal Justice-6N.mmap</div><button class="copy" onclick="copyText(this)">Copy</button><button class="delete" onclick="deleteItem(this)">Delete</button></div>
+<div class="item"><div class="text">Principles of Natural Justice Vs Legal Justice-6N.opml</div><button class="copy" onclick="copyText(this)">Copy</button><button class="delete" onclick="deleteItem(this)">Delete</button></div>
+<!-- END -->
+
+</div>
+
+<script>
+function copyText(btn){
+    const text = btn.parentElement.querySelector(".text").innerText;
+    navigator.clipboard.writeText(text);
+}
+function deleteItem(btn){
+    btn.parentElement.remove();
+}
+</script>
+
+</body>
+</html>
