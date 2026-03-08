@@ -532,6 +532,68 @@ document.addEventListener('keydown', function(e) {
         // Initialize the simulator
         updateValues();
     </script>
+
+
+    <script>
+
+// Disable right click
+document.addEventListener("contextmenu", e => e.preventDefault());
+
+// Disable text selection
+document.addEventListener("selectstart", e => e.preventDefault());
+
+// Disable copy
+document.addEventListener("copy", e => e.preventDefault());
+document.addEventListener("cut", e => e.preventDefault());
+
+// Block common DevTools shortcuts
+document.addEventListener("keydown", function(e){
+
+    if (e.keyCode == 123) location.replace("about:blank"); // F12
+
+    if (e.ctrlKey && e.shiftKey && e.keyCode == 73) location.replace("about:blank"); // Ctrl+Shift+I
+
+    if (e.ctrlKey && e.shiftKey && e.keyCode == 74) location.replace("about:blank"); // Ctrl+Shift+J
+
+    if (e.ctrlKey && e.keyCode == 85) location.replace("about:blank"); // Ctrl+U (view source)
+
+    if (e.ctrlKey && e.keyCode == 83) e.preventDefault(); // Ctrl+S
+
+});
+
+// DevTools detection (Elements / Sources / Network)
+setInterval(function(){
+
+    const threshold = 160;
+
+    if (
+        window.outerWidth - window.innerWidth > threshold ||
+        window.outerHeight - window.innerHeight > threshold
+    ) {
+        document.body.innerHTML="";
+        document.body.style.background="black";
+    }
+
+},1000);
+
+// debugger trap
+(function(){
+    function detectDevTools(){
+        const start = performance.now();
+        debugger;
+        const end = performance.now();
+
+        if(end - start > 100){
+            document.body.innerHTML="";
+            document.body.style.background="black";
+        }
+    }
+
+    setInterval(detectDevTools, 1000);
+})();
+
+</script>
 <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'94f93d5375daa908',t:'MTc0OTg5Nzk0MS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
+
 
